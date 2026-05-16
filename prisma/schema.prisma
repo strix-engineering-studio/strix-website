@@ -1,0 +1,20 @@
+generator client {
+    provider = "prisma-client-js"
+}
+
+datasource db {
+    provider = "postgresql"
+}
+
+model ContactInquiry {
+    id        String   @id @default(cuid())
+    name      String
+    email     String
+    company   String?
+    category  String?
+    budget    String?
+    timeline  String?
+    brief     String?
+    createdAt DateTime @default(now())
+    updatedAt DateTime @updatedAt
+}
