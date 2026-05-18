@@ -116,3 +116,35 @@ body {
     background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 320 320'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='320' height='320' filter='url(%23n)' opacity='.35'/%3E%3C/svg%3E");
   }
 }
+
+/* Normalize rounded utilities: force a single rounded size across the site
+   This keeps design consistent when many custom rounded-* classes were used. */
+:root {
+  --rounded-default: 0.5rem;
+}
+
+.rounded-sm,
+.rounded-md,
+.rounded-lg,
+.rounded-xl,
+.rounded-2xl,
+.rounded-3xl,
+.rounded-\[28px\],
+.rounded-\[32px\],
+.rounded-\[36px\],
+.rounded-\[24px\],
+.rounded-\[26px\],
+.rounded-\[20px\] {
+  border-radius: var(--rounded-default) !important;
+}
+
+/* Serif utility for selective Times New Roman usage */
+.font-serif {
+  font-family: "Times New Roman", Georgia, serif;
+}
+
+/* Utility for small editorial serif headings */
+.serif-lg {
+  font-family: "Times New Roman", Georgia, serif;
+  letter-spacing: -0.02em;
+}

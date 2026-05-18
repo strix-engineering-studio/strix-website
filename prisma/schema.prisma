@@ -3,11 +3,11 @@ generator client {
 }
 
 datasource db {
-    provider = "postgresql"
+    provider = "mongodb"
 }
 
 model ContactInquiry {
-    id        String   @id @default(cuid())
+    id        String   @id @default(auto()) @map("_id") @db.ObjectId
     name      String
     email     String
     company   String?

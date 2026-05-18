@@ -34,3 +34,15 @@ You can check out [the Next.js GitHub repository](https://github.com/vercel/next
 The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+
+## Optional 3D / Motion Dependencies
+
+This project scaffolds space for React Three Fiber / Drei scenes and Framer Motion utilities. To enable 3D features (Hero canvas, R3F scenes), install the following packages:
+
+```bash
+pnpm add three @react-three/fiber @react-three/drei
+```
+
+If you use npm or yarn, replace `pnpm` with your package manager of choice.
+
+Note: 3D heavy scenes should be lazy-loaded and only enabled on capable devices. See `hooks/useDeviceQuality.ts`.

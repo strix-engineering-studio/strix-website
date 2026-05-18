@@ -3,6 +3,7 @@
 import Link from "next/link"
 import { motion } from "framer-motion"
 import { ArrowLeft, ArrowUpRight, CheckCircle2, ShieldCheck, Workflow } from "lucide-react"
+import type { LucideIcon } from "lucide-react"
 import type { Project } from "@/lib/site"
 
 const sections = [
@@ -121,7 +122,7 @@ export function CaseStudyView({ project }: { project: Project }) {
   )
 }
 
-function InfoPanel({ title, text, icon: Icon }: { title: string; text: string; icon?: React.ElementType }) {
+function InfoPanel({ title, text, icon: Icon }: { title: string; text: string; icon?: LucideIcon }) {
   return (
     <div className="rounded-[30px] border border-white/10 bg-white/5 p-5">
       <div className="flex items-center gap-3">

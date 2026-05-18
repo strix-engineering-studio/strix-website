@@ -1,6 +1,6 @@
 "use client"
 
-import { useState } from "react"
+import { useState, type ReactNode } from "react"
 import { CheckCircle2, Mail, Rocket } from "lucide-react"
 import { budgetBands, contactCategories, timelineBands } from "@/lib/site"
 import { cn } from "@/lib/utils"
@@ -34,7 +34,7 @@ export function ContactForm() {
     <form onSubmit={onSubmit} className="space-y-5 rounded-[32px] border border-white/10 bg-white/5 p-5 sm:p-6">
       <div className="grid gap-3 sm:grid-cols-2">
         <Input label="Name" name="name" placeholder="Your name" />
-        <Input label="Email" name="email" placeholder="you@company.com" type="email" icon={Mail} />
+        <Input label="Email" name="email" placeholder="you@company.com" type="email" icon={<Mail className="size-4 text-white/40" />} />
       </div>
       <Input label="Company" name="company" placeholder="Company or startup" />
 
@@ -80,12 +80,12 @@ export function ContactForm() {
   )
 }
 
-function Input({ label, icon: Icon, ...props }: React.InputHTMLAttributes<HTMLInputElement> & { label: string; icon?: React.ElementType }) {
+function Input({ label, icon, ...props }: React.InputHTMLAttributes<HTMLInputElement> & { label: string; icon?: ReactNode }) {
   return (
     <label className="space-y-2 text-sm text-white/70">
       <span>{label}</span>
       <div className="flex items-center gap-3 rounded-3xl border border-white/10 bg-black/25 px-4 py-3">
-        {Icon ? <Icon className="size-4 text-white/40" /> : null}
+        {icon}
         <input {...props} className="w-full bg-transparent text-white outline-none placeholder:text-white/35" />
       </div>
     </label>

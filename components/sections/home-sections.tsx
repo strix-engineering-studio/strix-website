@@ -1,11 +1,24 @@
 "use client"
 
 import Link from "next/link"
+import dynamic from "next/dynamic"
 import { motion } from "framer-motion"
 import { ArrowRight, ArrowUpRight, Cpu, Database, Globe, Mail, Radar, ShieldCheck, Sparkles, Terminal, Workflow } from "lucide-react"
 import { featuredProjects, heroStats, services, experienceTimeline, testimonials, blogTopics } from "@/lib/site"
+import { useState } from "react"
+import DetailModal from "@/components/ui/detail-modal"
 import { SectionHeading } from "@/components/shared/section-heading"
 import { cn } from "@/lib/utils"
+
+const Hero3D = dynamic(() => import("@/components/3d/Hero3D"), { ssr: false, loading: () => <div className="h-64 w-full rounded-[20px] bg-black/10" /> })
+
+function Hero3DWrapper() {
+  return (
+    <div className="rounded-[20px] border border-white/8 bg-black/20 p-2">
+      <Hero3D />
+    </div>
+  )
+}
 
 const reveal = {
   hidden: { opacity: 0, y: 24, filter: "blur(12px)" },
@@ -44,7 +57,7 @@ export function HeroSection() {
             <Sparkles className="size-3.5" />
             Full Stack + AI Engineer
           </motion.p>
-          <motion.h1 variants={reveal} transition={{ duration: 0.7 }} className="max-w-4xl text-balance text-5xl font-semibold tracking-[-0.05em] text-white sm:text-6xl lg:text-7xl">
+          <motion.h1 variants={reveal} transition={{ duration: 0.7 }} className="max-w-4xl text-balance text-5xl serif-lg tracking-[-0.05em] text-white sm:text-6xl lg:text-7xl">
             Building production-grade MVPs, AI systems, and scalable applications.
           </motion.h1>
           <motion.p variants={reveal} transition={{ duration: 0.6 }} className="mt-6 max-w-2xl text-pretty text-lg leading-8 text-white/68 sm:text-xl">
@@ -164,6 +177,10 @@ export function HeroSection() {
                 </div>
               </div>
             </div>
+            <div className="p-5">
+              {/* Lazy-load the 3D hero canvas for progressive enhancement */}
+              <Hero3DWrapper />
+            </div>
           </Panel>
         </motion.div>
       </div>
@@ -192,6 +209,7 @@ export function TrustStrip() {
 }
 
 export function FeaturedWorkSection() {
+  const [selectedProject, setSelectedProject] = useState<any | null>(null)
   return (
     <section className="px-5 py-12 sm:px-6 lg:px-8 lg:py-16">
       <div className="mx-auto max-w-7xl space-y-10">
@@ -217,9 +235,9 @@ export function FeaturedWorkSection() {
                     <p className="text-xs uppercase tracking-[0.35em] text-emerald-300/75">{project.category}</p>
                     <h3 className="mt-2 text-2xl font-semibold text-white">{project.title}</h3>
                   </div>
-                  <Link href={`/case-studies/${project.slug}`} className="rounded-full border border-white/10 bg-black/20 p-3 text-white/80 transition group-hover:border-emerald-300/30 group-hover:text-emerald-200">
+                  <button onClick={() => setSelectedProject(project)} className="rounded-full border border-white/10 bg-black/20 p-3 text-white/80 transition group-hover:border-emerald-300/30 group-hover:text-emerald-200">
                     <ArrowUpRight className="size-5" />
-                  </Link>
+                  </button>
                 </div>
                 <p className="max-w-xl text-sm leading-7 text-white/68">{project.summary}</p>
                 <div className="grid gap-3 sm:grid-cols-3">
@@ -258,6 +276,7 @@ export function FeaturedWorkSection() {
               </div>
             </motion.article>
           ))}
+          <DetailModal project={selectedProject} onClose={() => setSelectedProject(null)} />
         </div>
       </div>
     </section>
