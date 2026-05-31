@@ -1,51 +1,7 @@
-import type { Metadata } from "next"
-import { notFound } from "next/navigation"
-import { PageShell } from "@/components/shared/page-shell"
-import { getBlogPostBySlug, getBlogPosts } from "@/lib/content"
-
-export async function generateStaticParams() {
-  const posts = await getBlogPosts()
-  return posts.map((post) => ({ slug: post.slug }))
-}
-
-export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
-  const { slug } = await params
-  try {
-    const { frontmatter } = await getBlogPostBySlug(slug)
-    return {
-      title: frontmatter.title,
-      description: frontmatter.excerpt,
-    }
-  } catch {
-    return {}
-  }
-}
+import { redirect } from "next/navigation"
 
 export default async function BlogPostPage({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params
 
-  const post = await getBlogPostBySlug(slug).catch(() => null)
-
-  if (!post) {
-    notFound()
-  }
-
-  const { content, frontmatter } = post
-  const publishedDate = new Date(frontmatter.publishedAt).toLocaleDateString("en-US", {
-    month: "long",
-    day: "numeric",
-    year: "numeric",
-  })
-
-  return (
-    <PageShell eyebrow={frontmatter.tag} title={frontmatter.title} description={frontmatter.excerpt}>
-      <article className="prose max-w-none prose-invert prose-headings:tracking-tight prose-a:text-[color:var(--foreground)] prose-strong:text-foreground prose-code:text-foreground prose-pre:border prose-pre:border-white/10 prose-pre:bg-black/30">
-        <div className="mb-8 flex items-center gap-4 text-sm text-muted-foreground">
-          <span>{publishedDate}</span>
-          <span>{frontmatter.tag}</span>
-        </div>
-        {content}
-      </article>
-    </PageShell>
-  )
+  redirect(`/insights/${slug}`)
 }

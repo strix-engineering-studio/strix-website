@@ -11,7 +11,7 @@ export function WorkGallery() {
         <Link
           key={project.slug}
           href={`/case-studies/${project.slug}`}
-          className="group overflow-hidden rounded-[30px] border border-white/10 bg-white/5 p-5 transition duration-500 hover:-translate-y-1 hover:border-white/16 hover:bg-white/7"
+          className="group overflow-hidden rounded-xl border border-white/10 bg-white/5 p-5 transition duration-500 hover:-translate-y-1 hover:border-white/16 hover:bg-white/7"
         >
           <div className="space-y-4">
             <div className="flex items-start justify-between gap-4">
@@ -24,7 +24,7 @@ export function WorkGallery() {
             <p className="max-w-xl text-sm leading-7 text-muted-foreground">{project.summary}</p>
             <div className="grid gap-3 sm:grid-cols-3">
               {project.metrics.map((metric) => (
-                <div key={metric} className="rounded-2xl border border-white/8 bg-black/20 px-4 py-3 text-sm text-white/72">
+                <div key={metric} className="rounded-lg border border-white/8 bg-black/20 px-4 py-3 text-sm text-white/72">
                   {metric}
                 </div>
               ))}

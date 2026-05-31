@@ -4,11 +4,11 @@ import { getContactInquiryCollection } from "@/lib/db"
 import { budgetBands, contactCategories, timelineBands } from "@/lib/site"
 
 const projectTypes = [
-    "Operational Systems",
-    "Product Engineering",
-    "AI & Automation",
-    "Infrastructure & Reliability",
-    "Long-term Support",
+    "Discovery and fixed scope",
+    "Engineering partnership",
+    "Platform build",
+    "Product modernization",
+    "AI-enabled systems",
     "Other",
 ]
 

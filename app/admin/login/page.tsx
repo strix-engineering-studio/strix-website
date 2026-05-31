@@ -44,7 +44,7 @@ export default function AdminLoginPage() {
                         <Shield className="size-3.5" />
                         Admin Login
                     </div>
-                    <h1 className="text-balance text-4xl font-semibold tracking-tight text-white sm:text-5xl">Sign in to manage the Auren console.</h1>
+                    <h1 className="text-balance text-4xl font-semibold tracking-tight text-white sm:text-5xl">Sign in to manage the Strix console.</h1>
                     <p className="max-w-xl text-sm leading-7 text-white/65 sm:text-base">
                         Use the email and password configured for the admin workspace to access landing pages, inquiries, clients, and monitoring.
                     </p>

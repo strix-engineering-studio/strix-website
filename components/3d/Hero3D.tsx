@@ -33,8 +33,8 @@ function GridFloor() {
 
 export default function Hero3D() {
   return (
-    <div className="h-64 w-full rounded-[24px] overflow-hidden">
-      <Canvas shadows camera={{ position: [0, 1.2, 3], fov: 50 }}>
+    <div className="aspect-[4/3] w-full overflow-hidden rounded-lg min-h-52 sm:min-h-60 lg:min-h-64">
+      <Canvas shadows camera={{ position: [0, 1.2, 3], fov: 50 }} dpr={[1, 1.5]}>
         <ambientLight intensity={0.6} />
         <directionalLight position={[5, 5, 5]} intensity={0.8} />
         <Suspense fallback={null}>

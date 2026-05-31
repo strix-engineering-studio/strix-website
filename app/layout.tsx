@@ -1,12 +1,13 @@
-import type { Metadata } from "next"
+import type { Metadata, Viewport } from "next"
 import { Geist_Mono, Manrope, Space_Grotesk } from "next/font/google"
 import { SiteFooter } from "@/components/layout/site-footer"
 import { SiteHeader } from "@/components/layout/site-header"
 import { CommandMenu } from "@/components/shared/command-menu"
+import { PwaRegister } from "@/components/shared/pwa-register"
 import { ThemeProvider } from "@/components/shared/theme-provider"
+import { JsonLd } from "@/components/seo/json-ld"
+import { organizationSchema, siteConfig, websiteSchema } from "@/lib/seo"
 import "./globals.css"
-
-const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://auren.com"
 
 const headingFont = Space_Grotesk({
   variable: "--font-heading",
@@ -24,23 +25,38 @@ const geistMono = Geist_Mono({
 })
 
 export const metadata: Metadata = {
-  metadataBase: new URL(siteUrl),
+  metadataBase: new URL(siteConfig.url),
   title: {
-    default: "Auren | Systems for modern operations",
-    template: "%s | Auren",
+    default: "Strix Engineering Studio | Architecture-First Product Engineering",
+    template: "%s | Strix Engineering Studio",
   },
-  description:
-    "Auren designs premium product systems, workflow tooling, AI-enabled automation, and long-term technical support for growing teams.",
+  description: siteConfig.description,
+  keywords: siteConfig.defaultKeywords,
+  manifest: "/manifest.webmanifest",
+  appleWebApp: {
+    capable: true,
+    title: "Strix",
+    statusBarStyle: "black-translucent",
+  },
   openGraph: {
-    title: "Auren | Systems for modern operations",
-    description: "Operational software, product engineering, AI workflows, and infrastructure designed for clarity, reliability, and long-term support.",
+    title: "Strix Engineering Studio | Architecture-First Product Engineering",
+    description: siteConfig.description,
     url: "/",
-    siteName: "Auren",
+    siteName: siteConfig.name,
     type: "website",
   },
   twitter: {
     card: "summary_large_image",
+    title: "Strix Engineering Studio",
+    description: siteConfig.description,
   },
+}
+
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
+  viewportFit: "cover",
+  themeColor: "#0b0d10",
 }
 
 export default function RootLayout({
@@ -51,14 +67,12 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${headingFont.variable} ${bodyFont.variable} ${geistMono.variable} h-full scroll-smooth antialiased`} suppressHydrationWarning>
       <head>
-        <script
-          dangerouslySetInnerHTML={{
-            __html: `(() => { try { const storedTheme = localStorage.getItem('theme'); const systemDark = window.matchMedia('(prefers-color-scheme: dark)').matches; const resolvedTheme = storedTheme === 'light' || storedTheme === 'dark' ? storedTheme : (systemDark ? 'dark' : 'light'); document.documentElement.classList.toggle('dark', resolvedTheme === 'dark'); document.documentElement.style.colorScheme = resolvedTheme; } catch (error) {} })();`,
-          }}
-        />
+        <link rel="canonical" href={siteConfig.url} />
+        <JsonLd data={[organizationSchema(), websiteSchema()]} />
       </head>
       <body className="relative isolate min-h-screen overflow-x-hidden text-foreground" style={{ background: "var(--page-background)" }}>
         <ThemeProvider>
+          <PwaRegister />
           <SiteHeader />
           <main className="relative z-10">{children}</main>
           <SiteFooter />

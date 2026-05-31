@@ -51,7 +51,7 @@ export function ContactForm() {
           name="projectSummary"
           rows={5}
           placeholder="What are you building, what outcome matters, and what is the current constraint?"
-          className="w-full rounded-[24px] border border-white/10 bg-black/20 px-4 py-3 text-sm text-foreground outline-none placeholder:text-white/35"
+          className="w-full rounded-md border border-white/10 bg-black/20 px-4 py-3 text-sm text-foreground outline-none placeholder:text-white/35"
         />
       </FieldGroup>
 
@@ -64,7 +64,7 @@ export function ContactForm() {
         </FieldGroup>
       </div>
 
-      <details className="rounded-[24px] border border-white/10 bg-white/4 p-4">
+      <details className="rounded-md border border-white/10 bg-white/4 p-4">
         <summary className="cursor-pointer list-none text-sm font-medium text-foreground">Add technical notes</summary>
         <div className="mt-4 space-y-3">
           <FieldGroup label="Technical requirements">
@@ -72,10 +72,10 @@ export function ContactForm() {
               name="technicalRequirements"
               rows={4}
               placeholder="Optional constraints, platforms, integrations, or implementation notes."
-              className="w-full rounded-[24px] border border-white/10 bg-black/20 px-4 py-3 text-sm text-foreground outline-none placeholder:text-white/35"
+              className="w-full rounded-md border border-white/10 bg-black/20 px-4 py-3 text-sm text-foreground outline-none placeholder:text-white/35"
             />
           </FieldGroup>
-          <label className="flex items-center gap-3 rounded-[24px] border border-white/10 bg-black/20 px-4 py-3 text-sm text-muted-foreground">
+          <label className="flex items-center gap-3 rounded-md border border-white/10 bg-black/20 px-4 py-3 text-sm text-muted-foreground">
             <Paperclip className="size-4 text-white/40" />
             <input type="file" name="attachments" multiple className="w-full text-sm text-muted-foreground file:mr-4 file:rounded-full file:border-0 file:bg-white/10 file:px-4 file:py-2 file:text-xs file:font-medium file:text-foreground hover:file:bg-white/15" />
           </label>
@@ -87,7 +87,7 @@ export function ContactForm() {
           name="brief"
           rows={4}
           placeholder="Anything else that would help qualify the fit?"
-          className="w-full rounded-[24px] border border-white/10 bg-black/20 px-4 py-3 text-sm text-foreground outline-none placeholder:text-white/35"
+          className="w-full rounded-md border border-white/10 bg-black/20 px-4 py-3 text-sm text-foreground outline-none placeholder:text-white/35"
         />
       </FieldGroup>
 
@@ -115,7 +115,7 @@ function Input({ label, icon, ...props }: React.InputHTMLAttributes<HTMLInputEle
   return (
     <label className="space-y-2 text-sm text-muted-foreground">
       <span>{label}</span>
-      <div className="flex items-center gap-3 rounded-[24px] border border-white/10 bg-black/20 px-4 py-3">
+      <div className="flex items-center gap-3 rounded-md border border-white/10 bg-black/20 px-4 py-3">
         {icon}
         <input {...props} className="w-full bg-transparent text-foreground outline-none placeholder:text-white/35" />
       </div>

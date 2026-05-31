@@ -56,7 +56,7 @@ export default async function BusinessLandingPage({ params }: { params: Promise<
     return (
         <section className="px-5 py-12 sm:px-6 lg:px-8 lg:py-16">
             <div className="mx-auto max-w-7xl space-y-10">
-                <div className="overflow-hidden rounded-[36px] border border-white/10 bg-white/5 p-6 backdrop-blur-xl sm:p-8 lg:p-10">
+                <div className="overflow-hidden rounded-xl border border-white/10 bg-white/5 p-6 backdrop-blur-xl sm:p-8 lg:p-10">
                     <div className="flex flex-wrap items-center gap-3 text-sm text-white/60">
                         <span className="rounded-full border border-emerald-300/20 bg-emerald-300/10 px-3 py-1 text-emerald-100">{landingPage.heroEyebrow}</span>
                         <span>{landingPage.industry}</span>
@@ -81,7 +81,7 @@ export default async function BusinessLandingPage({ params }: { params: Promise<
 
                 <div className="grid gap-4 md:grid-cols-3">
                     {landingPage.metrics.map((metric) => (
-                        <div key={metric.label} className="rounded-[28px] border border-white/10 bg-white/5 p-5">
+                        <div key={metric.label} className="rounded-xl border border-white/10 bg-white/5 p-5">
                             <p className="text-sm uppercase tracking-[0.3em] text-white/40">{metric.label}</p>
                             <p className="mt-3 text-3xl font-semibold text-white">{metric.value}</p>
                         </div>
@@ -89,11 +89,11 @@ export default async function BusinessLandingPage({ params }: { params: Promise<
                 </div>
 
                 <div className="grid gap-5 lg:grid-cols-[1.05fr_0.95fr]">
-                    <div className="rounded-[32px] border border-white/10 bg-white/5 p-6">
+                    <div className="rounded-xl border border-white/10 bg-white/5 p-6">
                         <p className="text-sm uppercase tracking-[0.35em] text-emerald-300/75">What’s included</p>
                         <div className="mt-5 grid gap-4 md:grid-cols-2">
                             {landingPage.features.map((feature) => (
-                                <div key={feature.title} className="rounded-3xl border border-white/10 bg-black/20 p-4">
+                                <div key={feature.title} className="rounded-lg border border-white/10 bg-black/20 p-4">
                                     <h2 className="text-lg font-semibold text-white">{feature.title}</h2>
                                     <p className="mt-2 text-sm leading-7 text-white/65">{feature.description}</p>
                                 </div>
@@ -101,12 +101,12 @@ export default async function BusinessLandingPage({ params }: { params: Promise<
                         </div>
                     </div>
 
-                    <div className="space-y-5 rounded-[32px] border border-white/10 bg-white/5 p-6">
+                    <div className="space-y-5 rounded-xl border border-white/10 bg-white/5 p-6">
                         <div>
                             <p className="text-sm uppercase tracking-[0.35em] text-white/40">Offer bullets</p>
                             <div className="mt-4 space-y-3">
                                 {landingPage.offerBullets.map((bullet) => (
-                                    <div key={bullet} className="flex items-center gap-3 rounded-2xl border border-white/10 bg-black/20 px-4 py-3 text-sm text-white/70">
+                                    <div key={bullet} className="flex items-center gap-3 rounded-lg border border-white/10 bg-black/20 px-4 py-3 text-sm text-white/70">
                                         <Sparkles className="size-4 text-emerald-300" />
                                         <span>{bullet}</span>
                                     </div>
@@ -114,7 +114,7 @@ export default async function BusinessLandingPage({ params }: { params: Promise<
                             </div>
                         </div>
 
-                        <div className="rounded-3xl border border-emerald-300/15 bg-emerald-300/8 p-5 text-sm text-white/72">
+                        <div className="rounded-lg border border-emerald-300/15 bg-emerald-300/8 p-5 text-sm text-white/72">
                             <p className="font-medium text-emerald-100">Contact</p>
                             <p className="mt-2">{landingPage.contactEmail}</p>
                             {landingPage.notes ? <p className="mt-3 leading-7 text-white/60">{landingPage.notes}</p> : null}

@@ -123,14 +123,40 @@ export async function POST(request: Request, context: { params: Promise<{ resour
         return NextResponse.json({ ok: false, message: "Invalid submission", issues: parsed.error.flatten() }, { status: 400 })
     }
 
-    const collection = await resourceMap[resolved].collection()
     const now = new Date()
     const id = typeof payload?.id === "string" ? payload.id : ""
-    const document = {
-        ...parsed.data,
-        updatedAt: now,
-        createdAt: now,
+
+    if (resolved === "landing-pages") {
+        const collection = await getLandingPagesCollection()
+        const data = parsed.data as z.infer<typeof landingPageSchema>
+        const document = { ...data, updatedAt: now, createdAt: now }
+
+        if (id) {
+            await collection.updateOne({ _id: new ObjectId(id) }, { $set: { ...document, createdAt: undefined } }, { upsert: true })
+            return NextResponse.json({ ok: true, id })
+        }
+
+        const inserted = await collection.insertOne(document)
+        return NextResponse.json({ ok: true, id: inserted.insertedId.toString() })
     }
+
+    if (resolved === "clients") {
+        const collection = await getClientsCollection()
+        const data = parsed.data as z.infer<typeof clientSchema>
+        const document = { ...data, updatedAt: now, createdAt: now }
+
+        if (id) {
+            await collection.updateOne({ _id: new ObjectId(id) }, { $set: { ...document, createdAt: undefined } }, { upsert: true })
+            return NextResponse.json({ ok: true, id })
+        }
+
+        const inserted = await collection.insertOne(document)
+        return NextResponse.json({ ok: true, id: inserted.insertedId.toString() })
+    }
+
+    const collection = await getIndustrySignalsCollection()
+    const data = parsed.data as z.infer<typeof signalSchema>
+    const document = { ...data, updatedAt: now, createdAt: now }
 
     if (id) {
         await collection.updateOne({ _id: new ObjectId(id) }, { $set: { ...document, createdAt: undefined } }, { upsert: true })

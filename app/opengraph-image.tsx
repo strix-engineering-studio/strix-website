@@ -20,9 +20,9 @@ export default function OpenGraphImage() {
         color: "#fff",
         padding: 64,
       }}>
-        <div style={{ display: "flex", gap: 12, alignItems: "center", fontSize: 24, color: "#9bb3ff" }}>Auren</div>
-        <div style={{ fontSize: 70, lineHeight: 1.02, fontWeight: 700, maxWidth: 920 }}>Engineering systems for modern operations.</div>
-        <div style={{ fontSize: 28, color: "rgba(255,255,255,0.72)", maxWidth: 920 }}>Operational software, product engineering, AI workflows, and infrastructure designed for clarity, reliability, and long-term support.</div>
+        <div style={{ display: "flex", gap: 12, alignItems: "center", fontSize: 24, color: "#9bb3ff" }}>Strix</div>
+        <div style={{ fontSize: 70, lineHeight: 1.02, fontWeight: 700, maxWidth: 920 }}>Strix Product Engineering Studio</div>
+        <div style={{ fontSize: 28, color: "rgba(255,255,255,0.72)", maxWidth: 920 }}>Discovery-first software products, backend systems, mobile experiences, and AI-enabled workflows designed for clarity and long-term support.</div>
       </div>
     ),
     size

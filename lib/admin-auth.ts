@@ -2,7 +2,7 @@ import { createHmac, timingSafeEqual } from "crypto"
 import { cookies } from "next/headers"
 import { redirect } from "next/navigation"
 
-export const ADMIN_SESSION_COOKIE = "auren_admin_session"
+export const ADMIN_SESSION_COOKIE = "strix_admin_session"
 const ADMIN_SESSION_TTL_MS = 1000 * 60 * 60 * 12
 
 type AdminSession = {

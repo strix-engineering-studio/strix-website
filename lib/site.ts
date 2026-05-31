@@ -54,17 +54,21 @@ export type BlogTopic = {
 }
 
 export const navigation: NavItem[] = [
-    { href: "/#selected-systems", label: "Systems" },
-    { href: "/#capabilities", label: "Capabilities" },
-    { href: "/#insights", label: "Insights" },
-    { href: "/#contact", label: "Contact" },
+    { href: "/capabilities", label: "Capabilities" },
+    { href: "/systems", label: "Systems" },
+    { href: "/products", label: "Products" },
+    { href: "/case-studies", label: "Case Studies" },
+    { href: "/open-source", label: "Open Source" },
+    { href: "/insights", label: "Insights" },
+    { href: "/about", label: "About" },
+    { href: "/contact", label: "Contact" },
 ]
 
 export const heroStats = [
-    { label: "Operational systems shipped", value: 24 },
-    { label: "Production interfaces launched", value: 38 },
-    { label: "AI workflows deployed", value: 16 },
-    { label: "Reliability improvements delivered", value: 21 },
+    { label: "Products shipped", value: 24 },
+    { label: "Production systems launched", value: 38 },
+    { label: "AI-enabled workflows", value: 16 },
+    { label: "Reliability improvements", value: 21 },
     { label: "Teams supported long-term", value: 12 },
     { label: "Months of active support", value: 18 },
 ]
@@ -94,10 +98,10 @@ export const featuredProjects: Project[] = [
     {
         slug: "ai-workflow-orchestrator",
         title: "AI Workflow Orchestrator",
-        category: "AI & Automation",
+        category: "AI-enabled Systems",
         summary:
             "A guarded orchestration layer for research, retrieval, approvals, and content workflows that runs with auditability and clear operator control.",
-        tagline: "AI execution that feels native to the product.",
+        tagline: "AI as a capability inside a larger product system.",
         stack: ["Next.js", "NestJS", "OpenAI", "PostgreSQL", "Prisma", "Redis"],
         metrics: ["42% faster turnaround", "<200ms internal API p95", "6 core automations"],
         timeline: "34-day production launch",
@@ -137,39 +141,39 @@ export const featuredProjects: Project[] = [
 
 export const services: Service[] = [
     {
-        title: "Operational Systems",
+        title: "Discovery and Architecture",
         summary:
-            "Design internal platforms, workflows, dashboards, and telemetry layers that make day-to-day operations clearer and faster.",
-        bullets: ["Workflows", "Dashboards", "Operator tooling"],
-        visual: "Structured operations flow with clear status, auditability, and handoff.",
+            "Clarify the problem, map the system, and define the product shape before implementation begins.",
+        bullets: ["Discovery", "PRD", "Architecture"],
+        visual: "Requirements translated into a system model the team can build with confidence.",
     },
     {
         title: "Product Engineering",
         summary:
             "Build production software across web, backend, and mobile with a focus on architecture, release quality, and maintainability.",
-        bullets: ["Frontend delivery", "Backend design", "Release management"],
-        visual: "Cross-functional product delivery with a disciplined release cadence.",
+        bullets: ["Web apps", "Backend APIs", "Mobile experiences"],
+        visual: "Cross-functional delivery with disciplined execution and maintainable code.",
     },
     {
-        title: "AI & Automation",
+        title: "Platform and Backend Systems",
         summary:
-            "Ship AI-enabled workflows, retrieval systems, and workflow automation that feel integrated rather than bolted on.",
-        bullets: ["LLM orchestration", "Approval gates", "Retrieval pipelines"],
-        visual: "Guardrailed automation with observability and recovery paths.",
+            "Design APIs, data boundaries, admin systems, and internal platforms that stay fast and understandable.",
+        bullets: ["APIs", "Admin consoles", "Infrastructure"],
+        visual: "Backend systems with clean boundaries, observability, and room to grow.",
     },
     {
-        title: "Infrastructure & Reliability",
+        title: "AI-enabled Workflows",
         summary:
-            "Set up secure APIs, deployable foundations, monitoring, and deployment practices that stay stable as usage grows.",
-        bullets: ["Cloud setup", "CI/CD", "Monitoring"],
-        visual: "Resilient system foundations with predictable deploys and recovery.",
+            "Add AI where it improves the product, using guardrails, retrieval, approvals, and fallbacks.",
+        bullets: ["LLM routing", "Workflow automation", "RAG"],
+        visual: "AI capability integrated into the product instead of standing apart from it.",
     },
     {
-        title: "Long-term Support",
+        title: "Long-term Partnership",
         summary:
             "Stay with the system after launch to improve reliability, reduce technical debt, and support the next round of growth.",
         bullets: ["Iteration", "Maintenance", "Operational support"],
-        visual: "Ongoing support that keeps the system healthy over time.",
+        visual: "Ongoing engineering support that keeps the product healthy over time.",
     },
 ]
 
@@ -177,14 +181,14 @@ export const experienceTimeline: TimelineItem[] = [
     {
         year: "2026",
         kind: "Discovery",
-        title: "Operational discovery became the starting point",
+        title: "Discovery became the starting point",
         description: "Focused on the workflows, constraints, and handoffs that define a durable system before writing a line of code.",
     },
     {
         year: "2025",
         kind: "Architecture",
         title: "Systems architecture shaped delivery",
-        description: "Built reusable foundations for AI workflows, product systems, and internal tools with clearer separation of concerns.",
+        description: "Built reusable foundations for product systems, internal tools, and AI-enabled workflows with clearer separation of concerns.",
     },
     {
         year: "2024",
@@ -203,7 +207,7 @@ export const experienceTimeline: TimelineItem[] = [
 export const testimonials: Testimonial[] = [
     {
         quote:
-            "Auren understood the operational problem quickly and turned it into a system we could actually run every day.",
+            "Strix understood the operational problem quickly and turned it into a system we could actually run every day.",
         name: "Aarav Mehta",
         role: "Founder",
         company: "Seed-stage SaaS",
@@ -235,7 +239,7 @@ export const usesStack: UseItem[] = [
 
 export const blogTopics: BlogTopic[] = [
     {
-        title: "Operational architecture",
+        title: "Product architecture",
         subtitle: "How to structure systems around workflows, handoffs, and long-term maintainability.",
     },
     {
@@ -265,11 +269,12 @@ export const blogTopics: BlogTopic[] = [
 ]
 
 export const contactCategories = [
-    "Operational systems",
+    "Discovery and roadmap",
     "Product engineering",
-    "AI & automation",
-    "Infrastructure & reliability",
-    "Long-term support",
+    "Platform and backend systems",
+    "Mobile and web applications",
+    "AI-enabled workflows",
+    "Long-term partnership",
 ]
 
 export const budgetBands = ["< $10k", "$10k - $25k", "$25k - $50k", "$50k+"]

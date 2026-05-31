@@ -28,8 +28,8 @@ export function BlogIndex({ posts }: BlogIndexProps) {
 
   return (
     <div className="space-y-8">
-      <div className="grid gap-4 rounded-[32px] border border-white/10 bg-white/4 p-4 lg:grid-cols-[1fr_auto] lg:items-center">
-        <label className="flex items-center gap-3 rounded-[24px] border border-white/10 bg-black/20 px-4 py-3 text-white/60">
+      <div className="grid gap-4 rounded-xl border border-white/10 bg-white/4 p-4 lg:grid-cols-[1fr_auto] lg:items-center">
+        <label className="flex items-center gap-3 rounded-lg border border-white/10 bg-black/20 px-4 py-3 text-white/60">
           <Search className="size-4" />
           <input value={query} onChange={(event) => setQuery(event.target.value)} placeholder="Search articles" className="w-full bg-transparent text-sm text-white outline-none placeholder:text-white/35" />
         </label>
@@ -52,7 +52,7 @@ export function BlogIndex({ posts }: BlogIndexProps) {
       </div>
 
       {filtered[0] ? (
-        <Link href={`/blog/${filtered[0].slug}`} className="group grid overflow-hidden rounded-[34px] border border-white/10 bg-white/4 lg:grid-cols-[0.95fr_1.05fr]">
+        <Link href={`/blog/${filtered[0].slug}`} className="group grid overflow-hidden rounded-xl border border-white/10 bg-white/4 lg:grid-cols-[0.95fr_1.05fr]">
           <div className="min-h-72 bg-[radial-gradient(circle_at_18%_22%,rgba(216,158,88,0.3),transparent_24%),radial-gradient(circle_at_82%_24%,rgba(122,168,112,0.22),transparent_22%),linear-gradient(180deg,rgba(255,255,255,0.06),rgba(255,255,255,0.02))]" />
           <div className="space-y-4 p-5 sm:p-6 lg:p-8">
             <div className="flex items-center justify-between gap-4 text-xs uppercase tracking-[0.35em] text-white/45">
@@ -74,7 +74,7 @@ export function BlogIndex({ posts }: BlogIndexProps) {
 
       <div className="grid gap-5 lg:grid-cols-2">
         {filtered.slice(1).map((post, index) => (
-          <Link key={post.slug} href={`/blog/${post.slug}`} className="group overflow-hidden rounded-[30px] border border-white/10 bg-white/4 transition hover:-translate-y-1 hover:bg-white/5">
+          <Link key={post.slug} href={`/blog/${post.slug}`} className="group overflow-hidden rounded-xl border border-white/10 bg-white/4 transition hover:-translate-y-1 hover:bg-white/5">
             <div className="h-40 bg-[radial-gradient(circle_at_25%_20%,rgba(216,158,88,0.24),transparent_24%),radial-gradient(circle_at_70%_25%,rgba(122,168,112,0.18),transparent_22%),linear-gradient(180deg,rgba(255,255,255,0.06),rgba(255,255,255,0.012))]" />
             <div className="space-y-4 p-5">
               <div className="flex items-center justify-between gap-4">

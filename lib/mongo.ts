@@ -6,7 +6,7 @@ type MongoGlobal = {
 
 const globalForMongo = globalThis as typeof globalThis & MongoGlobal
 
-export const mongoUri = process.env.DATABASE_URL ?? "mongodb://127.0.0.1:27017/auren"
+export const mongoUri = process.env.DATABASE_URL ?? "mongodb://127.0.0.1:27017/strix"
 
 if (!process.env.DATABASE_URL) {
     process.env.DATABASE_URL = mongoUri

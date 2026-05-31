@@ -4,11 +4,11 @@ import { useState } from "react"
 import { CheckCircle2, FileUp, Mail, Phone, Send } from "lucide-react"
 
 const projectTypes = [
-  "Operational Systems",
-  "Product Engineering",
-  "AI & Automation",
-  "Infrastructure & Reliability",
-  "Long-term Support",
+  "Discovery and fixed scope",
+  "Engineering partnership",
+  "Platform build",
+  "Product modernization",
+  "AI-enabled systems",
   "Other",
 ]
 
@@ -85,7 +85,7 @@ export function ProjectInquiryForm() {
   }
 
   return (
-    <form onSubmit={onSubmit} className="space-y-8 rounded-[32px] border border-white/10 bg-white/4 p-5 sm:p-6 lg:p-7">
+    <form onSubmit={onSubmit} className="space-y-8 rounded-xl border border-white/10 bg-white/4 p-5 sm:p-6 lg:p-7">
       <Section title="Contact">
         <div className="grid gap-4 sm:grid-cols-2">
           <TextField label="Full Name" name="fullName" placeholder="Your full name" required />
@@ -117,10 +117,10 @@ export function ProjectInquiryForm() {
         <div className="space-y-5">
           <CheckboxField label="Platforms Required" name="platformsRequired" options={platformOptions} required />
           <CheckboxField label="Features Required" name="featuresRequired" options={featureOptions} />
-          <TextareaField
+            <TextareaField
             label="Important Requirements"
             name="importantRequirements"
-            placeholder="AI integrations, realtime sync, offline mode, AWS/Firebase, scaling requirements, etc."
+            placeholder="Discovery notes, architecture constraints, integrations, offline mode, scaling requirements, etc."
           />
         </div>
       </Section>
@@ -137,7 +137,7 @@ export function ProjectInquiryForm() {
         <div className="space-y-4">
           <label className="space-y-2 text-sm text-white/70">
             <span>Upload Files / Designs (optional)</span>
-            <div className="flex items-center gap-3 rounded-[24px] border border-white/10 bg-black/20 px-4 py-3">
+            <div className="flex items-center gap-3 rounded-lg border border-white/10 bg-black/20 px-4 py-3">
               <FileUp className="size-4 text-white/40" />
               <input type="file" name="attachments" multiple accept=".pdf,.png,.jpg,.jpeg,.docx" className="w-full text-sm text-muted-foreground file:mr-4 file:rounded-full file:border-0 file:bg-white/10 file:px-4 file:py-2 file:text-sm file:font-medium file:text-foreground hover:file:bg-white/15" />
             </div>
@@ -186,7 +186,7 @@ function TextField({ label, icon, ...props }: React.InputHTMLAttributes<HTMLInpu
   return (
     <label className="space-y-2 text-sm text-muted-foreground">
       <span>{label}</span>
-      <div className="flex items-center gap-3 rounded-[24px] border border-white/10 bg-black/20 px-4 py-3">
+      <div className="flex items-center gap-3 rounded-lg border border-white/10 bg-black/20 px-4 py-3">
         {icon}
         <input {...props} className="w-full bg-transparent text-foreground outline-none placeholder:text-white/35" />
       </div>
@@ -198,7 +198,7 @@ function TextareaField({ label, ...props }: React.TextareaHTMLAttributes<HTMLTex
   return (
     <label className="space-y-2 text-sm text-muted-foreground">
       <span>{label}</span>
-      <textarea {...props} className="w-full rounded-[24px] border border-white/10 bg-black/20 px-4 py-3 text-sm leading-6 text-foreground outline-none placeholder:text-white/35" />
+      <textarea {...props} className="w-full rounded-lg border border-white/10 bg-black/20 px-4 py-3 text-sm leading-6 text-foreground outline-none placeholder:text-white/35" />
     </label>
   )
 }
@@ -221,7 +221,7 @@ function RadioField({
         {options.map((option) => (
           <label
             key={option}
-            className="cursor-pointer rounded-full border border-white/10 bg-white/5 px-4 py-2 text-sm text-white/72 transition hover:bg-white/10 has-[:checked]:border-white/20 has-[:checked]:bg-white/10 has-[:checked]:text-foreground"
+            className="cursor-pointer rounded-full border border-white/10 bg-white/5 px-4 py-2 text-sm text-white/72 transition hover:bg-white/10 has-checked:border-white/20 has-checked:bg-white/10 has-checked:text-foreground"
           >
             <input type="radio" name={name} value={option} required={required} className="sr-only" />
             {option}
@@ -250,7 +250,7 @@ function CheckboxField({
         {options.map((option) => (
           <label
             key={option}
-            className="cursor-pointer rounded-full border border-white/10 bg-white/5 px-4 py-2 text-sm text-white/72 transition hover:bg-white/10 has-[:checked]:border-white/20 has-[:checked]:bg-white/10 has-[:checked]:text-foreground"
+            className="cursor-pointer rounded-full border border-white/10 bg-white/5 px-4 py-2 text-sm text-white/72 transition hover:bg-white/10 has-checked:border-white/20 has-checked:bg-white/10 has-checked:text-foreground"
           >
             <input type="checkbox" name={name} value={option} className="sr-only" aria-required={required || undefined} />
             {option}

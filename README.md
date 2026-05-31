@@ -1,6 +1,6 @@
-# Auren
+# Strix
 
-Auren is a premium engineering systems company site focused on operational software, product engineering, AI-enabled workflows, infrastructure, and long-term technical partnership.
+Strix Product Engineering Studio is a premium engineering-led company site focused on discovery, product systems, backend architecture, mobile experiences, AI-enabled workflows, and long-term technical partnership.
 
 ## Getting Started
 
@@ -10,7 +10,7 @@ Run the development server:
 pnpm dev
 ```
 
-Open http://localhost:3000 in your browser.
+Open <http://localhost:3000> in your browser.
 
 ## Project Notes
 
@@ -18,7 +18,7 @@ Open http://localhost:3000 in your browser.
 - Design tokens, palette, and theme surfaces live in `app/globals.css`.
 - Shared content, navigation, and case-study data live in `lib/site.ts`.
 - Intake forms submit to `app/api/contact/route.ts`.
-- The site uses Inter Tight for headings, Inter for body copy, and Geist Mono for code surfaces.
+- The site uses Space Grotesk for headings, Manrope for body copy, and Geist Mono for code surfaces.
 
 ## Deployment
 
