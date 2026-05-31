@@ -1,10 +1,11 @@
-import { PageShell } from "@/components/shared/page-shell"
+import type { Metadata } from "next"
 import { BlogIndex } from "@/components/blog/blog-index"
+import { PageShell } from "@/components/shared/page-shell"
 import { getBlogPosts } from "@/lib/content"
 
-export const metadata = {
+export const metadata: Metadata = {
   title: "Blog",
-  description: "MDX blog for engineering notes, architecture thinking, and startup learnings.",
+  description: "Ideas, strategies, and updates for scaling smarter with automation and product systems.",
 }
 
 export default async function BlogPage() {
@@ -13,8 +14,8 @@ export default async function BlogPage() {
   return (
     <PageShell
       eyebrow="Blog"
-      title="Build-in-public writing for founders and engineers."
-      description="Architecture notes, engineering patterns, and practical thinking on shipping startup-grade systems."
+      title="Ideas, strategies, and updates for scaling smarter with automation"
+      description="Practical notes on product systems, architecture, and delivery patterns that make teams faster without making the product fragile."
     >
       <BlogIndex posts={posts} />
     </PageShell>

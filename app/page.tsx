@@ -1,27 +1,27 @@
 import {
-  BlogPreviewSection,
-  CTASection,
-  EngineeringDepthSection,
-  ExperienceSection,
-  FeaturedWorkSection,
+  CapabilityMapSection,
+  ContactSection,
   HeroSection,
-  ServicesSection,
+  InsightsSection,
+  PhilosophySection,
+  SelectedSystemsSection,
+  FaqSection,
   TestimonialsSection,
-  TrustStrip,
+  SystemsStrip,
 } from "@/components/sections/home-sections"
 
 export default function Home() {
   return (
     <>
       <HeroSection />
-      <TrustStrip />
-      <FeaturedWorkSection />
-      <ServicesSection />
-      <EngineeringDepthSection />
-      <BlogPreviewSection />
-      <ExperienceSection />
+      <SystemsStrip />
+      <SelectedSystemsSection />
+      <CapabilityMapSection />
+      <PhilosophySection />
       <TestimonialsSection />
-      <CTASection />
+      <InsightsSection />
+      <FaqSection />
+      <ContactSection />
     </>
   )
 }

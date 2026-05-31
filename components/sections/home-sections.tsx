@@ -1,456 +1,305 @@
 "use client"
 
 import Link from "next/link"
-import dynamic from "next/dynamic"
 import { motion } from "framer-motion"
-import { ArrowRight, ArrowUpRight, Cpu, Database, Globe, Mail, Radar, ShieldCheck, Sparkles, Terminal, Workflow } from "lucide-react"
-import { featuredProjects, heroStats, services, experienceTimeline, testimonials, blogTopics } from "@/lib/site"
-import { useState } from "react"
-import DetailModal from "@/components/ui/detail-modal"
+import { ArrowUpRight, Mail } from "lucide-react"
+import type { ReactNode } from "react"
+import { ContactForm } from "@/components/contact/contact-form"
 import { SectionHeading } from "@/components/shared/section-heading"
-import { cn } from "@/lib/utils"
+import { blogTopics, contactCategories, featuredProjects, heroStats, services, testimonials } from "@/lib/site"
 
-const Hero3D = dynamic(() => import("@/components/3d/Hero3D"), { ssr: false, loading: () => <div className="h-64 w-full rounded-[20px] bg-black/10" /> })
-
-function Hero3DWrapper() {
-  return (
-    <div className="rounded-[20px] border border-white/8 bg-black/20 p-2">
-      <Hero3D />
-    </div>
-  )
+const fade = {
+  hidden: { opacity: 0, y: 18 },
+  visible: { opacity: 1, y: 0 },
 }
 
-const reveal = {
-  hidden: { opacity: 0, y: 24, filter: "blur(12px)" },
-  visible: { opacity: 1, y: 0, filter: "blur(0px)" },
+const faqItems = [
+  {
+    question: "What kinds of projects do you take on?",
+    answer:
+      "Product systems, internal tools, AI-enabled workflows, infrastructure hardening, and long-term support for teams that need clarity more than buzzwords.",
+  },
+  {
+    question: "Do you work with existing products?",
+    answer:
+      "Yes. A lot of the work here is integration, refactoring, and redesigning the operating surface around what already exists.",
+  },
+  {
+    question: "How do you start?",
+    answer: "Most projects begin with a short discovery pass, then a scoped delivery plan that turns into the actual build.",
+  },
+]
+
+function Surface({ children, className = "" }: { children: ReactNode; className?: string }) {
+  return <div className={`rounded-[32px] border border-white/10 bg-white/4 shadow-[0_20px_80px_rgba(0,0,0,0.22)] ${className}`}>{children}</div>
 }
 
-function Counter({ value }: { value: number }) {
-  const display = `${value}+`
-  return (
-    <motion.span
-      initial={{ opacity: 0, y: 12 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, amount: 0.6 }}
-      transition={{ duration: 0.5 }}
-      className="text-3xl font-semibold tracking-tight text-white sm:text-4xl"
-    >
-      {display}
-    </motion.span>
-  )
-}
-
-function Panel({ children, className }: { children: React.ReactNode; className?: string }) {
-  return (
-    <div className={cn("rounded-[28px] border border-white/10 bg-white/6 p-5 shadow-[0_0_60px_rgba(0,0,0,0.28)] backdrop-blur-2xl", className)}>
-      {children}
-    </div>
-  )
+function MiniTag({ children }: { children: ReactNode }) {
+  return <span className="rounded-full border border-white/10 bg-white/5 px-3 py-1.5 text-[11px] uppercase tracking-[0.26em] text-white/68">{children}</span>
 }
 
 export function HeroSection() {
   return (
-    <section className="relative overflow-hidden px-5 pb-8 pt-10 sm:px-6 lg:px-8 lg:pb-16 lg:pt-14">
-      <div className="mx-auto grid max-w-7xl gap-8 lg:grid-cols-[1.2fr_0.9fr] lg:items-center">
-        <motion.div initial="hidden" animate="visible" variants={{ hidden: {}, visible: { transition: { staggerChildren: 0.08 } } }} className="relative">
-          <motion.p variants={reveal} transition={{ duration: 0.6 }} className="mb-5 inline-flex items-center gap-2 rounded-full border border-emerald-300/20 bg-emerald-300/10 px-4 py-2 text-xs font-medium uppercase tracking-[0.35em] text-emerald-200">
-            <Sparkles className="size-3.5" />
-            Full Stack + AI Engineer
+    <section className="px-3 pb-8 pt-6 sm:px-4 lg:px-6 lg:pb-10 lg:pt-8">
+      <div className="mx-auto grid max-w-7xl gap-8 lg:grid-cols-[1.02fr_0.98fr] lg:items-center">
+        <motion.div initial="hidden" animate="visible" variants={{ hidden: {}, visible: { transition: { staggerChildren: 0.08 } } }} className="max-w-3xl">
+          <motion.p variants={fade} className="text-[11px] uppercase tracking-[0.42em] text-white/70">
+            Auren · Systems for modern operations
           </motion.p>
-          <motion.h1 variants={reveal} transition={{ duration: 0.7 }} className="max-w-4xl text-balance text-5xl serif-lg tracking-[-0.05em] text-white sm:text-6xl lg:text-7xl">
-            Building production-grade MVPs, AI systems, and scalable applications.
+          <motion.h1 variants={fade} className="mt-5 text-balance text-5xl font-semibold tracking-tight text-foreground sm:text-6xl lg:text-[5.8rem] lg:leading-[0.95]">
+            Build operations that feel calm, fast, and obvious.
           </motion.h1>
-          <motion.p variants={reveal} transition={{ duration: 0.6 }} className="mt-6 max-w-2xl text-pretty text-lg leading-8 text-white/68 sm:text-xl">
-            Full-stack engineer specializing in AI integrations, backend architecture, Flutter systems, and startup-focused product development.
+          <motion.p variants={fade} className="mt-6 max-w-2xl text-pretty text-lg leading-8 text-muted-foreground sm:text-xl">
+            Product systems, workflow tooling, AI-enabled automation, and long-term support shaped around how teams actually work.
           </motion.p>
-
-          <motion.div variants={reveal} transition={{ duration: 0.6 }} className="mt-8 flex flex-wrap gap-3">
-            {[
-              { href: "/work", label: "View Work" },
-              { href: "/contact", label: "Book a Discovery Call" },
-              { href: "/case-studies/ai-workflow-platform", label: "Explore Case Studies" },
-            ].map((item, index) => (
-              <Link
-                key={item.href}
-                href={item.href}
-                className={cn(
-                  "group inline-flex items-center gap-2 rounded-full px-5 py-3 text-sm font-medium transition-all",
-                  index === 1
-                    ? "border border-white/12 bg-white/5 text-white hover:bg-white/10"
-                    : "bg-emerald-400 text-slate-950 hover:translate-y-[-1px] hover:bg-emerald-300"
-                )}
-              >
-                {item.label}
-                <ArrowUpRight className="size-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
-              </Link>
-            ))}
+          <motion.div variants={fade} className="mt-8 flex flex-wrap gap-3">
+            <Link href="/contact" className="inline-flex items-center gap-2 rounded-full bg-foreground px-5 py-3 text-sm font-medium text-background transition hover:opacity-90">
+              Start a project
+              <ArrowUpRight className="size-4" />
+            </Link>
+            <Link href="/#selected-systems" className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/4 px-5 py-3 text-sm font-medium text-foreground transition hover:bg-white/8">
+              View systems
+              <ArrowUpRight className="size-4" />
+            </Link>
           </motion.div>
 
-          <motion.div variants={reveal} transition={{ duration: 0.6 }} className="mt-10 grid max-w-2xl grid-cols-2 gap-3 sm:grid-cols-3">
-            {[
-              "Architecture thinking",
-              "Production delivery",
-              "Startup velocity",
-              "AI systems",
-              "Backend rigor",
-              "Founder trust",
-            ].map((item) => (
-              <div key={item} className="rounded-2xl border border-white/8 bg-white/5 px-4 py-3 text-sm text-white/70">
-                {item}
+          <motion.div variants={fade} className="mt-8 grid gap-3 sm:grid-cols-3">
+            {heroStats.slice(0, 3).map((item) => (
+              <div key={item.label} className="rounded-[24px] border border-white/10 bg-white/4 px-4 py-4">
+                <p className="text-[11px] uppercase tracking-[0.28em] text-white/50">{item.label}</p>
+                <p className="mt-3 text-3xl font-semibold text-foreground">{item.value}</p>
               </div>
             ))}
           </motion.div>
         </motion.div>
 
-        <motion.div initial={{ opacity: 0, scale: 0.94, y: 32 }} animate={{ opacity: 1, scale: 1, y: 0 }} transition={{ duration: 0.8, ease: "easeOut" }} className="relative mx-auto w-full max-w-[640px]">
-          <div className="absolute inset-0 -z-10 rounded-[36px] bg-[radial-gradient(circle_at_top_left,rgba(16,185,129,0.26),transparent_28%),radial-gradient(circle_at_top_right,rgba(59,130,246,0.22),transparent_26%),linear-gradient(180deg,rgba(255,255,255,0.06),rgba(255,255,255,0.02))] blur-3xl" />
-          <Panel className="relative overflow-hidden p-0">
-            <div className="border-b border-white/10 px-5 py-4">
-              <div className="flex items-center gap-2 text-xs text-white/55">
-                <span className="size-2 rounded-full bg-emerald-400" />
-                Realtime architecture view
+        <motion.div initial={{ opacity: 0, y: 18, scale: 0.98 }} animate={{ opacity: 1, y: 0, scale: 1 }} transition={{ duration: 0.8 }} className="relative">
+          <Surface className="relative overflow-hidden px-5 py-5 sm:px-6 sm:py-6">
+            <div className="absolute inset-0 bg-[radial-gradient(circle_at_15%_15%,rgba(216,158,88,0.28),transparent_22%),radial-gradient(circle_at_82%_18%,rgba(122,168,112,0.2),transparent_20%),radial-gradient(circle_at_50%_82%,rgba(76,57,36,0.2),transparent_28%),linear-gradient(180deg,rgba(255,255,255,0.03),rgba(255,255,255,0.012))]" />
+            <div className="relative space-y-5">
+              <div className="grid grid-cols-3 gap-3">
+                {[
+                  ["Launch", "Systems"],
+                  ["Scale", "Delivery"],
+                  ["Support", "Ongoing"],
+                ].map(([label, value]) => (
+                  <div key={label} className="rounded-[22px] border border-white/8 bg-black/20 px-4 py-4">
+                    <p className="text-[11px] uppercase tracking-[0.3em] text-white/45">{label}</p>
+                    <p className="mt-2 text-sm text-white/82">{value}</p>
+                  </div>
+                ))}
               </div>
-            </div>
-            <div className="grid gap-4 p-5 sm:grid-cols-[1.1fr_0.9fr]">
-              <div className="space-y-4 rounded-3xl border border-white/8 bg-black/25 p-4">
-                <div className="flex items-center justify-between text-xs text-white/60">
-                  <span>API / Event Flow</span>
-                  <span>Live</span>
+
+              <div className="grid gap-4 lg:grid-cols-[1.1fr_0.9fr]">
+                <div className="relative overflow-hidden rounded-[28px] border border-white/8 bg-[radial-gradient(circle_at_25%_25%,rgba(216,158,88,0.28),transparent_20%),radial-gradient(circle_at_72%_30%,rgba(122,168,112,0.18),transparent_18%),linear-gradient(180deg,rgba(255,255,255,0.045),rgba(255,255,255,0.015))] px-5 py-5">
+                  <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.02)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.02)_1px,transparent_1px)] bg-size-[72px_72px] opacity-60" />
+                  <div className="relative space-y-4">
+                    <div className="flex items-center justify-between text-xs uppercase tracking-[0.3em] text-white/45">
+                      <span>Operational surface</span>
+                      <span>2026</span>
+                    </div>
+                    <div className="grid gap-3 sm:grid-cols-3">
+                      {[
+                        "Realtime telemetry",
+                        "Workflow orchestration",
+                        "Long-term support",
+                      ].map((item) => (
+                        <div key={item} className="rounded-[20px] border border-white/8 bg-black/20 px-4 py-4 text-sm text-white/78">
+                          {item}
+                        </div>
+                      ))}
+                    </div>
+                    <div className="rounded-[24px] border border-white/8 bg-black/25 p-4 text-sm text-white/76">
+                      Realtime systems, workflow orchestration, and support layers in one environment.
+                    </div>
+                  </div>
                 </div>
-                <div className="space-y-3">
+
+                <div className="grid gap-3">
                   {[
-                    ["Client", "Next.js app", "emerald"],
-                    ["Auth", "Auth.js + session", "blue"],
-                    ["Core", "API + server actions", "purple"],
-                    ["Data", "PostgreSQL + Prisma", "emerald"],
-                  ].map(([label, value, tone]) => (
-                    <div key={label} className="flex items-center gap-3 rounded-2xl border border-white/8 bg-white/5 px-4 py-3">
-                      <div className={cn("size-10 rounded-2xl", tone === "emerald" && "bg-emerald-400/15", tone === "blue" && "bg-sky-400/15", tone === "purple" && "bg-violet-400/15")} />
-                      <div>
-                        <p className="text-xs uppercase tracking-[0.3em] text-white/40">{label}</p>
-                        <p className="text-sm text-white/82">{value}</p>
-                      </div>
+                    ["1", "Discovery"],
+                    ["2", "Design"],
+                    ["3", "Delivery"],
+                  ].map(([step, label]) => (
+                    <div key={step} className="rounded-[24px] border border-white/8 bg-white/4 px-4 py-4">
+                      <p className="text-[11px] uppercase tracking-[0.3em] text-white/45">Step {step}</p>
+                      <p className="mt-3 text-lg font-medium text-foreground">{label}</p>
+                      <p className="mt-2 text-sm leading-6 text-muted-foreground">A compact process for moving from strategy to a shippable product system.</p>
                     </div>
                   ))}
                 </div>
               </div>
-              <div className="grid gap-4">
-                <div className="rounded-3xl border border-white/8 bg-white/5 p-4">
-                  <div className="flex items-center justify-between text-xs text-white/55">
-                    <span>Deployment</span>
-                    <span>Vercel</span>
-                  </div>
-                  <div className="mt-4 space-y-3 text-sm text-white/72">
-                    <div className="flex items-center justify-between rounded-2xl bg-black/25 px-4 py-3">
-                      <span>Preview</span>
-                      <span className="text-emerald-300">Passed</span>
-                    </div>
-                    <div className="flex items-center justify-between rounded-2xl bg-black/25 px-4 py-3">
-                      <span>Database migration</span>
-                      <span className="text-emerald-300">Ready</span>
-                    </div>
-                    <div className="flex items-center justify-between rounded-2xl bg-black/25 px-4 py-3">
-                      <span>OG image</span>
-                      <span className="text-emerald-300">Enabled</span>
-                    </div>
-                  </div>
-                </div>
-
-                <div className="rounded-3xl border border-white/8 bg-gradient-to-br from-emerald-400/12 via-transparent to-sky-400/12 p-4">
-                  <div className="flex items-center justify-between text-xs text-white/55">
-                    <span>Realtime dashboard</span>
-                    <span>2ms refresh</span>
-                  </div>
-                  <div className="mt-4 grid grid-cols-2 gap-3">
-                    {[
-                      ["P95 latency", "184ms"],
-                      ["Deploy confidence", "99%"],
-                      ["Automations", "18"],
-                      ["Open issues", "3"],
-                    ].map(([label, value]) => (
-                      <div key={label} className="rounded-2xl border border-white/8 bg-black/20 p-3">
-                        <p className="text-[11px] uppercase tracking-[0.25em] text-white/40">{label}</p>
-                        <p className="mt-2 text-lg font-semibold text-white">{value}</p>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-              </div>
             </div>
-            <div className="p-5">
-              {/* Lazy-load the 3D hero canvas for progressive enhancement */}
-              <Hero3DWrapper />
-            </div>
-          </Panel>
+          </Surface>
         </motion.div>
-      </div>
-
-      <div className="mx-auto mt-8 flex max-w-7xl items-center justify-between gap-4 px-1 text-xs uppercase tracking-[0.3em] text-white/40 sm:px-0">
-        <span>Scroll to explore the system</span>
-        <span className="hidden sm:block">Cinematic founder-grade delivery</span>
       </div>
     </section>
   )
 }
 
-export function TrustStrip() {
+export function SystemsStrip() {
   return (
-    <section className="px-5 py-10 sm:px-6 lg:px-8">
-      <div className="mx-auto grid max-w-7xl gap-3 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6">
+    <section id="systems" className="px-3 py-3 sm:px-4 lg:px-6">
+      <div className="mx-auto grid max-w-7xl gap-3 sm:grid-cols-2 lg:grid-cols-6">
         {heroStats.map((item) => (
-          <Panel key={item.label} className="space-y-2 p-4">
-            <Counter value={item.value} />
-            <p className="text-sm leading-6 text-white/64">{item.label}</p>
-          </Panel>
+          <div key={item.label} className="rounded-[22px] border border-white/8 bg-white/4 px-4 py-4">
+            <p className="text-[11px] uppercase tracking-[0.3em] text-white/45">{item.label}</p>
+            <p className="mt-3 text-2xl font-semibold text-foreground">{item.value}</p>
+          </div>
         ))}
       </div>
     </section>
   )
 }
 
-export function FeaturedWorkSection() {
-  const [selectedProject, setSelectedProject] = useState<any | null>(null)
+export function SelectedSystemsSection() {
   return (
-    <section className="px-5 py-12 sm:px-6 lg:px-8 lg:py-16">
+    <section id="selected-systems" className="px-3 py-14 sm:px-4 lg:px-6 lg:py-20">
       <div className="mx-auto max-w-7xl space-y-10">
         <SectionHeading
-          eyebrow="Featured work"
-          title="Case studies that feel like shipped startup products."
-          description="Every project is framed as a real system: architecture, metrics, deployment, and product outcomes."
+          eyebrow="Selected systems"
+          title="A few operating surfaces, shown with restraint."
+          description="The design leans on clear structure, compact data, and a visual rhythm that feels expensive without becoming noisy."
         />
-        <div className="grid gap-5 lg:grid-cols-2">
-          {featuredProjects.map((project, index) => (
+        <div className="space-y-6">
+          {featuredProjects.slice(0, 3).map((project, index) => (
             <motion.article
               key={project.slug}
-              initial={{ opacity: 0, y: 24 }}
+              initial={{ opacity: 0, y: 18 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, amount: 0.25 }}
-              transition={{ duration: 0.55, delay: index * 0.05 }}
-              className="group relative overflow-hidden rounded-[32px] border border-white/10 bg-white/5 p-5 backdrop-blur-xl transition duration-500 hover:-translate-y-1 hover:border-white/15 hover:bg-white/7"
+              transition={{ duration: 0.55, delay: index * 0.04 }}
+              className={`grid gap-6 overflow-hidden rounded-[34px] border border-white/10 bg-white/4 p-5 lg:items-stretch ${
+                index % 2 === 1 ? "lg:grid-cols-[1.05fr_0.95fr]" : "lg:grid-cols-[0.95fr_1.05fr]"
+              }`}
             >
-              <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(16,185,129,0.16),transparent_35%),radial-gradient(circle_at_bottom_right,rgba(59,130,246,0.12),transparent_30%)] opacity-70 transition-opacity duration-500 group-hover:opacity-100" />
-              <div className="relative z-10 space-y-5">
-                <div className="flex items-center justify-between gap-4">
-                  <div>
-                    <p className="text-xs uppercase tracking-[0.35em] text-emerald-300/75">{project.category}</p>
-                    <h3 className="mt-2 text-2xl font-semibold text-white">{project.title}</h3>
-                  </div>
-                  <button onClick={() => setSelectedProject(project)} className="rounded-full border border-white/10 bg-black/20 p-3 text-white/80 transition group-hover:border-emerald-300/30 group-hover:text-emerald-200">
-                    <ArrowUpRight className="size-5" />
-                  </button>
+              <div className={`space-y-4 ${index % 2 === 1 ? "lg:order-2" : ""}`}>
+                <p className="text-[11px] uppercase tracking-[0.42em] text-white/60">{project.category}</p>
+                <h3 className="text-3xl font-semibold tracking-tight text-foreground sm:text-4xl">{project.title}</h3>
+                <p className="max-w-xl text-sm leading-7 text-muted-foreground">{project.summary}</p>
+                <div className="flex flex-wrap gap-2">
+                  {project.architecture.slice(0, 4).map((item) => (
+                    <MiniTag key={item}>{item}</MiniTag>
+                  ))}
                 </div>
-                <p className="max-w-xl text-sm leading-7 text-white/68">{project.summary}</p>
+                <div className="rounded-[24px] border border-white/8 bg-black/20 px-4 py-4 text-sm text-white/70">
+                  {project.timeline} · {project.spotlight}
+                </div>
+              </div>
+
+              <Surface className={`overflow-hidden px-5 py-5 ${index % 2 === 1 ? "lg:order-1" : ""}`}>
                 <div className="grid gap-3 sm:grid-cols-3">
                   {project.metrics.map((metric) => (
-                    <div key={metric} className="rounded-2xl border border-white/8 bg-black/20 px-4 py-3 text-sm text-white/72">
+                    <div key={metric} className="rounded-[20px] border border-white/8 bg-black/20 px-4 py-4 text-sm text-white/76">
                       {metric}
                     </div>
                   ))}
                 </div>
-                <div className="grid gap-3 md:grid-cols-2">
-                  <div className="rounded-[24px] border border-white/8 bg-black/20 p-4">
-                    <p className="text-[11px] uppercase tracking-[0.28em] text-white/42">Architecture</p>
-                    <div className="mt-3 flex flex-wrap gap-2">
-                      {project.architecture.map((item) => (
-                        <span key={item} className="rounded-full border border-white/8 bg-white/5 px-3 py-1.5 text-xs text-white/68">
-                          {item}
-                        </span>
-                      ))}
+                <div className="mt-5 grid gap-4 lg:grid-cols-[1.05fr_0.95fr]">
+                  <div className="rounded-[28px] border border-white/8 bg-[radial-gradient(circle_at_18%_20%,rgba(216,158,88,0.24),transparent_20%),radial-gradient(circle_at_82%_15%,rgba(122,168,112,0.18),transparent_18%),linear-gradient(180deg,rgba(255,255,255,0.045),rgba(255,255,255,0.015))] p-4">
+                    <div className="flex h-full min-h-44 flex-col justify-between rounded-[22px] border border-white/8 bg-black/24 p-4">
+                      <div className="space-y-2">
+                        <p className="text-[11px] uppercase tracking-[0.3em] text-white/45">{project.tagline}</p>
+                        <p className="text-sm leading-6 text-white/74">{project.solution}</p>
+                      </div>
+                      <div className="flex flex-wrap gap-2">
+                        {project.highlights.slice(0, 3).map((item) => (
+                          <span key={item} className="rounded-full border border-white/10 bg-white/5 px-3 py-1 text-[11px] uppercase tracking-[0.26em] text-white/68">
+                            {item}
+                          </span>
+                        ))}
+                      </div>
                     </div>
                   </div>
-                  <div className="rounded-[24px] border border-white/8 bg-black/20 p-4">
-                    <p className="text-[11px] uppercase tracking-[0.28em] text-white/42">Deployment</p>
-                    <div className="mt-3 flex flex-wrap gap-2">
-                      {project.deployment.map((item) => (
-                        <span key={item} className="rounded-full border border-emerald-300/12 bg-emerald-300/10 px-3 py-1.5 text-xs text-emerald-100">
-                          {item}
-                        </span>
-                      ))}
-                    </div>
+                  <div className="grid gap-3">
+                    {project.deployment.map((item, deploymentIndex) => (
+                      <div key={item} className="rounded-[22px] border border-white/8 bg-black/20 px-4 py-4">
+                        <p className="text-[11px] uppercase tracking-[0.3em] text-white/45">0{deploymentIndex + 1}</p>
+                        <p className="mt-2 text-sm leading-6 text-white/74">{item}</p>
+                      </div>
+                    ))}
                   </div>
                 </div>
-                <div className="flex items-center justify-between text-sm text-white/52">
-                  <span>{project.timeline}</span>
-                  <span>{project.spotlight}</span>
-                </div>
-              </div>
+              </Surface>
             </motion.article>
           ))}
-          <DetailModal project={selectedProject} onClose={() => setSelectedProject(null)} />
         </div>
       </div>
     </section>
   )
 }
 
-export function ServicesSection() {
+export function CapabilityMapSection() {
   return (
-    <section className="px-5 py-12 sm:px-6 lg:px-8 lg:py-16">
+    <section id="capabilities" className="px-3 py-14 sm:px-4 lg:px-6 lg:py-20">
       <div className="mx-auto max-w-7xl space-y-10">
         <SectionHeading
-          eyebrow="Services"
-          title="A premium execution layer for startups and businesses."
-          description="These service lines are structured around how ambitious teams actually ship: quickly, securely, and with enough depth to scale."
+          eyebrow="Capabilities"
+          title="Coverage map, not a brochure."
+          description="The stack is framed as an operating system for the business, not a list of unrelated services."
         />
-        <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-3">
-          {services.map((service, index) => (
-            <motion.article
-              key={service.title}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, amount: 0.25 }}
-              transition={{ duration: 0.45, delay: index * 0.05 }}
-              className="group rounded-[28px] border border-white/10 bg-white/5 p-5 transition hover:-translate-y-1 hover:border-white/16 hover:bg-white/7"
-            >
-              <div className="flex items-start justify-between gap-4">
-                <div>
-                  <h3 className="text-xl font-semibold text-white">{service.title}</h3>
-                  <p className="mt-3 text-sm leading-7 text-white/66">{service.summary}</p>
+        <div className="grid gap-6 lg:grid-cols-[0.88fr_1.12fr] lg:items-start">
+          <div className="space-y-5">
+            <div className="rounded-[32px] border border-white/10 bg-white/4 p-5">
+              <p className="text-[11px] uppercase tracking-[0.38em] text-white/50">Delivery map</p>
+              <h3 className="mt-3 text-3xl font-semibold tracking-tight text-foreground">The work is modular, but the system should feel unified.</h3>
+              <p className="mt-4 text-sm leading-7 text-muted-foreground">Each engagement is designed to reduce handoff friction, shorten feedback loops, and make future updates easier.</p>
+            </div>
+            <div className="flex flex-wrap gap-2">
+              {contactCategories.map((item) => (
+                <MiniTag key={item}>{item}</MiniTag>
+              ))}
+            </div>
+          </div>
+
+          <Surface className="overflow-hidden px-5 py-5 sm:px-6 sm:py-6">
+            <div className="grid gap-4 md:grid-cols-2">
+              {services.slice(0, 4).map((service) => (
+                <div key={service.title} className="rounded-[28px] border border-white/8 bg-black/18 p-5">
+                  <p className="text-[11px] uppercase tracking-[0.42em] text-white/55">{service.title}</p>
+                  <p className="mt-3 text-sm leading-7 text-muted-foreground">{service.summary}</p>
+                  <div className="mt-4 flex flex-wrap gap-2">
+                    {service.bullets.map((bullet) => (
+                      <span key={bullet} className="rounded-full border border-white/10 bg-white/5 px-3 py-1 text-[11px] uppercase tracking-[0.26em] text-white/68">
+                        {bullet}
+                      </span>
+                    ))}
+                  </div>
                 </div>
-                <div className="rounded-2xl border border-white/8 bg-black/20 p-3 text-emerald-300 transition group-hover:bg-emerald-300/10">
-                  <Workflow className="size-5" />
-                </div>
-              </div>
-              <div className="mt-5 rounded-3xl border border-white/8 bg-black/20 p-4">
-                <p className="text-[11px] uppercase tracking-[0.3em] text-white/42">System visual</p>
-                <p className="mt-2 text-sm leading-6 text-white/70">{service.visual}</p>
-                <div className="mt-4 flex flex-wrap gap-2">
-                  {service.bullets.map((bullet) => (
-                    <span key={bullet} className="rounded-full border border-white/8 bg-white/5 px-3 py-1.5 text-xs text-white/64">
-                      {bullet}
-                    </span>
-                  ))}
-                </div>
-              </div>
-            </motion.article>
-          ))}
+              ))}
+            </div>
+          </Surface>
         </div>
       </div>
     </section>
   )
 }
 
-export function EngineeringDepthSection() {
-  const diagrams = [
-    { icon: Terminal, title: "API flow", text: "Request validation, auth, business logic, and storage boundaries." },
-    { icon: Database, title: "Data model", text: "Clean relations, indexed queries, and migration-safe schema design." },
-    { icon: Cpu, title: "AI orchestration", text: "Prompt routing, approval steps, and observability across the lifecycle." },
-    { icon: ShieldCheck, title: "Security", text: "Auth, roles, rate-limits, and error isolation from the start." },
-  ]
-
+export function PhilosophySection() {
   return (
-    <section className="px-5 py-12 sm:px-6 lg:px-8 lg:py-16">
-      <div className="mx-auto grid max-w-7xl gap-8 lg:grid-cols-[0.85fr_1.15fr] lg:items-center">
-        <SectionHeading
-          eyebrow="Engineering depth"
-          title="Clients need to feel the architecture before they see the code."
-          description="This section frames the invisible work: data modeling, deployment pipelines, CI/CD, and system design choices that make the product durable."
-        />
+    <section className="px-3 py-14 sm:px-4 lg:px-6 lg:py-20">
+      <div className="mx-auto grid max-w-7xl gap-6 lg:grid-cols-[0.88fr_1.12fr] lg:items-start">
+        <div className="space-y-5 rounded-[32px] border border-white/10 bg-white/4 p-5">
+          <p className="text-[11px] uppercase tracking-[0.38em] text-white/50">Engineering philosophy</p>
+          <h2 className="text-4xl font-semibold tracking-tight text-foreground sm:text-5xl">Calm execution standards.</h2>
+          <p className="text-sm leading-7 text-muted-foreground">The best systems tend to look simple from the outside because the architecture underneath is disciplined.</p>
+          <Link href="/contact" className="inline-flex items-center gap-2 rounded-full bg-foreground px-5 py-3 text-sm font-medium text-background transition hover:opacity-90">
+            Talk through a project
+            <ArrowUpRight className="size-4" />
+          </Link>
+        </div>
         <div className="grid gap-4 sm:grid-cols-2">
-          {diagrams.map((diagram, index) => {
-            const Icon = diagram.icon
-
-            return (
-              <motion.div
-                key={diagram.title}
-                initial={{ opacity: 0, scale: 0.95, y: 18 }}
-                whileInView={{ opacity: 1, scale: 1, y: 0 }}
-                viewport={{ once: true, amount: 0.25 }}
-                transition={{ duration: 0.45, delay: index * 0.05 }}
-                className="rounded-[26px] border border-white/10 bg-white/5 p-5"
-              >
-                <div className="flex items-center gap-3">
-                  <div className="rounded-2xl border border-emerald-300/12 bg-emerald-300/10 p-3 text-emerald-200">
-                    <Icon className="size-5" />
-                  </div>
-                  <div>
-                    <h3 className="text-lg font-semibold text-white">{diagram.title}</h3>
-                    <p className="text-sm text-white/56">{diagram.text}</p>
-                  </div>
-                </div>
-                <div className="mt-5 h-32 rounded-3xl border border-white/8 bg-[linear-gradient(135deg,rgba(255,255,255,0.08),rgba(255,255,255,0.02))] p-4">
-                  <div className="flex h-full items-end gap-2">
-                    <div className="h-2/5 flex-1 rounded-xl bg-emerald-400/30" />
-                    <div className="h-3/5 flex-1 rounded-xl bg-sky-400/25" />
-                    <div className="h-4/5 flex-1 rounded-xl bg-violet-400/25" />
-                    <div className="h-1/2 flex-1 rounded-xl bg-white/15" />
-                  </div>
-                </div>
-              </motion.div>
-            )
-          })}
-        </div>
-      </div>
-    </section>
-  )
-}
-
-export function BlogPreviewSection() {
-  return (
-    <section className="px-5 py-12 sm:px-6 lg:px-8 lg:py-16">
-      <div className="mx-auto max-w-7xl space-y-10">
-        <SectionHeading
-          eyebrow="Build in public"
-          title="A blog that proves technical taste."
-          description="MDX-powered writing with code examples, reading progress, tags, and linked product thinking around the systems that matter most."
-        />
-        <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-3">
-          {blogTopics.map((topic, index) => (
-            <motion.article
-              key={topic}
-              initial={{ opacity: 0, y: 16 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, amount: 0.25 }}
-              transition={{ duration: 0.45, delay: index * 0.04 }}
-              className="rounded-[26px] border border-white/10 bg-white/5 p-5 transition hover:-translate-y-1 hover:bg-white/8"
-            >
-              <div className="flex items-center gap-3 text-white/75">
-                <div className="rounded-2xl border border-white/10 bg-black/20 p-3 text-emerald-300">
-                  <Globe className="size-5" />
-                </div>
-                <div>
-                  <p className="text-sm uppercase tracking-[0.28em] text-white/38">Article</p>
-                  <h3 className="mt-1 text-lg font-semibold text-white">{topic}</h3>
-                </div>
-              </div>
-              <p className="mt-4 text-sm leading-7 text-white/62">
-                A practical write-up on architecture decisions, tradeoffs, and production learnings.
-              </p>
-            </motion.article>
-          ))}
-        </div>
-      </div>
-    </section>
-  )
-}
-
-export function ExperienceSection() {
-  return (
-    <section className="px-5 py-12 sm:px-6 lg:px-8 lg:py-16">
-      <div className="mx-auto max-w-7xl">
-        <SectionHeading
-          eyebrow="Experience"
-          title="A timeline of shipped systems and product momentum."
-          description="The story matters because clients want to know you can keep shipping as scope and complexity grow."
-        />
-        <div className="mt-10 space-y-4 border-l border-white/12 pl-5 sm:pl-8">
-          {experienceTimeline.map((item, index) => (
-            <motion.div
-              key={item.year + item.title}
-              initial={{ opacity: 0, x: -20 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true, amount: 0.25 }}
-              transition={{ duration: 0.45, delay: index * 0.05 }}
-              className="relative rounded-[24px] border border-white/10 bg-white/5 p-5"
-            >
-              <span className="absolute -left-[33px] top-6 size-3 rounded-full bg-emerald-300 shadow-[0_0_24px_rgba(16,185,129,0.55)] sm:-left-[41px]" />
-              <div className="flex flex-wrap items-center gap-3 text-xs uppercase tracking-[0.28em] text-white/42">
-                <span>{item.year}</span>
-                <span>{item.kind}</span>
-              </div>
-              <h3 className="mt-3 text-xl font-semibold text-white">{item.title}</h3>
-              <p className="mt-2 max-w-3xl text-sm leading-7 text-white/65">{item.description}</p>
-            </motion.div>
+          {[
+            ["Structured systems", "Clear relationships, few surprises, and interfaces that stay understandable as the product evolves."],
+            ["Reliable delivery", "Scoped releases, good feedback loops, and a pace that leaves room for quality."],
+            ["Technical clarity", "Design decisions written down, tradeoffs visible, and implementation that is easy to maintain."],
+            ["Long-term support", "The relationship does not end at launch; the system is designed to keep improving."],
+          ].map(([title, description]) => (
+            <div key={title} className="rounded-[28px] border border-white/8 bg-white/4 px-5 py-5">
+              <p className="text-[11px] uppercase tracking-[0.35em] text-white/45">Principle</p>
+              <h3 className="mt-3 text-xl font-semibold text-foreground">{title}</h3>
+              <p className="mt-3 text-sm leading-7 text-muted-foreground">{description}</p>
+            </div>
           ))}
         </div>
       </div>
@@ -460,34 +309,60 @@ export function ExperienceSection() {
 
 export function TestimonialsSection() {
   return (
-    <section className="px-5 py-12 sm:px-6 lg:px-8 lg:py-16">
+    <section className="px-3 py-14 sm:px-4 lg:px-6 lg:py-20">
       <div className="mx-auto max-w-7xl space-y-10">
         <SectionHeading
           eyebrow="Testimonials"
-          title="Founder trust is built in the delivery details."
-          description="Social proof should sound like a serious recommendation, not generic praise."
+          title="Loved by teams that move fast."
+          description="Short signals from teams that wanted a cleaner system and a calmer delivery process."
         />
         <div className="grid gap-4 lg:grid-cols-3">
-          {testimonials.map((testimonial, index) => (
-            <motion.blockquote
-              key={testimonial.name}
-              initial={{ opacity: 0, y: 18 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, amount: 0.25 }}
-              transition={{ duration: 0.45, delay: index * 0.05 }}
-              className="rounded-[28px] border border-white/10 bg-white/5 p-5"
-            >
-              <div className="mb-5 flex gap-1 text-emerald-300">
-                {Array.from({ length: 5 }).map((_, star) => (
-                  <Radar key={star} className="size-4 fill-current" />
-                ))}
+          {testimonials.map((testimonial) => {
+            const initials = testimonial.name
+              .split(" ")
+              .map((part) => part[0])
+              .join("")
+
+            return (
+              <div key={testimonial.name} className="rounded-[30px] border border-white/10 bg-white/4 p-5">
+                <p className="text-sm leading-7 text-foreground/90">“{testimonial.quote}”</p>
+                <div className="mt-6 flex items-center gap-4 border-t border-white/8 pt-4">
+                  <div className="flex size-10 items-center justify-center rounded-full bg-white/10 text-xs font-semibold tracking-[0.2em] text-foreground">{initials}</div>
+                  <div>
+                    <p className="text-sm font-medium text-foreground">{testimonial.name}</p>
+                    <p className="text-sm text-muted-foreground">
+                      {testimonial.role} · {testimonial.company}
+                    </p>
+                  </div>
+                </div>
               </div>
-              <p className="text-pretty text-sm leading-7 text-white/76">“{testimonial.quote}”</p>
-              <footer className="mt-6 border-t border-white/10 pt-4 text-sm text-white/60">
-                <p className="font-medium text-white">{testimonial.name}</p>
-                <p>{testimonial.role} · {testimonial.company}</p>
-              </footer>
-            </motion.blockquote>
+            )
+          })}
+        </div>
+      </div>
+    </section>
+  )
+}
+
+export function InsightsSection() {
+  return (
+    <section id="insights" className="px-3 py-14 sm:px-4 lg:px-6 lg:py-20">
+      <div className="mx-auto max-w-7xl space-y-10">
+        <SectionHeading
+          eyebrow="Insights"
+          title="Three short notes, integrated into the flow."
+          description="Writing stays close to the work and avoids turning the site into a separate content product."
+        />
+        <div className="grid gap-4 md:grid-cols-3">
+          {blogTopics.slice(0, 3).map((topic, index) => (
+            <div key={topic.title} className="overflow-hidden rounded-[30px] border border-white/10 bg-white/4">
+              <div className="h-44 bg-[radial-gradient(circle_at_25%_25%,rgba(216,158,88,0.24),transparent_24%),radial-gradient(circle_at_75%_22%,rgba(122,168,112,0.2),transparent_22%),linear-gradient(180deg,rgba(255,255,255,0.06),rgba(255,255,255,0.012))]" />
+              <div className="space-y-3 px-5 py-5">
+                <p className="text-[11px] uppercase tracking-[0.38em] text-white/50">0{index + 1}</p>
+                <h3 className="text-xl font-semibold text-foreground">{topic.title}</h3>
+                <p className="text-sm leading-7 text-muted-foreground">{topic.subtitle}</p>
+              </div>
+            </div>
           ))}
         </div>
       </div>
@@ -495,46 +370,61 @@ export function TestimonialsSection() {
   )
 }
 
-export function CTASection() {
+export function FaqSection() {
   return (
-    <section className="px-5 py-12 sm:px-6 lg:px-8 lg:pb-24 lg:pt-16">
-      <div className="mx-auto max-w-7xl overflow-hidden rounded-[36px] border border-white/10 bg-[radial-gradient(circle_at_top_left,rgba(16,185,129,0.25),transparent_35%),radial-gradient(circle_at_top_right,rgba(59,130,246,0.16),transparent_28%),linear-gradient(135deg,rgba(255,255,255,0.08),rgba(255,255,255,0.02))] p-8 sm:p-10 lg:p-14">
-        <div className="grid gap-8 lg:grid-cols-[1.05fr_0.95fr] lg:items-center">
-          <div>
-            <p className="text-sm uppercase tracking-[0.35em] text-emerald-200/80">Final step</p>
-            <h2 className="mt-4 text-balance text-4xl font-semibold tracking-tight text-white sm:text-5xl lg:text-6xl">
-              Let&apos;s build your next product.
-            </h2>
-            <p className="mt-5 max-w-2xl text-pretty text-lg leading-8 text-white/68">
-              If you need an engineer who can think like a founder, build like a systems architect, and ship with taste, this is the right conversation.
-            </p>
-            <div className="mt-8 flex flex-wrap gap-3">
-              <Link href="/contact" className="inline-flex items-center gap-2 rounded-full bg-emerald-400 px-5 py-3 text-sm font-medium text-slate-950 transition hover:bg-emerald-300">
-                Start a project
-                <ArrowRight className="size-4" />
-              </Link>
-              <a href="mailto:prathamesh.more@example.com" className="inline-flex items-center gap-2 rounded-full border border-white/12 bg-white/5 px-5 py-3 text-sm font-medium text-white/82 transition hover:bg-white/10">
-                <Mail className="size-4" />
-                prathamesh.more@example.com
-              </a>
+    <section className="px-3 py-14 sm:px-4 lg:px-6 lg:py-20">
+      <div className="mx-auto grid max-w-7xl gap-8 lg:grid-cols-[0.8fr_1.2fr] lg:items-start">
+        <div className="space-y-4">
+          <p className="text-[11px] uppercase tracking-[0.38em] text-white/50">FAQ</p>
+          <h2 className="text-4xl font-semibold tracking-tight text-foreground sm:text-5xl">All you need to know.</h2>
+          <p className="max-w-xl text-sm leading-7 text-muted-foreground">Clear answers for teams that want to get started without a long, repetitive intake loop.</p>
+        </div>
+        <div className="space-y-3">
+          {faqItems.map((item) => (
+            <div key={item.question} className="rounded-[24px] border border-white/8 bg-white/4 px-5 py-4">
+              <p className="text-base font-medium text-foreground">{item.question}</p>
+              <p className="mt-2 text-sm leading-7 text-muted-foreground">{item.answer}</p>
             </div>
-          </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  )
+}
 
-          <div className="grid gap-3 sm:grid-cols-2">
+export function ContactSection() {
+  return (
+    <section id="contact" className="px-3 py-14 sm:px-4 lg:px-6 lg:py-20">
+      <div className="mx-auto grid max-w-7xl gap-8 lg:grid-cols-[0.82fr_1.18fr] lg:items-start">
+        <div className="space-y-5 rounded-[32px] border border-white/10 bg-white/4 p-5 lg:sticky lg:top-28">
+          <p className="text-[11px] uppercase tracking-[0.38em] text-white/50">Contact</p>
+          <h2 className="text-4xl font-semibold tracking-tight text-foreground sm:text-5xl">Start a project.</h2>
+          <p className="max-w-xl text-sm leading-7 text-muted-foreground">A single intake for new work, references, and technical notes, with a calmer structure than a typical contact form.</p>
+          <div className="flex flex-wrap gap-2">
+            {contactCategories.map((item) => (
+              <MiniTag key={item}>{item}</MiniTag>
+            ))}
+          </div>
+          <a href="mailto:hello@auren.com" className="inline-flex items-center gap-2 rounded-full bg-foreground px-5 py-3 text-sm font-medium text-background transition hover:opacity-90">
+            hello@auren.com
+            <Mail className="size-4" />
+          </a>
+        </div>
+        <Surface className="overflow-hidden p-4 sm:p-5 lg:p-6">
+          <div className="mb-5 grid gap-3 sm:grid-cols-3">
             {[
-              ["Discovery", "Define scope, stack, and success metrics."],
-              ["Delivery", "Build the product with weekly momentum."],
-              ["Deployment", "Ship to Vercel, cloud, and production environments."],
-              ["Support", "Stabilize, iterate, and prepare the next release."],
-            ].map(([title, text], index) => (
-              <div key={title} className={cn("rounded-[26px] border border-white/10 bg-black/20 p-5", index === 1 && "translate-y-4") }>
-                <p className="text-xs uppercase tracking-[0.3em] text-white/40">0{index + 1}</p>
-                <h3 className="mt-3 text-lg font-semibold text-white">{title}</h3>
-                <p className="mt-2 text-sm leading-7 text-white/62">{text}</p>
+              ["< 48h", "Typical response"],
+              ["1 pass", "Discovery review"],
+              ["3 tracks", "Systems, support, launch"],
+            ].map(([value, label]) => (
+              <div key={label} className="rounded-[22px] border border-white/8 bg-black/20 px-4 py-4">
+                <p className="text-2xl font-semibold text-foreground">{value}</p>
+                <p className="mt-2 text-[11px] uppercase tracking-[0.3em] text-white/45">{label}</p>
               </div>
             ))}
           </div>
-        </div>
+          <ContactForm />
+        </Surface>
       </div>
     </section>
   )

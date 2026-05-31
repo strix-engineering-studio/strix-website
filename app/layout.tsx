@@ -1,17 +1,20 @@
 import type { Metadata } from "next"
-import { Geist, Inter, Geist_Mono } from "next/font/google"
+import { Geist_Mono, Manrope, Space_Grotesk } from "next/font/google"
 import { SiteFooter } from "@/components/layout/site-footer"
 import { SiteHeader } from "@/components/layout/site-header"
 import { CommandMenu } from "@/components/shared/command-menu"
+import { ThemeProvider } from "@/components/shared/theme-provider"
 import "./globals.css"
 
-const geist = Geist({
-  variable: "--font-geist-sans",
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://auren.com"
+
+const headingFont = Space_Grotesk({
+  variable: "--font-heading",
   subsets: ["latin"],
 })
 
-const inter = Inter({
-  variable: "--font-inter",
+const bodyFont = Manrope({
+  variable: "--font-body",
   subsets: ["latin"],
 })
 
@@ -21,27 +24,22 @@ const geistMono = Geist_Mono({
 })
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://prathameshmore.com"),
+  metadataBase: new URL(siteUrl),
   title: {
-    default: "Prathamesh More | Full Stack & AI Engineer",
-    template: "%s | Prathamesh More",
+    default: "Auren | Systems for modern operations",
+    template: "%s | Auren",
   },
   description:
-    "Premium portfolio for Prathamesh More, a Full Stack Product Engineer and AI Systems Engineer building production-grade MVPs, backends, and startup products.",
+    "Auren designs premium product systems, workflow tooling, AI-enabled automation, and long-term technical support for growing teams.",
   openGraph: {
-    title: "Prathamesh More | Full Stack & AI Engineer",
-    description:
-      "Production-grade MVPs, AI systems, backend architecture, and modern applications for startups and businesses.",
+    title: "Auren | Systems for modern operations",
+    description: "Operational software, product engineering, AI workflows, and infrastructure designed for clarity, reliability, and long-term support.",
     url: "/",
-    siteName: "Prathamesh More",
+    siteName: "Auren",
     type: "website",
   },
   twitter: {
     card: "summary_large_image",
-  },
-  icons: {
-    icon: "https://avatars.githubusercontent.com/u/91453437?v=4",
-    apple: "https://avatars.githubusercontent.com/u/91453437?v=4",
   },
 }
 
@@ -51,23 +49,21 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html
-      lang="en"
-      className={`${geist.variable} ${inter.variable} ${geistMono.variable} dark h-full scroll-smooth antialiased`}
-    >
+    <html lang="en" className={`${headingFont.variable} ${bodyFont.variable} ${geistMono.variable} h-full scroll-smooth antialiased`} suppressHydrationWarning>
       <head>
-        <link rel="icon" href="https://avatars.githubusercontent.com/u/91453437?v=4" />
-        <link rel="apple-touch-icon" href="https://avatars.githubusercontent.com/u/91453437?v=4" />
-        <meta name="msapplication-TileImage" content="https://avatars.githubusercontent.com/u/91453437?v=4" />
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `(() => { try { const storedTheme = localStorage.getItem('theme'); const systemDark = window.matchMedia('(prefers-color-scheme: dark)').matches; const resolvedTheme = storedTheme === 'light' || storedTheme === 'dark' ? storedTheme : (systemDark ? 'dark' : 'light'); document.documentElement.classList.toggle('dark', resolvedTheme === 'dark'); document.documentElement.style.colorScheme = resolvedTheme; } catch (error) {} })();`,
+          }}
+        />
       </head>
-      <body className="min-h-screen bg-[#050816] text-white">
-        <div className="relative isolate min-h-screen overflow-hidden bg-[radial-gradient(circle_at_top,_rgba(16,185,129,0.22),_transparent_28%),radial-gradient(circle_at_right,_rgba(59,130,246,0.16),_transparent_28%),linear-gradient(180deg,#050816_0%,#07111f_50%,#04070d_100%)]">
-          <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.02)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.02)_1px,transparent_1px)] bg-[size:72px_72px] opacity-20 [mask-image:linear-gradient(180deg,rgba(0,0,0,0.95),transparent_90%)]" />
+      <body className="relative isolate min-h-screen overflow-x-hidden text-foreground" style={{ background: "var(--page-background)" }}>
+        <ThemeProvider>
           <SiteHeader />
           <main className="relative z-10">{children}</main>
           <SiteFooter />
           <CommandMenu />
-        </div>
+        </ThemeProvider>
       </body>
     </html>
   )

@@ -48,217 +48,179 @@ export type UseItem = {
     description: string
 }
 
+export type BlogTopic = {
+    title: string
+    subtitle: string
+}
+
 export const navigation: NavItem[] = [
-    { href: "/work", label: "Work" },
-    { href: "/services", label: "Services" },
-    { href: "/blog", label: "Blog" },
-    { href: "/about", label: "About" },
-    { href: "/contact", label: "Contact" },
+    { href: "/#selected-systems", label: "Systems" },
+    { href: "/#capabilities", label: "Capabilities" },
+    { href: "/#insights", label: "Insights" },
+    { href: "/#contact", label: "Contact" },
 ]
 
 export const heroStats = [
-    { label: "Production systems shipped", value: 28 },
-    { label: "APIs deployed", value: 60 },
-    { label: "Mobile apps launched", value: 9 },
-    { label: "AI integrations completed", value: 18 },
-    { label: "Cloud deployments", value: 34 },
-    { label: "Releases without rollback", value: 21 },
+    { label: "Operational systems shipped", value: 24 },
+    { label: "Production interfaces launched", value: 38 },
+    { label: "AI workflows deployed", value: 16 },
+    { label: "Reliability improvements delivered", value: 21 },
+    { label: "Teams supported long-term", value: 12 },
+    { label: "Months of active support", value: 18 },
 ]
 
 export const featuredProjects: Project[] = [
     {
-        slug: "ai-workflow-platform",
-        title: "AI Workflow Platform",
-        category: "AI + SaaS",
+        slug: "operational-telemetry-platform",
+        title: "Operational Telemetry Platform",
+        category: "Operational Systems",
         summary:
-            "A production-grade orchestration layer for automating research, retrieval, and content workflows across multiple teams.",
-        tagline: "A founder-grade operating system for AI-enabled execution.",
-        stack: ["Next.js", "NestJS", "PostgreSQL", "Prisma", "OpenAI", "Redis"],
-        metrics: ["42% faster turnaround", "<200ms internal API p95", "6 core automations"],
-        timeline: "5 weeks",
-        spotlight: "Orchestrated multi-step AI jobs with audit trails, retry logic, and realtime feedback.",
+            "A field operations platform for route visibility, offline capture, and leadership dashboards that stay usable in low-connectivity environments.",
+        tagline: "Operational clarity for teams working in motion.",
+        stack: ["Next.js", "NestJS", "PostgreSQL", "Prisma", "Redis", "WebSockets"],
+        metrics: ["38% faster dispatch decisions", "Offline capture on weak networks", "3 operator views unified"],
+        timeline: "34-day production launch",
+        spotlight: "Unified route telemetry, incident logging, and team visibility into one dependable workflow.",
         problem:
-            "The client needed a way to coordinate multiple AI tasks without creating brittle one-off scripts.",
+            "Field teams were relying on spreadsheets and delayed updates, which made dispatch decisions slow and inconsistent.",
         solution:
-            "I designed an event-driven workflow engine, added queue-backed execution, and surfaced a clean operator UI for monitoring every job.",
+            "Built an offline-first system with sync queues, geospatial events, and an operator dashboard that made status visible in real time.",
         result:
-            "Teams now launch and observe AI work from one place, with clearer ownership and predictable delivery.",
-        architecture: ["API gateway", "Queue workers", "AI prompts", "Realtime status stream", "Audit log"],
-        deployment: ["Vercel frontend", "Railway workers", "Managed Postgres", "Redis queue"],
+            "Managers now have a reliable source of truth for field activity, and operational handoff is much faster.",
+        architecture: ["Geospatial events", "Offline sync queue", "Realtime dashboard", "Role-based access", "Audit log"],
+        deployment: ["Offline-first workflow", "Monitoring on critical routes", "Reliable sync on reconnect"],
+        highlights: ["field visibility", "offline capture", "operational dashboards"],
+    },
+    {
+        slug: "ai-workflow-orchestrator",
+        title: "AI Workflow Orchestrator",
+        category: "AI & Automation",
+        summary:
+            "A guarded orchestration layer for research, retrieval, approvals, and content workflows that runs with auditability and clear operator control.",
+        tagline: "AI execution that feels native to the product.",
+        stack: ["Next.js", "NestJS", "OpenAI", "PostgreSQL", "Prisma", "Redis"],
+        metrics: ["42% faster turnaround", "<200ms internal API p95", "6 core automations"],
+        timeline: "34-day production launch",
+        spotlight: "Orchestrated multi-step AI jobs with retry logic, approval gates, and realtime feedback.",
+        problem:
+            "The client needed a way to coordinate multiple AI tasks without brittle one-off scripts and manual follow-up.",
+        solution:
+            "Designed an event-driven workflow engine, added queue-backed execution, and surfaced a clean operator UI for monitoring every job.",
+        result:
+            "Teams launch and observe AI work from one place with clearer ownership and predictable delivery.",
+        architecture: ["API gateway", "Queue workers", "Prompt routing", "Realtime status stream", "Audit log"],
+        deployment: ["Audit trail for every AI action", "Retry-safe queue processing", "Guardrails for each workflow step"],
         highlights: ["LLM routing", "approval gates", "observable workflow history"],
     },
     {
-        slug: "racerapi",
-        title: "RacerAPI",
-        category: "Backend",
+        slug: "internal-operations-hub",
+        title: "Internal Operations Hub",
+        category: "Product Engineering",
         summary:
-            "A high-throughput backend platform built for real-time telemetry, secure integrations, and analytics-heavy endpoints.",
-        tagline: "A backend that behaves like infrastructure, not a demo.",
-        stack: ["NestJS", "PostgreSQL", "Prisma", "Redis", "Docker", "Vercel"],
-        metrics: ["99.96% uptime", "120k monthly requests", "3x faster dashboard load"],
-        timeline: "4 weeks",
-        spotlight: "Tuned API latency, hardened auth, and designed a stable schema for rapid product iteration.",
+            "A back-office platform that centralizes admin flows, customer records, content controls, and day-to-day business operations.",
+        tagline: "Product engineering that reduces operational drag.",
+        stack: ["Next.js", "Auth.js", "PostgreSQL", "Prisma", "Tailwind", "Server Actions"],
+        metrics: ["5 key workflows consolidated", "2x faster admin actions", "Single source of truth"],
+        timeline: "3-week rollout",
+        spotlight: "Replaced scattered tools with a cohesive internal system for operating the business.",
         problem:
-            "Their product hit a ceiling because every new feature increased the risk of a cascading performance issue.",
+            "Teams were switching between too many tools for simple operational tasks, which slowed down support and content updates.",
         solution:
-            "I introduced a modular domain architecture, cache-first reads, and crisp validation at every boundary.",
+            "Built a coherent operations hub with clean permissions, fast data entry, and reusable workflow patterns.",
         result:
-            "The system now supports more usage without needing a rewrite.",
-        architecture: ["Domain modules", "Rate limiting", "Caching", "Structured logs", "Schema validation"],
-        deployment: ["CI pipeline", "Preview environments", "Blue/green rollout", "Database migrations"],
-        highlights: ["predictable latency", "typed contracts", "production hardening"],
-    },
-    {
-        slug: "flutter-production-app",
-        title: "Flutter Production App",
-        category: "Mobile",
-        summary:
-            "A polished mobile application with offline-first state, realtime sync, and a clean product UX for daily operations.",
-        tagline: "Mobile execution with desktop-grade rigor.",
-        stack: ["Flutter", "Firebase", "REST APIs", "Riverpod", "SQLite"],
-        metrics: ["4.8 star app rating", "2 offline modes", "96% crash-free sessions"],
-        timeline: "6 weeks",
-        spotlight: "Built a mobile experience that stayed reliable under poor connectivity and frequent updates.",
-        problem:
-            "Users needed to complete mission-critical work even when connectivity and device quality were inconsistent.",
-        solution:
-            "I designed an offline-first data flow with optimistic updates and reconciliation on reconnect.",
-        result:
-            "The app remains fast, dependable, and easy to expand.",
-        architecture: ["Local cache", "Sync queue", "Auth session", "Push notifications", "Feature flags"],
-        deployment: ["CI builds", "Store releases", "Crash analytics", "Remote config"],
-        highlights: ["offline-first", "smooth transitions", "clear sync states"],
-    },
-    {
-        slug: "realtime-dashboard-system",
-        title: "Real-time Dashboard System",
-        category: "Full Stack",
-        summary:
-            "A live operations dashboard combining event streams, analytics, and product telemetry for leadership visibility.",
-        tagline: "Visibility that helps founders make faster decisions.",
-        stack: ["Next.js", "Socket.IO", "PostgreSQL", "Prisma", "Tailwind"],
-        metrics: ["Live updates <100ms", "12 visual panels", "8 data sources"],
-        timeline: "3 weeks",
-        spotlight: "Created an executive interface for product, operations, and growth metrics in one place.",
-        problem:
-            "Leadership relied on scattered reports that were always behind the actual state of the product.",
-        solution:
-            "I unified analytics and backend events into a realtime visualization layer with robust filtering.",
-        result:
-            "Decisions moved from weekly guesses to same-day action.",
-        architecture: ["Event stream", "Aggregation jobs", "Realtime sync", "Analytics cards", "Alerts"],
-        deployment: ["Vercel", "Managed database", "Scheduled jobs", "Edge caching"],
-        highlights: ["realtime updates", "founder visibility", "dense data design"],
-    },
-    {
-        slug: "backend-architecture-platform",
-        title: "Backend Architecture Platform",
-        category: "Automation",
-        summary:
-            "A reusable architecture foundation for startups that need secure APIs, workflows, auth, and scaling from day one.",
-        tagline: "The skeleton for a serious startup backend.",
-        stack: ["Next.js", "Auth.js", "Prisma", "PostgreSQL", "Nodemailer", "Zod"],
-        metrics: ["5 internal services", "1 security model", "Zero untyped inputs"],
-        timeline: "2 weeks",
-        spotlight: "Packaged the engineering baseline so future teams could move faster with fewer decisions.",
-        problem:
-            "Startups kept repeating the same architecture work: auth, validation, data storage, logging, and forms.",
-        solution:
-            "I turned the stack into an opinionated platform with reusable primitives and safe defaults.",
-        result:
-            "New products now start from a much stronger foundation.",
-        architecture: ["Auth layer", "Schema validation", "Database models", "Contact ingestion", "Analytics hooks"],
-        deployment: ["Vercel deployment", "Postgres ready", "Environment checks", "Observability hooks"],
-        highlights: ["starter architecture", "secure defaults", "clear extension points"],
+            "Daily operations became easier to manage, with less context switching and fewer dropped tasks.",
+        architecture: ["Admin workflows", "Permission model", "Structured forms", "Searchable records", "Activity log"],
+        deployment: ["Operational controls in one place", "Clear handoff between team members", "Support-ready workflow structure"],
+        highlights: ["admin tooling", "workflow automation", "support infrastructure"],
     },
 ]
 
 export const services: Service[] = [
     {
-        title: "MVP Development",
+        title: "Operational Systems",
         summary:
-            "Rapid product execution for founders who need a polished, production-grade launch without tradeoffs in engineering quality.",
-        bullets: ["Product scoping", "Frontend + backend delivery", "Launch-ready systems"],
-        visual: "Architecture-first delivery with a strong release cadence.",
+            "Design internal platforms, workflows, dashboards, and telemetry layers that make day-to-day operations clearer and faster.",
+        bullets: ["Workflows", "Dashboards", "Operator tooling"],
+        visual: "Structured operations flow with clear status, auditability, and handoff.",
     },
     {
-        title: "AI Systems",
+        title: "Product Engineering",
         summary:
-            "Ship practical AI features, workflows, and retrieval systems that feel native to the product instead of bolted on.",
-        bullets: ["LLM orchestration", "RAG pipelines", "Approval workflows"],
-        visual: "Guardrailed AI flow with observability and fallbacks.",
+            "Build production software across web, backend, and mobile with a focus on architecture, release quality, and maintainability.",
+        bullets: ["Frontend delivery", "Backend design", "Release management"],
+        visual: "Cross-functional product delivery with a disciplined release cadence.",
     },
     {
-        title: "Backend Architecture",
+        title: "AI & Automation",
         summary:
-            "Build secure APIs, clean schemas, auth flows, and runtime patterns that stay maintainable as the product scales.",
-        bullets: ["Domain modeling", "API design", "Postgres + Prisma"],
-        visual: "System diagrams that keep the product extensible.",
+            "Ship AI-enabled workflows, retrieval systems, and workflow automation that feel integrated rather than bolted on.",
+        bullets: ["LLM orchestration", "Approval gates", "Retrieval pipelines"],
+        visual: "Guardrailed automation with observability and recovery paths.",
     },
     {
-        title: "Mobile Apps",
+        title: "Infrastructure & Reliability",
         summary:
-            "Create mobile experiences with offline-first behavior, realtime sync, and the polish expected from serious products.",
-        bullets: ["Flutter apps", "Offline sync", "Store release support"],
-        visual: "Mobile delivery with product-grade transitions.",
+            "Set up secure APIs, deployable foundations, monitoring, and deployment practices that stay stable as usage grows.",
+        bullets: ["Cloud setup", "CI/CD", "Monitoring"],
+        visual: "Resilient system foundations with predictable deploys and recovery.",
     },
     {
-        title: "Automation Workflows",
+        title: "Long-term Support",
         summary:
-            "Connect product events, notifications, operations, and AI tasks into dependable workflows that save time.",
-        bullets: ["Webhook routing", "Background jobs", "Ops automation"],
-        visual: "Workflow automation that stays observable.",
+            "Stay with the system after launch to improve reliability, reduce technical debt, and support the next round of growth.",
+        bullets: ["Iteration", "Maintenance", "Operational support"],
+        visual: "Ongoing support that keeps the system healthy over time.",
     },
 ]
 
 export const experienceTimeline: TimelineItem[] = [
     {
         year: "2026",
-        kind: "Systems",
-        title: "Started packaging repeatable startup architecture",
-        description: "Shifted from project delivery to a reusable engineering system for founders and small teams.",
+        kind: "Discovery",
+        title: "Operational discovery became the starting point",
+        description: "Focused on the workflows, constraints, and handoffs that define a durable system before writing a line of code.",
     },
     {
         year: "2025",
-        kind: "AI",
-        title: "Shipped multi-step AI workflows",
-        description: "Delivered orchestration layers, retrieval systems, and operator tooling for production teams.",
+        kind: "Architecture",
+        title: "Systems architecture shaped delivery",
+        description: "Built reusable foundations for AI workflows, product systems, and internal tools with clearer separation of concerns.",
     },
     {
         year: "2024",
-        kind: "Backend",
-        title: "Hardened API platforms",
-        description: "Built modular NestJS and Next.js backends with auth, caching, validation, and clean releases.",
+        kind: "Delivery",
+        title: "Structured delivery became the norm",
+        description: "Shipped releases with better planning, stronger validation, and fewer surprises during launch.",
     },
     {
         year: "2023",
-        kind: "Mobile",
-        title: "Released production Flutter apps",
-        description: "Focused on offline-first design, realtime sync, and launch quality on mobile surfaces.",
+        kind: "Support",
+        title: "Long-term support became part of the work",
+        description: "Kept improving the systems after launch so the product stayed reliable as the team and scope grew.",
     },
 ]
 
 export const testimonials: Testimonial[] = [
     {
         quote:
-            "Prathamesh brought founder-level thinking to the table. He understood the product, designed the right system, and delivered fast.",
+            "Auren understood the operational problem quickly and turned it into a system we could actually run every day.",
         name: "Aarav Mehta",
         role: "Founder",
         company: "Seed-stage SaaS",
     },
     {
         quote:
-            "The architecture work was exceptional. We got a cleaner backend, stronger auth, and a delivery process we can trust.",
+            "The architecture work was exceptional. We got a cleaner backend, stronger permissions, and a delivery process we can trust.",
         name: "Nisha Rao",
         role: "Product Lead",
         company: "B2B Platform",
     },
     {
         quote:
-            "He moves like an engineer who already understands how startups fail. The result was a much more durable product.",
+            "They moved like an engineering partner, not a short-term vendor. The result was a much more durable product.",
         name: "Karan Iyer",
         role: "CTO",
-        company: "Growth-stage startup",
+        company: "Growth-stage company",
     },
 ]
 
@@ -271,22 +233,43 @@ export const usesStack: UseItem[] = [
     { label: "AI", value: "OpenAI + RAG", description: "Applied where it improves product utility and speed." },
 ]
 
-export const blogTopics = [
-    "NestJS architecture",
-    "AI systems",
-    "scalable APIs",
-    "Flutter engineering",
-    "offline-first systems",
-    "auth systems",
-    "backend scaling",
+export const blogTopics: BlogTopic[] = [
+    {
+        title: "Operational architecture",
+        subtitle: "How to structure systems around workflows, handoffs, and long-term maintainability.",
+    },
+    {
+        title: "Reliable AI workflows",
+        subtitle: "Guardrails, approvals, and fallback paths for AI features that have to work in production.",
+    },
+    {
+        title: "Clean data boundaries",
+        subtitle: "Why schema discipline and validation matter when the product starts growing quickly.",
+    },
+    {
+        title: "System observability",
+        subtitle: "Practical dashboards and logs that help teams understand what the product is doing.",
+    },
+    {
+        title: "Infrastructure reviews",
+        subtitle: "The release and deployment choices that keep a team moving without losing control.",
+    },
+    {
+        title: "Support models",
+        subtitle: "What long-term technical partnership looks like after the initial launch is done.",
+    },
+    {
+        title: "Backend scaling",
+        subtitle: "Patterns for keeping APIs fast, safe, and easier to extend under real usage.",
+    },
 ]
 
 export const contactCategories = [
-    "MVP build",
-    "AI system",
-    "Backend overhaul",
-    "Mobile app",
-    "Automation workflow",
+    "Operational systems",
+    "Product engineering",
+    "AI & automation",
+    "Infrastructure & reliability",
+    "Long-term support",
 ]
 
 export const budgetBands = ["< $10k", "$10k - $25k", "$25k - $50k", "$50k+"]

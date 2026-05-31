@@ -1,10 +1,11 @@
 "use client"
 
 import React, { Suspense, useRef } from "react"
+import type { Mesh } from "three"
 import { Canvas, useFrame } from "@react-three/fiber"
 
 function FloatingTorus() {
-  const ref = useRef<any>(null)
+  const ref = useRef<Mesh | null>(null)
   useFrame((state, delta) => {
     if (ref.current) {
       ref.current.rotation.y += delta * 0.2

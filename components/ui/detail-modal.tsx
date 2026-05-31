@@ -3,7 +3,15 @@
 import React from "react"
 import { motion } from "framer-motion"
 
-export default function DetailModal({ project, onClose }: { project: any | null; onClose: () => void }) {
+type Project = {
+  category?: string
+  title?: string
+  summary?: string
+  architecture?: string[]
+  metrics?: string[]
+}
+
+export default function DetailModal({ project, onClose }: { project: Project | null; onClose: () => void }) {
   if (!project) return null
 
   return (

@@ -16,13 +16,13 @@ export default function OpenGraphImage() {
         display: "flex",
         flexDirection: "column",
         justifyContent: "space-between",
-        background: "linear-gradient(135deg, #06101d 0%, #04111b 45%, #071a2f 100%)",
+        background: "linear-gradient(135deg, #0b0d10 0%, #10141b 45%, #0a0c11 100%)",
         color: "#fff",
         padding: 64,
       }}>
-        <div style={{ display: "flex", gap: 12, alignItems: "center", fontSize: 24, color: "#5eead4" }}>Prathamesh More</div>
-        <div style={{ fontSize: 70, lineHeight: 1.02, fontWeight: 700, maxWidth: 920 }}>Building production-grade MVPs, AI systems, and scalable applications.</div>
-        <div style={{ fontSize: 28, color: "rgba(255,255,255,0.72)", maxWidth: 920 }}>Full-stack engineer specializing in AI integrations, backend architecture, and startup-focused product development.</div>
+        <div style={{ display: "flex", gap: 12, alignItems: "center", fontSize: 24, color: "#9bb3ff" }}>Auren</div>
+        <div style={{ fontSize: 70, lineHeight: 1.02, fontWeight: 700, maxWidth: 920 }}>Engineering systems for modern operations.</div>
+        <div style={{ fontSize: 28, color: "rgba(255,255,255,0.72)", maxWidth: 920 }}>Operational software, product engineering, AI workflows, and infrastructure designed for clarity, reliability, and long-term support.</div>
       </div>
     ),
     size

@@ -1,27 +1,65 @@
-import { PageShell } from "@/components/shared/page-shell"
+import { ArrowUpRight, Mail, ShieldCheck } from "lucide-react"
 import { ContactForm } from "@/components/contact/contact-form"
+import { PageShell } from "@/components/shared/page-shell"
+import { contactCategories } from "@/lib/site"
 
 export default function ContactPage() {
   return (
     <PageShell
-      eyebrow="Contact"
-      title="A premium contact experience for serious product conversations."
-      description="Share the stage, scope, and timeline. The form is wired for lead capture, and the backend route is ready for persistence." 
+      eyebrow="Book a demo"
+      title="Book a conversation with Auren"
+      description="Get help with your workflows, explore a redesign, or talk through a product system that needs calmer execution."
     >
-      <div className="grid gap-6 lg:grid-cols-[0.95fr_1.05fr]">
-        <div className="space-y-4 rounded-[30px] border border-white/10 bg-white/5 p-5">
-          <p className="text-sm uppercase tracking-[0.35em] text-emerald-300/80">What happens next</p>
-          <div className="space-y-3 text-sm leading-7 text-white/68">
-            <p>1. I review the brief and product context.</p>
-            <p>2. We align on architecture, scope, and delivery window.</p>
-            <p>3. If the fit is right, we move into a focused discovery phase.</p>
+      <div className="grid gap-8 lg:grid-cols-[0.82fr_1.18fr] lg:items-start">
+        <div className="space-y-5 rounded-[32px] border border-white/10 bg-white/4 p-5 lg:sticky lg:top-28">
+          <p className="text-[11px] uppercase tracking-[0.38em] text-white/50">Contact</p>
+          <h2 className="text-3xl font-semibold tracking-tight text-foreground sm:text-4xl">A short intake, not a long form maze.</h2>
+          <p className="text-sm leading-7 text-muted-foreground">The goal is to get enough context to shape the right conversation, not to make you fill out a spreadsheet.</p>
+          <div className="flex flex-wrap gap-2">
+            {contactCategories.map((item) => (
+              <span key={item} className="rounded-full border border-white/10 bg-white/5 px-3 py-1.5 text-[11px] uppercase tracking-[0.26em] text-white/68">
+                {item}
+              </span>
+            ))}
           </div>
-          <div className="rounded-[24px] border border-white/10 bg-black/20 p-4 text-sm text-white/62">
-            Preferred for founders, product teams, and businesses shipping something important.
+          <a href="mailto:hello@auren.com" className="inline-flex items-center gap-2 rounded-full bg-foreground px-5 py-3 text-sm font-medium text-background transition hover:opacity-90">
+            hello@auren.com
+            <Mail className="size-4" />
+          </a>
+          <div className="grid gap-3 sm:grid-cols-2">
+            <InfoCard title="Response" description="Usually within 48 hours." icon={<ArrowUpRight className="size-4" />} />
+            <InfoCard title="Fit" description="Best for systems, workflows, and product delivery." icon={<ShieldCheck className="size-4" />} />
           </div>
         </div>
-        <ContactForm />
+
+        <div className="rounded-[34px] border border-white/10 bg-white/4 p-4 sm:p-5 lg:p-6">
+          <div className="mb-5 grid gap-3 sm:grid-cols-3">
+            {[
+              ["< 48h", "Typical response"],
+              ["1 pass", "Discovery review"],
+              ["3 tracks", "Systems, support, launch"],
+            ].map(([value, label]) => (
+              <div key={label} className="rounded-[22px] border border-white/8 bg-black/20 px-4 py-4">
+                <p className="text-2xl font-semibold text-foreground">{value}</p>
+                <p className="mt-2 text-[11px] uppercase tracking-[0.3em] text-white/45">{label}</p>
+              </div>
+            ))}
+          </div>
+          <ContactForm />
+        </div>
       </div>
     </PageShell>
+  )
+}
+
+function InfoCard({ title, description, icon }: { title: string; description: string; icon: React.ReactNode }) {
+  return (
+    <div className="rounded-[24px] border border-white/8 bg-black/20 px-4 py-4">
+      <div className="flex items-center gap-2 text-sm font-medium text-foreground">
+        {icon}
+        {title}
+      </div>
+      <p className="mt-2 text-sm leading-6 text-muted-foreground">{description}</p>
+    </div>
   )
 }

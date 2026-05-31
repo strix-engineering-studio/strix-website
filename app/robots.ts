@@ -1,6 +1,8 @@
 export default function robots() {
+    const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://auren.com"
+
     return {
         rules: [{ userAgent: "*", allow: "/" }],
-        sitemap: "https://prathameshmore.com/sitemap.xml",
+        sitemap: `${siteUrl}/sitemap.xml`,
     }
 }

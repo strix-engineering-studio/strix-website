@@ -1,22 +1,50 @@
+import { ArrowUpRight } from "lucide-react"
 import { PageShell } from "@/components/shared/page-shell"
+import { experienceTimeline, testimonials } from "@/lib/site"
 
 export default function AboutPage() {
   return (
     <PageShell
       eyebrow="About"
-      title="A technical founder mindset, applied to client work."
-      description="Prathamesh More builds products with the discipline of a systems engineer and the urgency of a founder. The focus is always production readiness, architecture clarity, and launch momentum."
+      title="Engineering systems for modern operations"
+      description="Auren exists to make complicated product and workflow systems feel calmer, more maintainable, and easier to evolve over time."
     >
+      <div className="grid gap-6 lg:grid-cols-[0.88fr_1.12fr] lg:items-start">
+        <div className="space-y-5 rounded-[32px] border border-white/10 bg-white/4 p-5">
+          <p className="text-[11px] uppercase tracking-[0.38em] text-white/50">Story</p>
+          <h2 className="text-3xl font-semibold tracking-tight text-foreground">Built for teams that need the product and the operating system to move together.</h2>
+          <p className="text-sm leading-7 text-muted-foreground">The practice focuses on product systems, architecture, and delivery habits that hold up after launch.</p>
+          <a href="/contact" className="inline-flex items-center gap-2 rounded-full bg-foreground px-5 py-3 text-sm font-medium text-background transition hover:opacity-90">
+            Start a conversation
+            <ArrowUpRight className="size-4" />
+          </a>
+        </div>
+
+        <div className="space-y-4">
+          {experienceTimeline.map((item) => (
+            <div key={item.year} className="grid gap-4 rounded-[28px] border border-white/8 bg-white/4 p-5 sm:grid-cols-[120px_1fr]">
+              <div>
+                <p className="text-[11px] uppercase tracking-[0.38em] text-white/45">{item.year}</p>
+                <p className="mt-2 text-lg font-semibold text-foreground">{item.kind}</p>
+              </div>
+              <div>
+                <h3 className="text-xl font-semibold text-foreground">{item.title}</h3>
+                <p className="mt-2 text-sm leading-7 text-muted-foreground">{item.description}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+
       <div className="grid gap-4 lg:grid-cols-3">
-        {[
-          ["Product thinking", "Treats every build like a customer-facing product with measurable outcomes."],
-          ["Engineering depth", "Designs backend systems, auth, data, and AI flows with long-term maintainability."],
-          ["Execution speed", "Moves quickly while protecting quality, security, and release confidence."],
-        ].map(([title, text]) => (
-          <article key={title} className="rounded-[30px] border border-white/10 bg-white/5 p-5">
-            <h2 className="text-xl font-semibold text-white">{title}</h2>
-            <p className="mt-3 text-sm leading-7 text-white/66">{text}</p>
-          </article>
+        {testimonials.map((testimonial) => (
+          <div key={testimonial.name} className="rounded-[30px] border border-white/10 bg-white/4 p-5">
+            <p className="text-sm leading-7 text-foreground/90">“{testimonial.quote}”</p>
+            <p className="mt-5 text-sm font-medium text-foreground">{testimonial.name}</p>
+            <p className="text-sm text-muted-foreground">
+              {testimonial.role} · {testimonial.company}
+            </p>
+          </div>
         ))}
       </div>
     </PageShell>

@@ -1,18 +1,19 @@
 import { featuredProjects } from "@/lib/site"
 
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://auren.com"
+
 export default function sitemap() {
     const routes = [
         "",
         "/work",
-        "/services",
+        "/capabilities",
         "/blog",
-        "/about",
         "/contact",
         "/uses",
     ]
 
-    const pages = routes.map((route) => ({ url: `https://prathameshmore.com${route}`, lastModified: new Date() }))
-    const studies = featuredProjects.map((project) => ({ url: `https://prathameshmore.com/case-studies/${project.slug}`, lastModified: new Date() }))
+    const pages = routes.map((route) => ({ url: `${siteUrl}${route}`, lastModified: new Date() }))
+    const studies = featuredProjects.map((project) => ({ url: `${siteUrl}/case-studies/${project.slug}`, lastModified: new Date() }))
 
     return [...pages, ...studies]
 }
