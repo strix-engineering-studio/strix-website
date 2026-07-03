@@ -50,49 +50,56 @@
 }
 
 :root {
-  --background: oklch(0.12 0.02 95);
-  --foreground: oklch(0.98 0.01 95);
-  --card: oklch(0.16 0.02 95);
-  --card-foreground: oklch(0.98 0.01 95);
-  --popover: oklch(0.16 0.02 95);
-  --popover-foreground: oklch(0.98 0.01 95);
-  --primary: oklch(0.8 0.1 75);
-  --primary-foreground: oklch(0.12 0.02 95);
-  --secondary: oklch(0.21 0.02 95);
-  --secondary-foreground: oklch(0.98 0.01 95);
-  --muted: oklch(0.19 0.02 95);
-  --muted-foreground: oklch(0.74 0.02 95);
-  --accent: oklch(0.22 0.02 95);
-  --accent-foreground: oklch(0.98 0.01 95);
-  --destructive: oklch(0.577 0.245 27.325);
-  --border: oklch(1 0 0 / 10%);
-  --input: oklch(1 0 0 / 12%);
-  --ring: oklch(0.8 0.1 75);
-  --chart-1: oklch(0.8 0.1 75);
-  --chart-2: oklch(0.72 0.06 145);
-  --chart-3: oklch(0.84 0.04 95);
-  --chart-4: oklch(0.76 0.08 40);
-  --chart-5: oklch(0.88 0.04 170);
-  --radius: 0.875rem;
-  --sidebar: oklch(0.15 0.02 95);
-  --sidebar-foreground: oklch(0.98 0.01 95);
-  --sidebar-primary: oklch(0.8 0.1 75);
-  --sidebar-primary-foreground: oklch(0.12 0.02 95);
-  --sidebar-accent: oklch(0.2 0.02 95);
-  --sidebar-accent-foreground: oklch(0.98 0.01 95);
-  --sidebar-border: oklch(1 0 0 / 10%);
-  --sidebar-ring: oklch(0.8 0.1 75);
+  /* Base */
+  --background: #031217;
+  --foreground: #eef3f2;
+
+  /* Surfaces */
+  --card: #08171c;
+  --card-foreground: #eef3f2;
+
+  --popover: #08171c;
+  --popover-foreground: #eef3f2;
+
+  /* Brand */
+  --primary: #f9a907;
+  --primary-foreground: #031217;
+
+  --secondary: #102228;
+  --secondary-foreground: #eef3f2;
+
+  --accent: #183038;
+  --accent-foreground: #eef3f2;
+
+  --muted: #0d1d22;
+  --muted-foreground: #93a29a;
+
+  --destructive: #c2410c;
+
+  --border: rgba(255,255,255,.08);
+  --input: rgba(255,255,255,.08);
+  --ring: #f9a907;
+
+  --radius: 1rem;
+
+  --surface: rgba(255,255,255,.04);
+  --surface-strong: rgba(255,255,255,.06);
+  --border-subtle: rgba(255,255,255,.06);
+
   --page-background:
-    radial-gradient(circle at 15% 15%, rgba(216, 158, 88, 0.22), transparent 24%),
-    radial-gradient(circle at 82% 10%, rgba(122, 168, 112, 0.16), transparent 20%),
-    radial-gradient(circle at 50% 78%, rgba(77, 56, 34, 0.18), transparent 30%),
-    linear-gradient(180deg, #070705 0%, #10100d 52%, #070706 100%);
+      radial-gradient(circle at 18% 18%, rgba(249,169,7,.12), transparent 28%),
+      radial-gradient(circle at 82% 12%, rgba(31,92,94,.18), transparent 30%),
+      radial-gradient(circle at 50% 75%, rgba(9,39,45,.28), transparent 35%),
+      linear-gradient(
+          180deg,
+          #031217 0%,
+          #06171d 45%,
+          #031217 100%
+      );
+
   --page-overlay:
-    linear-gradient(rgba(255, 255, 255, 0.02) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
-  --surface: rgba(255, 255, 255, 0.055);
-  --surface-strong: rgba(8, 8, 7, 0.55);
-  --border-subtle: rgba(255, 255, 255, 0.08);
+      linear-gradient(rgba(255,255,255,.018) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255,255,255,.018) 1px, transparent 1px);
 }
 
 html.dark {
@@ -134,23 +141,33 @@ html {
   scroll-behavior: smooth;
 }
 
-body {
-  background: var(--page-background);
-  color: var(--foreground);
-  font-family: var(--font-body), var(--font-geist-sans), sans-serif;
-  font-feature-settings: "cv02", "cv03", "ss01", "ss02";
+body{
+    background:var(--page-background);
+    color:var(--foreground);
+    font-family:var(--font-body),sans-serif;
+    overflow-x:hidden;
 }
 
-body::before {
-  content: "";
-  position: fixed;
-  inset: 0;
-  pointer-events: none;
-  z-index: -1;
-  opacity: 0.8;
-  background-image: var(--page-overlay);
-  background-size: 84px 84px;
-  mask-image: linear-gradient(180deg, rgba(0, 0, 0, 0.95), transparent 92%);
+body::before{
+    content:"";
+    position:fixed;
+    inset:0;
+    pointer-events:none;
+    z-index:-2;
+    background:var(--page-overlay);
+    background-size:80px 80px;
+    opacity:.8;
+}
+
+body::after{
+    content:"";
+    position:fixed;
+    inset:0;
+    z-index:-3;
+    pointer-events:none;
+    background:
+        radial-gradient(circle at top,#f9a90712,transparent 25%),
+        radial-gradient(circle at bottom right,#0d6c6d18,transparent 35%);
 }
 
 html.dark {
@@ -219,28 +236,50 @@ html:not(.dark) {
   .noise {
     background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 320 320'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='320' height='320' filter='url(%23n)' opacity='.35'/%3E%3C/svg%3E");
   }
+  @layer utilities{
+
+.glass{
+    background:rgba(8,23,28,.72);
+    backdrop-filter:blur(30px);
+    border:1px solid rgba(255,255,255,.06);
 }
 
-/* Normalize rounded utilities: force a single rounded size across the site
-   This keeps design consistent when many custom rounded-* classes were used. */
+.surface{
+    background:#08171c;
+}
+
+.surface-2{
+    background:#102228;
+}
+
+.gold-text{
+    color:#f9a907;
+}
+
+.gold-border{
+    border-color:#f9a90733;
+}
+
+.gold-glow{
+    box-shadow:
+        0 0 60px rgba(249,169,7,.15);
+}
+
+.grid-bg{
+    background-image:
+        linear-gradient(rgba(255,255,255,.018) 1px,transparent 1px),
+        linear-gradient(90deg,rgba(255,255,255,.018) 1px,transparent 1px);
+    background-size:80px 80px;
+}
+
+}
+}
+
 :root {
   --rounded-default: 0.75rem;
 }
 
-.rounded-sm,
-.rounded-md,
-.rounded-lg,
-.rounded-xl,
-.rounded-2xl,
-.rounded-3xl,
-.rounded-\[28px\],
-.rounded-\[32px\],
-.rounded-\[36px\],
-.rounded-\[24px\],
-.rounded-\[26px\],
-.rounded-\[20px\] {
-  border-radius: var(--rounded-default) !important;
-}
+
 
 html:not(.dark) [class*="text-white"] {
   color: var(--foreground) !important;

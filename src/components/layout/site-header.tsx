@@ -17,17 +17,60 @@ export function SiteHeader() {
   }
 
   return (
-    <header className="sticky top-0 z-50 px-3 pt-3 sm:px-4 lg:px-6">
-      <div className="mx-auto flex max-w-7xl items-center gap-4 rounded-xl border border-border/70 bg-background/70 px-4 py-3 shadow-[0_20px_80px_rgba(0,0,0,0.32)] backdrop-blur-2xl sm:px-5">
-        <Link href="/" className="group flex items-center gap-3">
-          <Image src="/strix.svg" alt="Strix logo" width={28} height={28} className="size-7" />
-          <span className="hidden flex-col sm:flex">
-            <span className="text-sm font-semibold tracking-[0.14em] text-foreground">Strix</span>
-            <span className="text-xs text-muted-foreground">Product engineering studio</span>
-          </span>
+    <header className="sticky top-0 z-50 px-4 pt-5">
+      <div className="pointer-events-none absolute inset-x-0 top-2 flex justify-center">
+        <div className="h-24 w-[600px] rounded-full bg-[#F9A907]/10 blur-[120px]" />
+      </div>
+
+      <div
+        className="
+        relative
+        mx-auto
+        flex
+        max-w-7xl
+        items-center
+        rounded-[34px]
+        border
+        border-white/[0.06]
+        bg-[#08171C]/75
+        px-6
+        py-4
+        backdrop-blur-3xl
+        shadow-[0_25px_80px_rgba(0,0,0,.45)]
+      "
+      >
+        <Link href="/" className="flex items-center gap-4">
+
+          <div className="
+          flex
+          h-12
+          w-12
+          items-center
+          justify-center
+          rounded-2xl
+          bg-[#0D242A]
+          shadow-lg
+          shadow-[#F9A907]/10
+          ">
+            <Image
+              src="/strix.svg"
+              width={30}
+              height={30}
+              alt="Strix"
+            />
+          </div>
+
+          <div className="hidden sm:block">
+            <h2 className="font-semibold tracking-[0.25em] text-[#F9A907]">
+              STRIX
+            </h2>
+            <p className="text-sm text-[#93A29A]">
+              Product Engineering Studio
+            </p>
+          </div>
         </Link>
 
-        <nav className="hidden items-center gap-1 rounded-full border border-white/8 bg-white/3 p-1 lg:flex">
+        <nav className="mx-auto hidden items-center rounded-full bg-[#102228] p-1 lg:flex">
           {navigation.map((item) => {
             const active = pathname === item.href || pathname.startsWith(`${item.href}/`)
 
@@ -36,8 +79,8 @@ export function SiteHeader() {
                 key={item.href}
                 href={item.href}
                 className={cn(
-                  "rounded-full px-4 py-2 text-sm transition-colors",
-                  active ? "bg-white/10 text-foreground" : "text-muted-foreground hover:bg-white/6 hover:text-foreground"
+                  "rounded-full px-5 py-3 text-sm transition-all duration-300",
+                  active ? "bg-[#F9A907] text-[#031217] font-semibold shadow-lg shadow-[#F9A907]/20" : "text-[#B2C0BC] hover:bg-[#183038] hover:text-white"
                 )}
               >
                 {item.label}
@@ -46,47 +89,77 @@ export function SiteHeader() {
           })}
         </nav>
 
-        <div className="ml-auto hidden items-center gap-3 lg:flex">
+        <div className="hidden items-center gap-4 lg:flex">
           <Link
             href="/systems"
-            className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/4 px-4 py-2 text-sm font-medium text-foreground transition hover:bg-white/8"
+            className="rounded-full border border-[#F9A907]/20 bg-[#102228] px-5 py-3 text-sm font-medium text-white transition hover:border-[#F9A907] hover:bg-[#183038]"
           >
             View systems
           </Link>
           <Link
             href="/contact"
-            className="inline-flex items-center gap-2 rounded-full bg-foreground px-5 py-2.5 text-sm font-medium text-background transition hover:opacity-90"
+            className="inline-flex items-center gap-2 rounded-full bg-[#F9A907] px-6 py-3 font-semibold text-[#031217] shadow-lg shadow-[#F9A907]/20 transition hover:scale-[1.02] hover:bg-[#FFC633]"
           >
             Start discovery
-            <ArrowUpRight className="size-4" />
+            <ArrowUpRight className="h-4 w-4" />
           </Link>
         </div>
 
         <button
           type="button"
           onClick={() => setOpen((value) => !value)}
-          className="ml-auto inline-flex items-center justify-center rounded-full border border-white/10 bg-white/5 p-3 text-white/80 lg:hidden"
-          aria-label={open ? "Close navigation" : "Open navigation"}
+          className=" ml-auto
+          rounded-full
+          bg-[#102228]
+          p-3
+          text-white
+          lg:hidden"
+
         >
-          {open ? <X className="size-5" /> : <Menu className="size-5" />}
+          {open ? <X /> : <Menu />}
         </button>
       </div>
 
       {open ? (
-        <div className="px-3 py-3 lg:hidden sm:px-4">
-          <div className="mx-auto flex max-w-7xl flex-col gap-3 rounded-xl border border-border/70 bg-background/90 p-4 shadow-[0_24px_90px_rgba(0,0,0,0.34)] backdrop-blur-2xl">
-            {navigation.map((item) => (
-              <Link key={item.href} href={item.href} onClick={() => setOpen(false)} className="rounded-2xl border border-white/8 bg-white/4 px-4 py-3 text-sm text-muted-foreground transition hover:bg-white/8 hover:text-foreground">
-                {item.label}
-              </Link>
-            ))}
-              <Link href="/contact" onClick={() => setOpen(false)} className="inline-flex items-center justify-center gap-2 rounded-2xl bg-foreground px-4 py-3 text-sm font-medium text-background">
+        <div className="mt-4 lg:hidden">
+          <div className=" rounded-[28px]
+            border
+            border-white/10
+            bg-[#08171C]/90
+            p-5
+            backdrop-blur-3xl">
+            <div className="flex flex-col gap-3">
+
+              {navigation.map((item) => (
+                <Link key={item.href} href={item.href} onClick={() => setOpen(false)} className="rounded-2xl
+                  bg-[#102228]
+                  px-4
+                  py-3
+                  text-[#B2C0BC]
+                  transition
+                  hover:bg-[#183038]
+                  hover:text-white">
+                  {item.label}
+                </Link>
+              ))}
+              <Link href="/contact" onClick={() => setOpen(false)} className=" mt-2
+                flex
+                items-center
+                justify-center
+                gap-2
+                rounded-2xl
+                bg-[#F9A907]
+                px-5
+                py-3
+                font-semibold
+                text-[#031217]">
                 Start a Conversation
-              <ArrowUpRight className="size-4" />
-            </Link>
+                <ArrowUpRight className="size-4" />
+              </Link>
+              </div>
+            </div>
           </div>
-        </div>
       ) : null}
-    </header>
-  )
+        </header>
+      )
 }
