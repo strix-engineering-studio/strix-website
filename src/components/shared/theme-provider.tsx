@@ -1,6 +1,6 @@
 "use client"
 
-import { createContext, useContext, useLayoutEffect, useMemo, useState } from "react"
+import { createContext, useContext, useEffect, useMemo, useState } from "react"
 
 type Theme = "light" | "dark" | "system"
 
@@ -12,11 +12,6 @@ type ThemeContextValue = {
 }
 
 const ThemeContext = createContext<ThemeContextValue | null>(null)
-
-function getSystemTheme(): "light" | "dark" {
-  if (typeof window === "undefined") return "dark"
-  return window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light"
-}
 
 function getStoredTheme(): Theme {
   if (typeof window === "undefined") return "system"
@@ -32,25 +27,43 @@ function applyTheme(theme: Theme, resolvedTheme: "light" | "dark") {
 }
 
 export function ThemeProvider({ children }: { children: React.ReactNode }) {
-  const initialTheme = getStoredTheme()
-  const [theme, setThemeState] = useState<Theme>(() => initialTheme)
-  const [systemPrefersDark, setSystemPrefersDark] = useState<boolean>(() => getSystemTheme() === "dark")
+  const [theme, setThemeState] = useState<Theme>("system")
+  const [systemPrefersDark, setSystemPrefersDark] = useState<boolean>(false)
 
   const resolvedTheme: "light" | "dark" = theme === "system" ? (systemPrefersDark ? "dark" : "light") : theme
 
-  useLayoutEffect(() => {
+  useEffect(() => {
     if (typeof window === "undefined") return
 
     const mediaQuery = window.matchMedia("(prefers-color-scheme: dark)")
-    applyTheme(theme, resolvedTheme)
-    window.localStorage.setItem("theme", theme)
+    const storedTheme = getStoredTheme()
+    const prefersDark = mediaQuery.matches
+
+    const initializeTheme = () => {
+      setThemeState(storedTheme)
+      setSystemPrefersDark(prefersDark)
+      applyTheme(storedTheme, storedTheme === "system" ? (prefersDark ? "dark" : "light") : storedTheme)
+      window.localStorage.setItem("theme", storedTheme)
+    }
+
+    const timeoutId = window.setTimeout(initializeTheme, 0)
 
     const handleChange = () => {
       setSystemPrefersDark(mediaQuery.matches)
     }
 
     mediaQuery.addEventListener("change", handleChange)
-    return () => mediaQuery.removeEventListener("change", handleChange)
+    return () => {
+      window.clearTimeout(timeoutId)
+      mediaQuery.removeEventListener("change", handleChange)
+    }
+  }, [])
+
+  useEffect(() => {
+    if (typeof window === "undefined") return
+
+    applyTheme(theme, resolvedTheme)
+    window.localStorage.setItem("theme", theme)
   }, [theme, resolvedTheme])
 
   const value = useMemo(

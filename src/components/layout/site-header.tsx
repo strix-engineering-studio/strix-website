@@ -7,6 +7,7 @@ import { useState } from "react"
 import { navigation } from "@/lib/site"
 import { cn } from "@/lib/utils"
 import Image from "next/image"
+import { ThemeToggle } from "@/components/shared/theme-toggle"
 
 export function SiteHeader() {
   const pathname = usePathname()
@@ -17,60 +18,19 @@ export function SiteHeader() {
   }
 
   return (
-    <header className="sticky top-0 z-50 px-4 pt-5">
-      <div className="pointer-events-none absolute inset-x-0 top-2 flex justify-center">
-        <div className="h-24 w-[600px] rounded-full bg-[#F9A907]/10 blur-[120px]" />
-      </div>
-
-      <div
-        className="
-        relative
-        mx-auto
-        flex
-        max-w-7xl
-        items-center
-        rounded-[34px]
-        border
-        border-white/[0.06]
-        bg-[#08171C]/75
-        px-6
-        py-4
-        backdrop-blur-3xl
-        shadow-[0_25px_80px_rgba(0,0,0,.45)]
-      "
-      >
-        <Link href="/" className="flex items-center gap-4">
-
-          <div className="
-          flex
-          h-12
-          w-12
-          items-center
-          justify-center
-          rounded-2xl
-          bg-[#0D242A]
-          shadow-lg
-          shadow-[#F9A907]/10
-          ">
-            <Image
-              src="/strix.svg"
-              width={30}
-              height={30}
-              alt="Strix"
-            />
+    <header className="sticky top-0 z-50 px-3 pt-4 sm:px-4 lg:px-6">
+      <div className="mx-auto grid max-w-7xl items-center gap-3 rounded-[14px] border border-border bg-background/95 px-4 py-3 shadow-[0_10px_30px_rgba(0,0,0,0.08)] backdrop-blur-xl dark:border-border dark:bg-background/10 sm:px-5 lg:px-6 lg:grid-cols-[auto_minmax(0,1fr)_auto]">
+        <Link href="/" className="flex items-center gap-3 min-w-0">
+          <div className="flex h-10 w-10 items-center justify-center rounded-[10px] border border-border bg-surface dark:border-border dark:bg-surface">
+            <Image src="/strix.svg" width={24} height={24} alt="Strix" />
           </div>
-
           <div className="hidden sm:block">
-            <h2 className="font-semibold tracking-[0.25em] text-[#F9A907]">
-              STRIX
-            </h2>
-            <p className="text-sm text-[#93A29A]">
-              Product Engineering Studio
-            </p>
+            <p className="text-[11px] font-semibold uppercase tracking-[0.32em] text-primary">STRIX</p>
+            <p className="text-sm text-foreground/60">System Before Software</p>
           </div>
         </Link>
 
-        <nav className="mx-auto hidden items-center rounded-full bg-[#102228] p-1 lg:flex">
+        <nav className="hidden lg:flex flex-wrap justify-center gap-3 min-w-0">
           {navigation.map((item) => {
             const active = pathname === item.href || pathname.startsWith(`${item.href}/`)
 
@@ -79,8 +39,8 @@ export function SiteHeader() {
                 key={item.href}
                 href={item.href}
                 className={cn(
-                  "rounded-full px-5 py-3 text-sm transition-all duration-300",
-                  active ? "bg-[#F9A907] text-[#031217] font-semibold shadow-lg shadow-[#F9A907]/20" : "text-[#B2C0BC] hover:bg-[#183038] hover:text-white"
+                  "relative px-3 py-2 text-[11px] font-medium uppercase tracking-[0.28em] transition-colors",
+                  active ? "text-primary after:absolute after:bottom-0 after:left-3 after:right-3 after:h-px after:bg-primary" : "text-foreground/60 hover:text-foreground"
                 )}
               >
                 {item.label}
@@ -89,77 +49,42 @@ export function SiteHeader() {
           })}
         </nav>
 
-        <div className="hidden items-center gap-4 lg:flex">
-          <Link
-            href="/systems"
-            className="rounded-full border border-[#F9A907]/20 bg-[#102228] px-5 py-3 text-sm font-medium text-white transition hover:border-[#F9A907] hover:bg-[#183038]"
-          >
+        <div className="hidden items-center gap-3 lg:flex lg:justify-end">
+          <ThemeToggle />
+          <Link href="/systems" className="rounded-[10px] border border-border bg-surface px-4 py-2 text-[11px] font-medium uppercase tracking-[0.24em] text-foreground/80 transition hover:border-primary/30 hover:text-foreground dark:bg-surface dark:border-border">
             View systems
           </Link>
-          <Link
-            href="/contact"
-            className="inline-flex items-center gap-2 rounded-full bg-[#F9A907] px-6 py-3 font-semibold text-[#031217] shadow-lg shadow-[#F9A907]/20 transition hover:scale-[1.02] hover:bg-[#FFC633]"
-          >
-            Start discovery
-            <ArrowUpRight className="h-4 w-4" />
+          <Link href="/contact" className="inline-flex items-center gap-2 rounded-[10px] bg-primary px-4 py-2 text-[11px] font-semibold uppercase tracking-[0.24em] text-primary-foreground transition hover:bg-primary/90">
+            Start project
+            <ArrowUpRight className="h-3.5 w-3.5" />
           </Link>
         </div>
 
-        <button
-          type="button"
-          onClick={() => setOpen((value) => !value)}
-          className=" ml-auto
-          rounded-full
-          bg-[#102228]
-          p-3
-          text-white
-          lg:hidden"
-
-        >
-          {open ? <X /> : <Menu />}
+        <button type="button" onClick={() => setOpen((value) => !value)} className="rounded-[8px] border border-border p-2 text-foreground/70 lg:hidden dark:border-border">
+          {open ? <X className="h-4 w-4" /> : <Menu className="h-4 w-4" />}
         </button>
       </div>
 
       {open ? (
-        <div className="mt-4 lg:hidden">
-          <div className=" rounded-[28px]
-            border
-            border-white/10
-            bg-[#08171C]/90
-            p-5
-            backdrop-blur-3xl">
-            <div className="flex flex-col gap-3">
-
+        <div className="mt-3 lg:hidden">
+          <div className="rounded-[14px] border border-black/10 bg-[#fbf8f2]/90 p-4 shadow-[0_8px_30px_rgba(11,11,10,0.04)] backdrop-blur-xl dark:border-white/10 dark:bg-[#0b0b0a]/90">
+            <div className="flex flex-col gap-2">
               {navigation.map((item) => (
-                <Link key={item.href} href={item.href} onClick={() => setOpen(false)} className="rounded-2xl
-                  bg-[#102228]
-                  px-4
-                  py-3
-                  text-[#B2C0BC]
-                  transition
-                  hover:bg-[#183038]
-                  hover:text-white">
+                <Link key={item.href} href={item.href} onClick={() => setOpen(false)} className="rounded-[8px] px-3 py-2 text-[11px] font-medium uppercase tracking-[0.24em] text-foreground/70 transition hover:bg-black/5 hover:text-foreground dark:hover:bg-white/5">
                   {item.label}
                 </Link>
               ))}
-              <Link href="/contact" onClick={() => setOpen(false)} className=" mt-2
-                flex
-                items-center
-                justify-center
-                gap-2
-                rounded-2xl
-                bg-[#F9A907]
-                px-5
-                py-3
-                font-semibold
-                text-[#031217]">
-                Start a Conversation
-                <ArrowUpRight className="size-4" />
-              </Link>
+                    <div className="mt-2 flex flex-col gap-3 sm:flex-row">
+                <ThemeToggle className="flex-1 justify-center" />
+                <Link href="/contact" onClick={() => setOpen(false)} className="inline-flex flex-1 items-center justify-center gap-2 rounded-[8px] bg-primary px-4 py-2 text-[11px] font-semibold uppercase tracking-[0.24em] text-primary-foreground transition hover:bg-primary/90">
+                  Start project
+                  <ArrowUpRight className="h-3.5 w-3.5" />
+                </Link>
               </div>
             </div>
           </div>
+        </div>
       ) : null}
-        </header>
-      )
+    </header>
+  )
 }

@@ -13,209 +13,66 @@ export function SiteFooter() {
   }
 
   return (
-    <footer className="relative overflow-hidden px-4 pb-10 pt-20">
-      <div className="pointer-events-none absolute inset-x-0 top-10 flex justify-center">
-        <div className="h-64 w-[700px] rounded-full bg-[#F9A907]/10 blur-[160px]" />
-      </div>
-
-      <div className="relative mx-auto max-w-7xl space-y-10">
-
-        
-
-        <section className="relative overflow-hidden rounded-[36px] border border-white/5 bg-[#08171C]/80 p-8 backdrop-blur-3xl lg:p-12">
-
-          <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(249,169,7,0.18),transparent_45%)]" />
-
-          <div className="relative flex flex-col gap-10 lg:flex-row lg:items-end lg:justify-between">
-
+    <footer className="relative overflow-hidden px-3 pb-8 pt-16 sm:px-4 lg:px-6 lg:pb-10 lg:pt-20">
+      <div className="mx-auto max-w-7xl space-y-6">
+        <section className="rounded-[20px] border border-black/10 bg-[rgba(255,255,255,0.65)] p-6 shadow-[0_8px_30px_rgba(11,11,10,0.04)] backdrop-blur-xl dark:border-white/10 dark:bg-[rgba(11,11,14,0.75)] lg:p-8">
+          <div className="flex flex-col gap-8 lg:flex-row lg:items-end lg:justify-between">
             <div className="max-w-3xl">
-
-              <p className="mb-4 text-xs uppercase tracking-[0.45em] text-[#F9A907]">
-                Start Discovery
-              </p>
-
-              <h2 className="text-balance text-4xl font-semibold leading-tight text-[#EEF3F2] sm:text-5xl lg:text-6xl">
+              <p className="text-[11px] font-medium uppercase tracking-[0.32em] text-primary">Start a conversation</p>
+              <h2 className="mt-4 text-balance text-3xl font-semibold leading-tight text-foreground sm:text-4xl lg:text-5xl">
                 Build the right system before building the software.
               </h2>
-
-              <p className="mt-6 max-w-2xl text-base leading-8 text-[#8FA39E]">
-                Discovery, architecture, engineering, deployment, and long-term
-                product support—all in one engineering studio.
+              <p className="mt-4 max-w-2xl text-sm leading-7 text-foreground/70 sm:text-base">
+                Discovery, architecture, engineering, deployment, and long-term product support, all under one calm operating structure.
               </p>
-
             </div>
 
-            <div className="flex flex-wrap gap-4">
-
-              <Link
-                href="/contact"
-                className="
-                inline-flex
-                items-center
-                gap-2
-                rounded-full
-                bg-[#F9A907]
-                px-6
-                py-3.5
-                text-sm
-                font-semibold
-                text-[#031217]
-                shadow-lg
-                shadow-[#F9A907]/20
-                transition-all
-                duration-300
-                hover:-translate-y-1
-                hover:bg-[#FFC633]
-                "
-              >
-                Start Discovery
-
-                <ArrowUpRight className="size-4" />
+            <div className="flex flex-wrap gap-3">
+              <Link href="/contact" className="inline-flex items-center gap-2 rounded-[8px] bg-primary px-5 py-3 text-[11px] font-semibold uppercase tracking-[0.24em] text-primary-foreground transition hover:-translate-y-0.5">
+                Start discovery
+                <ArrowUpRight className="size-3.5" />
               </Link>
-
-              <Link
-                href="/systems"
-                className="
-                inline-flex
-                items-center
-                gap-2
-                rounded-full
-                border
-                border-[#F9A907]/20
-                bg-[#102228]
-                px-6
-                py-3.5
-                text-sm
-                font-medium
-                text-white
-                transition-all
-                duration-300
-                hover:border-[#F9A907]
-                hover:bg-[#183038]
-                "
-              >
-                View Systems
+              <Link href="/systems" className="inline-flex items-center gap-2 rounded-[8px] border border-black/10 px-5 py-3 text-[11px] font-semibold uppercase tracking-[0.24em] text-foreground/70 transition hover:border-primary/30 hover:text-foreground dark:border-white/10">
+                View systems
               </Link>
-
             </div>
-
           </div>
-
         </section>
 
-        
-
-        <section className="rounded-[36px] border border-white/5 bg-[#08171C]/70 p-8 backdrop-blur-3xl">
-
-          <div className="grid gap-12 lg:grid-cols-[1.4fr_1fr_1fr_1fr]">
-
-            {/* Brand */}
-
+        <section className="rounded-[20px] border border-black/10 bg-[rgba(255,255,255,0.62)] p-6 shadow-[0_8px_30px_rgba(11,11,10,0.04)] backdrop-blur-xl dark:border-white/10 dark:bg-[rgba(11,11,14,0.7)] lg:p-8">
+          <div className="grid gap-10 lg:grid-cols-[1.3fr_1fr_1fr_1fr]">
             <div>
-
-              <h3 className="text-xl font-semibold tracking-[0.2em] text-[#F9A907]">
-                STRIX
-              </h3>
-
-              <p className="mt-2 text-sm text-[#8FA39E]">
-                Product Engineering Studio
+              <p className="text-[11px] font-medium uppercase tracking-[0.32em] text-primary">STRIX</p>
+              <p className="mt-2 text-sm text-foreground/60">System Before Software</p>
+              <p className="mt-5 max-w-sm text-sm leading-7 text-foreground/70">
+                We help ambitious teams design, engineer, and scale software systems with an architecture-first mindset.
               </p>
-
-              <p className="mt-6 max-w-sm leading-8 text-[#8FA39E]">
-                We help ambitious startups and technology companies design,
-                engineer, and scale software systems with an architecture-first
-                mindset.
-              </p>
-
             </div>
 
-            <FooterGroup
-              title="Explore"
-              links={navigation}
-            />
-
-            <FooterGroup
-              title="Resources"
-              links={[
-                {
-                  href: "/systems",
-                  label: "Systems",
-                },
-                {
-                  href: "/insights",
-                  label: "Insights",
-                },
-                {
-                  href: "/case-studies",
-                  label: "Case Studies",
-                },
-                {
-                  href: "/about",
-                  label: "About",
-                },
-              ]}
-            />
-
-            <FooterGroup
-              title="Contact"
-              links={[
-                {
-                  href: "/contact",
-                  label: "Contact",
-                },
-                {
-                  href: "/project-inquiry",
-                  label: "Project Inquiry",
-                },
-                {
-                  href: "/admin/login",
-                  label: "Admin Login",
-                },
-              ]}
-            />
-
+            <FooterGroup title="Explore" links={navigation} />
+            <FooterGroup title="Resources" links={[{ href: "/systems", label: "Systems" }, { href: "/insights", label: "Insights" }, { href: "/case-studies", label: "Case Studies" }, { href: "/about", label: "About" }]} />
+            <FooterGroup title="Contact" links={[{ href: "/contact", label: "Contact" }, { href: "/project-inquiry", label: "Project Inquiry" }, { href: "/admin/login", label: "Admin Login" }]} />
           </div>
 
-          
+          <div className="mt-8 h-px bg-black/10 dark:bg-white/10" />
 
-          <div className="my-10 h-px bg-gradient-to-r from-transparent via-[#F9A907]/30 to-transparent" />
-
-          {/* Bottom */}
-
-          <div className="flex flex-col gap-4 text-sm text-[#7C8E89] md:flex-row md:items-center md:justify-between">
-
-            <p>
-              © {new Date().getFullYear()} STRIX Engineering Studio.
-            </p>
-
-            <p>
-              Architecture First · Engineering Excellence · Built with Next.js &
-              Tailwind CSS
-            </p>
-
+          <div className="mt-6 flex flex-col gap-3 text-sm text-foreground/60 md:flex-row md:items-center md:justify-between">
+            <p>© {new Date().getFullYear()} STRIX Engineering Studio.</p>
+            <p>Architecture First · Engineering Excellence · Built with Next.js & Tailwind CSS</p>
           </div>
-
         </section>
-
       </div>
-
     </footer>
   )
 }
-    
-function FooterGroup({
-  title,
-  links,
-}: {
-  title: string
-  links: Array<{ href: string; label: string }>
-}) {
+
+function FooterGroup({ title, links }: { title: string; links: Array<{ href: string; label: string }> }) {
   return (
-    <div className="space-y-3">
-      <p className="text-[11px] uppercase tracking-[0.36em] text-white/55">{title}</p>
-      <div className="flex flex-col gap-1 text-sm text-muted-foreground">
+    <div>
+      <h4 className="mb-4 text-[11px] font-medium uppercase tracking-[0.32em] text-foreground/60">{title}</h4>
+      <div className="flex flex-col gap-2">
         {links.map((item) => (
-          <Link key={item.href} href={item.href} className="rounded-xl px-2 py-1.5 transition hover:bg-white/6 hover:text-foreground">
+          <Link key={item.href} href={item.href} className="inline-flex w-fit items-center rounded-[6px] px-2 py-1.5 text-sm text-foreground/70 transition hover:bg-black/5 hover:text-foreground dark:hover:bg-white/5">
             {item.label}
           </Link>
         ))}
