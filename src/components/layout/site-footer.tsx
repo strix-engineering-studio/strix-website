@@ -3,6 +3,7 @@
 import Link from "next/link"
 import { usePathname } from "next/navigation"
 import { ArrowUpRight } from "lucide-react"
+import { ThemeToggle } from "@/components/shared/theme-toggle"
 import { navigation } from "@/lib/site"
 
 export function SiteFooter() {
@@ -27,13 +28,11 @@ export function SiteFooter() {
               </p>
             </div>
 
-            <div className="flex flex-wrap gap-3">
+            <div className="flex flex-wrap items-center gap-3">
+              
               <Link href="/contact" className="inline-flex items-center gap-2 rounded-[8px] bg-primary px-5 py-3 text-[11px] font-semibold uppercase tracking-[0.24em] text-primary-foreground transition hover:-translate-y-0.5">
                 Start discovery
                 <ArrowUpRight className="size-3.5" />
-              </Link>
-              <Link href="/systems" className="inline-flex items-center gap-2 rounded-[8px] border border-black/10 px-5 py-3 text-[11px] font-semibold uppercase tracking-[0.24em] text-foreground/70 transition hover:border-primary/30 hover:text-foreground dark:border-white/10">
-                View systems
               </Link>
             </div>
           </div>
@@ -55,9 +54,9 @@ export function SiteFooter() {
           </div>
 
           <div className="mt-8 h-px bg-black/10 dark:bg-white/10" />
-
+          
           <div className="mt-6 flex flex-col gap-3 text-sm text-foreground/60 md:flex-row md:items-center md:justify-between">
-            <p>© {new Date().getFullYear()} STRIX Engineering Studio.</p>
+            <p>© {new Date().getFullYear()} STRIX Engineering Studio.</p><ThemeToggle />
             <p>Architecture First · Engineering Excellence · Built with Next.js & Tailwind CSS</p>
           </div>
         </section>
