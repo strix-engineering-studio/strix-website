@@ -9,7 +9,7 @@ import {
   FaqSection,
   TestimonialsSection,
   SystemsStrip,
-} from "@/components/sections/home-sections"
+} from "@/components/section/home-sections"
 import { buildMetadata } from "@/lib/seo"
 
 export const metadata: Metadata = buildMetadata({

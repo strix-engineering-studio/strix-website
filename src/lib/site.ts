@@ -53,14 +53,22 @@ export type BlogTopic = {
     subtitle: string
 }
 
-export const navigation: NavItem[] = [
-    { href: "/capabilities", label: "Capabilities" },
+export const primaryNavigation: NavItem[] = [
     { href: "/systems", label: "Systems" },
     { href: "/products", label: "Products" },
-    { href: "/case-studies", label: "Case Studies" },
-    { href: "/open-source", label: "Open Source" },
-    { href: "/insights", label: "Insights" },
     { href: "/about", label: "About" },
+]
+
+export const moreNavigation: NavItem[] = [
+    { href: "/insights", label: "Insights" },
+    { href: "/capabilities", label: "Capabilities" },
+    { href: "/open-source", label: "Open Source" },
+    { href: "/case-studies", label: "Case Studies" },
+]
+
+export const navigation: NavItem[] = [
+    ...primaryNavigation,
+    ...moreNavigation,
     { href: "/contact", label: "Contact" },
 ]
 
