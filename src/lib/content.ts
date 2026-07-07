@@ -18,9 +18,7 @@ export type BlogPostMeta = BlogFrontmatter & {
     readingTime: string
 }
 
-const blogDirectory = path.join(process.cwd(),"src","content", "blog")
-
-
+const blogDirectory = path.join(process.cwd(), "content", "blog")
 
 export const getBlogPosts = cache(async (): Promise<BlogPostMeta[]> => {
     const files = await fs.readdir(blogDirectory)
