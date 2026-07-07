@@ -1,105 +1,59 @@
 import type { Metadata, Viewport } from "next"
-import { Fraunces, IBM_Plex_Mono, Inter } from "next/font/google"
-
+import { Inter, Libre_Baskerville } from "next/font/google"
 import { SiteFooter } from "@/components/layout/site-footer"
 import { SiteHeader } from "@/components/layout/site-header"
-
 import { CommandMenu } from "@/components/shared/command-menu"
 import { PwaRegister } from "@/components/shared/pwa-register"
 import { ThemeProvider } from "@/components/shared/theme-provider"
-
 import { JsonLd } from "@/components/seo/json-ld"
-import {
-  organizationSchema,
-  siteConfig,
-  websiteSchema,
-} from "@/lib/seo"
-
+import { organizationSchema, siteConfig, websiteSchema } from "@/lib/seo"
 import "./globals.css"
 
-/* -------------------------------------------------------------------------- */
-/* Fonts                                                                       */
-/* -------------------------------------------------------------------------- */
-
-const headingFont = Fraunces({
-  subsets: ["latin"],
+const headingFont = Libre_Baskerville({
+  weight: ['400', '700'],
   variable: "--font-heading",
-  display: "swap",
+  subsets: ["latin"],
 })
 
 const bodyFont = Inter({
-  subsets: ["latin"],
   variable: "--font-body",
-  display: "swap",
-})
-
-const monoFont = IBM_Plex_Mono({
   subsets: ["latin"],
-  weight: ["400", "500", "600"],
-  variable: "--font-geist-mono",
-  display: "swap",
 })
-
-/* -------------------------------------------------------------------------- */
-/* Metadata                                                                    */
-/* -------------------------------------------------------------------------- */
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteConfig.url),
-
   title: {
-    default: "Strix Engineering Studio | System Before Software",
+    default: "Strix Engineering Studio | Architecture-First Product Engineering",
     template: "%s | Strix Engineering Studio",
   },
-
   description: siteConfig.description,
-
   keywords: siteConfig.defaultKeywords,
-
   manifest: "/manifest.webmanifest",
-
-  applicationName: "Strix",
-
   appleWebApp: {
     capable: true,
     title: "Strix",
     statusBarStyle: "black-translucent",
   },
-
   openGraph: {
-    title: "Strix Engineering Studio",
+    title: "Strix Engineering Studio | Architecture-First Product Engineering",
     description: siteConfig.description,
-    url: siteConfig.url,
+    url: "/",
     siteName: siteConfig.name,
     type: "website",
   },
-
   twitter: {
     card: "summary_large_image",
     title: "Strix Engineering Studio",
     description: siteConfig.description,
   },
-
-  robots: {
-    index: true,
-    follow: true,
-  },
 }
-
-/* -------------------------------------------------------------------------- */
-/* Viewport                                                                    */
-/* -------------------------------------------------------------------------- */
 
 export const viewport: Viewport = {
   width: "device-width",
   initialScale: 1,
   viewportFit: "cover",
-  themeColor: "#081316",
+  themeColor: "#FAFAF9", // ThoughtStream background
 }
-
-/* -------------------------------------------------------------------------- */
-/* Layout                                                                      */
-/* -------------------------------------------------------------------------- */
 
 export default function RootLayout({
   children,
@@ -107,43 +61,17 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html
-      lang="en"
-      suppressHydrationWarning
-      className={`
-        ${headingFont.variable}
-        ${bodyFont.variable}
-        ${monoFont.variable}
-        h-full
-        scroll-smooth
-        antialiased
-      `}
-    >
+    <html lang="en" className={`${headingFont.variable} ${bodyFont.variable} h-full scroll-smooth antialiased`} suppressHydrationWarning>
       <head>
         <link rel="canonical" href={siteConfig.url} />
-
-        <JsonLd
-          data={[
-            organizationSchema(),
-            websiteSchema(),
-          ]}
-        />
+        <JsonLd data={[organizationSchema(), websiteSchema()]} />
       </head>
-
-      <body className="min-h-screen overflow-x-hidden bg-background text-foreground">
+      <body className="relative isolate min-h-screen overflow-x-hidden text-text-primary bg-background">
         <ThemeProvider>
           <PwaRegister />
-
-          <div className="relative flex min-h-screen flex-col">
-            <SiteHeader />
-
-            <main className="relative z-10 flex-1">
-              {children}
-            </main>
-
-            <SiteFooter />
-          </div>
-
+          <SiteHeader />
+          <main className="relative z-10 max-w-content mx-auto px-6 py-8">{children}</main>
+          <SiteFooter />
           <CommandMenu />
         </ThemeProvider>
       </body>

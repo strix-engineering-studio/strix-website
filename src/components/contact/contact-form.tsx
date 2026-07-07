@@ -42,7 +42,7 @@ export function ContactForm() {
     <form onSubmit={onSubmit} className="space-y-5">
       <div className="grid gap-3 sm:grid-cols-2">
         <Input label="Name" name="name" placeholder="Your name" />
-        <Input label="Email" name="email" placeholder="you@company.com" type="email" icon={<Mail className="size-4 text-foreground/40" />} required />
+        <Input label="Email" name="email" placeholder="you@company.com" type="email" icon={<Mail className="size-4 text-white/40" />} required />
       </div>
       <Input label="Company" name="company" placeholder="Organization or team" />
 
@@ -51,7 +51,7 @@ export function ContactForm() {
           name="projectSummary"
           rows={5}
           placeholder="What are you building, what outcome matters, and what is the current constraint?"
-          className="w-full rounded-[10px] border border-black/10 bg-background/80 px-4 py-3 text-sm text-foreground outline-none placeholder:text-foreground/35 dark:border-white/10"
+          className="w-full rounded-md border border-white/10 bg-black/20 px-4 py-3 text-sm text-foreground outline-none placeholder:text-white/35"
         />
       </FieldGroup>
 
@@ -64,7 +64,7 @@ export function ContactForm() {
         </FieldGroup>
       </div>
 
-      <details className="rounded-[10px] border border-black/10 bg-background/70 p-4 dark:border-white/10">
+      <details className="rounded-md border border-white/10 bg-white/4 p-4">
         <summary className="cursor-pointer list-none text-sm font-medium text-foreground">Add technical notes</summary>
         <div className="mt-4 space-y-3">
           <FieldGroup label="Technical requirements">
@@ -72,12 +72,12 @@ export function ContactForm() {
               name="technicalRequirements"
               rows={4}
               placeholder="Optional constraints, platforms, integrations, or implementation notes."
-              className="w-full rounded-[10px] border border-black/10 bg-background/80 px-4 py-3 text-sm text-foreground outline-none placeholder:text-foreground/35 dark:border-white/10"
+              className="w-full rounded-md border border-white/10 bg-black/20 px-4 py-3 text-sm text-foreground outline-none placeholder:text-white/35"
             />
           </FieldGroup>
-          <label className="flex items-center gap-3 rounded-[10px] border border-black/10 bg-background/80 px-4 py-3 text-sm text-foreground/70 dark:border-white/10">
-            <Paperclip className="size-4 text-foreground/40" />
-            <input type="file" name="attachments" multiple className="w-full text-sm text-foreground/70 file:mr-4 file:rounded-full file:border-0 file:bg-primary/10 file:px-4 file:py-2 file:text-xs file:font-medium file:text-foreground hover:file:bg-primary/15" />
+          <label className="flex items-center gap-3 rounded-md border border-white/10 bg-black/20 px-4 py-3 text-sm text-muted-foreground">
+            <Paperclip className="size-4 text-white/40" />
+            <input type="file" name="attachments" multiple className="w-full text-sm text-muted-foreground file:mr-4 file:rounded-full file:border-0 file:bg-white/10 file:px-4 file:py-2 file:text-xs file:font-medium file:text-foreground hover:file:bg-white/15" />
           </label>
         </div>
       </details>
@@ -87,11 +87,15 @@ export function ContactForm() {
           name="brief"
           rows={4}
           placeholder="Anything else that would help qualify the fit?"
-          className="w-full rounded-[10px] border border-black/10 bg-background/80 px-4 py-3 text-sm text-foreground outline-none placeholder:text-foreground/35 dark:border-white/10"
+          className="w-full rounded-md border border-white/10 bg-black/20 px-4 py-3 text-sm text-foreground outline-none placeholder:text-white/35"
         />
       </FieldGroup>
 
-      <button type="submit" className="inline-flex items-center gap-2 rounded-[8px] bg-primary px-5 py-3 text-sm font-semibold uppercase tracking-[0.24em] text-primary-foreground transition hover:-translate-y-0.5 disabled:opacity-60" disabled={status === "sending"}>
+      <button
+        type="submit"
+        className="inline-flex items-center gap-2 rounded-full bg-foreground px-5 py-3 text-sm font-medium text-background transition hover:opacity-90 disabled:opacity-60"
+        disabled={status === "sending"}
+      >
         <Rocket className="size-4" />
         {status === "sending" ? "Sending..." : "Send message"}
       </button>
@@ -102,18 +106,18 @@ export function ContactForm() {
           Message sent. I’ll get back to you shortly.
         </p>
       ) : null}
-      {status === "error" ? <p className="text-sm text-primary">Something went wrong. Please try again or email directly.</p> : null}
+      {status === "error" ? <p className="text-sm text-red-300">Something went wrong. Please try again or email directly.</p> : null}
     </form>
   )
 }
 
 function Input({ label, icon, ...props }: React.InputHTMLAttributes<HTMLInputElement> & { label: string; icon?: ReactNode }) {
   return (
-    <label className="space-y-2 text-sm text-foreground/70">
+    <label className="space-y-2 text-sm text-muted-foreground">
       <span>{label}</span>
-      <div className="flex items-center gap-3 rounded-[10px] border border-black/10 bg-background/80 px-4 py-3 dark:border-white/10">
+      <div className="flex items-center gap-3 rounded-md border border-white/10 bg-black/20 px-4 py-3">
         {icon}
-        <input {...props} className="w-full bg-transparent text-foreground outline-none placeholder:text-foreground/35" />
+        <input {...props} className="w-full bg-transparent text-foreground outline-none placeholder:text-white/35" />
       </div>
     </label>
   )
@@ -122,7 +126,7 @@ function Input({ label, icon, ...props }: React.InputHTMLAttributes<HTMLInputEle
 function FieldGroup({ label, children }: { label: string; children: React.ReactNode }) {
   return (
     <div className="space-y-3">
-      <p className="text-sm text-foreground/70">{label}</p>
+      <p className="text-sm text-muted-foreground">{label}</p>
       {children}
     </div>
   )
@@ -132,7 +136,12 @@ function ChipGroup({ options, value, onChange }: { options: string[]; value: str
   return (
     <div className="flex flex-wrap gap-2">
       {options.map((option) => (
-        <button key={option} type="button" onClick={() => onChange(option)} className={value === option ? "rounded-full bg-primary px-4 py-2 text-sm font-medium text-primary-foreground transition" : "rounded-full border border-black/10 bg-background/70 px-4 py-2 text-sm text-foreground/70 transition hover:border-primary/30 dark:border-white/10"}>
+        <button
+          key={option}
+          type="button"
+          onClick={() => onChange(option)}
+          className={value === option ? "rounded-full bg-white/10 px-4 py-2 text-sm text-foreground transition" : "rounded-full bg-white/5 px-4 py-2 text-sm text-white/65 transition hover:bg-white/8"}
+        >
           {option}
         </button>
       ))}
