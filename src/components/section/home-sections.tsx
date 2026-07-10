@@ -18,18 +18,20 @@ const fade = {
 
 const faqItems = [
   {
-    question: "What kinds of projects do you take on?",
-    answer:
-      "Product systems, internal tools, AI-enabled workflows, infrastructure hardening, and long-term support for teams that need clarity more than buzzwords.",
+    question: "What kinds of engagements fit best?",
+    answer: "We work best on product systems, platform upgrades, internal tools, and AI-enabled workflows where the team needs clarity and steady delivery.",
   },
   {
     question: "Do you work with existing products?",
-    answer:
-      "Yes. A lot of the work here is integration, refactoring, and redesigning the operating surface around what already exists.",
+    answer: "Yes. A large part of the work is improving what already exists, simplifying the experience, and reducing technical drag.",
   },
   {
-    question: "How do you start?",
-    answer: "Most projects begin with a short discovery pass, then a scoped delivery plan that turns into the actual build.",
+    question: "How do you start a project?",
+    answer: "Most projects begin with a short discovery pass, a practical plan, and a focused delivery path that keeps the scope realistic.",
+  },
+  {
+    question: "Can you support the product after launch?",
+    answer: "Yes. We often stay involved for iteration, reliability work, and the steady improvements that keep a product healthy over time.",
   },
 ]
 
@@ -44,24 +46,24 @@ function MiniTag({ children }: { children: ReactNode }) {
 export function HeroSection() {
   return (
     <section className="px-3 pb-10 pt-6 sm:px-4 lg:px-6 lg:pb-14 lg:pt-8">
-      <Container className="grid gap-8 lg:grid-cols-[1.02fr_0.98fr] lg:items-center">
+      <Container className="grid gap-8 lg:grid-cols-[1.05fr_0.95fr] lg:items-center">
         <motion.div initial="hidden" animate="visible" variants={{ hidden: {}, visible: { transition: { staggerChildren: 0.08 } } }} className="max-w-3xl">
           <motion.p variants={fade} className="text-[11px] font-medium uppercase tracking-[0.32em] text-primary">
             STRIX · Engineering Studio
           </motion.p>
-          <motion.h1 variants={fade} className="mt-5 text-balance text-4xl font-semibold tracking-[-0.03em] text-foreground sm:text-5xl lg:text-[5.3rem] lg:leading-[0.94]">
+          <motion.h1 variants={fade} className="mt-5 text-balance text-4xl font-semibold tracking-[-0.03em] text-foreground sm:text-5xl lg:text-[4.8rem] lg:leading-[0.95]">
             Build the right system before building the software.
           </motion.h1>
           <motion.p variants={fade} className="mt-6 max-w-2xl text-pretty text-base leading-8 text-foreground/70 sm:text-lg">
-            A product engineering studio for startups and technology businesses building scalable software products, operational systems, and AI-enabled platforms.
+            We help startups and product teams shape clear systems, ship with confidence, and keep building without unnecessary complexity.
           </motion.p>
           <motion.div variants={fade} className="mt-8 flex flex-wrap gap-3">
             <Link href="/contact" className="inline-flex items-center gap-2 rounded-[8px] bg-primary px-5 py-3 text-sm font-semibold uppercase tracking-[0.24em] text-primary-foreground transition hover:-translate-y-0.5">
-              Start project
+              Start a project
               <ArrowUpRight className="size-4" />
             </Link>
             <Link href="/#selected-systems" className="inline-flex items-center gap-2 rounded-[8px] border border-black/10 bg-background/70 px-5 py-3 text-sm font-semibold uppercase tracking-[0.24em] text-foreground/80 transition hover:-translate-y-0.5 dark:border-white/10">
-              View systems
+              Review work
               <ArrowUpRight className="size-4" />
             </Link>
           </motion.div>
@@ -76,63 +78,28 @@ export function HeroSection() {
           </motion.div>
         </motion.div>
 
-        <motion.div initial={{ opacity: 0, y: 18, scale: 0.98 }} animate={{ opacity: 1, y: 0, scale: 1 }} transition={{ duration: 0.8 }} className="relative">
-          <Surface className="relative overflow-hidden p-4 sm:p-5">
-            <div className="absolute inset-0 bg-[radial-gradient(circle_at_15%_15%,rgba(232,84,28,0.12),transparent_24%),radial-gradient(circle_at_82%_18%,rgba(11,11,10,0.04),transparent_24%)]" />
-            <div className="relative space-y-4">
-              <div className="grid gap-3 sm:grid-cols-3">
-                {[["Launch", "Systems"], ["Scale", "Delivery"], ["Support", "Ongoing"]].map(([label, value]) => (
-                  <div key={label} className="rounded-[10px] border border-black/10 bg-background/70 px-3 py-3 dark:border-white/10">
-                    <p className="text-[10px] uppercase tracking-[0.3em] text-foreground/45">{label}</p>
-                    <p className="mt-2 text-sm text-foreground/80">{value}</p>
-                  </div>
+        <motion.div initial={{ opacity: 0, y: 18, scale: 0.98 }} animate={{ opacity: 1, y: 0, scale: 1 }} transition={{ duration: 0.8 }}>
+          <Surface className="p-5 sm:p-6">
+            <p className="text-[11px] font-medium uppercase tracking-[0.32em] text-foreground/55">What we focus on</p>
+            <div className="mt-4 space-y-3">
+              {[
+                "Architecture that stays clear as the product grows",
+                "Delivery that is calm, visible, and scoped",
+                "Support that continues after launch",
+              ].map((item) => (
+                <div key={item} className="rounded-[10px] border border-black/10 bg-background/70 px-4 py-3 text-sm leading-6 text-foreground/70 dark:border-white/10">
+                  {item}
+                </div>
+              ))}
+            </div>
+            <div className="mt-5 rounded-[12px] border border-black/10 bg-background/80 p-4 dark:border-white/10">
+              <p className="text-[10px] uppercase tracking-[0.3em] text-foreground/45">Typical engagement</p>
+              <div className="mt-3 flex flex-wrap gap-2">
+                {['Discovery', 'Design', 'Delivery'].map((step) => (
+                  <span key={step} className="rounded-full border border-black/10 bg-background/70 px-3 py-1 text-[11px] uppercase tracking-[0.24em] text-foreground/70 dark:border-white/10">
+                    {step}
+                  </span>
                 ))}
-              </div>
-
-              <div className="grid gap-4 lg:grid-cols-[1.05fr_0.95fr]">
-                <div className="relative overflow-hidden rounded-[12px] border border-black/10 bg-[linear-gradient(180deg,rgba(255,255,255,0.7),rgba(255,255,255,0.42))] p-4 dark:border-white/10 dark:bg-[linear-gradient(180deg,rgba(255,255,255,0.05),rgba(255,255,255,0.02))]">
-                  <div className="absolute inset-0 grid-overlay opacity-60" />
-                  <div className="relative space-y-4">
-                    <div className="flex items-center justify-between text-[10px] uppercase tracking-[0.3em] text-foreground/45">
-                      <span>System map</span>
-                      <span>SYS.01</span>
-                    </div>
-                    <motion.svg
-                      initial={{ opacity: 0.8 }}
-                      animate={{ opacity: 1 }}
-                      transition={{ duration: 0.9 }}
-                      viewBox="0 0 320 180"
-                      className="h-40 w-full"
-                      role="img"
-                      aria-label="Abstract system schematic"
-                    >
-                      <rect x="24" y="24" width="272" height="132" rx="18" fill="rgba(255,255,255,0.2)" stroke="rgba(11,11,10,0.16)" />
-                      <path d="M76 70h58" stroke="rgba(232,84,28,0.95)" strokeWidth="4" strokeLinecap="round" />
-                      <path d="M134 70h54" stroke="rgba(11,11,10,0.36)" strokeWidth="3" strokeLinecap="round" />
-                      <path d="M188 70v34" stroke="rgba(11,11,10,0.36)" strokeWidth="3" strokeLinecap="round" />
-                      <path d="M188 104h54" stroke="rgba(232,84,28,0.95)" strokeWidth="4" strokeLinecap="round" />
-                      <circle cx="76" cy="70" r="12" fill="rgba(232,84,28,0.96)" />
-                      <circle cx="188" cy="70" r="12" fill="rgba(11,11,10,0.92)" />
-                      <circle cx="242" cy="104" r="12" fill="rgba(232,84,28,0.96)" />
-                      <path d="M76 132h116" stroke="rgba(11,11,10,0.28)" strokeWidth="3" strokeLinecap="round" />
-                      <circle cx="76" cy="132" r="10" fill="rgba(11,11,10,0.86)" />
-                      <circle cx="192" cy="132" r="10" fill="rgba(11,11,10,0.5)" />
-                    </motion.svg>
-                    <div className="rounded-[10px] border border-black/10 bg-background/80 p-4 text-sm leading-7 text-foreground/70 dark:border-white/10">
-                      Shared architecture, implementation, and delivery guidance flowing through one operating surface.
-                    </div>
-                  </div>
-                </div>
-
-                <div className="grid gap-3">
-                  {[['1', 'Discovery'], ['2', 'Design'], ['3', 'Delivery']].map(([step, label]) => (
-                    <div key={step} className="rounded-[10px] border border-black/10 bg-background/70 px-4 py-4 dark:border-white/10">
-                      <p className="text-[10px] uppercase tracking-[0.3em] text-foreground/45">Step {step}</p>
-                      <p className="mt-2 text-lg font-medium text-foreground">{label}</p>
-                      <p className="mt-2 text-sm leading-6 text-foreground/65">A compact process for moving from strategy to a shippable product system.</p>
-                    </div>
-                  ))}
-                </div>
               </div>
             </div>
           </Surface>
@@ -160,66 +127,40 @@ export function SystemsStrip() {
 export function SelectedSystemsSection() {
   return (
     <section id="selected-systems" className="px-3 py-14 sm:px-4 lg:px-6 lg:py-20">
-      <div className="mx-auto max-w-7xl space-y-10">
-        <SectionHeading eyebrow="Selected systems" title="A few operating surfaces, shown with restraint." description="The design leans on clear structure, compact data, and a visual rhythm that feels expensive without becoming noisy." />
-        <div className="space-y-6">
-          {featuredProjects.slice(0, 3).map((project, index) => (
+      <div className="mx-auto max-w-7xl space-y-8">
+        <SectionHeading eyebrow="Selected systems" title="Focused work, built for real product needs." description="Each engagement stays practical: clear decisions, measurable momentum, and a system that is easier to evolve." />
+        <div className="space-y-4">
+          {featuredProjects.slice(0, 2).map((project, index) => (
             <motion.article
               key={project.slug}
               initial={{ opacity: 0, y: 18 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, amount: 0.25 }}
               transition={{ duration: 0.55, delay: index * 0.04 }}
-              className={`grid gap-6 rounded-[18px] border border-black/10 bg-background/70 p-5 shadow-[0_8px_30px_rgba(11,11,10,0.03)] dark:border-white/10 lg:items-stretch ${index % 2 === 1 ? "lg:grid-cols-[1.05fr_0.95fr]" : "lg:grid-cols-[0.95fr_1.05fr]"}`}
+              className="rounded-[18px] border border-black/10 bg-background/70 p-5 shadow-[0_8px_30px_rgba(11,11,10,0.03)] dark:border-white/10"
             >
-              <div className={`space-y-4 ${index % 2 === 1 ? "lg:order-2" : ""}`}>
-                <p className="text-[11px] font-medium uppercase tracking-[0.32em] text-primary">{project.category}</p>
-                <h3 className="text-3xl font-semibold tracking-[-0.02em] text-foreground sm:text-4xl">{project.title}</h3>
-                <p className="max-w-xl text-sm leading-7 text-foreground/70">{project.summary}</p>
-                <div className="flex flex-wrap gap-2">
-                  {project.architecture.slice(0, 4).map((item) => (
-                    <MiniTag key={item}>{item}</MiniTag>
-                  ))}
+              <div className="flex flex-col gap-4 lg:flex-row lg:items-start lg:justify-between">
+                <div className="max-w-2xl">
+                  <p className="text-[11px] font-medium uppercase tracking-[0.32em] text-primary">{project.category}</p>
+                  <h3 className="mt-2 text-2xl font-semibold tracking-[-0.02em] text-foreground sm:text-3xl">{project.title}</h3>
+                  <p className="mt-3 text-sm leading-7 text-foreground/70">{project.summary}</p>
                 </div>
-                <div className="rounded-[10px] border border-black/10 bg-background/80 px-4 py-4 text-sm text-foreground/75 dark:border-white/10">
+                <div className="rounded-[10px] border border-black/10 bg-background/80 px-4 py-3 text-sm text-foreground/75 dark:border-white/10">
                   {project.timeline} · {project.spotlight}
                 </div>
               </div>
-
-              <Surface className={`overflow-hidden p-4 ${index % 2 === 1 ? "lg:order-1" : ""}`}>
-                <div className="grid gap-3 sm:grid-cols-3">
-                  {project.metrics.map((metric) => (
-                    <div key={metric} className="rounded-[8px] border border-black/10 bg-background/80 px-4 py-4 text-sm text-foreground/75 dark:border-white/10">
-                      {metric}
-                    </div>
-                  ))}
-                </div>
-                <div className="mt-4 grid gap-4 lg:grid-cols-[1.05fr_0.95fr]">
-                  <div className="rounded-[12px] border border-black/10 bg-[linear-gradient(180deg,rgba(255,255,255,0.78),rgba(255,255,255,0.42))] p-4 dark:border-white/10 dark:bg-[linear-gradient(180deg,rgba(255,255,255,0.05),rgba(255,255,255,0.02))]">
-                    <div className="flex h-full min-h-44 flex-col justify-between rounded-[10px] border border-black/10 bg-background/80 p-4 dark:border-white/10">
-                      <div className="space-y-2">
-                        <p className="text-[10px] uppercase tracking-[0.3em] text-foreground/45">{project.tagline}</p>
-                        <p className="text-sm leading-7 text-foreground/70">{project.solution}</p>
-                      </div>
-                      <div className="flex flex-wrap gap-2">
-                        {project.highlights.slice(0, 3).map((item) => (
-                          <span key={item} className="rounded-full border border-black/10 bg-background/70 px-3 py-1 text-[11px] uppercase tracking-[0.24em] text-foreground/70 dark:border-white/10">
-                            {item}
-                          </span>
-                        ))}
-                      </div>
-                    </div>
+              <div className="mt-4 flex flex-wrap gap-2">
+                {project.architecture.slice(0, 4).map((item) => (
+                  <MiniTag key={item}>{item}</MiniTag>
+                ))}
+              </div>
+              <div className="mt-4 grid gap-3 md:grid-cols-3">
+                {project.metrics.map((metric) => (
+                  <div key={metric} className="rounded-[8px] border border-black/10 bg-background/80 px-4 py-4 text-sm text-foreground/75 dark:border-white/10">
+                    {metric}
                   </div>
-                  <div className="grid gap-3">
-                    {project.deployment.map((item, deploymentIndex) => (
-                      <div key={item} className="rounded-[10px] border border-black/10 bg-background/80 px-4 py-4 dark:border-white/10">
-                        <p className="text-[10px] uppercase tracking-[0.3em] text-foreground/45">0{deploymentIndex + 1}</p>
-                        <p className="mt-2 text-sm leading-6 text-foreground/70">{item}</p>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-              </Surface>
+                ))}
+              </div>
             </motion.article>
           ))}
         </div>
@@ -231,16 +172,14 @@ export function SelectedSystemsSection() {
 export function CapabilityMapSection() {
   return (
     <section id="capabilities" className="px-3 py-14 sm:px-4 lg:px-6 lg:py-20">
-      <div className="mx-auto max-w-7xl space-y-10">
-        <SectionHeading eyebrow="Capabilities" title="Coverage map, not a brochure." description="The stack is framed as an operating system for the business, not a list of unrelated services." />
-        <div className="grid gap-6 lg:grid-cols-[0.88fr_1.12fr] lg:items-start">
-          <div className="space-y-5">
-            <div className="rounded-[18px] border border-black/10 bg-background/70 p-5 shadow-[0_8px_30px_rgba(11,11,10,0.03)] dark:border-white/10">
-              <p className="text-[11px] font-medium uppercase tracking-[0.32em] text-foreground/55">Delivery map</p>
-              <h3 className="mt-3 text-3xl font-semibold tracking-[-0.02em] text-foreground">The work is modular, but the system should feel unified.</h3>
-              <p className="mt-4 text-sm leading-7 text-foreground/70">Each engagement is designed to reduce handoff friction, shorten feedback loops, and make future updates easier.</p>
-            </div>
-            <div className="flex flex-wrap gap-2">
+      <div className="mx-auto max-w-7xl space-y-8">
+        <SectionHeading eyebrow="Capabilities" title="A practical map of the work." description="The focus stays on the essentials: clear architecture, strong delivery, and support that lasts beyond launch." />
+        <div className="grid gap-6 lg:grid-cols-[0.9fr_1.1fr] lg:items-start">
+          <div className="rounded-[18px] border border-black/10 bg-background/70 p-5 shadow-[0_8px_30px_rgba(11,11,10,0.03)] dark:border-white/10">
+            <p className="text-[11px] font-medium uppercase tracking-[0.32em] text-foreground/55">Delivery map</p>
+            <h3 className="mt-3 text-3xl font-semibold tracking-[-0.02em] text-foreground">The work is modular, but the system still feels cohesive.</h3>
+            <p className="mt-4 text-sm leading-7 text-foreground/70">We keep the engagement focused so the team can move quickly without losing structure or quality.</p>
+            <div className="mt-5 flex flex-wrap gap-2">
               {contactCategories.map((item) => (
                 <MiniTag key={item}>{item}</MiniTag>
               ))}
@@ -253,13 +192,6 @@ export function CapabilityMapSection() {
                 <div key={service.title} className="rounded-[12px] border border-black/10 bg-background/80 p-5 dark:border-white/10">
                   <p className="text-[11px] font-medium uppercase tracking-[0.32em] text-foreground/60">{service.title}</p>
                   <p className="mt-3 text-sm leading-7 text-foreground/70">{service.summary}</p>
-                  <div className="mt-4 flex flex-wrap gap-2">
-                    {service.bullets.map((bullet) => (
-                      <span key={bullet} className="rounded-full border border-black/10 bg-background/70 px-3 py-1 text-[11px] uppercase tracking-[0.24em] text-foreground/70 dark:border-white/10">
-                        {bullet}
-                      </span>
-                    ))}
-                  </div>
                 </div>
               ))}
             </div>
@@ -273,11 +205,11 @@ export function CapabilityMapSection() {
 export function PhilosophySection() {
   return (
     <section className="px-3 py-14 sm:px-4 lg:px-6 lg:py-20">
-      <div className="mx-auto grid max-w-7xl gap-6 lg:grid-cols-[0.9fr_1.1fr] lg:items-start">
+      <div className="mx-auto grid max-w-7xl gap-6 lg:grid-cols-[0.95fr_1.05fr] lg:items-start">
         <div className="rounded-[18px] border border-black/10 bg-background/70 p-6 shadow-[0_8px_30px_rgba(11,11,10,0.03)] dark:border-white/10">
           <p className="text-[11px] font-medium uppercase tracking-[0.32em] text-foreground/55">Engineering philosophy</p>
           <h2 className="mt-4 text-4xl font-semibold tracking-[-0.02em] text-foreground sm:text-5xl">We think in systems, not features.</h2>
-          <p className="mt-4 text-sm leading-7 text-foreground/70">The best products feel simple because discovery, architecture, and delivery were handled as one system.</p>
+          <p className="mt-4 text-sm leading-7 text-foreground/70">Good products feel simple because the thinking behind them is clear from the start.</p>
           <Link href="/contact" className="mt-6 inline-flex items-center gap-2 rounded-[8px] bg-primary px-5 py-3 text-sm font-semibold uppercase tracking-[0.24em] text-primary-foreground transition hover:-translate-y-0.5">
             Start a discovery session
             <ArrowUpRight className="size-4" />
@@ -285,10 +217,10 @@ export function PhilosophySection() {
         </div>
         <div className="grid gap-4 sm:grid-cols-2">
           {[
-            ['Structured systems', 'Clear relationships, few surprises, and interfaces that stay understandable as the product evolves.'],
-            ['Reliable delivery', 'Scoped releases, good feedback loops, and a pace that leaves room for quality.'],
-            ['Technical clarity', 'Design decisions written down, tradeoffs visible, and implementation that is easy to maintain.'],
-            ['Long-term support', 'The relationship does not end at launch; the system is designed to keep improving.'],
+            ['Structured systems', 'Clear relationships, fewer surprises, and interfaces that stay understandable as the product evolves.'],
+            ['Reliable delivery', 'Scoped releases, visible progress, and a pace that leaves room for quality.'],
+            ['Technical clarity', 'Tradeoffs are discussed early and the implementation stays maintainable.'],
+            ['Long-term support', 'The relationship continues beyond launch when the product needs steady refinement.'],
           ].map(([title, description]) => (
             <div key={title} className="rounded-[12px] border border-black/10 bg-background/70 px-5 py-5 dark:border-white/10">
               <p className="text-[10px] uppercase tracking-[0.3em] text-foreground/45">Principle</p>
@@ -305,10 +237,10 @@ export function PhilosophySection() {
 export function TestimonialsSection() {
   return (
     <section className="px-3 py-14 sm:px-4 lg:px-6 lg:py-20">
-      <div className="mx-auto max-w-7xl space-y-10">
-        <SectionHeading eyebrow="Testimonials" title="Loved by teams that move fast." description="Short signals from teams that wanted a cleaner system and a calmer delivery process." />
-        <div className="grid gap-4 lg:grid-cols-3">
-          {testimonials.map((testimonial) => {
+      <div className="mx-auto max-w-7xl space-y-8">
+        <SectionHeading eyebrow="Testimonials" title="Trusted by teams that value clarity." description="Short signals from clients who wanted a calmer process and a stronger foundation." />
+        <div className="grid gap-4 lg:grid-cols-2">
+          {testimonials.slice(0, 2).map((testimonial) => {
             const initials = testimonial.name.split(' ').map((part) => part[0]).join('')
 
             return (
@@ -333,12 +265,12 @@ export function TestimonialsSection() {
 export function InsightsSection() {
   return (
     <section id="insights" className="px-3 py-14 sm:px-4 lg:px-6 lg:py-20">
-      <div className="mx-auto max-w-7xl space-y-10">
-        <SectionHeading eyebrow="Insights" title="Three short notes, integrated into the flow." description="Writing stays close to the work and avoids turning the site into a separate content product." />
-        <div className="grid gap-4 md:grid-cols-3">
-          {blogTopics.slice(0, 3).map((topic, index) => (
+      <div className="mx-auto max-w-7xl space-y-8">
+        <SectionHeading eyebrow="Insights" title="Short notes from the work itself." description="The writing stays close to the practice: practical thinking, useful patterns, and a few clear takeaways." />
+        <div className="grid gap-4 md:grid-cols-2">
+          {blogTopics.slice(0, 2).map((topic, index) => (
             <div key={topic.title} className="overflow-hidden rounded-[16px] border border-black/10 bg-background/70 dark:border-white/10">
-              <div className="h-44 bg-[linear-gradient(180deg,rgba(255,255,255,0.8),rgba(255,255,255,0.35))] dark:bg-[linear-gradient(180deg,rgba(255,255,255,0.08),rgba(255,255,255,0.03))]" />
+              <div className="h-36 bg-[linear-gradient(180deg,rgba(255,255,255,0.8),rgba(255,255,255,0.35))] dark:bg-[linear-gradient(180deg,rgba(255,255,255,0.08),rgba(255,255,255,0.03))]" />
               <div className="space-y-3 px-5 py-5">
                 <p className="text-[10px] uppercase tracking-[0.32em] text-foreground/45">0{index + 1}</p>
                 <h3 className="text-xl font-semibold text-foreground">{topic.title}</h3>
@@ -358,8 +290,8 @@ export function FaqSection() {
       <div className="mx-auto grid max-w-7xl gap-8 lg:grid-cols-[0.8fr_1.2fr] lg:items-start">
         <div className="space-y-4">
           <p className="text-[11px] font-medium uppercase tracking-[0.32em] text-foreground/55">FAQ</p>
-          <h2 className="text-4xl font-semibold tracking-[-0.02em] text-foreground sm:text-5xl">All you need to know.</h2>
-          <p className="max-w-xl text-sm leading-7 text-foreground/70">Clear answers for teams that want to get started without a long, repetitive intake loop.</p>
+          <h2 className="text-4xl font-semibold tracking-[-0.02em] text-foreground sm:text-5xl">A few clear answers.</h2>
+          <p className="max-w-xl text-sm leading-7 text-foreground/70">A simple way to understand the fit, the process, and what working together looks like.</p>
         </div>
         <div className="space-y-3">
           {faqItems.map((item) => (
@@ -380,8 +312,8 @@ export function ContactSection() {
       <div className="mx-auto grid max-w-7xl gap-8 lg:grid-cols-[0.82fr_1.18fr] lg:items-start">
         <div className="rounded-[18px] border border-black/10 bg-background/70 p-6 shadow-[0_8px_30px_rgba(11,11,10,0.03)] dark:border-white/10 lg:sticky lg:top-28">
           <p className="text-[11px] font-medium uppercase tracking-[0.32em] text-foreground/55">Contact</p>
-          <h2 className="mt-4 text-4xl font-semibold tracking-[-0.02em] text-foreground sm:text-5xl">Start a discovery session.</h2>
-          <p className="mt-4 max-w-xl text-sm leading-7 text-foreground/70">A single intake for new work, references, and technical notes, with a calmer structure than a typical contact form.</p>
+          <h2 className="mt-4 text-4xl font-semibold tracking-[-0.02em] text-foreground sm:text-5xl">Start a focused conversation.</h2>
+          <p className="mt-4 max-w-xl text-sm leading-7 text-foreground/70">Send a short note with what you are building, what is feeling difficult, and what kind of support would help most.</p>
           <div className="mt-6 flex flex-wrap gap-2">
             {contactCategories.map((item) => (
               <MiniTag key={item}>{item}</MiniTag>

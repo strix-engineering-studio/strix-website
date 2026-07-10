@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from "next"
-import { Fraunces, IBM_Plex_Mono, Inter } from "next/font/google"
+import { Geist, Inter } from "next/font/google"
 
 import { SiteFooter } from "@/components/layout/site-footer"
 import { SiteHeader } from "@/components/layout/site-header"
@@ -21,7 +21,7 @@ import "./globals.css"
 /* Fonts                                                                       */
 /* -------------------------------------------------------------------------- */
 
-const headingFont = Fraunces({
+const displayFont = Geist({
   subsets: ["latin"],
   variable: "--font-heading",
   display: "swap",
@@ -30,13 +30,6 @@ const headingFont = Fraunces({
 const bodyFont = Inter({
   subsets: ["latin"],
   variable: "--font-body",
-  display: "swap",
-})
-
-const monoFont = IBM_Plex_Mono({
-  subsets: ["latin"],
-  weight: ["400", "500", "600"],
-  variable: "--font-geist-mono",
   display: "swap",
 })
 
@@ -111,9 +104,8 @@ export default function RootLayout({
       lang="en"
       suppressHydrationWarning
       className={`
-        ${headingFont.variable}
+        ${displayFont.variable}
         ${bodyFont.variable}
-        ${monoFont.variable}
         h-full
         scroll-smooth
         antialiased

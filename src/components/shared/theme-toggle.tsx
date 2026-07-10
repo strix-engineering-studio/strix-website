@@ -1,11 +1,11 @@
 "use client"
 
-import { MoonStar, SunMedium } from "lucide-react"
+import { MonitorPlay, Sun, Moon } from "lucide-react"
 import { useEffect, useState } from "react"
 import { useTheme } from "@/components/shared/theme-provider"
 
 export function ThemeToggle({ className }: { className?: string }) {
-  const { resolvedTheme, toggleTheme } = useTheme()
+  const { theme, resolvedTheme, setTheme } = useTheme()
   const [mounted, setMounted] = useState(false)
   const isDark = resolvedTheme === "dark"
 
@@ -18,27 +18,63 @@ export function ThemeToggle({ className }: { className?: string }) {
     return (
       <button
         type="button"
-        className={className ?? "inline-flex items-center gap-2 rounded-full border border-border bg-background/70 px-3 py-2 text-xs font-medium text-foreground shadow-sm shadow-black/5 backdrop-blur-xl transition hover:border-primary/30 hover:bg-surface"}
+        className={className ?? "flex items-center gap-1 rounded-full border border-black/10 bg-background/70 p-1 shadow-sm shadow-black/5 backdrop-blur-xl dark:border-white/10"}
         aria-label="Theme"
         title="Theme"
       >
-        <MoonStar className="size-4 text-primary" />
-        <span>Theme</span>
+        <span className="inline-flex h-8 w-8 items-center justify-center rounded-full text-foreground/50">
+          <Moon className="size-4" />
+        </span>
       </button>
     )
   }
 
   return (
-    <button
-      type="button"
-      onClick={toggleTheme}
-      className={className ?? "inline-flex items-center gap-2 rounded-full border border-border bg-background/70 px-3 py-2 text-xs font-medium text-foreground shadow-sm shadow-black/5 backdrop-blur-xl transition hover:border-primary/30 hover:bg-surface"}
-      aria-label={`Switch to ${isDark ? "light" : "dark"} mode`}
-      aria-pressed={isDark}
-      title={`Switch to ${isDark ? "light" : "dark"} mode`}
-    >
-      {isDark ? <SunMedium className="size-4 text-primary" /> : <MoonStar className="size-4 text-primary" />}
-      <span>{isDark ? "Dark" : "Light"}</span>
-    </button>
+    <div className={className ?? "flex items-center gap-1 rounded-full border border-black/10 bg-background/70 p-1 shadow-sm shadow-black/5 backdrop-blur-xl dark:border-white/10"}>
+      <button
+        type="button"
+        onClick={() => setTheme('system')}
+        className={`inline-flex h-8 w-8 items-center justify-center rounded-full transition-colors ${
+          theme === 'system'
+            ? 'bg-black/10 text-foreground dark:bg-white/10'
+            : 'text-foreground/50 hover:text-foreground'
+        }`}
+        aria-label="System theme"
+        aria-pressed={theme === 'system'}
+        title="System theme"
+      >
+        <MonitorPlay className="size-4" />
+      </button>
+
+      <button
+        type="button"
+        onClick={() => setTheme('light')}
+        className={`inline-flex h-8 w-8 items-center justify-center rounded-full transition-colors ${
+          theme === 'light'
+            ? 'bg-black/10 text-foreground dark:bg-white/10'
+            : 'text-foreground/50 hover:text-foreground'
+        }`}
+        aria-label="Light theme"
+        aria-pressed={theme === 'light'}
+        title="Light theme"
+      >
+        <Sun className="size-4" />
+      </button>
+
+      <button
+        type="button"
+        onClick={() => setTheme('dark')}
+        className={`inline-flex h-8 w-8 items-center justify-center rounded-full transition-colors ${
+          theme === 'dark'
+            ? 'bg-black/10 text-foreground dark:bg-white/10'
+            : 'text-foreground/50 hover:text-foreground'
+        }`}
+        aria-label="Dark theme"
+        aria-pressed={theme === 'dark'}
+        title="Dark theme"
+      >
+        <Moon className="size-4" />
+      </button>
+    </div>
   )
 }
