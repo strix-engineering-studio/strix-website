@@ -102,7 +102,7 @@ export function SiteFooter() {
       <div className="mx-auto max-w-7xl px-3 py-6 sm:px-4 lg:px-6">
         <div className="flex flex-col items-center justify-between gap-4 text-xs text-foreground/60 md:flex-row md:items-center">
           <p>© 2026 Strix Engineering Studio</p>
-          <p>Built with ♥ in Prayagraj, India</p>
+          <p>Built with ♥ in India</p>
           <div className="flex items-center gap-4">
             <Link href="/terms" className="transition hover:text-foreground">
               Terms
@@ -118,44 +118,48 @@ export function SiteFooter() {
       </div>
 
       {/* Decorative Wordmark */}
-      <div className="overflow-hidden border-t border-black/10 py-8 dark:border-white/10">
-        <div className="mx-auto max-w-7xl px-3 sm:px-4 lg:px-6">
-          <div className="relative flex items-center justify-center">
-            <svg
-              viewBox="0 0 400 120"
-              className="w-full max-w-4xl text-foreground/10"
-              xmlns="http://www.w3.org/2000/svg"
-              preserveAspectRatio="xMidYMid meet"
-            >
-              {/* Outline letters STR */}
-              <text
-                x="20"
-                y="100"
-                fontSize="120"
-                fontFamily="var(--font-heading), system-ui"
-                fontWeight="700"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="1.5"
-                letterSpacing="8"
-              >
-                STR
-              </text>
-              {/* Solid IX */}
-              <text
-                x="280"
-                y="100"
-                fontSize="120"
-                fontFamily="var(--font-heading), system-ui"
-                fontWeight="700"
-                fill="currentColor"
-              >
-                IX
-              </text>
-            </svg>
-          </div>
-        </div>
-      </div>
+    {/* Decorative Wordmark */}
+<div className="w-full overflow-hidden bg-[#0a0a0a]">
+  <svg
+    viewBox="0 0 1600 230"
+    className="block h-auto w-full"
+    xmlns="http://www.w3.org/2000/svg"
+    preserveAspectRatio="xMidYMid meet"
+  >
+    <style>
+      {`
+        .outline-text {
+          font-family: Georgia, "Times New Roman", serif;
+          font-size: 125px;
+          font-weight: 400;
+          fill: transparent;
+          stroke: rgb(227, 61, 35);
+          stroke-width: 1;
+          stroke-dasharray: 5 5;
+        }
+
+        .solid-text {
+          fill: #ffffff;
+          stroke: none;
+        }
+      `}
+    </style>
+
+    <text
+      x="800"
+      y="165"
+      textAnchor="middle"
+      className="outline-text"
+    >
+      <tspan>Strix engineering </tspan>
+
+      <tspan className="solid-text">
+        studio
+      </tspan>
+    </text>
+  </svg>
+</div>  
+    
     </footer>
   )
 }
