@@ -1,37 +1,42 @@
-import type { Metadata, Viewport } from "next"
-import { Geist, Inter } from "next/font/google"
+import type { Metadata, Viewport } from "next";
+import { Geist, Geist_Mono, Instrument_Serif } from "next/font/google";
 
-import { SiteFooter } from "@/components/layout/site-footer"
-import { SiteHeader } from "@/components/layout/site-header"
+import { SiteFooter } from "@/components/layout/site-footer";
+import { SiteHeader } from "@/components/layout/site-header";
 
-import { CommandMenu } from "@/components/shared/command-menu"
-import { PwaRegister } from "@/components/shared/pwa-register"
-import { ThemeProvider } from "@/components/shared/theme-provider"
+import { CommandMenu } from "@/components/shared/command-menu";
+import { PwaRegister } from "@/components/shared/pwa-register";
+import { ThemeProvider } from "@/components/shared/theme-provider";
 
-import { JsonLd } from "@/components/seo/json-ld"
-import {
-  organizationSchema,
-  siteConfig,
-  websiteSchema,
-} from "@/lib/seo"
+import { JsonLd } from "@/components/seo/json-ld";
+import { organizationSchema, siteConfig, websiteSchema } from "@/lib/seo";
 
-import "./globals.css"
+import "./globals.css";
+import { StrixCursor } from "../components/strix-cursor";
 
 /* -------------------------------------------------------------------------- */
 /* Fonts                                                                       */
 /* -------------------------------------------------------------------------- */
 
-const displayFont = Geist({
+const displayFont = Instrument_Serif({
+  weight: "400",
+  style: ["normal", "italic"],
   subsets: ["latin"],
-  variable: "--font-heading",
+  variable: "--font-display",
   display: "swap",
-})
+});
 
-const bodyFont = Inter({
+const bodyFont = Geist({
   subsets: ["latin"],
   variable: "--font-body",
   display: "swap",
-})
+});
+
+const monoFont = Geist_Mono({
+  subsets: ["latin"],
+  variable: "--font-mono",
+  display: "swap",
+});
 
 /* -------------------------------------------------------------------------- */
 /* Metadata                                                                    */
@@ -77,7 +82,7 @@ export const metadata: Metadata = {
     index: true,
     follow: true,
   },
-}
+};
 
 /* -------------------------------------------------------------------------- */
 /* Viewport                                                                    */
@@ -88,7 +93,7 @@ export const viewport: Viewport = {
   initialScale: 1,
   viewportFit: "cover",
   themeColor: "#081316",
-}
+};
 
 /* -------------------------------------------------------------------------- */
 /* Layout                                                                      */
@@ -97,29 +102,25 @@ export const viewport: Viewport = {
 export default function RootLayout({
   children,
 }: Readonly<{
-  children: React.ReactNode
+  children: React.ReactNode;
 }>) {
   return (
     <html
       lang="en"
       suppressHydrationWarning
       className={`
-        ${displayFont.variable}
-        ${bodyFont.variable}
-        h-full
-        scroll-smooth
-        antialiased
-      `}
+    ${displayFont.variable}
+    ${bodyFont.variable}
+    ${monoFont.variable}
+    h-full
+    scroll-smooth
+    antialiased
+  `}
     >
       <head>
         <link rel="canonical" href={siteConfig.url} />
 
-        <JsonLd
-          data={[
-            organizationSchema(),
-            websiteSchema(),
-          ]}
-        />
+        <JsonLd data={[organizationSchema(), websiteSchema()]} />
       </head>
 
       <body className="min-h-screen overflow-x-hidden bg-background text-foreground">
@@ -129,16 +130,16 @@ export default function RootLayout({
           <div className="relative flex min-h-screen flex-col">
             <SiteHeader />
 
-            <main className="relative z-10 flex-1">
-              {children}
-            </main>
+            <div className="relative flex-1">{children}</div>
 
             <SiteFooter />
+
+            <StrixCursor />
           </div>
 
           <CommandMenu />
         </ThemeProvider>
       </body>
     </html>
-  )
+  );
 }

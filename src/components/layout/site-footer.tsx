@@ -1,48 +1,65 @@
-"use client"
+"use client";
 
-import Link from "next/link"
-import { usePathname } from "next/navigation"
-import { ThemeToggle } from "@/components/shared/theme-toggle"
+import Link from "next/link";
+import { usePathname } from "next/navigation";
+import { ThemeToggle } from "@/components/shared/theme-toggle";
+import { FooterWordmark } from "./footer-wordmark";
 
 export function SiteFooter() {
-  const pathname = usePathname()
+  const pathname = usePathname();
 
   if (pathname.startsWith("/admin")) {
-    return null
+    return null;
   }
 
   return (
-    <footer className="relative border-t border-black/10 bg-background dark:border-white/10">
+    <footer className="relative z-20 border-t border-black/10 bg-background dark:border-white/10">
       {/* Footer Links */}
-      <div className="mx-auto max-w-7xl px-3 py-12 sm:px-4 lg:px-6">
+      <div className="mx-auto max-w-7xl px-3 py-12 sm:px-4 lg:px-6 bg-background dark:bg-background fill-background">
         <div className="grid grid-cols-2 gap-8 sm:grid-cols-3 lg:grid-cols-4">
           {/* Brand Column */}
           <div>
             <p className="text-sm font-semibold text-foreground">STRIX</p>
-            <p className="mt-1 text-xs text-foreground/60">System Before Software</p>
+            <p className="mt-1 text-xs text-foreground/60">
+              System Before Software
+            </p>
           </div>
 
           {/* Studio Links */}
           <div>
-            <h4 className="mb-4 text-xs font-semibold uppercase tracking-widest text-foreground/70">Studio</h4>
+            <h4 className="mb-4 text-xs font-semibold uppercase tracking-widest text-foreground/70">
+              Studio
+            </h4>
             <ul className="flex flex-col gap-2">
               <li>
-                <Link href="/capabilities" className="text-sm text-foreground/60 transition hover:text-foreground">
+                <Link
+                  href="/capabilities"
+                  className="text-sm text-foreground/60 transition hover:text-foreground"
+                >
                   Capabilities
                 </Link>
               </li>
               <li>
-                <Link href="/systems" className="text-sm text-foreground/60 transition hover:text-foreground">
+                <Link
+                  href="/systems"
+                  className="text-sm text-foreground/60 transition hover:text-foreground"
+                >
                   Systems
                 </Link>
               </li>
               <li>
-                <Link href="/products" className="text-sm text-foreground/60 transition hover:text-foreground">
+                <Link
+                  href="/products"
+                  className="text-sm text-foreground/60 transition hover:text-foreground"
+                >
                   Products
                 </Link>
               </li>
               <li>
-                <Link href="/case-studies" className="text-sm text-foreground/60 transition hover:text-foreground">
+                <Link
+                  href="/case-studies"
+                  className="text-sm text-foreground/60 transition hover:text-foreground"
+                >
                   Case Studies
                 </Link>
               </li>
@@ -51,25 +68,39 @@ export function SiteFooter() {
 
           {/* Company Links */}
           <div>
-            <h4 className="mb-4 text-xs font-semibold uppercase tracking-widest text-foreground/70">Company</h4>
+            <h4 className="mb-4 text-xs font-semibold uppercase tracking-widest text-foreground/70">
+              Company
+            </h4>
             <ul className="flex flex-col gap-2">
               <li>
-                <Link href="/insights" className="text-sm text-foreground/60 transition hover:text-foreground">
+                <Link
+                  href="/insights"
+                  className="text-sm text-foreground/60 transition hover:text-foreground"
+                >
                   Insights
                 </Link>
               </li>
               <li>
-                <Link href="/about" className="text-sm text-foreground/60 transition hover:text-foreground">
+                <Link
+                  href="/about"
+                  className="text-sm text-foreground/60 transition hover:text-foreground"
+                >
                   About
                 </Link>
               </li>
               <li>
-                <Link href="/contact" className="text-sm text-foreground/60 transition hover:text-foreground">
+                <Link
+                  href="/contact"
+                  className="text-sm text-foreground/60 transition hover:text-foreground"
+                >
                   Contact
                 </Link>
               </li>
               <li>
-                <Link href="/admin/login" className="text-sm text-foreground/60 transition hover:text-foreground">
+                <Link
+                  href="/admin/login"
+                  className="text-sm text-foreground/60 transition hover:text-foreground"
+                >
                   Admin
                 </Link>
               </li>
@@ -78,15 +109,23 @@ export function SiteFooter() {
 
           {/* Start a Project */}
           <div>
-            <h4 className="mb-4 text-xs font-semibold uppercase tracking-widest text-foreground/70">Start a Project</h4>
+            <h4 className="mb-4 text-xs font-semibold uppercase tracking-widest text-foreground/70">
+              Start a Project
+            </h4>
             <ul className="flex flex-col gap-2">
               <li>
-                <Link href="/contact" className="text-sm text-foreground/60 transition hover:text-foreground">
+                <Link
+                  href="/contact"
+                  className="text-sm text-foreground/60 transition hover:text-foreground"
+                >
                   Book a Call
                 </Link>
               </li>
               <li>
-                <Link href="/project-inquiry" className="text-sm text-foreground/60 transition hover:text-foreground">
+                <Link
+                  href="/project-inquiry"
+                  className="text-sm text-foreground/60 transition hover:text-foreground"
+                >
                   Submit Inquiry
                 </Link>
               </li>
@@ -118,19 +157,20 @@ export function SiteFooter() {
       </div>
 
       {/* Decorative Wordmark */}
-    {/* Decorative Wordmark */}
-<div className="w-full overflow-hidden bg-[#0a0a0a]">
-  <svg
-    viewBox="0 0 1600 230"
-    className="block h-auto w-full"
-    xmlns="http://www.w3.org/2000/svg"
-    preserveAspectRatio="xMidYMid meet"
-  >
-    <style>
-      {`
+      {/* Decorative Wordmark */}
+      <FooterWordmark />
+      {/* <div className="w-full overflow-hidden bg-[#0a0a0a]">
+        <svg
+          viewBox="0 0 1600 230"
+          className="block h-auto w-full"
+          xmlns="http://www.w3.org/2000/svg"
+          preserveAspectRatio="xMidYMid meet"
+        >
+          <style>
+            {`
         .outline-text {
           font-family: Georgia, "Times New Roman", serif;
-          font-size: 125px;
+          font-size: 90px;
           font-weight: 400;
           fill: transparent;
           stroke: rgb(227, 61, 35);
@@ -143,23 +183,18 @@ export function SiteFooter() {
           stroke: none;
         }
       `}
-    </style>
+          </style>
 
-    <text
-      x="800"
-      y="165"
-      textAnchor="middle"
-      className="outline-text"
-    >
-      <tspan>Strix engineering </tspan>
+          <text x="800" y="165" textAnchor="middle" className="outline-text">
+            <tspan>STRIX </tspan>
+            <tspan x="800" y="200" className="outline-text">
+              ENGINEERING
+            </tspan>
 
-      <tspan className="solid-text">
-        studio
-      </tspan>
-    </text>
-  </svg>
-</div>  
-    
+            <tspan className="solid-text">STUDIO</tspan>
+          </text>
+        </svg>
+      </div> */}
     </footer>
-  )
+  );
 }
