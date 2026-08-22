@@ -44,34 +44,25 @@ const monoFont = Geist_Mono({
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteConfig.url),
-
   title: {
-    default: "Strix Engineering Studio | System Before Software",
+    default: "Strix Engineering Studio | Architecture-First Product Engineering",
     template: "%s | Strix Engineering Studio",
   },
-
   description: siteConfig.description,
-
   keywords: siteConfig.defaultKeywords,
-
   manifest: "/manifest.webmanifest",
-
-  applicationName: "Strix",
-
   appleWebApp: {
     capable: true,
     title: "Strix",
     statusBarStyle: "black-translucent",
   },
-
   openGraph: {
-    title: "Strix Engineering Studio",
+    title: "Strix Engineering Studio | Architecture-First Product Engineering",
     description: siteConfig.description,
-    url: siteConfig.url,
+    url: "/",
     siteName: siteConfig.name,
     type: "website",
   },
-
   twitter: {
     card: "summary_large_image",
     title: "Strix Engineering Studio",
@@ -122,8 +113,7 @@ export default function RootLayout({
 
         <JsonLd data={[organizationSchema(), websiteSchema()]} />
       </head>
-
-      <body className="min-h-screen overflow-x-hidden bg-background text-foreground">
+      <body className="relative isolate min-h-screen overflow-x-hidden text-text-primary bg-background">
         <ThemeProvider>
           <PwaRegister />
 
@@ -143,3 +133,4 @@ export default function RootLayout({
     </html>
   );
 }
+

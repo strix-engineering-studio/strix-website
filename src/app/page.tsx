@@ -1,17 +1,9 @@
 import type { Metadata } from "next";
-import {
-  CapabilityMapSection,
-  ContactSection,
-  HeroSection,
-  InsightsSection,
-  PhilosophySection,
-  SelectedSystemsSection,
-  FaqSection,
-  TestimonialsSection,
-  SystemsStrip,
-} from "@/components/section/home-sections";
+
 import { buildMetadata } from "@/lib/seo";
-import { LinkedInSection } from "../components/section/linkedin-section";
+
+import { HeroSection, SystemsStrip, SelectedSystemsSection, CapabilityMapSection, PhilosophySection, TestimonialsSection, InsightsSection, FaqSection, ContactSection } from "../components/sections/home-sections";
+import { LinkedInSection } from "../components/sections/linkedin-section";
 
 export const metadata: Metadata = buildMetadata({
   title: "Strix Engineering Studio | Architecture-First Product Engineering",
