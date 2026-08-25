@@ -13,6 +13,5 @@ export const metadata: Metadata = buildMetadata({
 })
 
 export default function ProcessPage() {
-  const { slug: _slug, ...content } = page
-  return <ContentPage eyebrow="Process" path="/process" {...content} />
+  return <ContentPage eyebrow="Process" path="/process" {...page} />
 }

@@ -13,6 +13,5 @@ export const metadata: Metadata = buildMetadata({
 })
 
 export default function ArchitecturePhilosophyPage() {
-  const { slug: _slug, ...content } = page
-  return <ContentPage eyebrow="Architecture Philosophy" path="/architecture-philosophy" {...content} />
+  return <ContentPage eyebrow="Architecture Philosophy" path="/architecture-philosophy" {...page} />
 }

@@ -1,6 +1,6 @@
 "use client";
 
-import { MessageCircle, MessageCircleDashed } from "lucide-react";
+import { MessageCircleDashed } from "lucide-react";
 import { usePathname } from "next/navigation";
 
 export function CommandMenu() {

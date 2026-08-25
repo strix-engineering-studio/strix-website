@@ -13,6 +13,5 @@ export const metadata: Metadata = buildMetadata({
 })
 
 export default function SystemDesignFrameworkPage() {
-  const { slug: _slug, ...content } = page
-  return <ContentPage eyebrow="System Design Framework" path="/system-design-framework" {...content} />
+  return <ContentPage eyebrow="System Design Framework" path="/system-design-framework" {...page} />
 }

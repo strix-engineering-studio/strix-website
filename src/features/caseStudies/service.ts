@@ -13,6 +13,6 @@ export async function getCaseStudyBySlug(slug: string) {
     return prisma.caseStudy.findUnique({ where: { slug } })
 }
 
-export async function createCaseStudy(data: any) {
-    return prisma.caseStudy.create({ data })
+export async function createCaseStudy(data: Record<string, unknown>) {
+    return prisma.caseStudy.create({ data: data as Parameters<typeof prisma.caseStudy.create>[0]['data'] })
 }

@@ -99,7 +99,7 @@ export function BlogIndex({ posts }: BlogIndexProps) {
       ) : null}
 
       <div className="grid gap-5 lg:grid-cols-2">
-        {filtered.slice(1).map((post, index) => (
+        {filtered.slice(1).map((post) => (
           <Link
             key={post.slug}
             href={`/blog/${post.slug}`}

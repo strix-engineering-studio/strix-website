@@ -13,6 +13,5 @@ export const metadata: Metadata = buildMetadata({
 })
 
 export default function EngineeringPrinciplesPage() {
-  const { slug: _slug, ...content } = page
-  return <ContentPage eyebrow="Engineering Principles" path="/engineering-principles" {...content} />
+  return <ContentPage eyebrow="Engineering Principles" path="/engineering-principles" {...page} />
 }

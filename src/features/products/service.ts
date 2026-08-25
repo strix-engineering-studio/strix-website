@@ -13,12 +13,12 @@ export async function getProductBySlug(slug: string) {
     return prisma.product.findUnique({ where: { slug } })
 }
 
-export async function createProduct(data: any) {
-    return prisma.product.create({ data })
+export async function createProduct(data: Record<string, unknown>) {
+    return prisma.product.create({ data: data as Parameters<typeof prisma.product.create>[0]['data'] })
 }
 
-export async function updateProduct(id: string, data: any) {
-    return prisma.product.update({ where: { id }, data })
+export async function updateProduct(id: string, data: Record<string, unknown>) {
+    return prisma.product.update({ where: { id }, data: data as Parameters<typeof prisma.product.update>[0]['data'] })
 }
 
 export async function deleteProduct(id: string) {

@@ -191,13 +191,6 @@ function pairsToText(pairs: { label: string; value: string }[]) {
   return pairs.map((pair) => `${pair.label}|${pair.value}`).join("\n");
 }
 
-function refreshItemList<T extends { id: string }>(items: T[], item: T) {
-  const existingIndex = items.findIndex((entry) => entry.id === item.id);
-  if (existingIndex === -1) return [item, ...items];
-  const next = items.slice();
-  next[existingIndex] = item;
-  return next;
-}
 
 export function AdminConsole({
   initialLandingPages,

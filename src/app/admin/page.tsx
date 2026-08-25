@@ -1,4 +1,3 @@
-import { redirect } from "next/navigation"
 import { AdminConsole } from "@/components/admin/admin-console"
 import { requireAdminSession } from "@/lib/admin-auth"
 import { getClientsCollection, getIndustrySignalsCollection, getLandingPagesCollection } from "@/lib/admin-data"

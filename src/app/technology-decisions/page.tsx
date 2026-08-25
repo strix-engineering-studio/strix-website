@@ -13,6 +13,5 @@ export const metadata: Metadata = buildMetadata({
 })
 
 export default function TechnologyDecisionsPage() {
-  const { slug: _slug, ...content } = page
-  return <ContentPage eyebrow="Technology Decisions" path="/technology-decisions" {...content} />
+  return <ContentPage eyebrow="Technology Decisions" path="/technology-decisions" {...page} />
 }

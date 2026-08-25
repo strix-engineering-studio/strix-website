@@ -1,5 +1,5 @@
 import { Button } from "./button"
-import { thoughtstream, ts } from "@/lib/utils"
+import { thoughtstream } from "@/lib/utils"
 
 export function ThoughtStreamDemo() {
   return (
@@ -175,7 +175,7 @@ export function ThoughtStreamDemo() {
         
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
           <div>
-            <h3 className="text-subhead font-heading mb-4">Do's</h3>
+            <h3 className="text-subhead font-heading mb-4">Do&apos;s</h3>
             <ul className="space-y-3">
               <li className="flex items-start space-x-3">
                 <span className="text-success mt-1">✓</span>
@@ -199,7 +199,7 @@ export function ThoughtStreamDemo() {
           </div>
           
           <div>
-            <h3 className="text-subhead font-heading mb-4">Don'ts</h3>
+            <h3 className="text-subhead font-heading mb-4">Don&apos;ts</h3>
             <ul className="space-y-3">
               <li className="flex items-start space-x-3">
                 <span className="text-error mt-1">✗</span>

@@ -5,9 +5,8 @@ import { useEffect, useState } from "react"
 import { useTheme } from "@/components/shared/theme-provider"
 
 export function ThemeToggle({ className }: { className?: string }) {
-  const { theme, resolvedTheme, setTheme } = useTheme()
+  const { theme, setTheme } = useTheme()
   const [mounted, setMounted] = useState(false)
-  const isDark = resolvedTheme === "dark"
 
   useEffect(() => {
     const timeoutId = window.setTimeout(() => setMounted(true), 0)
