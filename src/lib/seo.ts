@@ -141,6 +141,26 @@ export function faqSchema(questions: { question: string; answer: string }[]) {
     }
 }
 
+export function serviceSchema(input: {
+    name: string
+    description: string
+    url: string
+}) {
+    return {
+        "@context": "https://schema.org",
+        "@type": "Service",
+        name: input.name,
+        description: input.description,
+        url: input.url,
+        provider: {
+            "@type": "Organization",
+            name: siteConfig.name,
+            url: siteConfig.url,
+        },
+        serviceType: "Software engineering",
+    }
+}
+
 export function articleSchema(input: {
     title: string
     description: string

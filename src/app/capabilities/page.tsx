@@ -1,8 +1,10 @@
 import type { Metadata } from "next"
+import Link from "next/link"
 import { ArrowUpRight } from "lucide-react"
 import { PageShell } from "@/components/shared/page-shell"
-import { services, testimonials } from "@/lib/site"
 import { buildMetadata } from "@/lib/seo"
+import { servicePages } from "@/lib/seo-content"
+import { services, testimonials } from "@/lib/site"
 
 export const metadata: Metadata = buildMetadata({
   title: "Capabilities | Strix Engineering Studio",
@@ -45,6 +47,30 @@ export default function CapabilitiesPage() {
                 ))}
               </div>
             </div>
+          ))}
+        </div>
+      </div>
+
+      <div className="rounded-xl border border-white/10 bg-white/4 p-5">
+        <div className="flex items-center justify-between gap-3">
+          <div>
+            <p className="text-[11px] uppercase tracking-[0.38em] text-white/50">Service expertise</p>
+            <h3 className="mt-3 text-2xl font-semibold text-foreground">Focused pages for distinct engineering intents</h3>
+          </div>
+          <Link href="/services" className="inline-flex items-center gap-2 text-sm font-medium text-foreground">
+            Open service catalog
+            <ArrowUpRight className="size-4" />
+          </Link>
+        </div>
+        <div className="mt-5 flex flex-wrap gap-2">
+          {servicePages.map((page) => (
+            <Link
+              key={page.slug}
+              href={`/services/${page.slug}`}
+              className="rounded-full border border-white/10 bg-white/5 px-3 py-1.5 text-sm text-foreground transition hover:bg-white/10"
+            >
+              {page.title}
+            </Link>
           ))}
         </div>
       </div>

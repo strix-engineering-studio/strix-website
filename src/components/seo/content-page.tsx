@@ -4,6 +4,7 @@ import {
   breadcrumbSchema,
   faqSchema,
   organizationSchema,
+  serviceSchema,
   websiteSchema,
 } from "@/lib/seo";
 import { PageShell } from "@/components/shared/page-shell";
@@ -20,6 +21,12 @@ type ContentPageProps = {
   whyChooseStrix: string;
   related: { label: string; href: string }[];
   faqs: { question: string; answer: string }[];
+  breadcrumbParent?: { name: string; href: string };
+  serviceSchema?: {
+    name: string;
+    description: string;
+    url: string;
+  };
   children?: React.ReactNode;
 };
 
@@ -32,11 +39,41 @@ export function ContentPage(props: ContentPageProps) {
           websiteSchema(),
           breadcrumbSchema([
             { name: "Home", item: "https://strix.website/" },
+            ...(props.breadcrumbParent
+              ? [
+                  {
+                    name: props.breadcrumbParent.name,
+                    item: `https://strix.website${props.breadcrumbParent.href}`,
+                  },
+                ]
+              : []),
             { name: props.title, item: `https://strix.website${props.path}` },
           ]),
           faqSchema(props.faqs),
+          ...(props.serviceSchema ? [serviceSchema(props.serviceSchema)] : []),
         ]}
       />
+
+      <div className="strix-container mb-[-2rem] pt-8">
+        <nav aria-label="Breadcrumb" className="text-sm text-muted-foreground">
+          <Link href="/" className="transition hover:text-foreground">
+            Home
+          </Link>
+          {props.breadcrumbParent ? (
+            <>
+              <span className="mx-2 text-white/30">/</span>
+              <Link
+                href={props.breadcrumbParent.href}
+                className="transition hover:text-foreground"
+              >
+                {props.breadcrumbParent.name}
+              </Link>
+            </>
+          ) : null}
+          <span className="mx-2 text-white/30">/</span>
+          <span className="text-foreground">{props.title}</span>
+        </nav>
+      </div>
 
       <PageShell
         eyebrow={props.eyebrow}
@@ -97,6 +134,25 @@ export function ContentPage(props: ContentPageProps) {
         </div>
 
         {props.children}
+
+        <div className="rounded-xl border border-primary/20 bg-primary/10 p-6">
+          <p className="text-[11px] uppercase tracking-[0.35em] text-primary">
+            Start with the system
+          </p>
+          <h2 className="mt-3 text-2xl font-semibold tracking-tight text-foreground">
+            Bring the real constraints into the room.
+          </h2>
+          <p className="mt-3 max-w-2xl text-sm leading-7 text-muted-foreground">
+            Share what you are building, where the current system is getting in
+            the way, and what a useful next step would look like.
+          </p>
+          <Link
+            href="/contact"
+            className="mt-5 inline-flex rounded-full bg-foreground px-5 py-3 text-sm font-medium text-background transition hover:opacity-90"
+          >
+            Start a conversation
+          </Link>
+        </div>
       </PageShell>
     </>
   );

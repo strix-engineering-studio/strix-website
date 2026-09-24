@@ -1,6 +1,7 @@
 import type { MetadataRoute } from "next"
-import { featuredProjects } from "@/lib/site"
 import { getBlogPosts } from "@/lib/content"
+import { servicePages } from "@/lib/seo-content"
+import { featuredProjects } from "@/lib/site"
 
 const siteUrl =
     process.env.NEXT_PUBLIC_SITE_URL ?? "https://strix.website"
@@ -11,6 +12,7 @@ const STATIC_LAST_MODIFIED = new Date("2026-05-31")
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     const routes = [
         "",
+        "/services",
         "/capabilities",
         "/systems",
         "/products",
@@ -57,6 +59,13 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
         priority: 0.7,
     }))
 
+    const seoServices: MetadataRoute.Sitemap = servicePages.map((page) => ({
+        url: `${siteUrl}/services/${page.slug}`,
+        lastModified: new Date(page.publishedAt),
+        changeFrequency: "monthly",
+        priority: 0.8,
+    }))
+
     const posts = await getBlogPosts()
 
     const insights: MetadataRoute.Sitemap = posts.map((post) => ({
@@ -68,6 +77,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 
     return [
         ...pages,
+        ...seoServices,
         ...products,
         ...studies,
         ...openSource,
