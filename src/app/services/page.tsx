@@ -1,9 +1,10 @@
-import type { Metadata } from "next"
-import Link from "next/link"
-import { ArrowUpRight } from "lucide-react"
-import { PageShell } from "@/components/shared/page-shell"
-import { buildMetadata } from "@/lib/seo"
-import { servicePages } from "@/lib/seo-content"
+import type { Metadata } from "next";
+import Link from "next/link";
+import { ArrowUpRight } from "lucide-react";
+import { PageShell } from "@/components/shared/page-shell";
+import { buildMetadata } from "@/seo/metadata";
+import { servicePages } from "@/src/seo/content";
+
 
 export const metadata: Metadata = buildMetadata({
   title: "Services | Strix Engineering Studio",
@@ -17,7 +18,7 @@ export const metadata: Metadata = buildMetadata({
     "NestJS development",
     "software architecture",
   ],
-})
+});
 
 export default function ServicesPage() {
   return (
@@ -84,5 +85,5 @@ export default function ServicesPage() {
         </div>
       </div>
     </PageShell>
-  )
+  );
 }

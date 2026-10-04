@@ -1,8 +1,18 @@
 import type { Metadata } from "next";
 
-import { buildMetadata } from "@/lib/seo";
+import { buildMetadata } from "@/seo/metadata";
 
-import { HeroSection, SystemsStrip, SelectedSystemsSection, CapabilityMapSection, PhilosophySection, TestimonialsSection, InsightsSection, FaqSection, ContactSection } from "../components/sections/home-sections";
+import {
+  HeroSection,
+  SystemsStrip,
+  SelectedSystemsSection,
+  CapabilityMapSection,
+  PhilosophySection,
+  TestimonialsSection,
+  InsightsSection,
+  FaqSection,
+  ContactSection,
+} from "../components/sections/home-sections";
 import { LinkedInSection } from "../components/sections/linkedin-section";
 
 export const metadata: Metadata = buildMetadata({

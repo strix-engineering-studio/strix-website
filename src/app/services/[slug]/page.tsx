@@ -1,30 +1,32 @@
-import type { Metadata } from "next"
-import { notFound } from "next/navigation"
-import { ContentPage } from "@/components/seo/content-page"
-import { buildMetadata } from "@/lib/seo"
-import { getServicePage, servicePages } from "@/lib/seo-content"
+import type { Metadata } from "next";
+import { notFound } from "next/navigation";
+import { ContentPage } from "@/components/seo/content-page";
+import { buildMetadata } from "@/seo/metadata";
+import { getServicePage, servicePages } from "@/src/seo/content";
 
-export const dynamicParams = false
+
+export const dynamicParams = false;
 
 export function generateStaticParams() {
-  return servicePages.map((page) => ({ slug: page.slug }))
+  return servicePages.map((page) => ({ slug: page.slug }));
 }
 
 export async function generateMetadata({
   params,
 }: {
-  params: Promise<{ slug: string }>
+  params: Promise<{ slug: string }>;
 }): Promise<Metadata> {
-  const { slug } = await params
-  const page = getServicePage(slug)
+  const { slug } = await params;
+  const page = getServicePage(slug);
 
   if (!page) {
     return buildMetadata({
       title: "Service | Strix Engineering Studio",
-      description: "Explore Strix product engineering and platform design services.",
+      description:
+        "Explore Strix product engineering and platform design services.",
       path: `/services/${slug}`,
       noIndex: true,
-    })
+    });
   }
 
   return buildMetadata({
@@ -32,19 +34,19 @@ export async function generateMetadata({
     description: page.description,
     path: `/services/${page.slug}`,
     keywords: page.keywords,
-  })
+  });
 }
 
 export default async function ServiceDetailPage({
   params,
 }: {
-  params: Promise<{ slug: string }>
+  params: Promise<{ slug: string }>;
 }) {
-  const { slug } = await params
-  const page = getServicePage(slug)
+  const { slug } = await params;
+  const page = getServicePage(slug);
 
   if (!page) {
-    notFound()
+    notFound();
   }
 
   return (
@@ -77,7 +79,9 @@ export default async function ServiceDetailPage({
               key={item.label}
               className="rounded border border-white/10 bg-black/20 p-4"
             >
-              <p className="text-sm font-medium text-foreground">{item.label}</p>
+              <p className="text-sm font-medium text-foreground">
+                {item.label}
+              </p>
               <p className="mt-2 text-sm leading-7 text-muted-foreground">
                 {item.detail}
               </p>
@@ -86,5 +90,5 @@ export default async function ServiceDetailPage({
         </div>
       </div>
     </ContentPage>
-  )
+  );
 }

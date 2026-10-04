@@ -8,11 +8,11 @@ import { CommandMenu } from "@/components/shared/command-menu";
 import { PwaRegister } from "@/components/shared/pwa-register";
 import { ThemeProvider } from "@/components/shared/theme-provider";
 
-import { JsonLd } from "@/components/seo/json-ld";
-import { organizationSchema, siteConfig, websiteSchema } from "@/lib/seo";
-
 import "./globals.css";
 import { StrixCursor } from "../components/strix-cursor";
+import { JsonLd } from "../seo/json-ld";
+import { organizationSchema } from "../seo/schemas/organization";
+import { seoConfig, websiteSchema } from "../seo";
 
 /* -------------------------------------------------------------------------- */
 /* Fonts                                                                       */
@@ -43,13 +43,14 @@ const monoFont = Geist_Mono({
 /* -------------------------------------------------------------------------- */
 
 export const metadata: Metadata = {
-  metadataBase: new URL(siteConfig.url),
+  metadataBase: new URL(seoConfig.siteUrl),
   title: {
-    default: "Strix Engineering Studio | Architecture-First Product Engineering",
+    default:
+      "Strix Engineering Studio | Architecture-First Product Engineering",
     template: "%s | Strix Engineering Studio",
   },
-  description: siteConfig.description,
-  keywords: siteConfig.defaultKeywords,
+  description: seoConfig.defaultDescription,
+  keywords: [...seoConfig.defaultKeywords],
   manifest: "/manifest.webmanifest",
   appleWebApp: {
     capable: true,
@@ -58,15 +59,15 @@ export const metadata: Metadata = {
   },
   openGraph: {
     title: "Strix Engineering Studio | Architecture-First Product Engineering",
-    description: siteConfig.description,
+    description: seoConfig.defaultDescription,
     url: "/",
-    siteName: siteConfig.name,
+    siteName: seoConfig.siteName,
     type: "website",
   },
   twitter: {
     card: "summary_large_image",
     title: "Strix Engineering Studio",
-    description: siteConfig.description,
+    description: seoConfig.defaultDescription,
   },
 
   robots: {
@@ -109,7 +110,7 @@ export default function RootLayout({
   `}
     >
       <head>
-        <link rel="canonical" href={siteConfig.url} />
+        <link rel="canonical" href={seoConfig.siteUrl} />
 
         <JsonLd data={[organizationSchema(), websiteSchema()]} />
       </head>
@@ -133,4 +134,3 @@ export default function RootLayout({
     </html>
   );
 }
-

@@ -1,7 +1,7 @@
 import type { MetadataRoute } from "next";
-// import { getBlogPosts } from "@/lib/content";
-import { servicePages } from "@/lib/seo-content";
+
 import { featuredProjects } from "@/lib/site";
+import { servicePages } from "../seo/content";
 
 const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://strix.website";
 

@@ -4,12 +4,28 @@ const nextConfig: NextConfig = {
   async redirects() {
     return [
       { source: "/work", destination: "/case-studies", permanent: true },
-      { source: "/work/:path*", destination: "/case-studies/:path*", permanent: true },
+      {
+        source: "/work/:path*",
+        destination: "/case-studies/:path*",
+        permanent: true,
+      },
       { source: "/blog", destination: "/insights", permanent: true },
-      { source: "/blog/:path*", destination: "/insights/:path*", permanent: true },
-      { source: "/uses", destination: "/technology-decisions", permanent: true },
-      { source: "/uses/:path*", destination: "/technology-decisions/:path*", permanent: true },
-    ]
+      {
+        source: "/blog/:path*",
+        destination: "/insights/:path*",
+        permanent: true,
+      },
+      {
+        source: "/uses",
+        destination: "/technology-decisions",
+        permanent: true,
+      },
+      {
+        source: "/uses/:path*",
+        destination: "/technology-decisions/:path*",
+        permanent: true,
+      },
+    ];
   },
 };
 
