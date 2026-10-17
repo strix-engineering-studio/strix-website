@@ -3,9 +3,9 @@
 
  Directory of P:\project\Strix Engineering Studio\strix\src
 
-[.]          [components] [features]   [prisma]     
-[..]         [content]    [hooks]      proxy.ts     
-[app]        [design]     [lib]        [types]      
+[.]          [components] [hooks]      proxy.ts     
+[..]         [content]    [lib]        [seo]        
+[app]        [features]   [prisma]     [types]      
                1 File(s)            666 bytes
 
  Directory of P:\project\Strix Engineering Studio\strix\src\app
@@ -18,12 +18,12 @@
 apple-icon.tsx        not-found.tsx         sitemap.ts
 favicon.ico           opengraph-image.tsx   [work]
 globals.css           page.tsx              
-              11 File(s)         23,507 bytes
+              11 File(s)         23,950 bytes
 
  Directory of P:\project\Strix Engineering Studio\strix\src\app\about
 
 [.]        [..]       page.tsx   
-               1 File(s)          3,031 bytes
+               1 File(s)          3,454 bytes
 
  Directory of P:\project\Strix Engineering Studio\strix\src\app\admin
 
@@ -68,32 +68,32 @@ globals.css           page.tsx
  Directory of P:\project\Strix Engineering Studio\strix\src\app\insights
 
 [.]        [..]       page.tsx   [[slug]]   
-               1 File(s)            955 bytes
+               1 File(s)            972 bytes
 
  Directory of P:\project\Strix Engineering Studio\strix\src\app\insights\[slug]
 
 [.]        [..]       page.tsx   
-               1 File(s)          2,533 bytes
+               1 File(s)          3,446 bytes
 
  Directory of P:\project\Strix Engineering Studio\strix\src\app\llms.txt
 
 [.]        [..]       route.ts   
-               1 File(s)          1,425 bytes
+               1 File(s)          3,414 bytes
 
  Directory of P:\project\Strix Engineering Studio\strix\src\app\process
 
 [.]        [..]       page.tsx   
-               1 File(s)            568 bytes
+               1 File(s)            580 bytes
 
  Directory of P:\project\Strix Engineering Studio\strix\src\app\products
 
 [.]        [..]       page.tsx   [[slug]]   
-               1 File(s)          1,602 bytes
+               1 File(s)          1,784 bytes
 
  Directory of P:\project\Strix Engineering Studio\strix\src\app\products\[slug]
 
 [.]        [..]       page.tsx   
-               1 File(s)          2,533 bytes
+               1 File(s)          2,731 bytes
 
  Directory of P:\project\Strix Engineering Studio\strix\src\app\project-inquiry
 
@@ -103,12 +103,12 @@ globals.css           page.tsx
  Directory of P:\project\Strix Engineering Studio\strix\src\app\services
 
 [.]        [..]       page.tsx   [[slug]]   
-               1 File(s)          3,251 bytes
+               1 File(s)          3,265 bytes
 
  Directory of P:\project\Strix Engineering Studio\strix\src\app\services\[slug]
 
 [.]        [..]       page.tsx   
-               1 File(s)          2,679 bytes
+               1 File(s)          2,746 bytes
 
  Directory of P:\project\Strix Engineering Studio\strix\src\app\work
 
@@ -118,7 +118,7 @@ globals.css           page.tsx
  Directory of P:\project\Strix Engineering Studio\strix\src\app\work\[slug]
 
 [.]        [..]       page.tsx   
-               1 File(s)          1,678 bytes
+               1 File(s)          2,495 bytes
 
  Directory of P:\project\Strix Engineering Studio\strix\src\components
 
@@ -175,9 +175,8 @@ contact-form.tsx
 
  Directory of P:\project\Strix Engineering Studio\strix\src\components\seo
 
-[.]                content-page.tsx   
-[..]               json-ld.tsx        
-               2 File(s)          6,090 bytes
+[.]                [..]               content-page.tsx   
+               1 File(s)          6,327 bytes
 
  Directory of P:\project\Strix Engineering Studio\strix\src\components\shared
 
@@ -212,20 +211,6 @@ nestjs-architecture-for-operational-products.mdx
 scalable-api-ops.mdx
 
                3 File(s)          1,956 bytes
-
- Directory of P:\project\Strix Engineering Studio\strix\src\design
-
-[.]
-[..]
-screencapture-okinawa-template-webflow-io-2026-05-30-22_31_56.png
-screencapture-okinawa-template-webflow-io-blog-blog-v1-2026-05-30-22_32_44.png
-screencapture-okinawa-template-webflow-io-contact-contact-v2-2026-05-30-22_34_13.png
-screencapture-okinawa-template-webflow-io-home-v2-2026-05-30-22_33_37.png
-screencapture-okinawa-template-webflow-io-pricing-pages-integrations-2026-05-30-22_33_08.png
-screencapture-okinawa-template-webflow-io-pricing-pages-pricing-2026-05-30-22_32_25.png
-THOUGHTSTREAM.md
-thoughtstream.ts
-               8 File(s)     28,911,872 bytes
 
  Directory of P:\project\Strix Engineering Studio\strix\src\features
 
@@ -272,16 +257,47 @@ thoughtstream.ts
 
  Directory of P:\project\Strix Engineering Studio\strix\src\lib
 
-[.]                content.ts         seo-content.ts     utils.ts
-[..]               db.ts              seo.ts             
-admin-auth.ts      mongo.ts           site.ts            
-admin-data.ts      prisma.ts          thoughtstream.ts   
-              11 File(s)        117,665 bytes
+[.]                admin-data.ts      mongo.ts           thoughtstream.ts
+[..]               content.ts         prisma.ts          utils.ts
+admin-auth.ts      db.ts              site.ts            
+               9 File(s)         24,631 bytes
 
  Directory of P:\project\Strix Engineering Studio\strix\src\prisma
 
 [.]             [..]            schema.prisma   seed.js         
                2 File(s)          6,576 bytes
+
+ Directory of P:\project\Strix Engineering Studio\strix\src\seo
+
+[.]           content.ts    json-ld.tsx   [schemas]     
+[..]          index.ts      [locations]   [services]    
+config.ts     [industries]  metadata.ts   
+               5 File(s)         91,063 bytes
+
+ Directory of P:\project\Strix Engineering Studio\strix\src\seo\industries
+
+[.]              definitions.ts   types.ts         
+[..]             resolver.ts      
+               3 File(s)          2,783 bytes
+
+ Directory of P:\project\Strix Engineering Studio\strix\src\seo\locations
+
+[.]            cities.ts      resolver.ts    types.ts       
+[..]           countries.ts   states.ts      
+               5 File(s)          1,296 bytes
+
+ Directory of P:\project\Strix Engineering Studio\strix\src\seo\schemas
+
+[.]               breadcrumb.ts     service.ts        
+[..]              faq.ts            website.ts        
+article.ts        organization.ts   
+               6 File(s)          3,335 bytes
+
+ Directory of P:\project\Strix Engineering Studio\strix\src\seo\services
+
+[.]               combinations.ts   resolver.ts       
+[..]              definitions.ts    types.ts          
+               4 File(s)         46,265 bytes
 
  Directory of P:\project\Strix Engineering Studio\strix\src\types
 
@@ -289,5 +305,5 @@ admin-data.ts      prisma.ts          thoughtstream.ts
                1 File(s)            118 bytes
 
      Total Files Listed:
-              89 File(s)     29,286,291 bytes
-             146 Dir(s)  21,960,990,720 bytes free
+             101 File(s)        431,439 bytes
+             158 Dir(s)  43,422,724,096 bytes free
