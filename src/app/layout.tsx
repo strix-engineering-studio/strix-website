@@ -34,7 +34,7 @@ const bodyFont = Geist({
 
 const monoFont = Geist_Mono({
   subsets: ["latin"],
-  variable: "--font-mono",
+  variable: "--font-code",
   display: "swap",
 });
 
@@ -84,7 +84,7 @@ export const viewport: Viewport = {
   width: "device-width",
   initialScale: 1,
   viewportFit: "cover",
-  themeColor: "#081316",
+
 };
 
 /* -------------------------------------------------------------------------- */
@@ -125,7 +125,7 @@ export default function RootLayout({
 
             <SiteFooter />
 
-            <StrixCursor />
+          
           </div>
 
           <CommandMenu />

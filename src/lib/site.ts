@@ -3,23 +3,7 @@ export type NavItem = {
     label: string
 }
 
-export type Project = {
-    slug: string
-    title: string
-    category: string
-    summary: string
-    tagline: string
-    stack: string[]
-    metrics: string[]
-    timeline: string
-    spotlight: string
-    problem: string
-    solution: string
-    result: string
-    architecture: string[]
-    deployment: string[]
-    highlights: string[]
-}
+
 
 export type Service = {
     title: string
@@ -73,71 +57,7 @@ export const heroStats = [
     { label: "Months of active support", value: 18 },
 ]
 
-export const featuredProjects: Project[] = [
-    {
-        slug: "operational-telemetry-platform",
-        title: "Operational Telemetry Platform",
-        category: "Operational Systems",
-        summary:
-            "A field operations platform for route visibility, offline capture, and leadership dashboards that stay usable in low-connectivity environments.",
-        tagline: "Operational clarity for teams working in motion.",
-        stack: ["Next.js", "NestJS", "PostgreSQL", "Prisma", "Redis", "WebSockets"],
-        metrics: ["38% faster dispatch decisions", "Offline capture on weak networks", "3 operator views unified"],
-        timeline: "34-day production launch",
-        spotlight: "Unified route telemetry, incident logging, and team visibility into one dependable workflow.",
-        problem:
-            "Field teams were relying on spreadsheets and delayed updates, which made dispatch decisions slow and inconsistent.",
-        solution:
-            "Built an offline-first system with sync queues, geospatial events, and an operator dashboard that made status visible in real time.",
-        result:
-            "Managers now have a reliable source of truth for field activity, and operational handoff is much faster.",
-        architecture: ["Geospatial events", "Offline sync queue", "Realtime dashboard", "Role-based access", "Audit log"],
-        deployment: ["Offline-first workflow", "Monitoring on critical routes", "Reliable sync on reconnect"],
-        highlights: ["field visibility", "offline capture", "operational dashboards"],
-    },
-    {
-        slug: "ai-workflow-orchestrator",
-        title: "AI Workflow Orchestrator",
-        category: "AI-enabled Systems",
-        summary:
-            "A guarded orchestration layer for research, retrieval, approvals, and content workflows that runs with auditability and clear operator control.",
-        tagline: "AI as a capability inside a larger product system.",
-        stack: ["Next.js", "NestJS", "OpenAI", "PostgreSQL", "Prisma", "Redis"],
-        metrics: ["42% faster turnaround", "<200ms internal API p95", "6 core automations"],
-        timeline: "34-day production launch",
-        spotlight: "Orchestrated multi-step AI jobs with retry logic, approval gates, and realtime feedback.",
-        problem:
-            "The client needed a way to coordinate multiple AI tasks without brittle one-off scripts and manual follow-up.",
-        solution:
-            "Designed an event-driven workflow engine, added queue-backed execution, and surfaced a clean operator UI for monitoring every job.",
-        result:
-            "Teams launch and observe AI work from one place with clearer ownership and predictable delivery.",
-        architecture: ["API gateway", "Queue workers", "Prompt routing", "Realtime status stream", "Audit log"],
-        deployment: ["Audit trail for every AI action", "Retry-safe queue processing", "Guardrails for each workflow step"],
-        highlights: ["LLM routing", "approval gates", "observable workflow history"],
-    },
-    {
-        slug: "internal-operations-hub",
-        title: "Internal Operations Hub",
-        category: "Product Engineering",
-        summary:
-            "A back-office platform that centralizes admin flows, customer records, content controls, and day-to-day business operations.",
-        tagline: "Product engineering that reduces operational drag.",
-        stack: ["Next.js", "Auth.js", "PostgreSQL", "Prisma", "Tailwind", "Server Actions"],
-        metrics: ["5 key workflows consolidated", "2x faster admin actions", "Single source of truth"],
-        timeline: "3-week rollout",
-        spotlight: "Replaced scattered tools with a cohesive internal system for operating the business.",
-        problem:
-            "Teams were switching between too many tools for simple operational tasks, which slowed down support and content updates.",
-        solution:
-            "Built a coherent operations hub with clean permissions, fast data entry, and reusable workflow patterns.",
-        result:
-            "Daily operations became easier to manage, with less context switching and fewer dropped tasks.",
-        architecture: ["Admin workflows", "Permission model", "Structured forms", "Searchable records", "Activity log"],
-        deployment: ["Operational controls in one place", "Clear handoff between team members", "Support-ready workflow structure"],
-        highlights: ["admin tooling", "workflow automation", "support infrastructure"],
-    },
-]
+
 
 export const services: Service[] = [
     {
