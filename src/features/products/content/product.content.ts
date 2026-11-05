@@ -14,6 +14,7 @@ export const featuredProjects: Project[] = [
 
         featured: true,
         featuredOrder: 1,
+        coverImageUrl: "/assets/production-systems/4.png",
 
         links: [],
 
@@ -97,6 +98,7 @@ export const featuredProjects: Project[] = [
 
         featured: true,
         featuredOrder: 2,
+        coverImageUrl: "/assets/production-systems/6.png",
 
         links: [],
 
@@ -194,6 +196,7 @@ export const featuredProjects: Project[] = [
 
         featured: true,
         featuredOrder: 3,
+        coverImageUrl: "/assets/production-systems/7.png",
 
         links: [],
 
@@ -274,6 +277,7 @@ export const featuredProjects: Project[] = [
 
         featured: true,
         featuredOrder: 4,
+        coverImageUrl: "/assets/production-systems/2.png",
 
         links: [],
 
@@ -353,6 +357,7 @@ export const featuredProjects: Project[] = [
 
         featured: true,
         featuredOrder: 5,
+        coverImageUrl: "/assets/production-systems/5.png",
 
         links: [
             // Add the verified storefront URL before publishing.

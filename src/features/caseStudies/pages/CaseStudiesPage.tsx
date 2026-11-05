@@ -1,22 +1,21 @@
-
 import type { Metadata } from "next";
 import Link from "next/link";
-import { ArrowRight, ArrowUpRight, BriefcaseBusiness, Code2 } from "lucide-react";
+import Image from "next/image";
+import { ArrowUpRight, CheckCircle2, Code2, ExternalLink, Sparkles } from "lucide-react";
 import { caseStudies } from "../content/case-studies.content";
-
-
+import { featuredProjects } from "@/features/products/content/product.content";
 
 export const metadata: Metadata = {
-  title: "Case Studies | Strix Engineering Studio",
+  title: "Engineering Case Studies & Selected Work | Strix Engineering Studio",
   description:
-    "Explore software engineering case studies from Strix Engineering Studio, covering product development, mobile applications, web platforms, integrations, and system architecture.",
+    "Explore software engineering case studies from Strix Engineering Studio: full-stack platforms, Flutter mobile apps, NestJS backend systems, and AI workflows.",
   alternates: {
     canonical: "/case-studies",
   },
   openGraph: {
-    title: "Case Studies | Strix Engineering Studio",
+    title: "Engineering Case Studies | Strix Engineering Studio",
     description:
-      "Explore published engineering work, implementation decisions, and product outcomes from Strix Engineering Studio.",
+      "Explore published engineering work, technical decisions, and verifiable product outcomes from Strix Engineering Studio.",
     type: "website",
     url: "/case-studies",
   },
@@ -26,14 +25,12 @@ const publishedCaseStudies = caseStudies
   .filter(
     (study) =>
       study.status === "published" &&
-      (study.visibility === "public" ||
-        study.visibility === "anonymized"),
+      (study.visibility === "public" || study.visibility === "anonymized"),
   )
   .sort((a, b) => {
     if (a.featured !== b.featured) {
       return a.featured ? -1 : 1;
     }
-
     return (
       (a.featuredOrder ?? Number.MAX_SAFE_INTEGER) -
       (b.featuredOrder ?? Number.MAX_SAFE_INTEGER)
@@ -76,260 +73,253 @@ export default function CaseStudiesPage() {
         }}
       />
 
-      {/* Hero */}
-      <section className="border-b border-border">
-        <div className="mx-auto max-w-7xl px-5 py-20 sm:px-8 sm:py-28 lg:px-12 lg:py-32">
-          <div className="max-w-4xl">
-            <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-border px-3 py-1.5 text-sm text-muted-foreground">
-              <BriefcaseBusiness className="h-4 w-4" aria-hidden="true" />
-              Engineering work
+      {/* Editorial Hero Header */}
+      <section className="relative overflow-hidden border-b border-border/80 pt-16 pb-20 lg:pt-24 lg:pb-28">
+        <div
+          aria-hidden="true"
+          className="pointer-events-none absolute inset-0 blueprint-grid opacity-60"
+        />
+
+        <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <div className="max-w-4xl space-y-5">
+            <div className="inline-flex items-center gap-2 rounded-full border border-primary/30 bg-primary/5 px-3.5 py-1">
+              <span className="size-1.5 rounded-full bg-primary" />
+              <span className="font-mono text-[10px] font-semibold uppercase tracking-[0.24em] text-primary">
+                Portfolio & Engineering Deliveries
+              </span>
             </div>
 
-            <h1 className="max-w-4xl text-4xl font-semibold tracking-tight sm:text-5xl lg:text-7xl">
-              Case studies built around real engineering problems.
+            <h1 className="editorial-serif text-5xl leading-tight tracking-tight text-foreground sm:text-6xl lg:text-7xl">
+              Case studies built around{" "}
+              <span className="italic font-normal text-primary">
+                real engineering problems.
+              </span>
             </h1>
 
-            <p className="mt-6 max-w-2xl text-base leading-7 text-muted-foreground sm:text-lg sm:leading-8">
-              A closer look at the problems, technical decisions, system
-              architectures, and implementation work behind the products and
-              software systems we build.
+            <p className="max-w-2xl text-base leading-relaxed text-muted-foreground sm:text-lg">
+              A transparent look at the problems, technical decisions, system
+              architectures, and implementation work behind the products we build.
+              We distinguish client projects, internal systems, and prototypes.
             </p>
 
-            <div className="mt-9 flex flex-wrap gap-3">
+            <div className="flex flex-wrap items-center gap-4 pt-4">
               <Link
-                href="/project-inquiry"
-                className="inline-flex min-h-11 items-center justify-center gap-2 rounded-md bg-primary px-5 py-3 text-sm font-medium text-primary-foreground transition-opacity hover:opacity-90"
+                href="/contact"
+                className="inline-flex items-center gap-2 rounded-full bg-primary px-7 py-3.5 text-xs font-semibold uppercase tracking-[0.18em] text-primary-foreground shadow-md transition-all hover:bg-primary/90"
               >
-                Discuss a project
-                <ArrowRight className="h-4 w-4" aria-hidden="true" />
-              </Link>
-
-              <Link
-                href="/products"
-                className="inline-flex min-h-11 items-center justify-center gap-2 rounded-md border border-border px-5 py-3 text-sm font-medium transition-colors hover:bg-muted"
-              >
-                Explore products
-                <ArrowUpRight className="h-4 w-4" aria-hidden="true" />
+                <span>Start a project inquiry</span>
+                <ArrowUpRight className="size-4" />
               </Link>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Case study listing */}
-      <section
-        aria-labelledby="case-studies-heading"
-        className="mx-auto max-w-7xl px-5 py-16 sm:px-8 sm:py-20 lg:px-12 lg:py-24"
-      >
-        <div className="mb-10 flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
-          <div>
-            <p className="text-sm font-medium uppercase tracking-[0.16em] text-muted-foreground">
-              Selected work
-            </p>
-
-            <h2
-              id="case-studies-heading"
-              className="mt-3 text-2xl font-semibold tracking-tight sm:text-3xl"
-            >
-              Engineering case studies
-            </h2>
-
-            <p className="mt-3 max-w-2xl text-sm leading-6 text-muted-foreground sm:text-base">
-              Detailed accounts of project context, implementation, architecture,
-              and outcomes.
+      {/* Client Deliveries & Featured Case Studies */}
+      <section className="border-b border-border/80 py-20 lg:py-28">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <div className="mb-12 flex flex-col justify-between gap-4 border-b border-border/80 pb-6 sm:flex-row sm:items-end">
+            <div>
+              <p className="font-mono text-[10px] uppercase tracking-[0.25em] text-primary">
+                VERIFIED CASE STUDIES
+              </p>
+              <h2 className="editorial-serif mt-2 text-3xl font-normal text-foreground sm:text-4xl">
+                Client & Production Deliveries
+              </h2>
+            </div>
+            <p className="font-mono text-xs text-muted-foreground">
+              {publishedCaseStudies.length} DOCUMENTED ENGAGEMENTS
             </p>
           </div>
 
-          <p className="text-sm text-muted-foreground">
-            {publishedCaseStudies.length}{" "}
-            {publishedCaseStudies.length === 1
-              ? "published case study"
-              : "published case studies"}
-          </p>
-        </div>
-
-        {publishedCaseStudies.length > 0 ? (
-          <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:gap-8">
+          <div className="grid grid-cols-1 gap-10 md:grid-cols-2">
             {publishedCaseStudies.map((study, index) => (
               <article
                 key={study.slug}
-                className="group flex h-full flex-col overflow-hidden rounded-xl border border-border bg-card transition-colors hover:border-foreground/30"
+                className="group relative flex flex-col justify-between rounded-xl border border-border bg-card p-6 shadow-sm transition-all duration-300 hover:border-primary/50 hover:shadow-lg lg:p-8"
               >
-                {/* Cover image */}
-                <Link
-                  href={`/case-studies/${study.slug}`}
-                  aria-label={`Read case study: ${study.title}`}
-                  className="block"
-                >
-                  <div className="relative aspect-[16/9] overflow-hidden border-b border-border bg-muted">
-                    {study.coverImageUrl ? (
-                      // eslint-disable-next-line @next/next/no-img-element
-                      <img
-                        src={study.coverImageUrl}
-                        alt={`${study.title} cover`}
-                        loading={index < 2 ? "eager" : "lazy"}
-                        className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-[1.03]"
-                      />
-                    ) : (
-                      <div className="flex h-full flex-col justify-between p-6 sm:p-8">
-                        <div className="flex h-11 w-11 items-center justify-center rounded-lg border border-border bg-background">
-                          <Code2
-                            className="h-5 w-5 text-muted-foreground"
-                            aria-hidden="true"
-                          />
-                        </div>
-
-                        <div>
-                          <p className="text-xs font-medium uppercase tracking-[0.18em] text-muted-foreground">
-                            Strix Engineering Studio
-                          </p>
-                          <p className="mt-2 line-clamp-2 text-xl font-semibold tracking-tight sm:text-2xl">
-                            {study.title}
-                          </p>
-                        </div>
-                      </div>
-                    )}
-                  </div>
-                </Link>
-
-                <div className="flex flex-1 flex-col p-5 sm:p-7">
-                  <div className="flex flex-wrap items-center gap-2">
-                    <span className="rounded-full border border-border px-2.5 py-1 text-xs text-muted-foreground">
-                      {study.category}
+                <div>
+                  {/* Top Meta */}
+                  <div className="flex items-center justify-between border-b border-border/80 pb-4">
+                    <span className="editorial-serif text-3xl font-normal text-primary">
+                      0{index + 1}
                     </span>
-
-                    <span className="rounded-full bg-muted px-2.5 py-1 text-xs text-muted-foreground">
+                    <span className="rounded-full border border-border bg-muted/40 px-3 py-1 font-mono text-[10px] uppercase tracking-wider text-foreground">
                       {formatCaseStudyType(study.type)}
                     </span>
                   </div>
 
-                  <h3 className="mt-5 text-xl font-semibold tracking-tight sm:text-2xl">
-                    <Link
-                      href={`/case-studies/${study.slug}`}
-                      className="transition-colors hover:text-muted-foreground"
-                    >
+                  {/* Visual Preview Frame */}
+                  {study.coverImageUrl && (
+                    <div className="relative my-6 overflow-hidden rounded-md border border-border/80 bg-background">
+                      <div className="relative aspect-[16/10] w-full overflow-hidden">
+                        <Image
+                          src={study.coverImageUrl}
+                          alt={`${study.title} cover preview`}
+                          fill
+                          sizes="(max-width: 768px) 100vw, 540px"
+                          className="object-cover transition-transform duration-500 group-hover:scale-105"
+                        />
+                      </div>
+                    </div>
+                  )}
+
+                  {/* Category & Title */}
+                  <p className="font-mono text-[9px] uppercase tracking-[0.22em] text-muted-foreground">
+                    {study.category}
+                  </p>
+
+                  <h3 className="editorial-serif mt-2 text-2xl font-normal text-foreground transition-colors group-hover:text-primary sm:text-3xl">
+                    <Link href={`/case-studies/${study.slug}`} className="focus:outline-hidden">
                       {study.title}
                     </Link>
                   </h3>
 
-                  {study.subtitle && (
-                    <p className="mt-2 text-sm font-medium text-muted-foreground">
-                      {study.subtitle}
-                    </p>
-                  )}
-
-                  <p className="mt-3 line-clamp-3 text-sm leading-6 text-muted-foreground sm:text-base sm:leading-7">
+                  <p className="mt-3 text-xs leading-relaxed text-muted-foreground sm:text-sm">
                     {study.summary}
                   </p>
 
-                  {study.technologies.length > 0 && (
-                    <div className="mt-5 flex flex-wrap gap-2">
-                      {study.technologies.slice(0, 5).map((technology) => (
-                        <span
-                          key={technology.name}
-                          className="rounded-md border border-border px-2.5 py-1 text-xs text-muted-foreground"
-                        >
-                          {technology.name}
-                        </span>
-                      ))}
-
-                      {study.technologies.length > 5 && (
-                        <span className="px-1 py-1 text-xs text-muted-foreground">
-                          +{study.technologies.length - 5} more
-                        </span>
+                  {/* Client Info / Role */}
+                  {study.client?.name && (
+                    <div className="mt-4 rounded-sm border border-border/60 bg-muted/20 p-3 text-xs text-muted-foreground">
+                      <span className="font-mono uppercase tracking-wider text-foreground">
+                        Client:
+                      </span>{" "}
+                      {study.client.name}
+                      {study.role && (
+                        <p className="mt-1">
+                          <span className="font-mono uppercase tracking-wider text-foreground">
+                            Role:
+                          </span>{" "}
+                          {study.role}
+                        </p>
                       )}
                     </div>
                   )}
 
-                  <div className="mt-auto flex items-center justify-between gap-4 border-t border-border pt-5 mt-7">
-                    <div className="min-w-0">
-                      {study.client?.confidential ? (
-                        <p className="truncate text-sm text-muted-foreground">
-                          Anonymized client
-                        </p>
-                      ) : study.client?.name ? (
-                        <p className="truncate text-sm text-muted-foreground">
-                          {study.client.name}
-                        </p>
-                      ) : (
-                        <p className="text-sm text-muted-foreground">
-                          Strix project
-                        </p>
-                      )}
-
-                      {study.duration && (
-                        <p className="mt-1 text-xs text-muted-foreground">
-                          {study.duration}
-                        </p>
-                      )}
+                  {/* Tech stack */}
+                  {study.technologies.length > 0 && (
+                    <div className="mt-5 flex flex-wrap gap-1.5">
+                      {study.technologies.slice(0, 6).map((tech) => (
+                        <span
+                          key={tech.name}
+                          className="rounded-full border border-border bg-background px-2.5 py-0.5 font-mono text-[10px] text-foreground/80"
+                        >
+                          {tech.name}
+                        </span>
+                      ))}
                     </div>
+                  )}
+                </div>
 
-                    <Link
-                      href={`/case-studies/${study.slug}`}
-                      className="inline-flex shrink-0 items-center gap-2 text-sm font-medium"
-                    >
-                      Read case study
-                      <ArrowRight
-                        className="h-4 w-4 transition-transform group-hover:translate-x-1"
-                        aria-hidden="true"
-                      />
-                    </Link>
-                  </div>
+                {/* Bottom Action */}
+                <div className="mt-8 flex items-center justify-between border-t border-border/80 pt-4">
+                  <span className="font-mono text-[10px] text-muted-foreground">
+                    STATUS: {study.status.toUpperCase()}
+                  </span>
+
+                  <Link
+                    href={`/case-studies/${study.slug}`}
+                    className="inline-flex items-center gap-1.5 font-mono text-xs font-semibold uppercase tracking-wider text-primary transition-colors hover:text-foreground"
+                  >
+                    <span>Read case study</span>
+                    <ArrowUpRight className="size-3.5 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+                  </Link>
                 </div>
               </article>
             ))}
           </div>
-        ) : (
-          <div className="rounded-xl border border-dashed border-border px-6 py-16 text-center sm:px-12 sm:py-20">
-            <div className="mx-auto flex h-12 w-12 items-center justify-center rounded-xl border border-border bg-muted">
-              <BriefcaseBusiness
-                className="h-5 w-5 text-muted-foreground"
-                aria-hidden="true"
-              />
-            </div>
-
-            <h3 className="mt-5 text-xl font-semibold tracking-tight">
-              Case studies are being prepared
-            </h3>
-
-            <p className="mx-auto mt-3 max-w-lg text-sm leading-6 text-muted-foreground sm:text-base">
-              We are documenting the engineering decisions, implementation
-              details, and outcomes behind our work. Published case studies will
-              appear here.
-            </p>
-
-            <Link
-              href="/project-inquiry"
-              className="mt-7 inline-flex items-center gap-2 text-sm font-medium underline underline-offset-4"
-            >
-              Discuss your project
-              <ArrowRight className="h-4 w-4" aria-hidden="true" />
-            </Link>
-          </div>
-        )}
+        </div>
       </section>
 
-      {/* Bottom CTA */}
-      <section className="border-t border-border">
-        <div className="mx-auto flex max-w-7xl flex-col gap-6 px-5 py-16 sm:px-8 sm:py-20 lg:flex-row lg:items-center lg:justify-between lg:px-12">
-          <div className="max-w-2xl">
-            <h2 className="text-2xl font-semibold tracking-tight sm:text-3xl">
-              Have a system to build or improve?
-            </h2>
-
-            <p className="mt-3 text-sm leading-6 text-muted-foreground sm:text-base">
-              Tell us about the product, technical challenge, or workflow you
-              need to solve.
-            </p>
+      {/* Studio Products & Internal Systems Section */}
+      <section className="py-20 lg:py-28">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <div className="mb-12 flex flex-col justify-between gap-4 border-b border-border/80 pb-6 sm:flex-row sm:items-end">
+            <div>
+              <p className="font-mono text-[10px] uppercase tracking-[0.25em] text-primary">
+                INTERNAL PLATFORMS & EXPERIMENTS
+              </p>
+              <h2 className="editorial-serif mt-2 text-3xl font-normal text-foreground sm:text-4xl">
+                Products Built by Strix
+              </h2>
+            </div>
+            <Link
+              href="/products"
+              className="font-mono text-xs uppercase tracking-wider text-primary hover:text-foreground"
+            >
+              View all products →
+            </Link>
           </div>
 
-          <Link
-            href="/project-inquiry"
-            className="inline-flex min-h-11 shrink-0 items-center justify-center gap-2 self-start rounded-md bg-primary px-5 py-3 text-sm font-medium text-primary-foreground transition-opacity hover:opacity-90 lg:self-center"
-          >
-            Start a conversation
-            <ArrowRight className="h-4 w-4" aria-hidden="true" />
-          </Link>
+          <div className="grid grid-cols-1 gap-8 md:grid-cols-3">
+            {featuredProjects.slice(0, 3).map((prod) => (
+              <article
+                key={prod.slug}
+                className="group flex flex-col justify-between rounded-lg border border-border bg-card p-6 shadow-sm transition-all hover:border-primary/50"
+              >
+                <div>
+                  <span className="font-mono text-[9px] uppercase tracking-wider text-primary">
+                    {prod.category} · {prod.status.toUpperCase()}
+                  </span>
+
+                  <h3 className="editorial-serif mt-3 text-2xl font-normal text-foreground transition-colors group-hover:text-primary">
+                    <Link href={`/products/${prod.slug}`}>{prod.title}</Link>
+                  </h3>
+
+                  <p className="mt-2 text-xs leading-relaxed text-muted-foreground">
+                    {prod.summary}
+                  </p>
+
+                  <div className="mt-4 flex flex-wrap gap-1.5">
+                    {prod.stack.map((s) => (
+                      <span
+                        key={s}
+                        className="rounded-full border border-border bg-background px-2 py-0.5 font-mono text-[9px] text-foreground/75"
+                      >
+                        {s}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+
+                <div className="mt-6 border-t border-border/80 pt-4">
+                  <Link
+                    href={`/products/${prod.slug}`}
+                    className="inline-flex items-center gap-1.5 font-mono text-xs text-primary transition-colors hover:text-foreground"
+                  >
+                    <span>Explore {prod.title}</span>
+                    <ArrowUpRight className="size-3.5" />
+                  </Link>
+                </div>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Bottom Conversion Section */}
+      <section className="border-t border-border/80 bg-muted/20 py-16">
+        <div className="mx-auto max-w-7xl px-4 text-center sm:px-6 lg:px-8">
+          <span className="font-mono text-[11px] uppercase tracking-[0.26em] text-primary">
+            HAVE A SYSTEM TO ENGINEER?
+          </span>
+          <h2 className="editorial-serif mt-3 text-3xl font-normal text-foreground sm:text-4xl">
+            Let&apos;s engineer your software product.
+          </h2>
+          <p className="mx-auto mt-3 max-w-xl text-sm text-muted-foreground">
+            Tell us about your product idea, existing codebase, or technical
+            bottleneck. We will provide a direct architectural review.
+          </p>
+          <div className="mt-6">
+            <Link
+              href="/contact"
+              className="inline-flex items-center gap-2 rounded-full bg-primary px-7 py-3.5 text-xs font-semibold uppercase tracking-[0.18em] text-primary-foreground shadow-md transition-all hover:bg-primary/90"
+            >
+              <span>Start project inquiry</span>
+              <ArrowUpRight className="size-4" />
+            </Link>
+          </div>
         </div>
       </section>
     </main>

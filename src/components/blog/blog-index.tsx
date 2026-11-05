@@ -2,9 +2,10 @@
 
 import Link from "next/link";
 import { useMemo, useState } from "react";
-import { ArrowUpRight, Search, Tag } from "lucide-react";
+import { ArrowUpRight, ExternalLink, Search, Tag } from "lucide-react";
 import type { BlogPostMeta } from "@/lib/content";
 import { cn } from "@/lib/utils";
+import { SiInstagram, SiLinkerd } from "react-icons/si";
 
 type BlogIndexProps = {
   posts: BlogPostMeta[];
@@ -33,111 +34,239 @@ export function BlogIndex({ posts }: BlogIndexProps) {
   );
 
   return (
-    <div className="space-y-8">
-      <div className="grid gap-4 rounded-xl border border-white/10 bg-white/4 p-4 lg:grid-cols-[1fr_auto] lg:items-center">
-        <label className="flex items-center gap-3 rounded border border-white/10 bg-black/20 px-4 py-3 text-white/60">
-          <Search className="size-4" />
+    <div className="space-y-12">
+      {/* Search & Tag Filter Bar */}
+      <div className="flex flex-col gap-4 rounded-xl border border-border bg-card p-4 sm:flex-row sm:items-center sm:justify-between">
+        <label className="flex flex-1 items-center gap-2.5 rounded-md border border-border bg-background px-3.5 py-2.5 text-muted-foreground transition-colors focus-within:border-primary">
+          <Search className="size-4 shrink-0" />
           <input
             value={query}
             onChange={(event) => setQuery(event.target.value)}
-            placeholder="Search articles"
-            className="w-full bg-transparent text-sm text-white outline-none placeholder:text-white/35"
+            placeholder="Search engineering insights & architecture guides..."
+            className="w-full bg-transparent text-xs text-foreground outline-none placeholder:text-muted-foreground/60 sm:text-sm"
           />
         </label>
-        <div className="flex flex-wrap gap-2">
+
+        <div className="flex flex-wrap gap-1.5">
           {tags.map((item) => (
             <button
               key={item}
               type="button"
               onClick={() => setTag(item)}
               className={cn(
-                "inline-flex items-center gap-2 rounded-full border px-4 py-2 text-sm transition",
+                "inline-flex items-center gap-1.5 rounded-full border px-3 py-1.5 font-mono text-[11px] transition-all",
                 tag === item
-                  ? "border-white/20 bg-white/10 text-foreground"
-                  : "border-white/10 bg-white/5 text-white/68 hover:bg-white/8",
+                  ? "border-primary bg-primary text-primary-foreground font-semibold"
+                  : "border-border bg-background text-muted-foreground hover:border-border/80 hover:text-foreground",
               )}
             >
-              <Tag className="size-4" />
-              {item}
+              <Tag className="size-3" />
+              <span>{item}</span>
             </button>
           ))}
         </div>
       </div>
 
+      {/* Featured Lead Post */}
       {filtered[0] ? (
-        <Link
-          href={`/blog/${filtered[0].slug}`}
-          className="group grid overflow-hidden rounded-xl border border-white/10 bg-white/4 lg:grid-cols-[0.95fr_1.05fr]"
-        >
-          <div className="min-h-72 bg-[radial-gradient(circle_at_18%_22%,rgba(216,158,88,0.3),transparent_24%),radial-gradient(circle_at_82%_24%,rgba(122,168,112,0.22),transparent_22%),linear-gradient(180deg,rgba(255,255,255,0.06),rgba(255,255,255,0.02))]" />
-          <div className="space-y-4 p-5 sm:p-6 lg:p-8">
-            <div className="flex items-center justify-between gap-4 text-xs uppercase tracking-[0.35em] text-white/45">
-              <span>{filtered[0].tag}</span>
-              <span>{filtered[0].readingTime}</span>
-            </div>
-            <h2 className="text-3xl font-semibold tracking-tight text-foreground sm:text-4xl">
-              {filtered[0].title}
-            </h2>
-            <p className="max-w-2xl text-sm leading-7 text-muted-foreground">
-              {filtered[0].excerpt}
-            </p>
-            <div className="flex items-center justify-between pt-4 text-sm text-muted-foreground">
-              <span>
-                {new Date(filtered[0].publishedAt).toLocaleDateString("en-US", {
-                  month: "long",
-                  day: "numeric",
-                  year: "numeric",
-                })}
-              </span>
-              <span className="inline-flex items-center gap-2 text-foreground transition group-hover:translate-x-0.5">
-                Read article
-                <ArrowUpRight className="size-4" />
-              </span>
-            </div>
-          </div>
-        </Link>
-      ) : null}
-
-      <div className="grid gap-5 lg:grid-cols-2">
-        {filtered.slice(1).map((post) => (
+        <article className="group overflow-hidden rounded-xl border border-border bg-card shadow-sm transition-all hover:border-primary/50">
           <Link
-            key={post.slug}
-            href={`/blog/${post.slug}`}
-            className="group overflow-hidden rounded-xl border border-white/10 bg-white/4 transition hover:-translate-y-1 hover:bg-white/5"
+            href={`/insights/${filtered[0].slug}`}
+            className="grid grid-cols-1 lg:grid-cols-12"
           >
-            <div className="h-40 bg-[radial-gradient(circle_at_25%_20%,rgba(216,158,88,0.24),transparent_24%),radial-gradient(circle_at_70%_25%,rgba(122,168,112,0.18),transparent_22%),linear-gradient(180deg,rgba(255,255,255,0.06),rgba(255,255,255,0.012))]" />
-            <div className="space-y-4 p-5">
-              <div className="flex items-center justify-between gap-4">
-                <p className="text-xs uppercase tracking-[0.35em] text-white/45">
-                  {post.tag}
-                </p>
-                <span className="text-xs text-white/38">
-                  {post.readingTime}
+            {/* Visual Editorial Strip */}
+            <div className="relative min-h-64 border-b border-border bg-sand/30 p-8 dark:bg-card/90 lg:col-span-5 lg:border-r lg:border-b-0 flex flex-col justify-between">
+              <div className="flex items-center justify-between">
+                <span className="font-mono text-[10px] uppercase tracking-[0.24em] text-primary font-semibold">
+                  FEATURED ESSAY
+                </span>
+                <span className="font-mono text-[10px] text-muted-foreground">
+                  {filtered[0].readingTime}
                 </span>
               </div>
-              <h3 className="text-2xl font-semibold text-foreground">
-                {post.title}
-              </h3>
-              <p className="max-w-2xl text-sm leading-7 text-muted-foreground">
-                {post.excerpt}
-              </p>
-              <div className="flex items-center justify-between text-sm text-muted-foreground">
-                <span>
+
+              <div className="my-auto py-6">
+                <span className="editorial-serif text-3xl italic text-foreground/80 sm:text-4xl">
+                  Architecture & Product Thinking
+                </span>
+              </div>
+
+              <div className="flex items-center gap-2 font-mono text-[10px] text-muted-foreground">
+                <span>STRIX ENGINEERING STUDIO</span>
+              </div>
+            </div>
+
+            {/* Content Body */}
+            <div className="flex flex-col justify-between p-6 sm:p-8 lg:col-span-7">
+              <div className="space-y-4">
+                <div className="flex items-center gap-2">
+                  <span className="rounded-full border border-primary/20 bg-primary/5 px-2.5 py-0.5 font-mono text-[10px] uppercase tracking-wider text-primary">
+                    {filtered[0].tag}
+                  </span>
+                  <span className="font-mono text-xs text-muted-foreground">
+                    {new Date(filtered[0].publishedAt).toLocaleDateString(
+                      "en-US",
+                      {
+                        month: "short",
+                        day: "numeric",
+                        year: "numeric",
+                      },
+                    )}
+                  </span>
+                </div>
+
+                <h2 className="editorial-serif text-3xl font-normal tracking-tight text-foreground transition-colors group-hover:text-primary sm:text-4xl">
+                  {filtered[0].title}
+                </h2>
+
+                <p className="text-xs leading-relaxed text-muted-foreground sm:text-sm">
+                  {filtered[0].excerpt}
+                </p>
+              </div>
+
+              <div className="mt-8 flex items-center justify-between border-t border-border/80 pt-4">
+                <span className="font-mono text-xs text-primary font-medium">
+                  Read full article →
+                </span>
+                <ArrowUpRight className="size-4 text-primary transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+              </div>
+            </div>
+          </Link>
+        </article>
+      ) : null}
+
+      {/* Grid of Remaining Posts */}
+      {filtered.length > 1 && (
+        <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
+          {filtered.slice(1).map((post) => (
+            <article
+              key={post.slug}
+              className="group flex flex-col justify-between rounded-xl border border-border bg-card p-6 shadow-sm transition-all hover:border-primary/50 hover:shadow-md"
+            >
+              <div className="space-y-3.5">
+                <div className="flex items-center justify-between border-b border-border/70 pb-3">
+                  <span className="font-mono text-[10px] uppercase tracking-wider text-primary font-semibold">
+                    {post.tag}
+                  </span>
+                  <span className="font-mono text-[10px] text-muted-foreground">
+                    {post.readingTime}
+                  </span>
+                </div>
+
+                <h3 className="editorial-serif text-2xl font-normal text-foreground transition-colors group-hover:text-primary">
+                  <Link href={`/insights/${post.slug}`}>{post.title}</Link>
+                </h3>
+
+                <p className="text-xs leading-relaxed text-muted-foreground">
+                  {post.excerpt}
+                </p>
+              </div>
+
+              <div className="mt-6 flex items-center justify-between border-t border-border/80 pt-4">
+                <span className="font-mono text-[11px] text-muted-foreground">
                   {new Date(post.publishedAt).toLocaleDateString("en-US", {
-                    month: "long",
+                    month: "short",
                     day: "numeric",
                     year: "numeric",
                   })}
                 </span>
-                <span className="inline-flex items-center gap-2 text-foreground transition group-hover:translate-x-0.5">
-                  Read article
-                  <ArrowUpRight className="size-4" />
-                </span>
+
+                <Link
+                  href={`/insights/${post.slug}`}
+                  className="inline-flex items-center gap-1 font-mono text-xs text-primary transition-colors hover:text-foreground"
+                >
+                  <span>Read article</span>
+                  <ArrowUpRight className="size-3.5" />
+                </Link>
               </div>
-            </div>
-          </Link>
-        ))}
-      </div>
+            </article>
+          ))}
+        </div>
+      )}
+
+      {/* Selected Social Signals & Studio Channels */}
+      <section className="rounded-xl border border-border bg-muted/20 p-8 sm:p-10">
+        <div className="flex flex-col justify-between gap-4 border-b border-border/80 pb-6 sm:flex-row sm:items-end">
+          <div>
+            <span className="font-mono text-[10px] uppercase tracking-[0.24em] text-primary">
+              SOCIAL CHANNELS & SHORT ESSAYS
+            </span>
+            <h2 className="editorial-serif mt-1 text-2xl font-normal text-foreground sm:text-3xl">
+              Signals from LinkedIn & Instagram
+            </h2>
+          </div>
+
+          <div className="flex items-center gap-3">
+            <a
+              href="https://www.linkedin.com/company/strix-engineering-studio/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-1.5 rounded-full border border-border bg-background px-3.5 py-1.5 font-mono text-xs text-foreground transition-colors hover:border-primary hover:text-primary"
+            >
+              <SiLinkerd className="size-3.5 text-primary" />
+              <span>LinkedIn</span>
+              <ExternalLink className="size-3" />
+            </a>
+            <a
+              href="https://www.instagram.com/strix.website/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-1.5 rounded-full border border-border bg-background px-3.5 py-1.5 font-mono text-xs text-foreground transition-colors hover:border-primary hover:text-primary"
+            >
+              <SiInstagram className="size-3.5 text-primary" />
+              <span>Instagram</span>
+              <ExternalLink className="size-3" />
+            </a>
+          </div>
+        </div>
+
+        <div className="mt-6 grid grid-cols-1 gap-6 sm:grid-cols-2">
+          <div className="rounded-lg border border-border/70 bg-card p-5">
+            <p className="font-mono text-[10px] uppercase tracking-wider text-primary">
+              SIGNAL // SOFTWARE ARCHITECTURE
+            </p>
+            <h4 className="editorial-serif mt-2 text-lg font-normal text-foreground">
+              A demo proves the happy path. Production handles the reality.
+            </h4>
+            <p className="mt-2 text-xs leading-relaxed text-muted-foreground">
+              How to architect timeouts, circuit breakers, and idempotency
+              handlers so your application never crashes during third-party API
+              downtime.
+            </p>
+            <a
+              href="https://www.linkedin.com/company/strix-engineering-studio/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="mt-4 inline-flex items-center gap-1.5 font-mono text-xs text-primary transition-colors hover:text-foreground"
+            >
+              <span>Read discussion on LinkedIn</span>
+              <ArrowUpRight className="size-3" />
+            </a>
+          </div>
+
+          <div className="rounded-lg border border-border/70 bg-card p-5">
+            <p className="font-mono text-[10px] uppercase tracking-wider text-primary">
+              SIGNAL // PRODUCT STRATEGY
+            </p>
+            <h4 className="editorial-serif mt-2 text-lg font-normal text-foreground">
+              Build the right system before building more software.
+            </h4>
+            <p className="mt-2 text-xs leading-relaxed text-muted-foreground">
+              Why product-market fit requires domain modeling and operational
+              clarity, not just building more features that nobody asked for.
+            </p>
+            <a
+              href="https://www.linkedin.com/company/strix-engineering-studio/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="mt-4 inline-flex items-center gap-1.5 font-mono text-xs text-primary transition-colors hover:text-foreground"
+            >
+              <span>Read discussion on LinkedIn</span>
+              <ArrowUpRight className="size-3" />
+            </a>
+          </div>
+        </div>
+      </section>
     </div>
   );
 }

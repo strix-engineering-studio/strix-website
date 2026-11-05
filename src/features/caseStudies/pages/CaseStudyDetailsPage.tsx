@@ -178,7 +178,7 @@ export default async function CaseStudyDetailPage({
               Strix Engineering Studio · Case study
             </p>
 
-            <h1 className="mt-4 text-4xl font-semibold tracking-tight sm:text-5xl lg:text-7xl">
+            <h1 className="editorial-serif mt-4 text-4xl font-normal leading-tight tracking-tight sm:text-5xl lg:text-6xl">
               {study.title}
             </h1>
 
@@ -690,7 +690,7 @@ export default async function CaseStudyDetailPage({
               implementation goals with Strix Engineering Studio.
             </p>
             <Link
-              href="/project-inquiry"
+              href="/contact"
               className="mt-5 inline-flex w-full items-center justify-center gap-2 rounded-md bg-primary px-4 py-3 text-sm font-medium text-primary-foreground transition-opacity hover:opacity-90"
             >
               Discuss a project
@@ -741,7 +741,7 @@ export default async function CaseStudyDetailPage({
             </p>
             <div className="mt-7 flex flex-wrap gap-3">
               <Link
-                href="/project-inquiry"
+                href="/contact"
                 className="inline-flex items-center gap-2 rounded-md bg-primary px-5 py-3 text-sm font-medium text-primary-foreground transition-opacity hover:opacity-90"
               >
                 Start a conversation

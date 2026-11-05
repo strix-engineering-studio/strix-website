@@ -18,6 +18,7 @@ export const caseStudies: CaseStudy[] = [
         visibility: "public",
         featured: true,
         featuredOrder: 1,
+        coverImageUrl: "/assets/projects/hugged/made for every caregiver.webp",
 
         client: {
             name: "Hugged",
@@ -189,6 +190,7 @@ export const caseStudies: CaseStudy[] = [
         visibility: "public",
         featured: true,
         featuredOrder: 2,
+        coverImageUrl: "/assets/production-systems/3.png",
 
         client: {
             name: "Bridget Tech Innovation Private Limited",

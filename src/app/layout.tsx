@@ -3,6 +3,7 @@ import { Geist, Geist_Mono, Instrument_Serif } from "next/font/google";
 
 import { SiteFooter } from "@/components/layout/site-footer";
 import { SiteHeader } from "@/components/layout/site-header";
+import { MobileBottomNavigation } from "@/components/layout/mobile-bottom-navigation";
 
 import { CommandMenu } from "@/components/shared/command-menu";
 import { PwaRegister } from "@/components/shared/pwa-register";
@@ -125,7 +126,8 @@ export default function RootLayout({
 
             <SiteFooter />
 
-          
+            {/* Floating bottom navigation — mobile/tablet only, hidden on desktop */}
+            <MobileBottomNavigation />
           </div>
 
           <CommandMenu />

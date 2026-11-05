@@ -65,11 +65,176 @@
  * switches to a deep-brown engineering interface.
  */
 
+ 
+/* ==========================================
+   STRIX — LIGHT THEME
+   Black & White foundation
+========================================== */
+
 :root {
   color-scheme: light;
 
+  --strix-orange: #F7931E;
+  --strix-brown: #2A1E17;
+  --strix-charcoal: #111111;
+  --strix-sand: #EDE6DA;
+  --strix-white: #FFFFFF;
+  --strix-gold: #C49A52;
+
+  /* Main surfaces */
+  --background: #FFFFFF;
+  --foreground: #111111;
+
+  --card: #FFFFFF;
+  --card-foreground: #111111;
+
+  --popover: #FFFFFF;
+  --popover-foreground: #111111;
+
+  /* Brand highlight */
+  --primary: #F7931E;
+  --primary-foreground: #111111;
+
+  /* Neutral supporting surfaces */
+  --secondary: #F5F5F5;
+  --secondary-foreground: #111111;
+
+  --muted: #F5F5F5;
+  --muted-foreground: #666666;
+
+  /* Accent is a highlight, not a background theme */
+  --accent: #FFF1DF;
+  --accent-foreground: #2A1E17;
+
+  --border: #E5E5E5;
+  --input: #D4D4D4;
+  --ring: #F7931E;
+
+  --destructive: #DC2626;
+
+  --chart-1: #F7931E;
+  --chart-2: #111111;
+  --chart-3: #C49A52;
+  --chart-4: #2A1E17;
+  --chart-5: #777777;
+
+  --radius: 0.5rem;
+
+  --sidebar: #FFFFFF;
+  --sidebar-foreground: #111111;
+  --sidebar-primary: #F7931E;
+  --sidebar-primary-foreground: #111111;
+  --sidebar-accent: #F5F5F5;
+  --sidebar-accent-foreground: #111111;
+  --sidebar-border: #E5E5E5;
+  --sidebar-ring: #F7931E;
+
+  /* Pure neutral page foundation */
+  --page-background: #FFFFFF;
+
+  --page-overlay:
+    linear-gradient(
+      rgba(17, 17, 17, 0.035) 1px,
+      transparent 1px
+    ),
+    linear-gradient(
+      90deg,
+      rgba(17, 17, 17, 0.035) 1px,
+      transparent 1px
+    );
+
+  --surface: #FFFFFF;
+  --surface-strong: #F5F5F5;
+  --surface-dark: #111111;
+
+  --border-subtle: #E5E5E5;
+
+  --text-primary: #111111;
+  --text-secondary: #555555;
+  --text-muted: #777777;
+}
+
+
+/* ==========================================
+   STRIX — DARK THEME
+   Black & White foundation
+========================================== */
+
+html.dark {
+  color-scheme: dark;
+
+  --background: #0A0A0A;
+  --foreground: #FFFFFF;
+
+  --card: #111111;
+  --card-foreground: #FFFFFF;
+
+  --popover: #151515;
+  --popover-foreground: #FFFFFF;
+
+  --primary: #F7931E;
+  --primary-foreground: #111111;
+
+  --secondary: #1A1A1A;
+  --secondary-foreground: #FFFFFF;
+
+  --muted: #171717;
+  --muted-foreground: #A3A3A3;
+
+  --accent: #33200E;
+  --accent-foreground: #FFD6A6;
+
+  --border: #292929;
+  --input: #383838;
+  --ring: #F7931E;
+
+  --destructive: #F87171;
+
+  --chart-1: #F7931E;
+  --chart-2: #FFFFFF;
+  --chart-3: #C49A52;
+  --chart-4: #A3A3A3;
+  --chart-5: #2A1E17;
+
+  --sidebar: #0A0A0A;
+  --sidebar-foreground: #FFFFFF;
+  --sidebar-primary: #F7931E;
+  --sidebar-primary-foreground: #111111;
+  --sidebar-accent: #1A1A1A;
+  --sidebar-accent-foreground: #FFFFFF;
+  --sidebar-border: #292929;
+  --sidebar-ring: #F7931E;
+
+  --page-background: #0A0A0A;
+
+  --page-overlay:
+    linear-gradient(
+      rgba(255, 255, 255, 0.035) 1px,
+      transparent 1px
+    ),
+    linear-gradient(
+      90deg,
+      rgba(255, 255, 255, 0.035) 1px,
+      transparent 1px
+    );
+
+  --surface: #111111;
+  --surface-strong: #171717;
+  --surface-dark: #000000;
+
+  --border-subtle: #292929;
+
+  --text-primary: #FFFFFF;
+  --text-secondary: #B3B3B3;
+  --text-muted: #858585;
+}
+
+
+/* :root {
+  color-scheme: light;
+
   --font-body: var(--font-geist-sans, Inter, Arial, sans-serif);
-  --font-heading: var(--font-playfair, "Times New Roman", Georgia, serif);
+  --font-heading: var(--font-display, "Playfair Display", "Times New Roman", Georgia, serif);
   --font-code: var(--font-geist-mono, "SFMono-Regular", Consolas, monospace);
 
   --strix-orange: #f7931e;
@@ -216,7 +381,7 @@ html.dark {
   --text-primary: #f5eee3;
   --text-secondary: #c1b3a3;
   --text-muted: #9f8f7e;
-}
+} */
 
 html {
   min-height: 100%;
@@ -378,6 +543,42 @@ select {
     border: 1px solid var(--border);
     background: var(--surface-strong);
   }
+
+  .editorial-serif {
+    font-family: var(--font-display), Georgia, serif;
+    font-feature-settings: "kern", "liga", "calt";
+  }
+
+  .editorial-meta {
+    font-family: var(--font-code), "SFMono-Regular", Consolas, monospace;
+    font-size: 0.6875rem;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+  }
+
+  .editorial-border {
+    border: 1px solid var(--border);
+  }
+
+  .editorial-card {
+    border: 1px solid var(--border);
+    background: var(--card);
+    transition: border-color 0.25s ease, background-color 0.25s ease, transform 0.25s ease;
+  }
+
+  .blueprint-grid {
+    background-image:
+      linear-gradient(rgba(42, 30, 23, 0.05) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(42, 30, 23, 0.05) 1px, transparent 1px);
+    background-size: 40px 40px;
+  }
+
+  :is(.dark) .blueprint-grid {
+    background-image:
+      linear-gradient(rgba(245, 238, 227, 0.05) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(245, 238, 227, 0.05) 1px, transparent 1px);
+    background-size: 40px 40px;
+  }
 }
 
 /* Technology marquee */
@@ -421,4 +622,35 @@ select {
     padding-inline: 1rem;
     transform: none !important;
   }
+}
+
+/* ==========================================
+   RESPONSIVE — MOBILE BOTTOM NAV CLEARANCE
+   Ensures page content is never hidden
+   behind the floating bottom navigation bar.
+========================================== */
+
+@media (max-width: 1023px) {
+  /* Add clearance at the bottom of the page for the floating nav */
+  body {
+    padding-bottom: calc(5.5rem + env(safe-area-inset-bottom, 0px));
+  }
+}
+
+/* ==========================================
+   OVERFLOW GUARD
+   Prevent horizontal scroll on any viewport.
+========================================== */
+
+html,
+body {
+  overflow-x: hidden;
+}
+
+/* ==========================================
+   RESPONSIVE UTILITY — SAFE CONTAINER
+========================================== */
+
+.safe-bottom {
+  padding-bottom: calc(5.5rem + env(safe-area-inset-bottom, 0px));
 }

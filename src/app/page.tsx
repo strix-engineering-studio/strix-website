@@ -1,143 +1,74 @@
-
 import type { Metadata } from "next";
-
 import { buildMetadata } from "@/seo/metadata";
 
-import {
-  HeroSection,
-  SystemsStrip,
-  SelectedSystemsSection,
-  CapabilityMapSection,
-  PhilosophySection,
-  TestimonialsSection,
-  InsightsSection,
-  FaqSection,
-  ContactSection,
-} from "@/components/sections/home-sections";
-import { LinkedInSection } from "@/components/sections/linkedin-section";
+import { HeroEditorial } from "@/components/sections/editorial/HeroEditorial";
+import { CapabilitiesEditorial } from "@/components/sections/editorial/CapabilitiesEditorial";
+import { WhatWeBuildEditorial } from "@/components/sections/editorial/WhatWeBuildEditorial";
+import { SelectedWorkEditorial } from "@/components/sections/editorial/SelectedWorkEditorial";
+import { InsideEngineeringEditorial } from "@/components/sections/editorial/InsideEngineeringEditorial";
+import { HowWeWorkEditorial } from "@/components/sections/editorial/HowWeWorkEditorial";
+import { WhyStrixEditorial } from "@/components/sections/editorial/WhyStrixEditorial";
+import { EngineeringJournalEditorial } from "@/components/sections/editorial/EngineeringJournalEditorial";
+import { StudioSectionEditorial } from "@/components/sections/editorial/StudioSectionEditorial";
+import { FinalConversionEditorial } from "@/components/sections/editorial/FinalConversionEditorial";
 import { TechStackMarquee } from "@/components/shared/tech-stack-marquee";
-import { HorizontalShowcase } from "@/features/caseStudies/components/horizontal-showcase";
-
-import { caseStudies } from "@/features/caseStudies/content/case-studies.content";
-import { featuredProjects } from "@/features/products/content/product.content";
 
 export const metadata: Metadata = buildMetadata({
   title: "Strix Engineering Studio | Architecture-First Product Engineering",
   description:
-    "Strix Engineering Studio helps startups and technology businesses design, build, deploy, and evolve production-grade software systems.",
+    "We design, engineer, and launch software products — from proof of concept to production-ready platforms. POC, MVP, full-stack web, mobile, and AI product engineering.",
   path: "/",
-  keywords: ["product engineering", "software systems", "architecture first"],
+  keywords: [
+    "product engineering",
+    "POC development",
+    "MVP development",
+    "full product engineering",
+    "web application development",
+    "mobile application development",
+    "AI product engineering",
+    "NestJS development",
+    "Next.js engineering",
+    "software architecture",
+  ],
 });
-
-/* -------------------------------------------------------------------------- */
-/* Case studies                                                                */
-/* -------------------------------------------------------------------------- */
-
-const publishedCaseStudies = caseStudies
-  .filter(
-    (study) =>
-      study.status === "published" &&
-      (study.visibility === "public" ||
-        study.visibility === "anonymized"),
-  )
-  .sort((a, b) => {
-    if (a.featured !== b.featured) {
-      return a.featured ? -1 : 1;
-    }
-
-    return (
-      (a.featuredOrder ?? Number.MAX_SAFE_INTEGER) -
-      (b.featuredOrder ?? Number.MAX_SAFE_INTEGER)
-    );
-  });
-
-const caseStudyItems = publishedCaseStudies.slice(0, 6).map((study) => ({
-  slug: study.slug,
-  title: study.title,
-  description: study.summary,
-  href: `/case-studies/${study.slug}`,
-  category: study.category,
-  image: study.coverImageUrl,
-  tags: study.technologies.map((technology) => technology.name),
-}));
-
-/* -------------------------------------------------------------------------- */
-/* Products                                                                    */
-/* -------------------------------------------------------------------------- */
-
-const productItems = featuredProjects
-  .filter(
-    (project) =>
-      project.visibility === "public" && project.featured,
-  )
-  .sort(
-    (a, b) =>
-      (a.featuredOrder ?? Number.MAX_SAFE_INTEGER) -
-      (b.featuredOrder ?? Number.MAX_SAFE_INTEGER),
-  )
-  .slice(0, 6)
-  .map((project) => ({
-    slug: project.slug,
-    title: project.title,
-    description: project.summary,
-    href: `/products/${project.slug}`,
-    category: project.category,
-    image: project.coverImageUrl,
-    tags: project.stack,
-  }));
-
-/* -------------------------------------------------------------------------- */
-/* Homepage                                                                    */
-/* -------------------------------------------------------------------------- */
 
 export default function Home() {
   return (
     <main className="relative overflow-hidden">
- 
+      {/* 01. Hero */}
+      <HeroEditorial />
 
-      {/* Homepage content */}
-      <div className="relative z-10">
-        <HeroSection />
-
+      {/* Technology Marquee Strip */}
+      <div className="border-b border-border/80 bg-muted/20 py-4">
         <TechStackMarquee />
-
-        <LinkedInSection />
-
-        <SystemsStrip />
-
-        {/* Client work and engineering delivery */}
-        <HorizontalShowcase
-          eyebrow="Selected work"
-          title="Engineering case studies"
-          description="Explore the systems, implementation decisions, and engineering work behind our projects."
-          viewAllHref="/case-studies"
-          items={caseStudyItems}
-          columns={3}
-        />
-
-        {/* Products owned and developed by Strix */}
-        <HorizontalShowcase
-          eyebrow="Built by Strix"
-          title="Products and experiments"
-          description="Explore products we are building and evolving."
-          viewAllHref="/products"
-          items={productItems}
-          columns={3}
-        />
-
-        {/* Capabilities and engineering philosophy */}
-        <CapabilityMapSection />
-
-        <PhilosophySection />
-
-        <TestimonialsSection />
-
-        <InsightsSection />
-
-        <FaqSection />
-
-        <ContactSection />
       </div>
+
+      {/* 02. Engineering Capabilities */}
+      <CapabilitiesEditorial />
+
+      {/* 03. What We Build (POC, MVP, Full Product) */}
+      <WhatWeBuildEditorial />
+
+      {/* 04. Selected Work (Editorial Portfolio with Hugged, H2Go, MagicalStones, etc.) */}
+      <SelectedWorkEditorial />
+
+      {/* 05. Inside the Engineering (Storytelling & Architecture Layer Explorer) */}
+      <InsideEngineeringEditorial />
+
+      {/* 06. How We Work (Connected Timeline 01 to 06) */}
+      <HowWeWorkEditorial />
+
+      {/* 07. Why Strix (Verifiable Engineering-First Principles) */}
+      <WhyStrixEditorial />
+
+      {/* 08. Engineering Journal & Studio Signals (LinkedIn, Instagram, Articles) */}
+      <EngineeringJournalEditorial />
+
+      {/* 09. The Studio (Philosophy & Independent Craft) */}
+      <StudioSectionEditorial />
+
+      {/* 10. Final Conversion ("Have a product idea? Let's engineer it.") */}
+      <FinalConversionEditorial />
     </main>
   );
 }

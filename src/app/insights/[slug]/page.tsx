@@ -131,7 +131,7 @@ export default async function InsightsPostPage({
         title={frontmatter.title}
         description={frontmatter.excerpt}
       >
-        <article className="prose max-w-none prose-invert prose-headings:tracking-tight prose-a:text-[color:var(--foreground)] prose-strong:text-foreground prose-code:text-foreground prose-pre:border prose-pre:border-white/10 prose-pre:bg-black/30">
+        <article className="prose dark:prose-invert max-w-none prose-headings:editorial-serif prose-headings:font-normal prose-headings:tracking-tight prose-headings:text-foreground prose-a:text-primary prose-strong:text-foreground prose-code:text-foreground prose-pre:border prose-pre:border-border prose-pre:bg-card">
           <div className="mb-8 flex items-center gap-4 text-sm text-muted-foreground">
             <time dateTime={frontmatter.publishedAt}>{publishedDate}</time>
 

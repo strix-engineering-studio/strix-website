@@ -1,66 +1,55 @@
-
 "use client";
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-
+import { ArrowUpRight, Mail, MapPin, Phone } from "lucide-react";
 import { ThemeToggle } from "@/components/shared/theme-toggle";
 import { FooterWordmark } from "./footer-wordmark";
-import { Mail, MapPin, Phone } from "lucide-react";
+import { SiGithub, SiInstagram, SiLinkerd } from "react-icons/si";
 
-const studioLinks = [
-  { label: "Services", href: "/services" },
-  { label: "Products", href: "/products" },
-  { label: "Open Source", href: "/open-source" },
-  { label: "Case Studies", href: "/case-studies" },
+const serviceLinks = [
+  { label: "Proof of Concept (POC)", href: "/services/poc-development" },
+  { label: "Minimum Viable Product (MVP)", href: "/services/mvp-development" },
+  { label: "Full Product Engineering", href: "/services/product-engineering" },
+  { label: "Web Applications", href: "/services/nextjs-development" },
+  {
+    label: "Mobile Applications",
+    href: "/services/mobile-application-development",
+  },
+  { label: "AI Product Engineering", href: "/services/ai-product-engineering" },
+  { label: "Backend & Cloud", href: "/services/backend-systems" },
+  { label: "Product Modernization", href: "/services/product-modernization" },
 ];
 
-const companyLinks = [
-  { label: "Careers", href: "https://wellfound.com/company/strix-engineering-studio" },
-  { label: "About", href: "/about" },
-  { label: "Contact", href: "/contact" },
+const studioLinks = [
+  { label: "Selected Work", href: "/case-studies" },
+  { label: "How We Work", href: "/#how-we-work" },
+  { label: "Engineering Studio", href: "/about" },
+  { label: "Insights & Journal", href: "/insights" },
+  { label: "Open Source", href: "/open-source" },
+  {
+    label: "Careers",
+    href: "https://wellfound.com/company/strix-engineering-studio",
+  },
 ];
 
 const socialLinks = [
-  { label: "Github", href: "https://github.com/strix-engineering-studio" },
-  { label: "Linkedin", href: "https://www.linkedin.com/company/strix-engineering-studio" },
-  { label: "Instagram", href: "https://www.instagram.com/strix.website" },
-  { label: "Discord", href: "https://discord.gg/QfXFpYvJ" },
+  {
+    label: "LinkedIn",
+    href: "https://www.linkedin.com/company/strix-engineering-studio/",
+    icon: SiLinkerd,
+  },
+  {
+    label: "Instagram",
+    href: "https://www.instagram.com/strix.website/",
+    icon: SiInstagram,
+  },
+  {
+    label: "GitHub",
+    href: "https://github.com/strix-engineering-studio",
+    icon: SiGithub,
+  },
 ];
-
-const legalLinks = [
-  { label: "Terms", href: "/terms" },
-  { label: "Privacy", href: "/privacy" },
-];
-
-function FooterLinkGroup({
-  title,
-  links,
-}: {
-  title: string;
-  links: { label: string; href: string }[];
-}) {
-  return (
-    <div>
-      <h2 className="mb-3 text-xs font-semibold uppercase tracking-wider text-foreground/70">
-        {title}
-      </h2>
-
-      <ul className="flex flex-col items-start gap-2">
-        {links.map((link) => (
-          <li key={link.href}>
-            <Link
-              href={link.href}
-              className="text-sm text-foreground/60 transition-colors hover:text-foreground"
-            >
-              {link.label}
-            </Link>
-          </li>
-        ))}
-      </ul>
-    </div>
-  );
-}
 
 export function SiteFooter() {
   const pathname = usePathname();
@@ -70,96 +59,178 @@ export function SiteFooter() {
   }
 
   return (
-    <footer className="relative z-20 border-t border-black/10 bg-background dark:border-white/10">
-      {/* Navigation */}
-      <div className="mx-auto max-w-7xl px-4 py-8 sm:px-6 sm:py-10 lg:px-8">
-        <div className="grid grid-cols-2 gap-x-6 gap-y-8 sm:grid-cols-3 lg:grid-cols-4">
-          {/* Brand */}
-<div className="col-span-2 sm:col-span-1">
-  <Link
-    href="/"
-    aria-label="Strix Engineering Studio home"
-    className="group inline-flex items-center"
-  >
-    <span className="text-base font-bold tracking-[0.2em] text-foreground transition-colors group-hover:text-primary">
-      STRIX ENGINEERING STUDIO
-    </span>
-  </Link>
-
-  <p className="mt-2 text-xs font-medium tracking-wide text-foreground/70">
-    System Before Software
-  </p>
-
-  <div className="mt-4 space-y-2.5 text-sm text-foreground/60">
-    <p className="flex items-start gap-2">
-      <MapPin className="mt-0.5 size-4 shrink-0" aria-hidden="true" />
-      India
-    </p>
-
-    <a
-      href="mailto:team@strix.website"
-      className="flex items-center gap-2 transition-colors hover:text-foreground"
-    >
-      <Mail className="size-4 shrink-0" aria-hidden="true" />
-      team@strix.website
-    </a>
-
-    <a
-      href="tel:+918421334187"
-      className="flex items-center gap-2 transition-colors hover:text-foreground"
-    >
-      <Phone className="size-4 shrink-0" aria-hidden="true" />
-      +91 84213 34187
-    </a>
-  </div>
-</div>
-
-          <FooterLinkGroup title="Studio" links={studioLinks} />
-
-          <FooterLinkGroup title="Company" links={companyLinks} />
-
-          <FooterLinkGroup title="Follow Us" links={socialLinks} />
-        </div>
-      </div>
-
-      {/* Copyright and legal links */}
-      <div className="border-t border-black/10 dark:border-white/10">
-        <div className="mx-auto flex max-w-7xl flex-col gap-4 px-4 py-4 text-xs text-foreground/60 sm:px-6 lg:flex-row lg:items-center lg:justify-between lg:px-8">
-          <p>© {new Date().getFullYear()} Strix Engineering Studio</p>
-
-          <p>Built with care in India</p>
-
-          <div className="flex flex-wrap items-center gap-3">
-            {legalLinks.map((link, index) => (
-              <div key={link.href} className="flex items-center gap-3">
-                {index > 0 && (
-                  <span aria-hidden="true" className="text-foreground/30">
-                    ·
-                  </span>
-                )}
-
-                <Link
-                  href={link.href}
-                  className="transition-colors hover:text-foreground"
-                >
-                  {link.label}
-                </Link>
-              </div>
-            ))}
-
-            <span aria-hidden="true" className="text-foreground/30">
-              ·
+    <footer className="relative z-20 border-t border-border bg-card/60 backdrop-blur-md">
+      {/* Top Banner / Philosophy */}
+      <div className="border-b border-border/80">
+        <div className="mx-auto flex max-w-7xl flex-col justify-between gap-6 px-4 py-12 sm:px-6 lg:flex-row lg:items-end lg:px-8">
+          <div className="max-w-2xl space-y-3">
+            <span className="font-mono text-[11px] uppercase tracking-[0.28em] text-primary">
+              Strix · Engineering Philosophy
             </span>
+            <h2 className="editorial-serif text-3xl tracking-tight text-foreground sm:text-4xl lg:text-5xl">
+              From first idea to{" "}
+              <span className="italic font-normal text-primary">
+                production-grade product.
+              </span>
+            </h2>
+            <p className="text-sm leading-relaxed text-muted-foreground sm:text-base">
+              Build the right system before building the software. We design,
+              engineer, and launch software products — from proof of concept to
+              scalable production platforms.
+            </p>
+          </div>
 
-            <ThemeToggle />
+          <div className="flex shrink-0 items-center gap-3">
+            <Link
+              href="/contact"
+              className="inline-flex items-center gap-2 rounded-full bg-primary px-6 py-3 text-xs font-semibold uppercase tracking-[0.18em] text-primary-foreground shadow-md transition-all hover:bg-primary/90"
+            >
+              <span>Start a project</span>
+              <ArrowUpRight className="size-4" />
+            </Link>
           </div>
         </div>
       </div>
 
-      {/* Decorative Wordmark */}
+      {/* Main Grid */}
+      <div className="mx-auto max-w-7xl px-4 py-14 sm:px-6 lg:px-8">
+        <div className="grid grid-cols-1 gap-10 md:grid-cols-2 lg:grid-cols-12">
+          {/* Col 1: Studio Info */}
+          <div className="space-y-5 lg:col-span-5">
+            <div>
+              <Link
+                href="/"
+                className="font-mono text-sm font-bold tracking-[0.25em] text-foreground transition-colors hover:text-primary"
+              >
+                STRIX ENGINEERING STUDIO
+              </Link>
+              <p className="mt-1 editorial-serif text-sm italic text-muted-foreground">
+                Engineered for Reality · Software Architecture & Delivery
+              </p>
+            </div>
 
+            <p className="max-w-md text-sm leading-relaxed text-muted-foreground">
+              A software engineering studio collaborating directly with
+              founders, product creators, and technology teams to turn complex
+              ideas into robust, maintainable software systems.
+            </p>
+
+            <div className="space-y-2 pt-2 text-xs font-medium text-foreground/80">
+              <p className="flex items-center gap-2.5">
+                <MapPin className="size-4 text-primary shrink-0" />
+                <span>India · Global Delivery</span>
+              </p>
+              <a
+                href="mailto:team@strix.website"
+                className="flex items-center gap-2.5 transition-colors hover:text-primary"
+              >
+                <Mail className="size-4 text-primary shrink-0" />
+                <span>team@strix.website</span>
+              </a>
+              <a
+                href="tel:+918421334187"
+                className="flex items-center gap-2.5 transition-colors hover:text-primary"
+              >
+                <Phone className="size-4 text-primary shrink-0" />
+                <span>+91 84213 34187</span>
+              </a>
+            </div>
+
+            <div className="flex items-center gap-2 pt-2">
+              {socialLinks.map((social) => {
+                const Icon = social.icon;
+                return (
+                  <a
+                    key={social.label}
+                    href={social.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label={`Strix on ${social.label}`}
+                    className="flex size-9 items-center justify-center rounded-sm border border-border bg-card text-foreground/70 transition-colors hover:border-primary hover:text-primary"
+                  >
+                    <Icon className="size-4" />
+                  </a>
+                );
+              })}
+            </div>
+          </div>
+
+          {/* Col 2: Services */}
+          <div className="lg:col-span-4">
+            <h3 className="mb-4 font-mono text-xs font-semibold uppercase tracking-[0.24em] text-foreground">
+              Services
+            </h3>
+            <ul className="grid grid-cols-1 gap-2.5 sm:grid-cols-2 lg:grid-cols-1">
+              {serviceLinks.map((link) => (
+                <li key={link.href}>
+                  <Link
+                    href={link.href}
+                    className="group inline-flex items-center gap-1.5 text-xs text-muted-foreground transition-colors hover:text-primary"
+                  >
+                    <span className="size-1 rounded-full bg-border transition-colors group-hover:bg-primary" />
+                    <span>{link.label}</span>
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* Col 3: Studio & Navigation */}
+          <div className="lg:col-span-3">
+            <h3 className="mb-4 font-mono text-xs font-semibold uppercase tracking-[0.24em] text-foreground">
+              Studio
+            </h3>
+            <ul className="space-y-2.5">
+              {studioLinks.map((link) => (
+                <li key={link.href}>
+                  <Link
+                    href={link.href}
+                    className="group inline-flex items-center gap-1.5 text-xs text-muted-foreground transition-colors hover:text-primary"
+                  >
+                    <span className="size-1 rounded-full bg-border transition-colors group-hover:bg-primary" />
+                    <span>{link.label}</span>
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      {/* Decorative Interactive Wordmark */}
       <FooterWordmark />
-      
+
+      {/* Bottom Legal / Copyright */}
+      <div className="border-t border-border/80">
+        <div className="mx-auto flex max-w-7xl flex-col items-center justify-between gap-4 px-4 py-5 text-xs text-muted-foreground sm:flex-row sm:px-6 lg:px-8">
+          <p>
+            © {new Date().getFullYear()} Strix Engineering Studio. All rights
+            reserved.
+          </p>
+
+          <p className="editorial-serif italic text-foreground/70">
+            A Prototype Proves an Idea. Production Proves a System.
+          </p>
+
+          <div className="flex items-center gap-4">
+            <Link
+              href="/privacy"
+              className="transition-colors hover:text-foreground"
+            >
+              Privacy
+            </Link>
+            <span>·</span>
+            <Link
+              href="/terms"
+              className="transition-colors hover:text-foreground"
+            >
+              Terms
+            </Link>
+            <span>·</span>
+            <ThemeToggle />
+          </div>
+        </div>
+      </div>
     </footer>
   );
 }

@@ -3,9 +3,9 @@
 
  Directory of P:\project\Strix Engineering Studio\strix\src
 
-[.]          [app]        [content]    [hooks]      proxy.ts     [types]
-[..]         [components] [features]   [lib]        [seo]        
-               1 File(s)            666 bytes
+[.]          [app]        [content]    [hooks]      [seo]        
+[..]         [components] [features]   [lib]        [types]      
+               0 File(s)              0 bytes
 
  Directory of P:\project\Strix Engineering Studio\strix\src\app
 
@@ -14,10 +14,10 @@
 [about]               layout.tsx            robots.ts
 apple-icon.tsx        [llms.txt]            [services]
 [case-studies]        manifest.ts           sitemap.ts
-[contact]             not-found.tsx         [work]
+[contact]             not-found.tsx         
 favicon.ico           [open-source]         
 globals.css           opengraph-image.tsx   
-              11 File(s)         26,456 bytes
+              11 File(s)         26,240 bytes
 
  Directory of P:\project\Strix Engineering Studio\strix\src\app\about
 
@@ -79,16 +79,6 @@ globals.css           opengraph-image.tsx
 [.]        [..]       page.tsx   
                1 File(s)          2,746 bytes
 
- Directory of P:\project\Strix Engineering Studio\strix\src\app\work
-
-[.]        [..]       page.tsx   [[slug]]   
-               1 File(s)            111 bytes
-
- Directory of P:\project\Strix Engineering Studio\strix\src\app\work\[slug]
-
-[.]        [..]       page.tsx   
-               1 File(s)          2,495 bytes
-
  Directory of P:\project\Strix Engineering Studio\strix\src\components
 
 [.]                [blog]             [sections]         strix-cursor.tsx
@@ -99,8 +89,9 @@ globals.css           opengraph-image.tsx
 
  Directory of P:\project\Strix Engineering Studio\strix\src\components\3d
 
-[.]          [..]         Hero3D.tsx   
-               1 File(s)          1,458 bytes
+[.]                    Hero3D.tsx             
+[..]                   wireframe-sphere.tsx   
+               2 File(s)          6,296 bytes
 
  Directory of P:\project\Strix Engineering Studio\strix\src\components\admin
 
@@ -132,9 +123,9 @@ contact-form.tsx
 
  Directory of P:\project\Strix Engineering Studio\strix\src\components\sections
 
-[.]                    home-sections.tsx      work-gallery.tsx
+[.]                    home-sections.tsx      
 [..]                   linkedin-section.tsx   
-               3 File(s)         29,727 bytes
+               2 File(s)         23,862 bytes
 
  Directory of P:\project\Strix Engineering Studio\strix\src\components\seo
 
@@ -177,21 +168,14 @@ scalable-api-ops.mdx
 
  Directory of P:\project\Strix Engineering Studio\strix\src\features
 
-[.]           [auth]        [contact]     [partners]    
-[..]          [caseStudies] [openSource]  [products]    
+[.]           [..]          [caseStudies] [products]    
                0 File(s)              0 bytes
-
- Directory of P:\project\Strix Engineering Studio\strix\src\features\auth
-
-[.]                   get-current-user.ts   
-[..]                  
-               1 File(s)            476 bytes
 
  Directory of P:\project\Strix Engineering Studio\strix\src\features\caseStudies
 
-[.]          [components] [pages]      [types]      
-[..]         [content]    service.ts   
-               1 File(s)            568 bytes
+[.]          [components] [pages]      
+[..]         [content]    [types]      
+               0 File(s)              0 bytes
 
  Directory of P:\project\Strix Engineering Studio\strix\src\features\caseStudies\components
 
@@ -217,21 +201,6 @@ CaseStudiesPage.tsx
 [.]                   case-studie.type.ts   
 [..]                  
                1 File(s)          3,769 bytes
-
- Directory of P:\project\Strix Engineering Studio\strix\src\features\contact
-
-[.]          [..]         service.ts   
-               1 File(s)            395 bytes
-
- Directory of P:\project\Strix Engineering Studio\strix\src\features\openSource
-
-[.]          [..]         service.ts   
-               1 File(s)            402 bytes
-
- Directory of P:\project\Strix Engineering Studio\strix\src\features\partners
-
-[.]          [..]         service.ts   
-               1 File(s)            371 bytes
 
  Directory of P:\project\Strix Engineering Studio\strix\src\features\products
 
@@ -306,5 +275,5 @@ article.ts        organization.ts
                1 File(s)            118 bytes
 
      Total Files Listed:
-              99 File(s)        528,521 bytes
-             155 Dir(s)  41,871,654,912 bytes free
+              91 File(s)        521,794 bytes
+             137 Dir(s)  45,522,640,896 bytes free

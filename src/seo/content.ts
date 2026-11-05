@@ -203,6 +203,135 @@ export function getAuthorityPage(slug: string) {
 
 export const servicePages: ServicePageContent[] = [
   // ============================================================
+  // PROOF OF CONCEPT (POC) DEVELOPMENT
+  // ============================================================
+  {
+    slug: "poc-development",
+    eyebrow: "Proof of Concept (POC)",
+    title: "POC Development",
+    description:
+      "Rapidly validate technical feasibility, de-risk risky assumptions, and build working interactive proof for investors, stakeholders, or user feedback before committing to full development.",
+    whatIsThis:
+      "Proof of Concept (POC) development is a focused engineering engagement designed to test whether an ambitious idea, novel algorithm, or complex integration works in reality before investing substantial capital into a complete build.",
+    whoIsItFor:
+      "Founders with unproven technical hypotheses, innovators exploring complex integrations or AI capabilities, and technology leaders presenting to investors.",
+    whatProblemDoesItSolve:
+      "It prevents wasting months of engineering budget on products that have unaddressed technical roadblocks or flawed architectural assumptions.",
+    howDoesItWork:
+      "We isolate the core technical uncertainty, build a targeted functional prototype, measure real-world performance and latency, and document the architectural findings in a feasibility audit.",
+    whyChooseStrix:
+      "Strix focuses on proving technical reality rather than creating superficial UI mockups. Our POCs use production-grade code that can serve as the foundation for your eventual MVP.",
+    related: [
+      { label: "MVP Development", href: "/services/mvp-development" },
+      { label: "Product Engineering", href: "/services/product-engineering" },
+      { label: "AI Product Engineering", href: "/services/ai-product-engineering" },
+      { label: "System Design", href: "/services/system-design" },
+    ],
+    faqs: [
+      {
+        question: "How long does a POC engagement take?",
+        answer:
+          "Most POC projects are delivered within 1 to 3 weeks depending on the complexity of the technical questions being validated.",
+      },
+      {
+        question: "Can code from a POC be reused in an MVP?",
+        answer:
+          "Yes. Because Strix builds with strict TypeScript and clean architectural boundaries, valid logic and schemas from the POC can be cleanly transitioned into your MVP.",
+      },
+    ],
+    evidence: [
+      { label: "Timeline", detail: "1 to 3 weeks fast turnaround" },
+      { label: "Deliverables", detail: "Interactive working prototype & technical feasibility audit" },
+    ],
+    keywords: ["POC development", "proof of concept", "technical feasibility", "prototype engineering"],
+    publishedAt: "2026-01-01",
+  },
+
+  // ============================================================
+  // MOBILE APPLICATION DEVELOPMENT
+  // ============================================================
+  {
+    slug: "mobile-application-development",
+    eyebrow: "Mobile application development",
+    title: "Mobile Application Development",
+    description:
+      "Engineer high-performance iOS and Android native mobile applications from a single codebase using Flutter and Dart, backed by scalable cloud services.",
+    whatIsThis:
+      "Cross-platform mobile application development delivering native performance, responsive fluid animations, offline synchronization, and multi-role access control.",
+    whoIsItFor:
+      "Startups and businesses that need a cohesive mobile presence across both Apple App Store and Google Play without maintaining duplicate engineering teams.",
+    whatProblemDoesItSolve:
+      "It eliminates the cost and release desynchronization of maintaining separate native Swift and Kotlin codebases while preserving native-grade UI responsiveness and hardware access.",
+    howDoesItWork:
+      "We structure the mobile application using Clean Architecture (BLoC/Riverpod), implement offline-first caching, configure FCM push notifications, and manage app store publishing.",
+    whyChooseStrix:
+      "Strix has proven production mobile experience (such as Hugged on Google Play and Instameasure), managing everything from biometric auth and payment processing to store approvals.",
+    related: [
+      { label: "Full-Stack Product Delivery", href: "/services/full-stack-product-delivery" },
+      { label: "MVP Development", href: "/services/mvp-development" },
+      { label: "Backend Systems", href: "/services/backend-systems" },
+      { label: "Next.js Development", href: "/services/nextjs-development" },
+    ],
+    faqs: [
+      {
+        question: "Do you handle App Store and Google Play submission?",
+        answer:
+          "Yes. Strix manages privacy manifests, app store metadata, build signing, TestFlight distribution, and app store compliance.",
+      },
+      {
+        question: "Can Flutter handle offline data caching?",
+        answer:
+          "Yes. We implement local SQLite/Hive caching combined with background syncing and conflict resolution for seamless offline operation.",
+      },
+    ],
+    evidence: [
+      { label: "Production Proof", detail: "Hugged Parenting Platform on Google Play" },
+      { label: "Stack", detail: "Flutter, Dart, Firebase, FCM, App Store Connect" },
+    ],
+    keywords: ["Flutter development", "mobile application development", "iOS and Android apps", "cross-platform mobile"],
+    publishedAt: "2026-01-01",
+  },
+
+  // ============================================================
+  // WEB APPLICATION DEVELOPMENT
+  // ============================================================
+  {
+    slug: "web-application-development",
+    eyebrow: "Web application development",
+    title: "Web Application Development",
+    description:
+      "Build fast, accessible, and scalable web applications and SaaS platforms using Next.js App Router, React 19, and TypeScript.",
+    whatIsThis:
+      "Full-stack web application engineering combining server-side rendering, instant page transitions, strict type safety, and responsive editorial interfaces.",
+    whoIsItFor:
+      "Businesses launching SaaS platforms, customer portals, interactive web tools, and administrative consoles.",
+    whatProblemDoesItSolve:
+      "It replaces slow, bloated single-page applications with lean, server-rendered applications that deliver superior SEO, sub-second LCP, and zero layout shift.",
+    howDoesItWork:
+      "We build with React 19 Server Components, Tailwind CSS, Zod runtime validation, and server actions for secure, high-speed data mutations.",
+    whyChooseStrix:
+      "We write clean, auditable code with no unnecessary dependencies. Your web application is built to load instantly and stay easy to maintain.",
+    related: [
+      { label: "Next.js Development", href: "/services/nextjs-development" },
+      { label: "Product Engineering", href: "/services/product-engineering" },
+      { label: "Backend Systems", href: "/services/backend-systems" },
+    ],
+    faqs: [
+      {
+        question: "Why use Next.js for web applications?",
+        answer:
+          "Next.js App Router provides automatic code splitting, server-side rendering for SEO, server actions for type-safe APIs, and excellent Edge deployment capabilities.",
+      },
+    ],
+    evidence: [
+      { label: "Performance", detail: "Sub-second LCP & 100 Lighthouse performance" },
+      { label: "Stack", detail: "Next.js 16+, React 19, TypeScript, Tailwind CSS" },
+    ],
+    keywords: ["web application development", "Next.js development", "React 19", "full stack web"],
+    publishedAt: "2026-01-01",
+  },
+
+  // ============================================================
   // PRODUCT ENGINEERING
   // ============================================================
 

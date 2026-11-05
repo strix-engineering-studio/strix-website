@@ -77,13 +77,13 @@ export default function OpenSourcePage() {
                         return (
                             <article
                                 key={project.slug}
-                                className="group flex min-w-0 flex-col overflow-hidden rounded-2xl border border-white/10 bg-white/[0.03] transition-colors hover:border-white/20"
+                                className="group flex min-w-0 flex-col overflow-hidden rounded-2xl border border-border bg-card transition-colors hover:border-white/20"
                             >
                                 {/* Project preview */}
                                 <Link
                                     href={`/products/${project.slug}`}
                                     aria-label={`Explore ${project.title}`}
-                                    className="relative block aspect-[16/10] overflow-hidden border-b border-white/10 bg-neutral-950"
+                                    className="relative block aspect-[16/10] overflow-hidden border-b border-border bg-neutral-950"
                                 >
                                     {project.coverImageUrl ? (
                                         <Image
@@ -100,7 +100,7 @@ export default function OpenSourcePage() {
                                                     {project.category}
                                                 </span>
 
-                                                <span className="rounded-full border border-white/15 px-2.5 py-1 text-[10px] text-white/70">
+                                                <span className="rounded-full border border-border px-2.5 py-1 text-[10px] text-white/70">
                                                     {isFullyOpenSource
                                                         ? "Open source"
                                                         : "Partial source"}
@@ -108,7 +108,7 @@ export default function OpenSourcePage() {
                                             </div>
 
                                             <div>
-                                                <h2 className="text-2xl font-semibold tracking-tight text-white">
+                                                <h2 className="editorial-serif text-2xl font-normal tracking-tight text-white">
                                                     {project.title}
                                                 </h2>
                                                 <p className="mt-2 text-sm leading-6 text-white/60">
@@ -122,7 +122,7 @@ export default function OpenSourcePage() {
                                                     .map((technology) => (
                                                         <span
                                                             key={technology}
-                                                            className="rounded-md border border-white/10 bg-white/5 px-2 py-1 text-[10px] text-white/60"
+                                                            className="rounded-md border border-border bg-background px-2 py-1 text-[10px] text-white/60"
                                                         >
                                                             {technology}
                                                         </span>
@@ -139,7 +139,7 @@ export default function OpenSourcePage() {
                                             {project.category}
                                         </p>
 
-                                        <span className="rounded-full border border-white/10 px-2.5 py-1 text-[10px] text-muted-foreground">
+                                        <span className="rounded-full border border-border px-2.5 py-1 text-[10px] text-muted-foreground">
                                             {isFullyOpenSource
                                                 ? "Open source"
                                                 : "Partially open source"}
@@ -190,7 +190,7 @@ export default function OpenSourcePage() {
                                                         (component) => (
                                                             <span
                                                                 key={component}
-                                                                className="rounded-md border border-white/10 px-2 py-1 text-xs text-muted-foreground"
+                                                                className="rounded-md border border-border px-2 py-1 text-xs text-muted-foreground"
                                                             >
                                                                 {component}
                                                             </span>
@@ -237,7 +237,7 @@ export default function OpenSourcePage() {
                     })}
                 </div>
             ) : (
-                <div className="rounded-2xl border border-white/10 bg-white/[0.03] px-6 py-14 text-center">
+                <div className="rounded-2xl border border-border bg-card px-6 py-14 text-center">
                     <h2 className="text-xl font-semibold text-foreground">
                         No public open-source projects yet
                     </h2>
