@@ -147,6 +147,7 @@ export type CaseStudy = {
     links: CaseStudyLink[];
     relatedProducts?: string[];
     relatedCaseStudies?: string[];
+    relatedServices?: { title: string; href: string }[];
 
     deliveryPartner?: string;
 

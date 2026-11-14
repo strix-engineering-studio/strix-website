@@ -1,228 +1,94 @@
-"use client";
-
-import Image from "next/image";
 import Link from "next/link";
-import { motion } from "framer-motion";
-import {
-  ArrowUpRight,
-  CheckCircle2,
-  Cpu,
-  Layers,
-  ShieldCheck,
-  Sparkles,
-} from "lucide-react";
+import { ArrowDownRight, ArrowUpRight } from "lucide-react";
+
+const systemParts = [
+  { number: "01", title: "Product strategy", position: "left-[5%] top-[12%]" },
+  { number: "02", title: "User experience", position: "right-[5%] top-[12%]" },
+  { number: "03", title: "Software architecture", position: "left-[5%] bottom-[12%]" },
+  { number: "04", title: "Operations & data", position: "right-[5%] bottom-[12%]" },
+];
 
 export function HeroEditorial() {
   return (
-    <section className="relative overflow-hidden border-b border-border/80 pt-10 pb-16 lg:pt-16 lg:pb-24">
-      {/* Blueprint grid background */}
-      <div
-        aria-hidden="true"
-        className="pointer-events-none absolute inset-0 blueprint-grid opacity-70"
-      />
+    <section className="relative overflow-hidden border-b border-border py-12 sm:py-16 lg:py-20">
+      <div className="pointer-events-none absolute inset-0 blueprint-grid opacity-50" aria-hidden="true" />
 
-      {/* Radial soft orange ambient glow */}
-      <div
-        aria-hidden="true"
-        className="pointer-events-none absolute -top-40 right-1/4 h-[500px] w-[500px] rounded-full bg-primary/10 blur-[120px]"
-      />
-
-      <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        {/* Top engineering status marker */}
-        <div className="mb-6 flex flex-wrap items-center justify-between gap-4 border-b border-border/60 pb-3">
-          <div className="flex items-center gap-3">
-            <span className="font-mono text-[10px] uppercase tracking-[0.28em] text-primary">
-              [SYS // 01 · PRODUCTION STUDIO]
-            </span>
-            <span className="hidden text-xs text-muted-foreground/60 sm:inline">
-              —
-            </span>
-            <span className="hidden font-mono text-[10px] tracking-widest text-muted-foreground sm:inline">
-              ARCH-DRIVEN PRODUCT ENGINEERING
-            </span>
-          </div>
-
-          <div className="flex items-center gap-2">
-            <span className="size-2 rounded-full bg-emerald-500 animate-pulse" />
-            <span className="font-mono text-[10px] uppercase tracking-wider text-muted-foreground">
-              ACCEPTING NEW PROJECTS · 2026/2027
-            </span>
-          </div>
+      <div className="strix-container relative">
+        <div className="mb-8 flex flex-wrap items-center justify-between gap-3 border-b border-border pb-3">
+          <span className="editorial-meta text-primary">Strix Engineering Studio</span>
+          <span className="editorial-meta text-muted-foreground">Product strategy · Software engineering · Systems</span>
         </div>
 
-        {/* Hero Main Grid (Asymmetric Editorial Composition) */}
-        <div className="grid grid-cols-1 items-center gap-12 lg:grid-cols-12 lg:gap-8">
-          {/* Left Column: Expressive Headline & Positioning (7 cols) */}
-          <div className="space-y-8 lg:col-span-7">
-            {/* Supporting Philosophy Eyebrow */}
-            <div className="inline-flex items-center gap-2 rounded-full border border-primary/30 bg-primary/5 px-3.5 py-1">
-              <span className="size-1.5 rounded-full bg-primary" />
-              <span className="font-mono text-[10px] font-semibold uppercase tracking-[0.2em] text-primary">
-                Build the right system before building the software
-              </span>
-            </div>
-
-            {/* Oversized Editorial Headline */}
-            <h1 className="editorial-serif text-5xl leading-[0.98] tracking-tight text-foreground sm:text-6xl md:text-7xl lg:text-[5.4rem]">
-              From first idea to{" "}
-              <span className="italic font-normal text-primary underline decoration-primary/30 underline-offset-8">
-                production-grade product.
-              </span>
-            </h1>
-
-            {/* Supporting Description */}
-            <p className="max-w-2xl text-base leading-relaxed text-muted-foreground sm:text-lg sm:leading-relaxed">
-              We design, engineer, and launch software products — from proof of
-              concept to production-ready platforms. Direct engineering ownership,
-              robust architecture, and battle-tested execution for founders and
-              product teams.
+        <div className="grid items-center gap-10 lg:grid-cols-12 lg:gap-12">
+          <div className="space-y-6 lg:col-span-7">
+            <p className="editorial-meta border-l-2 border-primary py-1 pl-3 text-primary">
+              Build the right system before building the software
             </p>
 
-            {/* CTAs & Conversion Paths */}
-            <div className="flex flex-wrap items-center gap-4 pt-2">
+            <h1 className="editorial-serif type-display-xl max-w-4xl text-foreground">
+              Your idea deserves more than a prototype.
+            </h1>
+
+            <p className="body-large max-w-2xl text-muted-foreground">
+              Strix helps businesses turn ideas into reliable digital products through product strategy, software engineering, and scalable technology systems.
+            </p>
+
+            <div className="flex flex-wrap gap-3 pt-2">
               <Link
                 href="/contact"
-                className="group relative inline-flex items-center gap-2.5 rounded-full bg-primary px-7 py-3.5 text-xs font-semibold uppercase tracking-[0.18em] text-primary-foreground shadow-lg shadow-primary/20 transition-all hover:bg-primary/90 hover:shadow-xl hover:shadow-primary/30"
+                className="group inline-flex min-h-12 items-center gap-3 border border-primary bg-primary px-5 py-3 text-sm font-semibold text-primary-foreground transition-colors hover:bg-primary/90"
               >
-                <span>Start a project</span>
+                <span>Start a Project</span>
                 <ArrowUpRight className="size-4 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
               </Link>
-
               <Link
                 href="#selected-work"
-                className="inline-flex items-center gap-2.5 rounded-full border border-border bg-card/60 px-6 py-3.5 text-xs font-semibold uppercase tracking-[0.16em] text-foreground backdrop-blur-sm transition-all hover:border-foreground/30 hover:bg-card"
+                className="inline-flex min-h-12 items-center gap-3 border border-border bg-background px-5 py-3 text-sm font-medium text-foreground transition-colors hover:border-foreground/40"
               >
-                <span>Explore our work</span>
-                <span className="font-mono text-xs text-muted-foreground">↓</span>
+                <span>Explore Our Work</span>
+                <ArrowDownRight className="size-4 text-muted-foreground" />
               </Link>
-            </div>
-
-            {/* Engineering Annotations / Quick Metrics */}
-            <div className="grid grid-cols-3 gap-4 border-t border-border/70 pt-8 sm:gap-6">
-              <div>
-                <p className="font-mono text-[10px] uppercase tracking-[0.22em] text-muted-foreground">
-                  POC & MVP Delivery
-                </p>
-                <p className="editorial-serif mt-1 text-2xl font-normal text-foreground sm:text-3xl">
-                  2 to 6 <span className="text-base text-primary">Weeks</span>
-                </p>
-                <p className="text-[11px] text-muted-foreground">
-                  Rapid validation cycles
-                </p>
-              </div>
-
-              <div>
-                <p className="font-mono text-[10px] uppercase tracking-[0.22em] text-muted-foreground">
-                  Stack Foundation
-                </p>
-                <p className="editorial-serif mt-1 text-2xl font-normal text-foreground sm:text-3xl">
-                  Full-Stack
-                </p>
-                <p className="text-[11px] text-muted-foreground">
-                  Web, Mobile, APIs & AI
-                </p>
-              </div>
-
-              <div>
-                <p className="font-mono text-[10px] uppercase tracking-[0.22em] text-muted-foreground">
-                  Direct Ownership
-                </p>
-                <p className="editorial-serif mt-1 text-2xl font-normal text-foreground sm:text-3xl">
-                  100% <span className="text-base text-primary">Code</span>
-                </p>
-                <p className="text-[11px] text-muted-foreground">
-                  Auditable & scalable
-                </p>
-              </div>
             </div>
           </div>
 
-          {/* Right Column: Layered Editorial Image Composition (5 cols) */}
-          <div className="relative lg:col-span-5">
-            {/* Museum/Editorial Outer Border Frame */}
-            <div className="relative mx-auto max-w-lg lg:max-w-none">
-              {/* Corner Registration Marks */}
-              <span className="absolute -top-2.5 -left-2.5 z-20 font-mono text-xs text-primary">
-                +
-              </span>
-              <span className="absolute -top-2.5 -right-2.5 z-20 font-mono text-xs text-primary">
-                +
-              </span>
-              <span className="absolute -bottom-2.5 -left-2.5 z-20 font-mono text-xs text-primary">
-                +
-              </span>
-              <span className="absolute -bottom-2.5 -right-2.5 z-20 font-mono text-xs text-primary">
-                +
-              </span>
+          <div
+            role="img"
+            aria-label="A product system diagram connecting strategy, user experience, software architecture, and operations through a shared digital product."
+            className="relative isolate mx-auto aspect-[1.08] w-full max-w-[34rem] overflow-hidden border border-border bg-surface-warm p-4 sm:p-6 lg:col-span-5"
+          >
+            <div className="absolute inset-0 blueprint-grid opacity-70" aria-hidden="true" />
+            <div className="relative flex items-center justify-between border-b border-border pb-3">
+              <span className="editorial-meta text-foreground">System map</span>
+              <span className="font-mono text-[10px] text-muted-foreground">STRIX / PRODUCT ENGINEERING</span>
+            </div>
 
-              {/* Main Visual Layer: Architecture & Production Schematic */}
-              <div className="group relative overflow-hidden rounded-md border border-border bg-card shadow-2xl transition-all duration-300 hover:border-primary/50">
-                <div className="flex items-center justify-between border-b border-border/80 bg-muted/40 px-4 py-2.5">
-                  <div className="flex items-center gap-2">
-                    <span className="size-2 rounded-full bg-primary" />
-                    <span className="font-mono text-[10px] uppercase tracking-[0.22em] text-foreground/80">
-                      STRIX // PRODUCTION SPECIFICATION
-                    </span>
-                  </div>
-                  <span className="font-mono text-[10px] text-muted-foreground">
-                    FIG. 01 — ARCHITECTURE
-                  </span>
-                </div>
+            <svg
+              viewBox="0 0 100 100"
+              preserveAspectRatio="none"
+              className="pointer-events-none absolute inset-x-0 top-12 h-[calc(100%-3rem)] w-full"
+              aria-hidden="true"
+            >
+              <path d="M26 25 L43 43 M74 25 L57 43 M26 75 L43 57 M74 75 L57 57" fill="none" stroke="var(--strix-orange)" strokeOpacity="0.55" strokeWidth="0.35" strokeDasharray="1.5 1.5" />
+            </svg>
 
-                <div className="relative aspect-[16/10] w-full overflow-hidden bg-sand/30 dark:bg-card">
-                  <Image
-                    src="/assets/production-systems/1.png"
-                    alt="A Prototype Proves an Idea. Production Proves a System - Strix Engineering Studio"
-                    fill
-                    priority
-                    sizes="(max-width: 768px) 100vw, 540px"
-                    className="object-cover transition-transform duration-500 group-hover:scale-105"
-                  />
-                </div>
-
-                <div className="border-t border-border/70 p-4">
-                  <p className="editorial-serif text-lg text-foreground">
-                    “A Prototype Proves an Idea. Production Proves a System.”
-                  </p>
-                  <p className="mt-1 font-mono text-[11px] text-muted-foreground">
-                    Reliable edge cases, data integrity, and observable uptime.
-                  </p>
-                </div>
+            {systemParts.map((part) => (
+              <div
+                key={part.number}
+                className={`absolute z-10 flex min-h-16 w-[42%] flex-col justify-center border border-border bg-background/95 p-2.5 shadow-[var(--shadow-soft)] sm:min-h-[4.5rem] sm:p-3 ${part.position}`}
+              >
+                <span className="font-mono text-[9px] tracking-widest text-primary">{part.number}</span>
+                <span className="mt-1 text-[11px] font-medium leading-tight text-foreground sm:text-xs">{part.title}</span>
               </div>
+            ))}
 
-              {/* Overlapping Floating Product Card (Hugged Live App Showcase) */}
-              <div className="absolute -bottom-6 -left-6 z-20 hidden w-64 rounded-md border border-border/90 bg-background/95 p-3.5 shadow-xl backdrop-blur-md sm:block">
-                <div className="flex items-center gap-3">
-                  <div className="relative size-11 shrink-0 overflow-hidden rounded border border-border bg-muted">
-                    <Image
-                      src="/assets/projects/hugged/hugged-logo.png"
-                      alt="Hugged parenting platform"
-                      fill
-                      sizes="44px"
-                      className="object-cover"
-                    />
-                  </div>
-                  <div className="min-w-0">
-                    <p className="truncate text-xs font-semibold text-foreground">
-                      Hugged Parenting
-                    </p>
-                    <p className="font-mono text-[10px] text-primary">
-                      ● Google Play Live
-                    </p>
-                    <p className="truncate text-[10px] text-muted-foreground">
-                      Flutter · Next.js · FCM
-                    </p>
-                  </div>
-                </div>
-              </div>
+            <div className="absolute left-1/2 top-1/2 z-20 flex w-[40%] -translate-x-1/2 -translate-y-1/2 flex-col items-center border border-primary bg-background px-2 py-4 text-center shadow-[var(--shadow-raised)] sm:py-5">
+              <span className="editorial-meta text-primary">Connected system</span>
+              <span className="editorial-serif mt-1 text-xl leading-none text-foreground sm:text-2xl">Digital product</span>
+            </div>
 
-              {/* Overlapping Floating System Tag (Top Right) */}
-              <div className="absolute -top-5 -right-4 z-20 hidden rounded-md border border-border/80 bg-background/95 px-3 py-1.5 shadow-lg backdrop-blur-md sm:block">
-                <p className="font-mono text-[10px] uppercase tracking-wider text-foreground">
-                  <span className="text-primary">LATENCY:</span> &lt;45ms ·{" "}
-                  <span className="text-emerald-500">PROD READY</span>
-                </p>
-              </div>
+            <div className="absolute inset-x-4 bottom-3 flex items-center justify-between border-t border-border pt-2 sm:inset-x-6">
+              <span className="font-mono text-[9px] uppercase tracking-wider text-muted-foreground">Designed for real use</span>
+              <span className="font-mono text-[9px] text-primary">01 — 04</span>
             </div>
           </div>
         </div>
@@ -230,4 +96,3 @@ export function HeroEditorial() {
     </section>
   );
 }
-

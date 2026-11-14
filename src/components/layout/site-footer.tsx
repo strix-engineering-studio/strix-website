@@ -62,7 +62,7 @@ export function SiteFooter() {
     <footer className="relative z-20 border-t border-border bg-card/60 backdrop-blur-md">
       {/* Top Banner / Philosophy */}
       <div className="border-b border-border/80">
-        <div className="mx-auto flex max-w-7xl flex-col justify-between gap-6 px-4 py-12 sm:px-6 lg:flex-row lg:items-end lg:px-8">
+        <div className="strix-container flex flex-col justify-between gap-6 py-12 lg:flex-row lg:items-end">
           <div className="max-w-2xl space-y-3">
             <span className="font-mono text-[11px] uppercase tracking-[0.28em] text-primary">
               Strix · Engineering Philosophy
@@ -83,7 +83,7 @@ export function SiteFooter() {
           <div className="flex shrink-0 items-center gap-3">
             <Link
               href="/contact"
-              className="inline-flex items-center gap-2 rounded-full bg-primary px-6 py-3 text-xs font-semibold uppercase tracking-[0.18em] text-primary-foreground shadow-md transition-all hover:bg-primary/90"
+              className="inline-flex min-h-11 w-full items-center justify-center gap-2 border border-primary bg-primary px-6 py-3 text-xs font-semibold uppercase tracking-[0.18em] text-primary-foreground transition-colors hover:bg-primary/90 sm:w-auto"
             >
               <span>Start a project</span>
               <ArrowUpRight className="size-4" />
@@ -93,7 +93,7 @@ export function SiteFooter() {
       </div>
 
       {/* Main Grid */}
-      <div className="mx-auto max-w-7xl px-4 py-14 sm:px-6 lg:px-8">
+      <div className="strix-container py-14">
         <div className="grid grid-cols-1 gap-10 md:grid-cols-2 lg:grid-cols-12">
           {/* Col 1: Studio Info */}
           <div className="space-y-5 lg:col-span-5">
@@ -202,7 +202,7 @@ export function SiteFooter() {
 
       {/* Bottom Legal / Copyright */}
       <div className="border-t border-border/80">
-        <div className="mx-auto flex max-w-7xl flex-col items-center justify-between gap-4 px-4 py-5 text-xs text-muted-foreground sm:flex-row sm:px-6 lg:px-8">
+        <div className="strix-container flex flex-col items-center justify-between gap-4 py-5 text-xs text-muted-foreground sm:flex-row">
           <p>
             © {new Date().getFullYear()} Strix Engineering Studio. All rights
             reserved.

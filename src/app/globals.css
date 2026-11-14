@@ -24,6 +24,9 @@
   --color-secondary-foreground: var(--secondary-foreground);
   --color-muted: var(--muted);
   --color-muted-foreground: var(--muted-foreground);
+  --color-surface: var(--surface);
+  --color-surface-warm: var(--surface-warm);
+  --color-surface-strong: var(--surface-strong);
   --color-accent: var(--accent);
   --color-accent-foreground: var(--accent-foreground);
   --color-destructive: var(--destructive);
@@ -46,8 +49,8 @@
   --color-chart-4: var(--chart-4);
   --color-chart-5: var(--chart-5);
 
-  --radius-sm: calc(var(--radius) * 0.6);
-  --radius-md: calc(var(--radius) * 0.8);
+  --radius-sm: var(--radius-control);
+  --radius-md: var(--radius);
   --radius-lg: var(--radius);
   --radius-xl: calc(var(--radius) * 1.4);
   --radius-2xl: calc(var(--radius) * 1.8);
@@ -55,334 +58,136 @@
   --radius-4xl: calc(var(--radius) * 2.6);
 }
 
-/*
- * Strix Engineering Studio
- * Brand palette:
- * Orange #F7931E · Brown #2A1E17 · Charcoal #1A1A1A
- * Sand #EDE6DA · White #FFFFFF · Antique gold #C49A52
- *
- * Default theme is the warm editorial light theme. The .dark class
- * switches to a deep-brown engineering interface.
- */
-
- 
-/* ==========================================
-   STRIX — LIGHT THEME
-   Black & White foundation
-========================================== */
-
+/* Strix design system: editorial, architectural, and restrained. */
 :root {
   color-scheme: light;
 
   --strix-orange: #F7931E;
+  --strix-gold: #D4AF75;
   --strix-brown: #2A1E17;
   --strix-charcoal: #111111;
-  --strix-sand: #EDE6DA;
+  --strix-warm-white: #FAF8F3;
+  --strix-sand: #FAF8F3;
   --strix-white: #FFFFFF;
-  --strix-gold: #C49A52;
 
-  /* Main surfaces */
   --background: #FFFFFF;
   --foreground: #111111;
-
   --card: #FFFFFF;
   --card-foreground: #111111;
-
   --popover: #FFFFFF;
   --popover-foreground: #111111;
-
-  /* Brand highlight */
   --primary: #F7931E;
   --primary-foreground: #111111;
-
-  /* Neutral supporting surfaces */
-  --secondary: #F5F5F5;
+  --secondary: #F5F4F1;
   --secondary-foreground: #111111;
-
-  --muted: #F5F5F5;
-  --muted-foreground: #666666;
-
-  /* Accent is a highlight, not a background theme */
-  --accent: #FFF1DF;
+  --muted: #F5F4F1;
+  --muted-foreground: #66645F;
+  --accent: #FAF8F3;
   --accent-foreground: #2A1E17;
-
-  --border: #E5E5E5;
-  --input: #D4D4D4;
+  --border: #E7E5E0;
+  --input: #D7D4CE;
   --ring: #F7931E;
-
-  --destructive: #DC2626;
+  --destructive: #B42318;
 
   --chart-1: #F7931E;
   --chart-2: #111111;
-  --chart-3: #C49A52;
+  --chart-3: #D4AF75;
   --chart-4: #2A1E17;
-  --chart-5: #777777;
+  --chart-5: #77736C;
 
-  --radius: 0.5rem;
+  --radius: 0.375rem;
+  --radius-control: 0.25rem;
+  --radius-card: 0.5rem;
+  --radius-pill: 9999px;
 
-  --sidebar: #FFFFFF;
+  --sidebar: #FAF8F3;
   --sidebar-foreground: #111111;
   --sidebar-primary: #F7931E;
   --sidebar-primary-foreground: #111111;
-  --sidebar-accent: #F5F5F5;
+  --sidebar-accent: #F1EEE8;
   --sidebar-accent-foreground: #111111;
-  --sidebar-border: #E5E5E5;
+  --sidebar-border: #E7E5E0;
   --sidebar-ring: #F7931E;
 
-  /* Pure neutral page foundation */
   --page-background: #FFFFFF;
-
-  --page-overlay:
-    linear-gradient(
-      rgba(17, 17, 17, 0.035) 1px,
-      transparent 1px
-    ),
-    linear-gradient(
-      90deg,
-      rgba(17, 17, 17, 0.035) 1px,
-      transparent 1px
-    );
-
+  --page-overlay: none;
   --surface: #FFFFFF;
-  --surface-strong: #F5F5F5;
+  --surface-warm: #FAF8F3;
+  --surface-strong: #F5F4F1;
   --surface-dark: #111111;
-
-  --border-subtle: #E5E5E5;
-
+  --border-subtle: #E7E5E0;
   --text-primary: #111111;
-  --text-secondary: #555555;
-  --text-muted: #777777;
+  --text-secondary: #55534E;
+  --text-muted: #77736C;
+
+  --space-1: 0.5rem;
+  --space-2: 1rem;
+  --space-3: 1.5rem;
+  --space-4: 2rem;
+  --space-6: 3rem;
+  --space-8: 4rem;
+  --space-12: 6rem;
+  --space-section: clamp(4rem, 7vw, 7rem);
+  --type-display-xl: clamp(3.5rem, 8vw, 7.5rem);
+  --type-display-lg: clamp(2.75rem, 6vw, 5.5rem);
+  --type-heading-1: clamp(2.25rem, 4.5vw, 4rem);
+  --type-heading-2: clamp(1.75rem, 3vw, 2.75rem);
+  --type-body-lg: clamp(1.0625rem, 1.35vw, 1.25rem);
+  --container-width: 90rem;
+  --container-narrow: 48rem;
+  --shadow-soft: 0 2px 12px rgba(17, 17, 17, 0.05);
+  --shadow-raised: 0 8px 28px rgba(17, 17, 17, 0.08);
 }
-
-
-/* ==========================================
-   STRIX — DARK THEME
-   Black & White foundation
-========================================== */
 
 html.dark {
   color-scheme: dark;
 
-  --background: #0A0A0A;
-  --foreground: #FFFFFF;
-
-  --card: #111111;
-  --card-foreground: #FFFFFF;
-
-  --popover: #151515;
-  --popover-foreground: #FFFFFF;
-
+  --background: #111111;
+  --foreground: #FAF8F3;
+  --card: #181817;
+  --card-foreground: #FAF8F3;
+  --popover: #1C1B19;
+  --popover-foreground: #FAF8F3;
   --primary: #F7931E;
   --primary-foreground: #111111;
-
-  --secondary: #1A1A1A;
-  --secondary-foreground: #FFFFFF;
-
-  --muted: #171717;
-  --muted-foreground: #A3A3A3;
-
-  --accent: #33200E;
-  --accent-foreground: #FFD6A6;
-
-  --border: #292929;
-  --input: #383838;
+  --secondary: #22211F;
+  --secondary-foreground: #FAF8F3;
+  --muted: #201F1D;
+  --muted-foreground: #B5B1A9;
+  --accent: #2A1E17;
+  --accent-foreground: #F4DAB8;
+  --border: #34322E;
+  --input: #45423D;
   --ring: #F7931E;
-
   --destructive: #F87171;
 
   --chart-1: #F7931E;
-  --chart-2: #FFFFFF;
-  --chart-3: #C49A52;
-  --chart-4: #A3A3A3;
+  --chart-2: #FAF8F3;
+  --chart-3: #D4AF75;
+  --chart-4: #B5B1A9;
   --chart-5: #2A1E17;
 
-  --sidebar: #0A0A0A;
-  --sidebar-foreground: #FFFFFF;
+  --sidebar: #111111;
+  --sidebar-foreground: #FAF8F3;
   --sidebar-primary: #F7931E;
   --sidebar-primary-foreground: #111111;
-  --sidebar-accent: #1A1A1A;
-  --sidebar-accent-foreground: #FFFFFF;
-  --sidebar-border: #292929;
+  --sidebar-accent: #22211F;
+  --sidebar-accent-foreground: #FAF8F3;
+  --sidebar-border: #34322E;
   --sidebar-ring: #F7931E;
 
-  --page-background: #0A0A0A;
-
-  --page-overlay:
-    linear-gradient(
-      rgba(255, 255, 255, 0.035) 1px,
-      transparent 1px
-    ),
-    linear-gradient(
-      90deg,
-      rgba(255, 255, 255, 0.035) 1px,
-      transparent 1px
-    );
-
-  --surface: #111111;
-  --surface-strong: #171717;
-  --surface-dark: #000000;
-
-  --border-subtle: #292929;
-
-  --text-primary: #FFFFFF;
-  --text-secondary: #B3B3B3;
-  --text-muted: #858585;
+  --page-background: #111111;
+  --surface: #181817;
+  --surface-warm: #201F1D;
+  --surface-strong: #22211F;
+  --surface-dark: #090909;
+  --border-subtle: #34322E;
+  --text-primary: #FAF8F3;
+  --text-secondary: #C5C1B9;
+  --text-muted: #A19D95;
+  --shadow-soft: 0 2px 12px rgba(0, 0, 0, 0.18);
+  --shadow-raised: 0 8px 28px rgba(0, 0, 0, 0.28);
 }
-
-
-/* :root {
-  color-scheme: light;
-
-  --font-body: var(--font-geist-sans, Inter, Arial, sans-serif);
-  --font-heading: var(--font-display, "Playfair Display", "Times New Roman", Georgia, serif);
-  --font-code: var(--font-geist-mono, "SFMono-Regular", Consolas, monospace);
-
-  --strix-orange: #f7931e;
-  --strix-brown: #2a1e17;
-  --strix-charcoal: #1a1a1a;
-  --strix-sand: #ede6da;
-  --strix-white: #ffffff;
-  --strix-gold: #c49a52;
-  --strix-brown-soft: #3a2a20;
-  --strix-sand-deep: #ded3c1;
-
-  --background: #f7f3eb;
-  --foreground: #1a1a1a;
-
-  --card: #fffdf9;
-  --card-foreground: #1a1a1a;
-
-  --popover: #fffdf9;
-  --popover-foreground: #1a1a1a;
-
-  --primary: #f7931e;
-  --primary-foreground: #1a1a1a;
-
-  --secondary: #ede6da;
-  --secondary-foreground: #2a1e17;
-
-  --muted: #eee8de;
-  --muted-foreground: #655d54;
-
-  --accent: #f4dfc5;
-  --accent-foreground: #2a1e17;
-
-  --destructive: oklch(0.577 0.245 27.325);
-
-  --border: rgba(42, 30, 23, 0.16);
-  --input: rgba(42, 30, 23, 0.2);
-  --ring: #c77718;
-
-  --chart-1: #f7931e;
-  --chart-2: #2a1e17;
-  --chart-3: #c49a52;
-  --chart-4: #8a6b48;
-  --chart-5: #6b7770;
-
-  --radius: 0.5rem;
-
-  --sidebar: #f0e9dd;
-  --sidebar-foreground: #1a1a1a;
-  --sidebar-primary: #f7931e;
-  --sidebar-primary-foreground: #1a1a1a;
-  --sidebar-accent: #e8dece;
-  --sidebar-accent-foreground: #2a1e17;
-  --sidebar-border: rgba(42, 30, 23, 0.14);
-  --sidebar-ring: #c77718;
-
-  --page-background:
-    radial-gradient(
-      circle at 88% 0%,
-      rgba(247, 147, 30, 0.09),
-      transparent 26rem
-    ),
-    linear-gradient(180deg, #faf7f0 0%, #f5f0e7 54%, #ede6da 100%);
-
-  --page-overlay:
-    linear-gradient(rgba(42, 30, 23, 0.035) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(42, 30, 23, 0.035) 1px, transparent 1px);
-
-  --surface: rgba(255, 253, 249, 0.82);
-  --surface-strong: #fffdf9;
-  --surface-dark: #2a1e17;
-  --border-subtle: rgba(42, 30, 23, 0.14);
-
-  --text-primary: #1a1a1a;
-  --text-secondary: #655d54;
-  --text-muted: #81766a;
-
-  --space-section: clamp(4rem, 8vw, 8rem);
-  --container-width: 80rem;
-  --rounded-default: 0.5rem;
-}
-
-html.dark {
-  color-scheme: dark;
-
-  --background: #211710;
-  --foreground: #f5eee3;
-
-  --card: #2a1e17;
-  --card-foreground: #f5eee3;
-
-  --popover: #302219;
-  --popover-foreground: #f5eee3;
-
-  --primary: #f7931e;
-  --primary-foreground: #211710;
-
-  --secondary: #38291f;
-  --secondary-foreground: #f5eee3;
-
-  --muted: #33261d;
-  --muted-foreground: #c1b3a3;
-
-  --accent: #49301d;
-  --accent-foreground: #fff4e5;
-
-  --destructive: oklch(0.704 0.191 22.216);
-
-  --border: rgba(245, 238, 227, 0.14);
-  --input: rgba(245, 238, 227, 0.18);
-  --ring: #f7931e;
-
-  --chart-1: #f7931e;
-  --chart-2: #c49a52;
-  --chart-3: #e9d8bd;
-  --chart-4: #8b9b87;
-  --chart-5: #d57b3d;
-
-  --sidebar: #1b120d;
-  --sidebar-foreground: #f5eee3;
-  --sidebar-primary: #f7931e;
-  --sidebar-primary-foreground: #211710;
-  --sidebar-accent: #33241a;
-  --sidebar-accent-foreground: #f5eee3;
-  --sidebar-border: rgba(245, 238, 227, 0.12);
-  --sidebar-ring: #f7931e;
-
-  --page-background:
-    radial-gradient(
-      circle at 82% 0%,
-      rgba(247, 147, 30, 0.12),
-      transparent 25rem
-    ),
-    linear-gradient(180deg, #211710 0%, #2a1e17 52%, #1b120d 100%);
-
-  --page-overlay:
-    linear-gradient(rgba(245, 238, 227, 0.025) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(245, 238, 227, 0.025) 1px, transparent 1px);
-
-  --surface: rgba(58, 42, 32, 0.72);
-  --surface-strong: #302219;
-  --surface-dark: #1b120d;
-  --border-subtle: rgba(245, 238, 227, 0.13);
-
-  --text-primary: #f5eee3;
-  --text-secondary: #c1b3a3;
-  --text-muted: #9f8f7e;
-} */
-
 html {
   min-height: 100%;
   background: var(--background);
@@ -400,23 +205,6 @@ body {
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-    font-family: var(--font-body), Arial, sans-serif;
-}
-
-body::before {
-  content: "";
-  position: fixed;
-  inset: 0;
-  z-index: -1;
-  pointer-events: none;
-  opacity: 0.62;
-  background-image: var(--page-overlay);
-  background-size: 72px 72px;
-  mask-image: linear-gradient(
-    180deg,
-    rgba(0, 0, 0, 0.72),
-    transparent 85%
-  );
 }
 
 h1,
@@ -424,9 +212,10 @@ h2,
 h3,
 h4,
 h5,
-h6,
-.font-display {
-  font-family: var(--font-display), "Times New Roman", Georgia, serif;
+h6 {
+  font-family: var(--font-body), Arial, sans-serif;
+  font-weight: 500;
+  letter-spacing: -0.025em;
 }
 
 p {
@@ -487,12 +276,46 @@ select {
     margin-inline: auto;
   }
 
+  .strix-container-narrow {
+    width: min(100% - 2rem, var(--container-narrow));
+    margin-inline: auto;
+  }
+
   .section-space {
     padding-block: var(--space-section);
   }
 
+  .type-display-xl {
+    font-size: var(--type-display-xl);
+    line-height: 0.98;
+    letter-spacing: -0.045em;
+  }
+
+  .type-display-lg {
+    font-size: var(--type-display-lg);
+    line-height: 1;
+    letter-spacing: -0.04em;
+  }
+
+  .type-heading-1 {
+    font-size: var(--type-heading-1);
+    line-height: 1.05;
+    letter-spacing: -0.035em;
+  }
+
+  .type-heading-2 {
+    font-size: var(--type-heading-2);
+    line-height: 1.1;
+    letter-spacing: -0.03em;
+  }
+
+  .body-large {
+    font-size: var(--type-body-lg);
+    line-height: 1.65;
+  }
+
   .font-display {
-    font-family: var(--font-heading), "Times New Roman", Georgia, serif;
+    font-family: var(--font-display), Georgia, serif;
   }
 
   .text-brand {
@@ -537,6 +360,7 @@ select {
   .surface {
     border: 1px solid var(--border);
     background: var(--surface);
+    box-shadow: var(--shadow-soft);
   }
 
   .surface-strong {
@@ -544,40 +368,40 @@ select {
     background: var(--surface-strong);
   }
 
+  .editorial-border {
+    border: 1px solid var(--border);
+  }
+
   .editorial-serif {
     font-family: var(--font-display), Georgia, serif;
     font-feature-settings: "kern", "liga", "calt";
   }
 
-  .editorial-meta {
-    font-family: var(--font-code), "SFMono-Regular", Consolas, monospace;
-    font-size: 0.6875rem;
-    letter-spacing: 0.22em;
-    text-transform: uppercase;
-  }
-
-  .editorial-border {
-    border: 1px solid var(--border);
-  }
-
   .editorial-card {
     border: 1px solid var(--border);
     background: var(--card);
-    transition: border-color 0.25s ease, background-color 0.25s ease, transform 0.25s ease;
+    transition: border-color 0.2s ease, background-color 0.2s ease;
   }
 
   .blueprint-grid {
     background-image:
-      linear-gradient(rgba(42, 30, 23, 0.05) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(42, 30, 23, 0.05) 1px, transparent 1px);
-    background-size: 40px 40px;
+      linear-gradient(rgba(17, 17, 17, 0.035) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(17, 17, 17, 0.035) 1px, transparent 1px);
+    background-size: 64px 64px;
   }
 
   :is(.dark) .blueprint-grid {
     background-image:
-      linear-gradient(rgba(245, 238, 227, 0.05) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(245, 238, 227, 0.05) 1px, transparent 1px);
-    background-size: 40px 40px;
+      linear-gradient(rgba(250, 248, 243, 0.04) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(250, 248, 243, 0.04) 1px, transparent 1px);
+    background-size: 64px 64px;
+  }
+
+  .editorial-meta {
+    font-family: var(--font-code), "SFMono-Regular", Consolas, monospace;
+    font-size: 0.6875rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
   }
 }
 
@@ -647,10 +471,48 @@ body {
   overflow-x: hidden;
 }
 
+*,
+*::before,
+*::after {
+  min-width: 0;
+}
+
 /* ==========================================
    RESPONSIVE UTILITY — SAFE CONTAINER
 ========================================== */
 
 .safe-bottom {
   padding-bottom: calc(5.5rem + env(safe-area-inset-bottom, 0px));
+}
+
+@media (max-width: 639px) {
+  :root {
+    --space-section: clamp(3.5rem, 12vw, 4.5rem);
+    --type-display-xl: clamp(3rem, 13vw, 4.5rem);
+    --type-display-lg: clamp(2.25rem, 9vw, 3.5rem);
+    --type-heading-1: clamp(1.875rem, 7vw, 3rem);
+    --type-heading-2: clamp(1.5rem, 5.5vw, 2.25rem);
+  }
+
+  .strix-container,
+  .strix-container-narrow {
+    width: calc(100% - 2rem);
+  }
+
+  input,
+  select {
+    min-height: 1.5rem;
+  }
+}
+
+@media (max-width: 379px) {
+  .strix-container,
+  .strix-container-narrow {
+    width: calc(100% - 1.5rem);
+  }
+
+  .editorial-meta,
+  .eyebrow {
+    letter-spacing: 0.14em;
+  }
 }

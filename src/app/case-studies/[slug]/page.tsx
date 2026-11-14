@@ -1,5 +1,9 @@
 import CaseStudyDetailPage from "@/src/features/caseStudies/pages/CaseStudyDetailsPage";
 
+export {
+    generateMetadata,
+    generateStaticParams,
+} from "@/src/features/caseStudies/pages/CaseStudyDetailsPage";
 
 export default async function Page({
   params,

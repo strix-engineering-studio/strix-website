@@ -1,5 +1,10 @@
 import ProductDetailsPage from "@/src/features/products/pages/ProductDetailsPage";
 
+export {
+  generateMetadata,
+  generateStaticParams,
+} from "@/src/features/products/pages/ProductDetailsPage";
+
 export default async function ProductPage({
   params,
 }: {

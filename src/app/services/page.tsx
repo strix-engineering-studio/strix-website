@@ -1,342 +1,231 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import {
+  ArrowDownRight,
+  ArrowRight,
   ArrowUpRight,
   Bot,
-  CheckCircle2,
   Cloud,
-  Cpu,
+  Code2,
+  Compass,
   Database,
-  Globe,
   Layers,
-  RefreshCw,
-  Rocket,
-  ShieldCheck,
   Smartphone,
-  Sparkles,
-  Workflow,
+  Wrench,
 } from "lucide-react";
 import { buildMetadata } from "@/seo/metadata";
+import { caseStudies } from "@/features/caseStudies/content/case-studies.content";
 
 export const metadata: Metadata = buildMetadata({
-  title: "Engineering Services | Strix Engineering Studio",
+  title: "Product Engineering Services | Strix Engineering Studio",
   description:
-    "Explore Strix's 8 core software product engineering services: POC Development, MVP Engineering, Full Product Delivery, Web & Mobile Apps, AI Engineering, Backend & Cloud, and Modernization.",
+    "Move from product discovery and technical feasibility to MVP development, full product engineering, and ongoing evolution with Strix.",
   path: "/services",
   keywords: [
-    "POC development",
-    "MVP engineering",
-    "full product engineering",
-    "web application development",
-    "mobile application development",
+    "product discovery",
+    "technical feasibility",
+    "MVP development",
+    "SaaS product development",
+    "Flutter mobile development",
     "AI product engineering",
-    "backend and API engineering",
     "product modernization",
   ],
 });
 
-const coreServices = [
+const pathways = [
   {
     number: "01",
-    slug: "poc-development",
-    title: "Proof of Concept (POC) Development",
-    eyebrow: "TECHNICAL FEASIBILITY & DE-RISKING",
-    timeframe: "1 to 3 Weeks",
-    icon: Rocket,
-    problem:
-      "You have an ambitious technical idea, novel algorithm, or complex integration, but you need concrete proof of feasibility before committing serious capital.",
-    strixProvides:
-      "Rapidly isolated technical prototyping, architecture spikes, benchmark evaluations, and feasibility audits to de-risk key uncertainties.",
-    deliverables: [
-      "Interactive working prototype",
-      "Technical feasibility and risk assessment",
-      "Architecture blueprint & technology recommendations",
-      "Live interactive demonstration",
+    name: "Validate",
+    title: "Product Discovery & Technical Feasibility",
+    description:
+      "Make informed product and technical decisions before committing to a larger build.",
+    services: [
+      "Product discovery",
+      "Technical consulting",
+      "Architecture planning",
+      "Proof of Concept",
+      "Technical feasibility assessment",
     ],
-    technologies: ["Next.js", "TypeScript", "Python", "LLM APIs", "Docker"],
-    relatedProjects: ["Imrabo", "QR IoT Sensor POC"],
+    href: "/services/poc-development",
+    caseStudies: ["qr-based-iot-sensor-monitoring-poc"],
+    icon: Compass,
   },
   {
     number: "02",
-    slug: "mvp-development",
-    title: "Minimum Viable Product (MVP) Development",
-    eyebrow: "MARKET VALIDATION & FIRST CUSTOMERS",
-    timeframe: "3 to 6 Weeks",
-    icon: Sparkles,
-    problem:
-      "You need to get a functional, secure, and production-grade software product in front of real users and paying customers without months of delayed delivery.",
-    strixProvides:
-      "Focused full-stack engineering prioritizing core value loops, secure payment processing, authentication, and launch telemetry.",
-    deliverables: [
-      "Production web and/or mobile application",
-      "Role-based access control (RBAC) & authentication",
-      "Payment processing (Razorpay / Stripe)",
-      "Zero-downtime deployment & monitoring telemetry",
+    name: "Launch",
+    title: "MVP & Product Development",
+    description:
+      "Build a useful first product around the core user workflows, business needs, and technical foundations.",
+    services: [
+      "MVP development",
+      "SaaS product development",
+      "Web application development",
+      "Flutter mobile applications",
+      "Backend and API development",
+      "AI-powered product development",
     ],
-    technologies: ["Next.js", "Flutter", "NestJS", "PostgreSQL", "Firebase"],
-    relatedProjects: ["Hugged", "H2Go", "Classes360"],
+    href: "/services/mvp-development",
+    caseStudies: ["hugged-parenting-platform", "atmabhan-spiritual-learning-app"],
+    icon: Layers,
   },
   {
     number: "03",
-    slug: "product-engineering",
+    name: "Grow",
     title: "Full Product Engineering",
-    eyebrow: "END-TO-END PRODUCT SYSTEMS",
-    timeframe: "Long-Term Engineering Partnership",
-    icon: Layers,
-    problem:
-      "Your company requires continuous, disciplined software delivery across web, mobile, distributed backends, and cloud infrastructure with high reliability.",
-    strixProvides:
-      "Full technical lifecycle ownership: architecture modeling, sprint-based full-stack engineering, test automation, and proactive operational support.",
-    deliverables: [
-      "Multi-platform applications (Web, iOS, Android)",
-      "Distributed backend & microservices architecture",
-      "Automated test suites & CI/CD deployment pipelines",
-      "Direct senior engineering ownership & SLA support",
+    description:
+      "Improve and extend an existing product as its users, workflows, and operating needs change.",
+    services: [
+      "Product modernization",
+      "Application scaling",
+      "Cloud infrastructure",
+      "API and third-party integrations",
+      "Performance optimization",
+      "Maintenance and ongoing engineering",
     ],
-    technologies: ["Next.js", "Flutter", "NestJS", "PostgreSQL", "Prisma", "Docker"],
-    relatedProjects: ["Hugged", "H2Go", "MagicalStones.store"],
-  },
-  {
-    number: "04",
-    slug: "web-application-development",
-    title: "Web Application Development",
-    eyebrow: "HIGH-SPEED EDITORIAL WEB PLATFORMS",
-    timeframe: "Fixed Scope or Sprints",
-    icon: Globe,
-    problem:
-      "Your existing web app is slow, fragile, or hard to scale, or you need a modern SaaS platform with instant page loads, great SEO, and intuitive user experiences.",
-    strixProvides:
-      "Server-rendered web systems engineered with React 19, Next.js App Router, and Tailwind CSS. Built for sub-second speeds, accessibility, and high conversion.",
-    deliverables: [
-      "Server-rendered Next.js web application",
-      "Custom responsive editorial design system",
-      "Type-safe API routes & server actions",
-      "Lighthouse 95+ performance optimization",
-    ],
-    technologies: ["Next.js 16+", "React 19", "TypeScript", "Tailwind CSS", "Zod"],
-    relatedProjects: ["MagicalStones.store", "GoHere"],
-  },
-  {
-    number: "05",
-    slug: "mobile-application-development",
-    title: "Mobile Application Development",
-    eyebrow: "CROSS-PLATFORM FLUTTER ENGINEERING",
-    timeframe: "4 to 8 Weeks",
-    icon: Smartphone,
-    problem:
-      "Maintaining separate iOS (Swift) and Android (Kotlin) codebases is expensive and results in desynchronized feature releases and bugs.",
-    strixProvides:
-      "High-performance cross-platform apps built with Flutter and Dart from a single codebase, delivering native 60fps fluidity and app store publishing.",
-    deliverables: [
-      "Single-codebase Flutter mobile application (iOS & Android)",
-      "Offline-first local cache & background syncing",
-      "Push notification dispatch via Firebase Cloud Messaging",
-      "Full Apple App Store & Google Play approval management",
-    ],
-    technologies: ["Flutter", "Dart", "Firebase", "FCM", "App Store Connect"],
-    relatedProjects: ["Hugged", "Instameasure"],
-  },
-  {
-    number: "06",
-    slug: "ai-product-engineering",
-    title: "AI Product Engineering",
-    eyebrow: "AGENTIC WORKFLOWS & NATIVE AI CAPABILITIES",
-    timeframe: "2 to 6 Weeks",
-    icon: Bot,
-    problem:
-      "Off-the-shelf chatbots and raw LLM wrappers hallucinate, fail on edge cases, and don't integrate deeply with real business databases and user tasks.",
-    strixProvides:
-      "Production AI engineering with structured JSON schema outputs, multi-model routing, semantic RAG pipelines, and deterministic fallback guardrails.",
-    deliverables: [
-      "Deterministic AI task execution pipelines",
-      "Vector search index & retrieval context filters",
-      "Structured output validation with Zod / Pydantic",
-      "Observability logging for prompt latency and tokens",
-    ],
-    technologies: ["LLM APIs", "Python", "TypeScript", "Vector DBs", "Claude / OpenAI"],
-    relatedProjects: ["Imrabo", "Thoughtstream"],
-  },
-  {
-    number: "07",
-    slug: "backend-systems",
-    title: "Backend, API & Cloud Engineering",
-    eyebrow: "RESILIENT SERVICES & DATA ARCHITECTURE",
-    timeframe: "Sprints or Infrastructure Sprints",
-    icon: Database,
-    problem:
-      "Unstructured APIs, unindexed databases, and lack of transaction safety lead to data corruption, webhook failures, and difficult maintenance.",
-    strixProvides:
-      "Modular NestJS and Node.js backends with clean domain boundaries, relational data integrity (PostgreSQL/Prisma), and Dockerized cloud deployment.",
-    deliverables: [
-      "Modular NestJS / Node.js backend architecture",
-      "Relational & document database schemas with migrations",
-      "Idempotent API endpoints & webhook handlers",
-      "Automated CI/CD pipelines & Docker containerization",
-    ],
-    technologies: ["NestJS", "Node.js", "PostgreSQL", "MongoDB", "Prisma", "Docker"],
-    relatedProjects: ["Classes360", "Hugged"],
-  },
-  {
-    number: "08",
-    slug: "product-modernization",
-    title: "Product Modernization & Maintenance",
-    eyebrow: "REFACTORING, SCALING & SYSTEM HEALTH",
-    timeframe: "Audit or Ongoing Retainer",
-    icon: RefreshCw,
-    problem:
-      "Legacy codebases, slow response times, technical debt, and missing documentation are slowing your product development down to a crawl.",
-    strixProvides:
-      "Disciplined code refactoring, migration to TypeScript and modern frameworks, performance audits, database query tuning, and reliable ongoing support.",
-    deliverables: [
-      "Comprehensive architectural health audit & remediation plan",
-      "Incremental refactoring without breaking production",
-      "TypeScript migration and automated test coverage",
-      "Guaranteed operational SLA and emergency bug response",
-    ],
-    technologies: ["TypeScript", "NestJS", "Next.js", "PostgreSQL", "Sentry"],
-    relatedProjects: ["Hugged", "Instameasure"],
+    href: "/services/product-engineering",
+    caseStudies: ["instameasure-water-bill-management"],
+    icon: ArrowUpRight,
   },
 ];
 
+const capabilities = [
+  { title: "Web Engineering", detail: "Web applications and product interfaces.", href: "/services/web-application-development", icon: Code2 },
+  { title: "Mobile Engineering", detail: "Cross-platform mobile products with Flutter.", href: "/services/mobile-application-development", icon: Smartphone },
+  { title: "Backend & API Engineering", detail: "Application services, data models, and integrations.", href: "/services/backend-systems", icon: Database },
+  { title: "AI Engineering", detail: "AI capabilities designed around product workflows.", href: "/services/ai-product-engineering", icon: Bot },
+  { title: "Cloud & Infrastructure", detail: "Deployment foundations and cloud-connected systems.", href: "/services/backend-systems", icon: Cloud },
+  { title: "Product Modernization", detail: "Improve and extend an existing application or platform.", href: "/services/product-modernization", icon: Wrench },
+];
+
+const engagements = [
+  {
+    number: "01",
+    title: "Fixed-scope project",
+    fit: "A defined product initiative, feature set, discovery phase, or technical assessment with an agreed scope.",
+    start: "Share the goal, current context, and the outcome you need to move forward.",
+  },
+  {
+    number: "02",
+    title: "Dedicated engineering partnership",
+    fit: "Ongoing product work that benefits from a close engineering relationship and continuity across releases.",
+    start: "Tell us about your roadmap, team, and the engineering capacity you need.",
+  },
+  {
+    number: "03",
+    title: "Technical consulting",
+    fit: "A focused need such as architecture planning, feasibility review, technical direction, or product discovery.",
+    start: "Describe the decision or technical question you want to work through.",
+  },
+];
+
+const deliverySteps = [
+  { number: "01", title: "Discover", detail: "Understand goals, users, constraints, and existing systems." },
+  { number: "02", title: "Define", detail: "Agree on scope, technical direction, dependencies, and priorities." },
+  { number: "03", title: "Build", detail: "Develop and review the product in clear, manageable increments." },
+  { number: "04", title: "Launch", detail: "Prepare the system and team for release and real-world use." },
+  { number: "05", title: "Evolve", detail: "Use product needs and usage to guide future improvements." },
+];
+
+const faqs = [
+  {
+    question: "How do we choose the right starting point?",
+    answer:
+      "Start with the question you need answered. If the product direction or technical feasibility is uncertain, begin with discovery or a PoC. If the core scope is understood, move into product development. For an existing product, focus on the constraints and improvements that matter now.",
+  },
+  {
+    question: "Can Strix work with an existing product or codebase?",
+    answer:
+      "Yes. Share the current product, team context, and the changes you have in mind. The first step can be a technical review or a scoped discussion of the product and its codebase.",
+  },
+  {
+    question: "How are project scope and timing decided?",
+    answer:
+      "Scope and timing depend on the product requirements, integrations, platforms, and existing systems. We discuss those constraints before agreeing on a project plan.",
+  },
+  {
+    question: "What should I include in a project inquiry?",
+    answer:
+      "A short description of the product or system, who it serves, what you want to change or build, and any important constraints is a useful starting point. You can include links or technical context if available.",
+  },
+];
+
+const publicCaseStudies = caseStudies.filter(
+  (study) => study.status === "published" && (study.visibility === "public" || study.visibility === "anonymized"),
+);
+
+function CaseStudyLink({ slug }: { slug: string }) {
+  const study = publicCaseStudies.find((item) => item.slug === slug);
+  if (!study) return null;
+
+  return (
+    <Link
+      href={`/case-studies/${study.slug}`}
+      className="group flex items-start justify-between gap-3 border-t border-border py-3 text-sm transition-colors hover:text-primary"
+    >
+      <span>
+        <span className="block font-medium text-foreground group-hover:text-primary">{study.client?.name || study.title.split(":")[0]}</span>
+        <span className="mt-1 block text-xs text-muted-foreground">{study.client?.industry || study.category}</span>
+      </span>
+      <ArrowUpRight className="mt-0.5 size-4 shrink-0 text-muted-foreground group-hover:text-primary" />
+    </Link>
+  );
+}
+
 export default function ServicesPage() {
   return (
-    <main className="min-h-screen bg-background text-foreground">
-      {/* Editorial Hero Header */}
-      <section className="relative overflow-hidden border-b border-border/80 pt-16 pb-20 lg:pt-24 lg:pb-28">
-        <div
-          aria-hidden="true"
-          className="pointer-events-none absolute inset-0 blueprint-grid opacity-60"
-        />
-
-        <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+    <main className="bg-background text-foreground">
+      <section className="relative overflow-hidden border-b border-border py-16 sm:py-20 lg:py-24">
+        <div aria-hidden="true" className="pointer-events-none absolute inset-0 blueprint-grid opacity-50" />
+        <div className="strix-container relative">
           <div className="max-w-4xl space-y-5">
-            <div className="inline-flex items-center gap-2 rounded-full border border-primary/30 bg-primary/5 px-3.5 py-1">
-              <span className="size-1.5 rounded-full bg-primary" />
-              <span className="font-mono text-[10px] font-semibold uppercase tracking-[0.24em] text-primary">
-                Commercial Capabilities & Offerings
-              </span>
-            </div>
-
-            <h1 className="editorial-serif text-5xl leading-tight tracking-tight text-foreground sm:text-6xl lg:text-7xl">
-              Software engineering services built for{" "}
-              <span className="italic font-normal text-primary">
-                production reality.
-              </span>
+            <p className="editorial-meta border-l-2 border-primary py-1 pl-3 text-primary">Services & engagement</p>
+            <h1 className="editorial-serif type-display-lg text-foreground">
+              Product engineering for the stage you&apos;re at.
             </h1>
-
-            <p className="max-w-2xl text-base leading-relaxed text-muted-foreground sm:text-lg">
-              Strix bridges product intent and robust software architecture. From
-              validating initial proof of concepts to engineering high-scale
-              production platforms, our 8 core services deliver disciplined
-              ownership without bloat.
+            <p className="body-large max-w-3xl text-muted-foreground">
+              From validating an idea to evolving a product in use, Strix brings product thinking and engineering together around what needs to work.
             </p>
-
-            <div className="flex flex-wrap items-center gap-4 pt-4">
-              <Link
-                href="/contact"
-                className="inline-flex items-center gap-2 rounded-full bg-primary px-7 py-3.5 text-xs font-semibold uppercase tracking-[0.18em] text-primary-foreground shadow-md transition-all hover:bg-primary/90"
-              >
-                <span>Discuss your requirements</span>
-                <ArrowUpRight className="size-4" />
+            <div className="flex flex-wrap gap-3 pt-2">
+              <Link href="/contact" className="inline-flex min-h-12 items-center gap-3 border border-primary bg-primary px-5 py-3 text-sm font-semibold text-primary-foreground transition-colors hover:bg-primary/90">
+                Discuss a project <ArrowUpRight className="size-4" />
+              </Link>
+              <Link href="#pathways" className="inline-flex min-h-12 items-center gap-3 border border-border bg-background px-5 py-3 text-sm font-medium transition-colors hover:border-foreground/40">
+                Explore services <ArrowDownRight className="size-4 text-muted-foreground" />
               </Link>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Services Grid (8 Detailed Editorial Cards) */}
-      <section className="py-20 lg:py-28">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 gap-10 md:grid-cols-2">
-            {coreServices.map((service) => {
-              const Icon = service.icon;
-
+      <section id="pathways" className="border-b border-border py-16 sm:py-20 lg:py-24">
+        <div className="strix-container">
+          <SectionIntro eyebrow="Three pathways" title="Start where your product needs you." description="Each pathway connects a business need to the product and engineering work that can move it forward." />
+          <div className="mt-9 grid gap-4 lg:grid-cols-3">
+            {pathways.map((pathway) => {
+              const Icon = pathway.icon;
               return (
-                <article
-                  key={service.slug}
-                  className="group relative flex flex-col justify-between rounded-xl border border-border bg-card p-7 shadow-sm transition-all duration-300 hover:border-primary/50 hover:shadow-lg lg:p-9"
-                >
-                  <div>
-                    {/* Top Meta */}
-                    <div className="flex items-center justify-between border-b border-border/80 pb-4">
-                      <div className="flex items-center gap-3">
-                        <span className="editorial-serif text-3xl font-normal text-primary">
-                          {service.number}
-                        </span>
-                        <span className="font-mono text-[9px] uppercase tracking-widest text-muted-foreground">
-                          {service.eyebrow}
-                        </span>
-                      </div>
-
-                      <div className="flex size-9 items-center justify-center rounded-sm border border-border bg-muted/40 text-foreground transition-colors group-hover:border-primary group-hover:text-primary">
-                        <Icon className="size-4" />
-                      </div>
-                    </div>
-
-                    {/* Title */}
-                    <h2 className="editorial-serif mt-5 text-2xl font-normal text-foreground transition-colors group-hover:text-primary sm:text-3xl">
-                      <Link href={`/services/${service.slug}`} className="focus:outline-hidden">
-                        {service.title}
-                      </Link>
-                    </h2>
-
-                    {/* Customer Problem */}
-                    <div className="mt-4 rounded-sm border border-border/60 bg-muted/20 p-3.5">
-                      <p className="font-mono text-[9px] uppercase tracking-wider text-muted-foreground">
-                        The Problem You Face:
-                      </p>
-                      <p className="mt-1 text-xs leading-relaxed text-foreground/90">
-                        {service.problem}
-                      </p>
-                    </div>
-
-                    {/* What Strix Provides */}
-                    <p className="mt-4 text-xs leading-relaxed text-muted-foreground sm:text-sm">
-                      {service.strixProvides}
-                    </p>
-
-                    {/* Deliverables */}
-                    <div className="mt-5 space-y-2 border-t border-border/60 pt-4">
-                      <p className="font-mono text-[10px] uppercase tracking-wider text-foreground">
-                        Key Deliverables:
-                      </p>
-                      <ul className="space-y-1.5 text-xs text-muted-foreground">
-                        {service.deliverables.map((deliv) => (
-                          <li key={deliv} className="flex items-start gap-2">
-                            <span className="mt-1 size-1.5 shrink-0 rounded-full bg-primary" />
-                            <span>{deliv}</span>
-                          </li>
-                        ))}
-                      </ul>
-                    </div>
-
-                    {/* Tech Badges */}
-                    <div className="mt-6 flex flex-wrap gap-1.5">
-                      {service.technologies.map((tech) => (
-                        <span
-                          key={tech}
-                          className="rounded-full border border-border bg-background px-2.5 py-0.5 font-mono text-[10px] text-foreground/80"
-                        >
-                          {tech}
-                        </span>
-                      ))}
-                    </div>
+                <article key={pathway.number} className="flex h-full flex-col border border-border bg-card p-5 sm:p-6">
+                  <div className="flex items-center justify-between border-b border-border pb-4">
+                    <span className="font-mono text-xs tracking-[0.18em] text-primary">{pathway.number} / {pathway.name}</span>
+                    <Icon aria-hidden="true" className="size-5 text-foreground/70" strokeWidth={1.6} />
                   </div>
-
-                  {/* Bottom Action */}
-                  <div className="mt-8 flex items-center justify-between border-t border-border/80 pt-4">
-                    <span className="font-mono text-[10px] text-muted-foreground">
-                      TIMEFRAME: {service.timeframe.toUpperCase()}
-                    </span>
-
-                    <Link
-                      href={`/services/${service.slug}`}
-                      className="inline-flex items-center gap-1.5 font-mono text-xs font-semibold uppercase tracking-wider text-primary transition-colors hover:text-foreground"
-                    >
-                      <span>Explore service</span>
-                      <ArrowUpRight className="size-3.5 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
-                    </Link>
+                  <h3 className="editorial-serif mt-5 text-2xl leading-tight text-foreground">{pathway.title}</h3>
+                  <p className="mt-3 min-h-12 text-sm leading-relaxed text-muted-foreground">{pathway.description}</p>
+                  <ul className="mt-5 flex-1 space-y-2 border-t border-border pt-4">
+                    {pathway.services.map((service) => (
+                      <li key={service} className="flex items-start gap-2 text-sm text-foreground/80">
+                        <span aria-hidden="true" className="mt-2 size-1.5 shrink-0 bg-primary" />
+                        {service}
+                      </li>
+                    ))}
+                  </ul>
+                  <div className="mt-5 border-t border-border pt-2">
+                    <p className="editorial-meta mb-1 pt-2 text-muted-foreground">Relevant work</p>
+                    {pathway.caseStudies.map((slug) => <CaseStudyLink key={slug} slug={slug} />)}
                   </div>
+                  <Link href={pathway.href} className="mt-4 inline-flex items-center gap-2 border border-foreground/20 px-4 py-3 text-sm font-medium transition-colors hover:border-primary hover:text-primary">
+                    Explore {pathway.name} <ArrowRight className="size-4" />
+                  </Link>
                 </article>
               );
             })}
@@ -344,31 +233,132 @@ export default function ServicesPage() {
         </div>
       </section>
 
-      {/* Closing CTA */}
-      <section className="border-t border-border/80 bg-muted/20 py-16">
-        <div className="mx-auto max-w-7xl px-4 text-center sm:px-6 lg:px-8">
-          <span className="font-mono text-[11px] uppercase tracking-[0.26em] text-primary">
-            NEED A CUSTOM ENGAGEMENT?
-          </span>
-          <h2 className="editorial-serif mt-3 text-3xl font-normal text-foreground sm:text-4xl">
-            Let&apos;s map the right engineering scope for your product.
-          </h2>
-          <p className="mx-auto mt-3 max-w-xl text-sm text-muted-foreground">
-            Whether your project requires a two-week architectural spike or a
-            multi-month dedicated product engineering team, we provide fixed
-            scope clarity and senior execution.
-          </p>
-          <div className="mt-6">
-            <Link
-              href="/contact"
-              className="inline-flex items-center gap-2 rounded-full bg-primary px-7 py-3.5 text-xs font-semibold uppercase tracking-[0.18em] text-primary-foreground shadow-md transition-all hover:bg-primary/90"
-            >
-              <span>Start project inquiry</span>
-              <ArrowUpRight className="size-4" />
+      <section className="border-b border-border bg-surface-warm py-16 sm:py-20">
+        <div className="strix-container">
+          <SectionIntro eyebrow="Supporting capabilities" title="The engineering behind the product." description="Bring in the capabilities your product needs, as part of a broader engagement or a focused piece of work." />
+          <div className="mt-9 grid gap-px border border-border bg-border sm:grid-cols-2 lg:grid-cols-3">
+            {capabilities.map(({ icon: Icon, ...capability }) => (
+              <Link key={capability.title} href={capability.href} className="group flex min-h-36 items-start gap-4 bg-background p-5 transition-colors hover:bg-card sm:p-6">
+                <Icon aria-hidden="true" className="mt-1 size-5 shrink-0 text-primary" strokeWidth={1.6} />
+                <span>
+                  <span className="block font-medium text-foreground group-hover:text-primary">{capability.title}</span>
+                  <span className="mt-2 block text-sm leading-relaxed text-muted-foreground">{capability.detail}</span>
+                </span>
+                <ArrowUpRight aria-hidden="true" className="ml-auto size-4 shrink-0 text-muted-foreground transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
+              </Link>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section id="engagement-models" className="border-b border-border py-16 sm:py-20 lg:py-24">
+        <div className="strix-container">
+          <SectionIntro eyebrow="Engagement models" title="A working model for the kind of help you need." description="The engagement can fit a defined initiative, a continuing product roadmap, or a focused technical decision." />
+          <div className="mt-9 grid gap-4 lg:grid-cols-3">
+            {engagements.map((engagement) => (
+              <article key={engagement.number} className="flex flex-col border border-border bg-card p-5 sm:p-6">
+                <span className="font-mono text-xs tracking-[0.18em] text-primary">{engagement.number}</span>
+                <h3 className="editorial-serif mt-4 text-2xl text-foreground">{engagement.title}</h3>
+                <div className="mt-5 border-t border-border pt-4">
+                  <p className="editorial-meta text-muted-foreground">Suitable for</p>
+                  <p className="mt-2 text-sm leading-relaxed text-foreground/80">{engagement.fit}</p>
+                </div>
+                <div className="mt-5 flex-1 border-t border-border pt-4">
+                  <p className="editorial-meta text-muted-foreground">How to start</p>
+                  <p className="mt-2 text-sm leading-relaxed text-foreground/80">{engagement.start}</p>
+                </div>
+                <Link href="/contact" className="mt-5 inline-flex items-center gap-2 border-t border-border pt-4 text-sm font-medium text-foreground transition-colors hover:text-primary">
+                  Discuss this model <ArrowUpRight className="size-4" />
+                </Link>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section id="delivery-process" className="border-b border-border bg-surface-warm py-16 sm:py-20">
+        <div className="strix-container">
+          <SectionIntro eyebrow="Delivery process" title="A clear path from question to working product." description="The details vary by project. These stages keep product decisions connected to engineering and release." />
+          <ol className="mt-9 grid gap-px border border-border bg-border sm:grid-cols-2 lg:grid-cols-5">
+            {deliverySteps.map((step) => (
+              <li key={step.number} className="bg-background p-5 sm:p-6">
+                <span className="font-mono text-xs tracking-[0.18em] text-primary">{step.number}</span>
+                <h3 className="editorial-serif mt-4 text-2xl text-foreground">{step.title}</h3>
+                <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{step.detail}</p>
+              </li>
+            ))}
+          </ol>
+          <Link href="/#how-we-work" className="mt-5 inline-flex items-center gap-2 text-sm font-medium text-foreground transition-colors hover:text-primary">
+            See how we work <ArrowUpRight className="size-4" />
+          </Link>
+        </div>
+      </section>
+
+      <section id="case-studies" className="border-b border-border py-16 sm:py-20 lg:py-24">
+        <div className="strix-container">
+          <SectionIntro eyebrow="Relevant work" title="Engineering across real product contexts." description="Explore published case studies from client product work and technical implementation." />
+          <div className="mt-9 grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+            {["qr-based-iot-sensor-monitoring-poc", "hugged-parenting-platform", "instameasure-water-bill-management"].map((slug) => {
+              const study = publicCaseStudies.find((item) => item.slug === slug);
+              if (!study) return null;
+              return (
+                <article key={study.slug} className="flex flex-col border border-border bg-card p-5 sm:p-6">
+                  <p className="editorial-meta text-primary">{study.client?.industry || study.category}</p>
+                  <h3 className="editorial-serif mt-4 flex-1 text-2xl leading-tight text-foreground">{study.title}</h3>
+                  <p className="mt-3 text-sm leading-relaxed text-muted-foreground">{study.subtitle}</p>
+                  <Link href={`/case-studies/${study.slug}`} className="mt-5 inline-flex items-center gap-2 border-t border-border pt-4 text-sm font-medium text-foreground transition-colors hover:text-primary">
+                    Read case study <ArrowUpRight className="size-4" />
+                  </Link>
+                </article>
+              );
+            })}
+          </div>
+        </div>
+      </section>
+
+      <section id="services-faq" className="border-b border-border bg-surface-warm py-16 sm:py-20 lg:py-24">
+        <div className="strix-container grid gap-8 lg:grid-cols-12 lg:gap-12">
+          <div className="lg:col-span-4">
+            <SectionIntro eyebrow="FAQ" title="A few useful answers." description="If your question is specific to your product, send it with your project inquiry." />
+          </div>
+          <div className="lg:col-span-8">
+            {faqs.map((faq) => (
+              <details key={faq.question} className="group border-b border-border py-5 first:border-t">
+                <summary className="flex cursor-pointer list-none items-start justify-between gap-4 text-base font-medium text-foreground marker:content-none">
+                  {faq.question}
+                  <span className="font-mono text-primary transition-transform group-open:rotate-45" aria-hidden="true">+</span>
+                </summary>
+                <p className="max-w-3xl pr-8 pt-3 text-sm leading-relaxed text-muted-foreground">{faq.answer}</p>
+              </details>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="py-16 sm:py-20">
+        <div className="strix-container">
+          <div className="flex flex-col justify-between gap-6 border border-border bg-surface-warm p-6 sm:p-9 md:flex-row md:items-end">
+            <div className="max-w-3xl space-y-4">
+              <p className="editorial-meta text-primary">Project inquiry</p>
+              <h2 className="editorial-serif type-heading-2 text-foreground">Tell us what you&apos;re building or improving.</h2>
+              <p className="text-sm leading-relaxed text-muted-foreground sm:text-base">Share your product context and the outcome you&apos;re looking for. We can help identify a suitable next step.</p>
+            </div>
+            <Link href="/contact" className="inline-flex min-h-12 shrink-0 items-center gap-3 border border-primary bg-primary px-5 py-3 text-sm font-semibold text-primary-foreground transition-colors hover:bg-primary/90">
+              Start a project <ArrowUpRight className="size-4" />
             </Link>
           </div>
         </div>
       </section>
     </main>
+  );
+}
+
+function SectionIntro({ eyebrow, title, description }: { eyebrow: string; title: string; description: string }) {
+  return (
+    <header className="max-w-3xl space-y-4">
+      <p className="editorial-meta text-primary">{eyebrow}</p>
+      <h2 className="editorial-serif type-heading-1 text-foreground">{title}</h2>
+      <p className="max-w-2xl text-sm leading-relaxed text-muted-foreground sm:text-base">{description}</p>
+    </header>
   );
 }

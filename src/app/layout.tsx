@@ -10,7 +10,6 @@ import { PwaRegister } from "@/components/shared/pwa-register";
 import { ThemeProvider } from "@/components/shared/theme-provider";
 
 import "./globals.css";
-import { StrixCursor } from "../components/strix-cursor";
 import { JsonLd } from "../seo/json-ld";
 import { organizationSchema } from "../seo/schemas/organization";
 import { seoConfig, websiteSchema } from "../seo";
@@ -48,7 +47,7 @@ export const metadata: Metadata = {
   title: {
     default:
       "Strix Engineering Studio | Architecture-First Product Engineering",
-    template: "%s | Strix Engineering Studio",
+    template: "%s",
   },
   description: seoConfig.defaultDescription,
   keywords: [...seoConfig.defaultKeywords],
@@ -111,8 +110,6 @@ export default function RootLayout({
   `}
     >
       <head>
-        <link rel="canonical" href={seoConfig.siteUrl} />
-
         <JsonLd data={[organizationSchema(), websiteSchema()]} />
       </head>
       <body className="relative isolate min-h-screen overflow-x-hidden text-text-primary bg-background">

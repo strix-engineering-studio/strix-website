@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Mail, MapPin, Phone, ShieldCheck, Sparkles } from "lucide-react";
+import { Mail, MapPin, Phone } from "lucide-react";
 import { PageShell } from "@/components/shared/page-shell";
 import { ProjectInquiryForm } from "@/components/contact/project-inquiry-form";
 import { buildMetadata } from "@/seo/metadata";
@@ -21,22 +21,21 @@ export default function ContactPage() {
   return (
     <PageShell
       eyebrow="Project Inquiry"
-      title="Tell us what you’re engineering"
-      description="Whether you have an early concept needing validation or a production system requiring architectural scale, share your requirements below."
+      title="Let's build something that works beyond launch."
+      description="Tell us what you're building, what needs to improve, or where your current product is facing engineering challenges."
     >
       <div className="grid grid-cols-1 gap-10 lg:grid-cols-12 lg:gap-12">
-        {/* Left Column: Direct Studio Information & Guarantees (4 cols) */}
+        {/* Left Column: Direct Studio Information (4 cols) */}
         <aside className="space-y-6 lg:col-span-4">
           <div className="rounded-xl border border-border bg-card p-6 shadow-sm sm:p-7">
             <span className="font-mono text-[10px] uppercase tracking-[0.24em] text-primary">
               DIRECT CHANNELS
             </span>
             <h2 className="editorial-serif mt-2 text-2xl font-normal text-foreground">
-              Direct Senior Access
+              Contact the studio
             </h2>
             <p className="mt-2 text-xs leading-relaxed text-muted-foreground sm:text-sm">
-              Your inquiry goes straight to our lead engineers. We do not use
-              intermediary sales representatives.
+              Reach Strix directly by email or phone, or share your project details using the form.
             </p>
 
             <div className="mt-6 space-y-4 border-t border-border/70 pt-5 text-xs text-foreground/90">
@@ -78,31 +77,27 @@ export default function ContactPage() {
             </div>
           </div>
 
-          {/* Guarantees Box */}
+          {/* What to expect */}
           <div className="rounded-xl border border-primary/20 bg-primary/5 p-6 shadow-sm">
             <span className="font-mono text-[10px] uppercase tracking-[0.22em] text-primary">
-              OUR COMMITMENT
+              WHAT HAPPENS NEXT
             </span>
             <h3 className="editorial-serif mt-2 text-lg font-normal text-foreground">
-              What Happens Next:
+              After you get in touch
             </h3>
 
             <ul className="mt-3 space-y-2.5 text-xs text-muted-foreground">
               <li className="flex items-start gap-2">
                 <span className="mt-1 size-1.5 shrink-0 rounded-full bg-primary" />
-                <span>Response within 24 to 48 business hours.</span>
+                <span>We’ll review the context and requirements you share.</span>
               </li>
               <li className="flex items-start gap-2">
                 <span className="mt-1 size-1.5 shrink-0 rounded-full bg-primary" />
-                <span>NDA signed upfront upon request.</span>
+                <span>We’ll follow up using your preferred contact method to discuss the right next step.</span>
               </li>
               <li className="flex items-start gap-2">
                 <span className="mt-1 size-1.5 shrink-0 rounded-full bg-primary" />
-                <span>Clear technical scope and fixed estimate.</span>
-              </li>
-              <li className="flex items-start gap-2">
-                <span className="mt-1 size-1.5 shrink-0 rounded-full bg-primary" />
-                <span>Zero sales pressure or lock-in tactics.</span>
+                <span>If the form cannot submit, email us directly at team@strix.website.</span>
               </li>
             </ul>
           </div>

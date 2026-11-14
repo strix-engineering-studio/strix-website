@@ -79,10 +79,6 @@ export function ProjectInquiryForm() {
 
     const formData = new FormData(event.currentTarget);
     const selectedPlatforms = formData.getAll("platformsRequired").map(String);
-    if (selectedPlatforms.length === 0) {
-      setStatus("error");
-      return;
-    }
     const attachments = Array.from(formData.getAll("attachments"))
       .filter((item): item is File => item instanceof File && item.size > 0)
       .map<AttachmentSummary>((file) => ({
@@ -96,6 +92,8 @@ export function ProjectInquiryForm() {
       emailAddress: String(formData.get("emailAddress") || ""),
       whatsappNumber: String(formData.get("whatsappNumber") || ""),
       companyName: String(formData.get("companyName") || ""),
+      country: String(formData.get("country") || ""),
+      preferredCommunication: String(formData.get("preferredCommunication") || ""),
       websiteProductLink: String(formData.get("websiteProductLink") || ""),
       projectOverview: String(formData.get("projectOverview") || ""),
       projectType: String(formData.get("projectType") || ""),
@@ -155,11 +153,10 @@ export function ProjectInquiryForm() {
             icon={<Mail className="size-4 text-muted-foreground" />}
           />
           <TextField
-            label="WhatsApp or Phone Number *"
+            label="WhatsApp or Phone Number (if preferred)"
             name="whatsappNumber"
             placeholder="+91 98765 43210 / +1 555-0123"
             type="tel"
-            required
             icon={<Phone className="size-4 text-muted-foreground" />}
           />
           <TextField
@@ -167,6 +164,24 @@ export function ProjectInquiryForm() {
             name="companyName"
             placeholder="e.g. Acme Health or Stealth AI"
           />
+          <TextField
+            label="Country"
+            name="country"
+            placeholder="Your country"
+            autoComplete="country-name"
+          />
+          <label className="block space-y-2 text-xs font-medium text-foreground">
+            <span>Preferred contact method</span>
+            <select
+              name="preferredCommunication"
+              defaultValue="Email"
+              className="w-full rounded-md border border-border bg-background px-3.5 py-2.5 text-sm text-foreground outline-none focus:border-primary"
+            >
+              <option>Email</option>
+              <option>Phone</option>
+              <option>WhatsApp</option>
+            </select>
+          </label>
           <div className="sm:col-span-2">
             <TextField
               label="Existing Website or Product Link (if applicable)"
@@ -200,10 +215,9 @@ export function ProjectInquiryForm() {
           />
 
           <RadioField
-            label="Current Development Stage *"
+            label="Current Development Stage"
             name="currentStage"
             options={currentStages}
-            required
           />
 
           <RadioField
@@ -281,7 +295,7 @@ export function ProjectInquiryForm() {
       <div className="border-t border-border pt-6">
         <div className="flex flex-col items-center justify-between gap-4 sm:flex-row">
           <p className="font-mono text-xs text-muted-foreground text-center sm:text-left">
-            🔒 Direct founder & senior engineer review · NDA protected
+            Your project details are used to respond to this inquiry.
           </p>
 
           <button
@@ -304,16 +318,14 @@ export function ProjectInquiryForm() {
           <div className="mt-4 flex items-center gap-2 rounded-md border border-emerald-500/30 bg-emerald-500/10 p-4 text-xs font-medium text-emerald-600 dark:text-emerald-400">
             <CheckCircle2 className="size-4 shrink-0" />
             <span>
-              Thank you! Your inquiry has been received. Our engineering lead
-              will review your requirements and respond within 24 to 48 hours.
+              Thank you! Your inquiry has been received. We’ll review the details and follow up using your preferred contact method.
             </span>
           </div>
         )}
 
         {status === "error" && (
           <div className="mt-4 rounded-md border border-destructive/30 bg-destructive/10 p-4 text-xs font-medium text-destructive">
-            Please make sure all required fields and at least one platform are
-            selected. Or reach us directly at team@strix.website.
+            We couldn’t submit your inquiry. Please try again, or email your project details to <a className="underline" href="mailto:team@strix.website">team@strix.website</a>.
           </div>
         )}
       </div>

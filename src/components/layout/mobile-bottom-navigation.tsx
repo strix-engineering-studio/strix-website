@@ -59,7 +59,7 @@ export function MobileBottomNavigation() {
         right: "0.75rem",
       }}
     >
-      <div className="flex items-center justify-around rounded-2xl border border-border/70 bg-background/90 px-2 py-2 shadow-lg shadow-black/10 backdrop-blur-md dark:shadow-black/30">
+      <div className="flex items-center justify-around border border-border bg-background/95 px-2 py-2 shadow-[var(--shadow-raised)] backdrop-blur-md">
         {navItems.map(({ label, href, icon: Icon, exact }) => {
           const active = isActive(pathname, href, exact);
           return (
@@ -69,7 +69,7 @@ export function MobileBottomNavigation() {
               aria-label={label}
               aria-current={active ? "page" : undefined}
               className={cn(
-                "relative flex flex-col items-center gap-0.5 rounded-xl px-3 py-2 transition-colors duration-150",
+                "relative flex flex-col items-center gap-1 px-3 py-2 transition-colors duration-150",
                 active
                   ? "text-primary"
                   : "text-muted-foreground hover:text-foreground",

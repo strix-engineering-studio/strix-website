@@ -162,6 +162,25 @@ export const caseStudies: CaseStudy[] = [
         ],
 
         relatedProducts: [],
+        relatedServices: [
+            { title: "Mobile Application Development", href: "/services/mobile-application-development" },
+            { title: "Backend Systems", href: "/services/backend-systems" },
+            { title: "Product Engineering", href: "/services/product-engineering" },
+        ],
+        images: [
+            {
+                src: "/assets/projects/hugged/one app and one supportive village.webp",
+                alt: "Hugged product screen introducing its supportive parenting community",
+                caption: "Community-centered product experience",
+                type: "screenshot",
+            },
+            {
+                src: "/assets/projects/hugged/join your village in a few taps.webp",
+                alt: "Hugged onboarding screen for joining a parenting community",
+                caption: "Joining a community through the mobile product",
+                type: "screenshot",
+            },
+        ],
         tags: [
             "Flutter",
             "Next.js",
@@ -291,6 +310,11 @@ export const caseStudies: CaseStudy[] = [
         links: [],
 
         relatedProducts: [],
+        relatedServices: [
+            { title: "Mobile Application Development", href: "/services/mobile-application-development" },
+            { title: "Backend Systems", href: "/services/backend-systems" },
+            { title: "Product Engineering", href: "/services/product-engineering" },
+        ],
         tags: [
             "Flutter",
             "Firebase",
@@ -418,6 +442,10 @@ export const caseStudies: CaseStudy[] = [
         links: [],
 
         relatedProducts: [],
+        relatedServices: [
+            { title: "Mobile Application Development", href: "/services/mobile-application-development" },
+            { title: "Web Application Development", href: "/services/web-application-development" },
+        ],
         tags: [
             "Flutter",
             "Firebase",
@@ -554,6 +582,12 @@ export const caseStudies: CaseStudy[] = [
         links: [],
 
         relatedProducts: [],
+        relatedServices: [
+            { title: "Product Discovery & PoC", href: "/services/poc-development" },
+            { title: "Mobile Application Development", href: "/services/mobile-application-development" },
+            { title: "Web Application Development", href: "/services/web-application-development" },
+            { title: "Backend Systems", href: "/services/backend-systems" },
+        ],
         tags: [
             "IoT",
             "Flutter",

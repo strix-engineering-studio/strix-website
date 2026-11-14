@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
+import Link from "next/link";
 
 import { PageShell } from "@/components/shared/page-shell";
 
@@ -66,19 +67,25 @@ export default async function InsightsPostPage({
 }) {
   const { slug } = await params;
 
-  const post = await getBlogPostBySlug(slug).catch(() => null);
+  const [post, allPosts] = await Promise.all([
+    getBlogPostBySlug(slug).catch(() => null),
+    getBlogPosts(),
+  ]);
 
   if (!post) {
     notFound();
   }
 
   const { content, frontmatter } = post;
+  const currentMeta = allPosts.find((item) => item.slug === slug);
+  const sameTopic = allPosts.filter((item) => item.slug !== slug && item.tag === frontmatter.tag);
+  const relatedPosts = (sameTopic.length ? sameTopic : allPosts.filter((item) => item.slug !== slug)).slice(0, 2);
 
   const articlePath = `/insights/${slug}`;
 
   const articleUrl = absoluteUrl(articlePath);
 
-  const publishedDate = new Date(frontmatter.publishedAt).toLocaleDateString(
+  const publishedDate = new Date(`${frontmatter.publishedAt.slice(0, 10)}T12:00:00`).toLocaleDateString(
     "en-US",
     {
       month: "long",
@@ -140,10 +147,21 @@ export default async function InsightsPostPage({
             </span>
 
             <span>{frontmatter.tag}</span>
+            {currentMeta ? <><span aria-hidden="true" className="text-white/30">/</span><span>{currentMeta.readingTime}</span></> : null}
           </div>
 
           {content}
+          <div className="mt-10 flex flex-wrap items-center gap-3 border-y border-border py-5 text-sm">
+            <span className="font-mono text-xs text-muted-foreground">SHARE</span>
+            <a href={`https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(articleUrl)}`} target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">LinkedIn</a>
+            <a href={`mailto:?subject=${encodeURIComponent(frontmatter.title)}&body=${encodeURIComponent(articleUrl)}`} className="text-primary hover:underline">Email</a>
+          </div>
         </article>
+        {relatedPosts.length > 0 ? <section className="border-t border-border pt-8">
+          <p className="editorial-meta text-primary">KEEP READING</p>
+          <h2 className="editorial-serif mt-2 text-3xl">Related articles</h2>
+          <div className="mt-5 grid gap-4 sm:grid-cols-2">{relatedPosts.map((item) => <Link key={item.slug} href={`/insights/${item.slug}`} className="border border-border p-5 transition-colors hover:border-primary"><span className="font-mono text-[10px] text-muted-foreground">{item.readingTime} · {item.tag}</span><h3 className="editorial-serif mt-2 text-xl">{item.title}</h3><p className="mt-2 text-sm text-muted-foreground">{item.excerpt}</p></Link>)}</div>
+        </section> : null}
       </PageShell>
     </>
   );

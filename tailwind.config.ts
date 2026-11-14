@@ -1,4 +1,4 @@
-import type { Config } from "tailwindcss"
+import type { Config } from "tailwindcss";
 
 const config: Config = {
   content: [
@@ -9,89 +9,78 @@ const config: Config = {
   ],
   theme: {
     extend: {
-      // ThoughtStream Colors
       colors: {
-        // Brand Palette
-        primary: '#78716C', // Stone
-        secondary: '#A8A29E', // Sage
-        tertiary: '#1C1917', // Warm Black
-
-        // Surface Palette
-        background: '#FAFAF9', // Warm white page background
-        surface: '#F5F5F4', // Card and section backgrounds
-        'surface-raised': '#EFEDEB', // Hover states, subtle callout blocks
-
-        // Content Palette
-        'text-primary': '#1C1917', // Body copy, headings
-        'text-secondary': '#57534E', // Bylines, metadata, captions
-        'text-tertiary': '#A8A29E', // Placeholders, disabled labels
-
-        // Border Palette
-        'border-subtle': '#E7E5E4',
-        'border-medium': '#D6D3D1',
-        'border-strong': '#A8A29E',
-
-        // Semantic Colors
-        success: '#65A30D',
-        warning: '#CA8A04',
-        error: '#DC2626',
-        info: '#78716C',
+        primary: "var(--primary)",
+        "primary-foreground": "var(--primary-foreground)",
+        secondary: "var(--secondary)",
+        "secondary-foreground": "var(--secondary-foreground)",
+        background: "var(--background)",
+        foreground: "var(--foreground)",
+        card: "var(--card)",
+        "card-foreground": "var(--card-foreground)",
+        muted: "var(--muted)",
+        "muted-foreground": "var(--muted-foreground)",
+        accent: "var(--accent)",
+        "accent-foreground": "var(--accent-foreground)",
+        border: "var(--border)",
+        input: "var(--input)",
+        ring: "var(--ring)",
+        surface: "var(--surface)",
+        "surface-warm": "var(--surface-warm)",
+        "surface-raised": "var(--surface-strong)",
+        "text-primary": "var(--text-primary)",
+        "text-secondary": "var(--text-secondary)",
+        "text-tertiary": "var(--text-muted)",
+        success: "#16803C",
+        warning: "#A15C07",
+        error: "var(--destructive)",
+        info: "var(--primary)",
       },
-
-      // ThoughtStream Typography
       fontFamily: {
-        sans: ['Inter', 'system-ui', '-apple-system', 'Segoe UI', 'Helvetica', 'sans-serif'],
-        serif: ['Libre Baskerville', 'Georgia', 'Times New Roman', 'serif'],
-        mono: ['Source Code Pro', 'Fira Code', 'Consolas', 'monospace'],
-        heading: ['Libre Baskerville', 'Georgia', 'Times New Roman', 'serif'],
-        body: ['Inter', 'system-ui', '-apple-system', 'Segoe UI', 'Helvetica', 'sans-serif'],
+        sans: ["var(--font-body)", "Arial", "sans-serif"],
+        serif: ["var(--font-display)", "Georgia", "serif"],
+        mono: ["var(--font-code)", "Consolas", "monospace"],
+        heading: ["var(--font-body)", "Arial", "sans-serif"],
+        body: ["var(--font-body)", "Arial", "sans-serif"],
       },
-
-      // ThoughtStream Spacing - 12px base unit
       spacing: {
-        '0': '0px',
-        '1': '12px', // 1 unit
-        '2': '24px', // 2 units
-        '3': '36px', // 3 units
-        '4': '48px', // 4 units
-        '5': '60px', // 5 units
-        '6': '72px', // 6 units
-        '8': '96px', // 8 units
-        '10': '120px', // 10 units
+        "0": "0px",
+        "1": "8px",
+        "2": "16px",
+        "3": "24px",
+        "4": "32px",
+        "5": "40px",
+        "6": "48px",
+        "8": "64px",
+        "10": "80px",
       },
-
-      // ThoughtStream Border Radius - sharp edges only
       borderRadius: {
-        'none': '0px',
-        'sm': '0px',
-        'md': '0px',
-        'lg': '0px',
-        'xl': '0px',
-        '2xl': '0px',
-        '3xl': '0px',
-        'full': '9999px', // Only for avatars
+        none: "0px",
+        sm: "4px",
+        md: "6px",
+        lg: "8px",
+        xl: "8px",
+        "2xl": "12px",
+        "3xl": "16px",
+        full: "9999px",
       },
-
-      // ThoughtStream Typography Scale
       fontSize: {
-        'display': ['40px', { lineHeight: '1.2', letterSpacing: '-0.02em', fontWeight: '700' }],
-        'headline': ['30px', { lineHeight: '1.3', letterSpacing: '-0.015em', fontWeight: '700' }],
-        'subhead': ['22px', { lineHeight: '1.4', letterSpacing: '-0.01em', fontWeight: '400' }],
-        'body-large': ['20px', { lineHeight: '1.75', fontWeight: '400' }],
-        'body': ['17px', { lineHeight: '1.8', fontWeight: '400' }],
-        'body-small': ['15px', { lineHeight: '1.7', fontWeight: '400' }],
-        'caption': ['13px', { lineHeight: '1.5', letterSpacing: '0.01em', fontWeight: '400' }],
-        'overline': ['11px', { lineHeight: '1.4', letterSpacing: '0.08em', fontWeight: '600' }],
-        'code': ['15px', { lineHeight: '1.7', fontWeight: '400' }],
+        display: ["clamp(3.5rem, 8vw, 7.5rem)", { lineHeight: "0.98", letterSpacing: "-0.045em" }],
+        headline: ["clamp(2.25rem, 4.5vw, 4rem)", { lineHeight: "1.05", letterSpacing: "-0.035em" }],
+        subhead: ["clamp(1.75rem, 3vw, 2.75rem)", { lineHeight: "1.1", letterSpacing: "-0.03em" }],
+        "body-large": ["clamp(1.0625rem, 1.35vw, 1.25rem)", { lineHeight: "1.65" }],
+        body: ["1rem", { lineHeight: "1.7" }],
+        "body-small": ["0.875rem", { lineHeight: "1.6" }],
+        caption: ["0.75rem", { lineHeight: "1.5" }],
+        overline: ["0.6875rem", { lineHeight: "1.5", letterSpacing: "0.18em" }],
+        code: ["0.8125rem", { lineHeight: "1.6" }],
       },
-
-      // ThoughtStream Content Width
       maxWidth: {
-        'content': '680px',
+        content: "var(--container-narrow)",
       },
     },
   },
   plugins: [],
-}
+};
 
-export default config
+export default config;

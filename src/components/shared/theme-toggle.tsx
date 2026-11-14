@@ -17,11 +17,11 @@ export function ThemeToggle({ className }: { className?: string }) {
     return (
       <button
         type="button"
-        className={className ?? "flex items-center gap-1 rounded-full border border-black/10 bg-background/70 p-1 shadow-sm shadow-black/5 backdrop-blur-xl dark:border-white/10"}
+        className={className ?? "flex items-center gap-1 rounded-sm border border-border bg-card p-1 shadow-sm"}
         aria-label="Theme"
         title="Theme"
       >
-        <span className="inline-flex h-8 w-8 items-center justify-center rounded-full text-foreground/50">
+        <span className="inline-flex size-8 items-center justify-center rounded-sm text-muted-foreground">
           <Moon className="size-4" />
         </span>
       </button>
@@ -29,13 +29,13 @@ export function ThemeToggle({ className }: { className?: string }) {
   }
 
   return (
-    <div className={className ?? "flex items-center gap-1 rounded-full border border-black/10 bg-background/70 p-1 shadow-sm shadow-black/5 backdrop-blur-xl dark:border-white/10"}>
+    <div className={className ?? "flex items-center gap-1 rounded-sm border border-border bg-card p-1 shadow-sm"}>
       <button
         type="button"
         onClick={() => setTheme('system')}
-        className={`inline-flex h-8 w-8 items-center justify-center rounded-full transition-colors ${
+        className={`inline-flex size-8 items-center justify-center rounded-sm transition-colors ${
           theme === 'system'
-            ? 'bg-black/10 text-foreground dark:bg-white/10'
+            ? 'bg-secondary text-foreground'
             : 'text-foreground/50 hover:text-foreground'
         }`}
         aria-label="System theme"
@@ -48,9 +48,9 @@ export function ThemeToggle({ className }: { className?: string }) {
       <button
         type="button"
         onClick={() => setTheme('light')}
-        className={`inline-flex h-8 w-8 items-center justify-center rounded-full transition-colors ${
+        className={`inline-flex size-8 items-center justify-center rounded-sm transition-colors ${
           theme === 'light'
-            ? 'bg-black/10 text-foreground dark:bg-white/10'
+            ? 'bg-secondary text-foreground'
             : 'text-foreground/50 hover:text-foreground'
         }`}
         aria-label="Light theme"
@@ -63,9 +63,9 @@ export function ThemeToggle({ className }: { className?: string }) {
       <button
         type="button"
         onClick={() => setTheme('dark')}
-        className={`inline-flex h-8 w-8 items-center justify-center rounded-full transition-colors ${
+        className={`inline-flex size-8 items-center justify-center rounded-sm transition-colors ${
           theme === 'dark'
-            ? 'bg-black/10 text-foreground dark:bg-white/10'
+            ? 'bg-secondary text-foreground'
             : 'text-foreground/50 hover:text-foreground'
         }`}
         aria-label="Dark theme"

@@ -1,111 +1,89 @@
 "use client";
 
 import Link from "next/link";
-import { ArrowUpRight, CheckCircle2, Clock, FileCheck, Layers, Terminal } from "lucide-react";
+import { ArrowUpRight, FileCheck } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 const stages = [
   {
     step: "01",
-    name: "Discovery & Requirements",
-    phase: "PHASE 01 // SCOPING",
-    timeline: "Week 01",
+    name: "Discover",
+    phase: "UNDERSTAND THE CONTEXT",
+    timeline: "Discovery",
     objective:
-      "Clarify the core business problem, uncover non-functional constraints, and map user workflows before writing code.",
+      "Understand the business goal, users, existing systems, and constraints that should shape the product.",
     activities: [
-      "User journey mapping and workflow modeling",
-      "Technical risk identification and dependency audit",
-      "Integration feasibility (payments, auth, third-party APIs)",
-      "Scope boundaries to prevent feature creep",
+      "Map user needs and key workflows",
+      "Identify technical unknowns and dependencies",
+      "Clarify constraints and success criteria",
     ],
-    deliverableTitle: "System Scope Blueprint & Technical Audit",
+    deliverableTitle: "Shared understanding of the problem",
     deliverableDetails:
-      "A concrete architectural document defining exact workflows, entity models, third-party dependencies, and estimated delivery timeline.",
+      "A concise view of the opportunity, users, current state, constraints, and the questions the work needs to answer.",
   },
   {
     step: "02",
-    name: "Product Strategy & Data Modeling",
-    phase: "PHASE 02 // ARCHITECTURE",
-    timeline: "Week 01 - 02",
+    name: "Define",
+    phase: "SHAPE THE RIGHT SYSTEM",
+    timeline: "Product direction",
     objective:
-      "Translate product vision into actionable domain models, data relationships, and prioritized release milestones.",
+      "Set product scope and technical direction around the outcomes that matter, without adding complexity the product does not need.",
     activities: [
-      "Entity relationship design (relational & document schemas)",
-      "MVP feature prioritization and trade-off mapping",
-      "API contract definitions (REST / GraphQL)",
-      "State management & security policy planning",
+      "Prioritize product workflows and capabilities",
+      "Choose an appropriate architecture and stack",
+      "Plan integrations, data, and security boundaries",
     ],
-    deliverableTitle: "Product Specification & Schema Contracts",
+    deliverableTitle: "Product scope and technical plan",
     deliverableDetails:
-      "Complete data schemas, API specifications, and a sprint-by-sprint technical execution roadmap.",
+      "A practical outline of the first release, system boundaries, dependencies, and key decisions for implementation.",
   },
   {
     step: "03",
-    name: "Architecture & Interface Design",
-    phase: "PHASE 03 // BLUEPRINT",
-    timeline: "Week 02",
+    name: "Build",
+    phase: "ENGINEER IN ITERATIONS",
+    timeline: "Build",
     objective:
-      "Finalize interface systems, responsive UI components, and backend architectural scaffolding.",
+      "Implement the agreed product scope in reviewable increments, with attention to reliability, usability, and maintainability.",
     activities: [
-      "Editorial component design and design system tokens",
-      "Repository setup with strict linting and TypeScript checks",
-      "Database migration foundation and seed scripts",
-      "Authentication and authorization policies (RBAC)",
+      "Develop product interfaces, APIs, and integrations",
+      "Review behavior against agreed requirements",
+      "Document important technical decisions",
     ],
-    deliverableTitle: "Clickable UI Flows & Boilerplate Scaffolding",
+    deliverableTitle: "Working product increments",
     deliverableDetails:
-      "Interactive component prototypes and working base repository with verified database connections.",
+      "Reviewable software that connects the core user workflows to the services and data behind them.",
   },
   {
     step: "04",
-    name: "Engineering & Iterative Sprints",
-    phase: "PHASE 04 // IMPLEMENTATION",
-    timeline: "Weeks 02 - 05",
+    name: "Launch",
+    phase: "PREPARE FOR REAL USE",
+    timeline: "Release",
     objective:
-      "Build production software with weekly working demos, continuous integration, and transparent code commits.",
+      "Validate important product paths and prepare the system, team, and release process for real users.",
     activities: [
-      "Full-stack development (Next.js / Flutter / NestJS)",
-      "Test-driven core logic and schema validation (Zod)",
-      "Payment gateway & webhook integration",
-      "Weekly live demos with direct engineer communication",
+      "Verify core workflows and failure cases",
+      "Prepare deployment and release steps",
+      "Set up operational visibility where appropriate",
     ],
-    deliverableTitle: "Full Source Code & Weekly Working Builds",
+    deliverableTitle: "Release-ready product",
     deliverableDetails:
-      "Auditable Git commits, accessible staging environments, and functional application milestones delivered weekly.",
+      "A product prepared for deployment, with release considerations and operational needs understood by the team.",
   },
   {
     step: "05",
-    name: "Testing & Production Deployment",
-    phase: "PHASE 05 // RELEASE",
-    timeline: "Week 05 - 06",
+    name: "Evolve",
+    phase: "LEARN AND IMPROVE",
+    timeline: "Ongoing",
     objective:
-      "Rigorous end-to-end verification, load validation, domain configuration, and app store publishing.",
+      "Use what the product and its users reveal to guide improvements, operational support, and the next set of product decisions.",
     activities: [
-      "End-to-end scenario testing and edge-case validation",
-      "Google Play & Apple App Store submission management",
-      "Production cloud provisioning with SSL & CDN",
-      "Logging, error monitoring (Sentry), and alerting configuration",
+      "Prioritize improvements from real usage",
+      "Address maintenance and technical debt",
+      "Extend product capabilities as needs change",
     ],
-    deliverableTitle: "Live Production System & App Store Distribution",
+    deliverableTitle: "A product that can keep improving",
     deliverableDetails:
-      "Verified production URL, approved mobile store listings, zero-downtime CI/CD pipeline, and operational telemetry.",
-  },
-  {
-    step: "06",
-    name: "Continuous Improvement & Support",
-    phase: "PHASE 06 // EVOLUTION",
-    timeline: "Post-Launch",
-    objective:
-      "Durable partnership to support initial users, resolve live issues, optimize performance, and engineer new capabilities.",
-    activities: [
-      "Production telemetry monitoring and error triage",
-      "Database index tuning and query optimization",
-      "Feature iteration based on real user metrics",
-      "Direct technical advisory for founders and operators",
-    ],
-    deliverableTitle: "Ongoing Engineering Partnership & SLA Support",
-    deliverableDetails:
-      "Guaranteed response times, scheduled maintenance windows, and a dedicated team that knows your codebase inside out.",
+      "Ongoing engineering can be scoped to the product's operational and roadmap needs.",
   },
 ];
 
@@ -117,24 +95,19 @@ export function HowWeWorkEditorial() {
         <div className="mb-16 flex flex-col justify-between gap-6 border-b border-border/80 pb-10 md:flex-row md:items-end">
           <div className="max-w-3xl space-y-3">
             <span className="font-mono text-[11px] uppercase tracking-[0.28em] text-primary">
-              [DELIVERY JOURNEY // 06]
+              [DELIVERY APPROACH // 05]
             </span>
             <h2 className="editorial-serif text-4xl tracking-tight text-foreground sm:text-5xl lg:text-6xl">
-              How we work:{" "}
-              <span className="italic font-normal text-primary">
-                from discovery to continuous scale.
-              </span>
+              Discover, define, build, launch & evolve.
             </h2>
             <p className="text-sm leading-relaxed text-muted-foreground sm:text-base">
-              A transparent, connected timeline with concrete deliverables at every
-              stage. No black-box development, no account manager intermediaries,
-              and no surprises at launch.
+              A product engineering process that connects business context, product decisions, implementation, release, and what comes next.
             </p>
           </div>
 
           <Link
             href="/contact"
-            className="inline-flex items-center gap-2 rounded-full bg-primary px-5 py-2.5 text-xs font-semibold uppercase tracking-[0.16em] text-primary-foreground shadow-sm transition-all hover:bg-primary/90"
+            className="inline-flex items-center gap-2 border border-primary bg-primary px-5 py-2.5 text-xs font-semibold uppercase tracking-[0.16em] text-primary-foreground transition-colors hover:bg-primary/90"
           >
             <span>Start discovery</span>
             <ArrowUpRight className="size-3.5" />

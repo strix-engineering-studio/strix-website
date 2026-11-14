@@ -1,10 +1,10 @@
 "use client";
 
-import { useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { ArrowUpRight } from "lucide-react";
+import { ArrowUpRight, Menu, X } from "lucide-react";
+import { useEffect, useState } from "react";
 import { cn } from "@/lib/utils";
 import { ThemeToggle } from "@/components/shared/theme-toggle";
 
@@ -24,14 +24,19 @@ function isActiveRoute(pathname: string, href: string) {
 
 export function SiteHeader() {
   const pathname = usePathname();
+  const [menuOpen, setMenuOpen] = useState(false);
+
+  useEffect(() => {
+    setMenuOpen(false);
+  }, [pathname]);
 
   if (pathname.startsWith("/admin")) {
     return null;
   }
 
   return (
-    <header className="sticky top-0 z-50 w-full border-b border-border/70 bg-background/90 backdrop-blur-md transition-colors duration-200">
-      <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
+    <header className="sticky top-0 z-50 w-full border-b border-border/70 bg-background/95 backdrop-blur-md transition-colors duration-200">
+      <div className="strix-container flex h-16 items-center justify-between gap-3 sm:h-[4.5rem]">
         {/* Brand */}
         <Link
           href="/"
@@ -97,18 +102,50 @@ export function SiteHeader() {
 
           <Link
             href="/contact"
-            className="group relative inline-flex items-center gap-2 overflow-hidden rounded-full border border-primary/40 bg-primary px-4 py-2 text-xs font-semibold uppercase tracking-[0.16em] text-primary-foreground shadow-sm transition-all duration-200 hover:bg-primary/90 hover:shadow-md hover:shadow-primary/20"
+          className="group relative inline-flex min-h-11 items-center gap-2 border border-primary bg-primary px-4 py-2.5 text-xs font-semibold uppercase tracking-[0.16em] text-primary-foreground transition-colors duration-200 hover:bg-primary/90"
           >
             <span>Start a project</span>
             <ArrowUpRight className="size-3.5 transition-transform duration-200 group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
           </Link>
         </div>
 
-        {/* Mobile/Tablet controls — theme toggle only, no hamburger */}
+        {/* Compact controls for mobile and tablet */}
         <div className="flex items-center gap-2 lg:hidden">
-          <ThemeToggle />
+          <Link
+            href="/contact"
+            aria-label="Start a project"
+            className="inline-flex min-h-11 items-center gap-1.5 border border-primary bg-primary px-3 text-[11px] font-semibold uppercase tracking-[0.12em] text-primary-foreground transition-colors hover:bg-primary/90 sm:px-4 sm:text-xs"
+          >
+            <span className="sm:hidden">Start</span>
+            <span className="hidden sm:inline">Start a project</span>
+            <ArrowUpRight className="size-3.5" />
+          </Link>
+          <button
+            type="button"
+            aria-label={menuOpen ? "Close navigation menu" : "Open navigation menu"}
+            aria-expanded={menuOpen}
+            aria-controls="mobile-site-navigation"
+            onClick={() => setMenuOpen((open) => !open)}
+            className="inline-flex size-11 shrink-0 items-center justify-center border border-border bg-background text-foreground transition-colors hover:border-primary hover:text-primary"
+          >
+            {menuOpen ? <X className="size-5" /> : <Menu className="size-5" />}
+          </button>
         </div>
       </div>
+      <nav id="mobile-site-navigation" hidden={!menuOpen} aria-label="Mobile main navigation" onKeyDown={(event) => { if (event.key === "Escape") setMenuOpen(false); }} className="border-t border-border bg-background px-4 py-4 shadow-[var(--shadow-raised)] lg:hidden">
+          <div className="strix-container grid gap-1 sm:grid-cols-2">
+            {navigation.map((item) => {
+              const active = isActiveRoute(pathname, item.href);
+              return <Link key={item.href} href={item.href} aria-current={active ? "page" : undefined} onClick={() => setMenuOpen(false)} className={cn("flex min-h-11 items-center justify-between border-b border-border px-2 text-sm transition-colors hover:text-primary sm:border", active ? "text-primary" : "text-foreground")}>
+                <span>{item.label}</span><span className="font-mono text-[10px] text-muted-foreground">{item.index}</span>
+              </Link>;
+            })}
+          </div>
+          <div className="strix-container mt-4 flex items-center justify-between gap-4">
+            <span className="font-mono text-[10px] uppercase tracking-wider text-muted-foreground">Appearance</span>
+            <ThemeToggle />
+          </div>
+      </nav>
     </header>
   );
 }

@@ -1,5 +1,6 @@
 
 import type { Metadata } from "next";
+import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import {
@@ -7,7 +8,6 @@ import {
   ArrowRight,
   ArrowUpRight,
   CheckCircle2,
-  Code2,
   ExternalLink,
   Layers3,
 } from "lucide-react";
@@ -26,13 +26,6 @@ function getPublishedCaseStudy(slug: string) {
       (study.visibility === "public" ||
         study.visibility === "anonymized"),
   );
-}
-
-function formatLabel(value: string) {
-  return value
-    .split("-")
-    .map((part) => part.charAt(0).toUpperCase() + part.slice(1))
-    .join(" ");
 }
 
 export function generateStaticParams() {
@@ -108,6 +101,17 @@ export default async function CaseStudyDetailPage({
     .filter((related): related is NonNullable<typeof related> => Boolean(related));
 
   const sections = study.implementation ?? [];
+  const documentedMetrics = study.metrics.filter(
+    (metric) => metric.verified || metric.evidenceUrl,
+  );
+
+  const workType = study.client?.confidential
+    ? "Client project · anonymized"
+    : study.type === "client-project"
+      ? "Client project"
+      : study.type === "internal-project" || study.type === "product-development"
+        ? "Studio product"
+        : "Experiment & technical implementation";
 
   const jsonLd = {
     "@context": "https://schema.org",
@@ -142,7 +146,7 @@ export default async function CaseStudyDetailPage({
       <div className="border-b border-border">
         <nav
           aria-label="Breadcrumb"
-          className="mx-auto flex max-w-7xl items-center gap-2 px-5 py-4 text-sm text-muted-foreground sm:px-8 lg:px-12"
+          className="strix-container flex items-center gap-2 py-4 text-sm text-muted-foreground"
         >
           <Link
             href="/case-studies"
@@ -158,106 +162,27 @@ export default async function CaseStudyDetailPage({
 
       {/* Hero */}
       <header className="border-b border-border">
-        <div className="mx-auto max-w-7xl px-5 py-16 sm:px-8 sm:py-20 lg:px-12 lg:py-28">
-          <div className="max-w-4xl">
-            <div className="flex flex-wrap items-center gap-2">
-              <span className="rounded-full border border-border px-3 py-1 text-xs font-medium text-muted-foreground">
-                {formatLabel(study.type)}
-              </span>
-              <span className="rounded-full bg-muted px-3 py-1 text-xs text-muted-foreground">
-                {study.category}
-              </span>
-              {study.featured && (
-                <span className="rounded-full bg-muted px-3 py-1 text-xs text-foreground">
-                  Featured work
-                </span>
-              )}
-            </div>
-
-            <p className="mt-7 text-sm font-medium uppercase tracking-[0.18em] text-muted-foreground">
-              Strix Engineering Studio · Case study
+        <div className="strix-container grid gap-8 py-14 sm:py-16 lg:grid-cols-12 lg:gap-12 lg:py-24">
+          <div className="lg:col-span-8">
+            <p className="editorial-meta border-l-2 border-primary py-1 pl-3 text-primary">
+              {workType} · {study.category}
             </p>
-
-            <h1 className="editorial-serif mt-4 text-4xl font-normal leading-tight tracking-tight sm:text-5xl lg:text-6xl">
+            <p className="mt-6 font-mono text-[10px] uppercase tracking-[0.2em] text-muted-foreground">
+              Strix Engineering Studio / Case study
+            </p>
+            <h1 className="editorial-serif type-display-lg mt-3 text-foreground">
               {study.title}
             </h1>
 
             {study.subtitle && (
-              <p className="mt-5 text-xl leading-8 text-muted-foreground sm:text-2xl">
+              <p className="mt-5 max-w-3xl text-lg leading-relaxed text-muted-foreground sm:text-xl">
                 {study.subtitle}
               </p>
             )}
 
-            <p className="mt-6 max-w-3xl text-base leading-7 text-muted-foreground sm:text-lg sm:leading-8">
+            <p className="mt-5 max-w-3xl text-base leading-relaxed text-muted-foreground">
               {study.summary}
             </p>
-
-            <div className="mt-8 flex flex-wrap gap-x-8 gap-y-5 border-t border-border pt-6">
-              {study.client?.name && !study.client.confidential && (
-                <div>
-                  <p className="text-xs uppercase tracking-wider text-muted-foreground">
-                    Client
-                  </p>
-                  <p className="mt-2 text-sm font-medium">
-                    {study.client.name}
-                  </p>
-                </div>
-              )}
-
-              {study.client?.confidential && (
-                <div>
-                  <p className="text-xs uppercase tracking-wider text-muted-foreground">
-                    Client
-                  </p>
-                  <p className="mt-2 text-sm font-medium">
-                    Anonymized
-                  </p>
-                </div>
-              )}
-
-              {study.client?.industry && (
-                <div>
-                  <p className="text-xs uppercase tracking-wider text-muted-foreground">
-                    Industry
-                  </p>
-                  <p className="mt-2 text-sm font-medium">
-                    {study.client.industry}
-                  </p>
-                </div>
-              )}
-
-              {study.role && (
-                <div>
-                  <p className="text-xs uppercase tracking-wider text-muted-foreground">
-                    Engagement
-                  </p>
-                  <p className="mt-2 text-sm font-medium">{study.role}</p>
-                </div>
-              )}
-
-              {study.duration && (
-                <div>
-                  <p className="text-xs uppercase tracking-wider text-muted-foreground">
-                    Duration
-                  </p>
-                  <p className="mt-2 text-sm font-medium">
-                    {study.duration}
-                  </p>
-                </div>
-              )}
-
-              {typeof study.teamSize === "number" && (
-                <div>
-                  <p className="text-xs uppercase tracking-wider text-muted-foreground">
-                    Team size
-                  </p>
-                  <p className="mt-2 text-sm font-medium">
-                    {study.teamSize}{" "}
-                    {study.teamSize === 1 ? "person" : "people"}
-                  </p>
-                </div>
-              )}
-            </div>
 
             {study.links.length > 0 && (
               <div className="mt-8 flex flex-wrap gap-3">
@@ -282,20 +207,63 @@ export default async function CaseStudyDetailPage({
               </div>
             )}
           </div>
+
+          <aside className="border-t border-border pt-5 lg:col-span-4 lg:border-l lg:border-t-0 lg:pl-7 lg:pt-0">
+            <p className="editorial-meta text-muted-foreground">Project context</p>
+            <dl className="mt-4 space-y-4">
+              {study.client?.name && !study.client.confidential && (
+                <div>
+                  <dt className="text-xs text-muted-foreground">Client</dt>
+                  <dd className="mt-1 text-sm font-medium text-foreground">{study.client.name}</dd>
+                </div>
+              )}
+              {study.client?.confidential && (
+                <div>
+                  <dt className="text-xs text-muted-foreground">Client</dt>
+                  <dd className="mt-1 text-sm font-medium text-foreground">Confidential client</dd>
+                </div>
+              )}
+              {study.client?.industry && (
+                <div>
+                  <dt className="text-xs text-muted-foreground">Industry</dt>
+                  <dd className="mt-1 text-sm font-medium text-foreground">{study.client.industry}</dd>
+                </div>
+              )}
+              {study.role && (
+                <div>
+                  <dt className="text-xs text-muted-foreground">Strix responsibilities</dt>
+                  <dd className="mt-1 text-sm leading-relaxed text-foreground">{study.role}</dd>
+                </div>
+              )}
+              {study.duration && (
+                <div>
+                  <dt className="text-xs text-muted-foreground">Duration</dt>
+                  <dd className="mt-1 text-sm font-medium text-foreground">{study.duration}</dd>
+                </div>
+              )}
+              {typeof study.teamSize === "number" && (
+                <div>
+                  <dt className="text-xs text-muted-foreground">Team size</dt>
+                  <dd className="mt-1 text-sm font-medium text-foreground">{study.teamSize} {study.teamSize === 1 ? "person" : "people"}</dd>
+                </div>
+              )}
+            </dl>
+          </aside>
         </div>
       </header>
 
       {/* Cover image */}
       {study.coverImageUrl && (
         <section className="border-b border-border">
-          <div className="mx-auto max-w-7xl px-5 py-8 sm:px-8 lg:px-12">
-            <div className="overflow-hidden rounded-xl border border-border bg-muted">
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img
+          <div className="strix-container py-8">
+            <div className="relative aspect-[16/8] overflow-hidden border border-border bg-surface-warm">
+              <Image
                 src={study.coverImageUrl}
                 alt={`${study.title} project overview`}
-                className="max-h-[640px] w-full object-cover"
-                fetchPriority="high"
+                fill
+                priority
+                sizes="(max-width: 768px) 100vw, 90vw"
+                className="object-cover"
               />
             </div>
           </div>
@@ -303,7 +271,7 @@ export default async function CaseStudyDetailPage({
       )}
 
       {/* Main content and sidebar */}
-      <div className="mx-auto grid max-w-7xl grid-cols-1 gap-12 px-5 py-16 sm:px-8 lg:grid-cols-[minmax(0,1fr)_300px] lg:gap-16 lg:px-12 lg:py-24">
+      <div className="strix-container grid grid-cols-1 gap-12 py-14 lg:grid-cols-[minmax(0,1fr)_300px] lg:gap-16 lg:py-20">
         <article className="min-w-0 space-y-14">
           {/* Problem */}
           <section id="problem" className="scroll-mt-24">
@@ -353,9 +321,18 @@ export default async function CaseStudyDetailPage({
             )}
           </section>
 
+          {study.role && (
+            <section id="responsibilities" className="scroll-mt-24 border-l-2 border-primary pl-5 sm:pl-6">
+              <SectionHeading number="02" title="Strix responsibilities" />
+              <p className="mt-5 whitespace-pre-line text-base leading-8 text-muted-foreground">
+                {study.role}
+              </p>
+            </section>
+          )}
+
           {/* Approach */}
           <section id="approach" className="scroll-mt-24">
-            <SectionHeading number="02" title="The approach" />
+            <SectionHeading number="03" title="Product direction" />
             <p className="mt-5 whitespace-pre-line text-base leading-8 text-muted-foreground">
               {study.approach}
             </p>
@@ -363,7 +340,7 @@ export default async function CaseStudyDetailPage({
 
           {/* Solution */}
           <section id="solution" className="scroll-mt-24">
-            <SectionHeading number="03" title="The solution" />
+            <SectionHeading number="04" title="The solution" />
             <p className="mt-5 whitespace-pre-line text-base leading-8 text-muted-foreground">
               {study.solution}
             </p>
@@ -372,7 +349,7 @@ export default async function CaseStudyDetailPage({
           {/* Implementation */}
           {sections.length > 0 && (
             <section id="implementation" className="scroll-mt-24">
-              <SectionHeading number="04" title="Implementation" />
+              <SectionHeading number="05" title="Engineering implementation" />
               <div className="mt-7 space-y-8">
                 {sections.map((section, index) => (
                   <div
@@ -411,7 +388,7 @@ export default async function CaseStudyDetailPage({
           {/* Architecture */}
           {study.architecture.length > 0 && (
             <section id="architecture" className="scroll-mt-24">
-              <SectionHeading number="05" title="System architecture" />
+              <SectionHeading number="06" title="Engineering & architecture decisions" />
               <p className="mt-4 text-sm leading-7 text-muted-foreground">
                 The main architectural components and responsibilities
                 involved in this implementation.
@@ -436,7 +413,7 @@ export default async function CaseStudyDetailPage({
           {/* Challenges */}
           {study.challenges && study.challenges.length > 0 && (
             <section id="challenges" className="scroll-mt-24">
-              <SectionHeading number="06" title="Engineering challenges" />
+              <SectionHeading number="07" title="Engineering challenges" />
               <div className="mt-6 space-y-6">
                 {study.challenges.map((challenge, index) => (
                   <div
@@ -471,14 +448,14 @@ export default async function CaseStudyDetailPage({
 
           {/* Outcomes */}
           <section id="outcomes" className="scroll-mt-24">
-            <SectionHeading number="07" title="Outcomes" />
+            <SectionHeading number="08" title="Outcomes documented" />
             <p className="mt-5 whitespace-pre-line text-base leading-8 text-muted-foreground">
               {study.outcomes}
             </p>
 
-            {study.metrics.length > 0 && (
+            {documentedMetrics.length > 0 && (
               <div className="mt-7 grid grid-cols-1 gap-4 sm:grid-cols-2">
-                {study.metrics.map((metric) => (
+                {documentedMetrics.map((metric) => (
                   <div
                     key={`${metric.label}-${metric.value}`}
                     className="rounded-xl border border-border p-5"
@@ -527,7 +504,7 @@ export default async function CaseStudyDetailPage({
           {/* Gallery */}
           {study.images && study.images.length > 0 && (
             <section id="gallery" className="scroll-mt-24">
-              <SectionHeading number="08" title="Project visuals" />
+              <SectionHeading number="09" title="Project visuals" />
               <div className="mt-6 grid grid-cols-1 gap-5 sm:grid-cols-2">
                 {study.images.map((image, index) => (
                   <figure
@@ -536,13 +513,15 @@ export default async function CaseStudyDetailPage({
                       image.type === "cover" ? "sm:col-span-2" : ""
                     }`}
                   >
-                    {/* eslint-disable-next-line @next/next/no-img-element */}
-                    <img
-                      src={image.src}
-                      alt={image.alt}
-                      loading="lazy"
-                      className="w-full object-cover"
-                    />
+                    <div className="relative aspect-[4/3] bg-surface-warm">
+                      <Image
+                        src={image.src}
+                        alt={image.alt}
+                        fill
+                        sizes="(max-width: 768px) 100vw, 50vw"
+                        className="object-cover"
+                      />
+                    </div>
                     {image.caption && (
                       <figcaption className="border-t border-border px-4 py-3 text-sm text-muted-foreground">
                         {image.caption}
@@ -557,7 +536,7 @@ export default async function CaseStudyDetailPage({
           {/* Deployment */}
           {study.capabilities && study.capabilities.length > 0 && (
             <section id="capabilities" className="scroll-mt-24">
-              <SectionHeading number="09" title="Capabilities delivered" />
+              <SectionHeading number="10" title="Capabilities delivered" />
               <div className="mt-6 grid grid-cols-1 gap-3 sm:grid-cols-2">
                 {study.capabilities.map((capability) => (
                   <div
@@ -572,6 +551,25 @@ export default async function CaseStudyDetailPage({
                   </div>
                 ))}
               </div>
+            </section>
+          )}
+
+          {study.relatedServices && study.relatedServices.length > 0 && (
+            <section id="related-services" className="scroll-mt-24 border-t border-border pt-10">
+              <SectionHeading number="11" title="Related services" />
+              <ul className="mt-6 grid gap-3 sm:grid-cols-2">
+                {study.relatedServices.map((service) => (
+                  <li key={service.href}>
+                    <Link
+                      href={service.href}
+                      className="group flex h-full items-center justify-between gap-3 border border-border bg-card p-4 text-sm font-medium transition-colors hover:border-primary hover:text-primary"
+                    >
+                      {service.title}
+                      <ArrowUpRight aria-hidden="true" className="size-4 shrink-0" />
+                    </Link>
+                  </li>
+                ))}
+              </ul>
             </section>
           )}
 
@@ -623,7 +621,8 @@ export default async function CaseStudyDetailPage({
               <ul className="space-y-3 text-sm">
                 {[
                   ["problem", "The problem"],
-                  ["approach", "The approach"],
+                  ...(study.role ? [["responsibilities", "Strix responsibilities"]] : []),
+                  ["approach", "Product direction"],
                   ["solution", "The solution"],
                   ...(sections.length ? [["implementation", "Implementation"]] : []),
                   ...(study.architecture.length
@@ -636,6 +635,9 @@ export default async function CaseStudyDetailPage({
                   ...(study.images?.length ? [["gallery", "Project visuals"]] : []),
                   ...(study.capabilities?.length
                     ? [["capabilities", "Capabilities delivered"]]
+                    : []),
+                  ...(study.relatedServices?.length
+                    ? [["related-services", "Related services"]]
                     : []),
                 ].map(([id, label]) => (
                   <li key={id}>
@@ -650,6 +652,21 @@ export default async function CaseStudyDetailPage({
               </ul>
             </nav>
           </div>
+
+          {study.relatedServices && study.relatedServices.length > 0 && (
+            <div className="border border-border p-5 sm:p-6">
+              <h2 className="font-semibold">Related services</h2>
+              <ul className="mt-4 space-y-3 text-sm">
+                {study.relatedServices.map((service) => (
+                  <li key={service.href}>
+                    <Link href={service.href} className="text-muted-foreground transition-colors hover:text-primary">
+                      {service.title}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          )}
 
           <div className="rounded-xl border border-border p-5 sm:p-6">
             <h2 className="font-semibold">Technology stack</h2>
@@ -681,7 +698,7 @@ export default async function CaseStudyDetailPage({
             </div>
           )}
 
-          <div className="rounded-xl border border-border bg-card p-5 sm:p-6">
+          <div className="border border-border bg-card p-5 sm:p-6">
             <h2 className="text-lg font-semibold tracking-tight">
               Planning a similar project?
             </h2>

@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowUpRight, CheckCircle2, ExternalLink, Sparkles } from "lucide-react";
+import { ArrowUpRight, ExternalLink } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 const projects = [
@@ -14,7 +14,6 @@ const projects = [
     category: "Full-Stack Product Engineering",
     ownership: "Client Project",
     statusText: "Live on Google Play & Web",
-    statusBadgeColor: "bg-emerald-500",
     summary:
       "End-to-end engineering across mobile, web, backend, and messaging. Delivered a Flutter mobile application, Next.js web console and website, Firebase Cloud Functions, Razorpay payments, and push notifications via FCM.",
     role: "Mobile, web, backend integration, and release engineering",
@@ -35,7 +34,6 @@ const projects = [
     category: "Business Operations & SaaS",
     ownership: "Studio Product",
     statusText: "Active Development",
-    statusBadgeColor: "bg-amber-500",
     summary:
       "A dedicated operational system for water delivery businesses to organize daily customer schedules, delivery routes, recurring bottle subscriptions, and digital invoicing without spreadsheet chaos.",
     role: "Product concept, systems architecture, full-stack implementation",
@@ -53,7 +51,6 @@ const projects = [
     category: "E-Commerce Platform",
     ownership: "Production Storefront",
     statusText: "Storefront Live",
-    statusBadgeColor: "bg-emerald-500",
     summary:
       "An astrology and spiritual-products online store designed for product discovery, structured catalog browsing, secure shopping cart workflows, and multi-channel order fulfillment.",
     role: "Full-stack storefront engineering & payments",
@@ -72,7 +69,6 @@ const projects = [
     category: "Education Technology",
     ownership: "Studio Product",
     statusText: "Active Development",
-    statusBadgeColor: "bg-amber-500",
     summary:
       "Connecting the enquiry-to-admission journey with everyday institute administration: student profiles, course batches, follow-up queues, and fee payment tracking built on NestJS and Prisma.",
     role: "Domain modeling, CRM workflows, and NestJS API architecture",
@@ -90,7 +86,6 @@ const projects = [
     category: "AI Product Engineering",
     ownership: "Studio Prototype",
     statusText: "AI Prototype",
-    statusBadgeColor: "bg-sky-500",
     summary:
       "An AI assistant concept exploring how AI capabilities can support user tasks and workflows through a unified interface with context orchestrators and structured tool invocation pipelines.",
     role: "Prompt architecture, LLM agent integration, interface prototyping",
@@ -170,7 +165,7 @@ export function SelectedWorkEditorial() {
                         <span
                           className={cn(
                             "size-1.5 rounded-full",
-                            project.statusBadgeColor,
+                            "bg-primary",
                           )}
                         />
                         <span className="font-mono text-[10px] uppercase tracking-wider text-foreground">
@@ -273,7 +268,7 @@ export function SelectedWorkEditorial() {
                           STATUS: {project.statusText.toUpperCase()}
                         </span>
                         <span className="font-mono text-[10px] text-primary">
-                          SPEC: VERIFIED
+                          {project.category.toUpperCase()}
                         </span>
                       </div>
                     </div>
