@@ -1,9 +1,7 @@
-
 import type { MetadataRoute } from "next";
+import { seoConfig } from "../seo";
 
-const siteUrl = (
-  "https://strix.website"
-).replace(/\/+$/, "");
+const siteUrl = seoConfig.siteUrl.replace(/\/+$/, "");
 
 export default function robots(): MetadataRoute.Robots {
   return {
