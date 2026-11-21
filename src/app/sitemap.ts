@@ -2,7 +2,7 @@ import type { MetadataRoute } from "next";
 
 import { servicePages } from "../seo/content";
 import { featuredProjects } from "../features/products/content/product.content";
-import { seoConfig } from "../seo";
+import { seoConfig } from "../seo/config";
 
 const siteUrl = seoConfig.siteUrl.replace(/\/+$/, "");
 
