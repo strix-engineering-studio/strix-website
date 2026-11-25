@@ -1,0 +1,38 @@
+---
+interface Props { class?: string }
+const { class: className = "" } = Astro.props;
+---
+<button type="button" class:list={["inline-flex h-10 w-10 items-center justify-center border border-border bg-background text-foreground transition-colors hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary", className]} aria-label="Switch color theme" title="Switch color theme" aria-pressed="false" data-theme-toggle>
+  <svg class="hidden h-5 w-5 dark:block" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.42 1.42M17.65 17.65l1.42 1.42M2 12h2M20 12h2M6.35 17.65l-1.42 1.42M19.07 4.93l-1.42 1.42"/></svg>
+  <svg class="h-5 w-5 dark:hidden" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20.985 12.486a9 9 0 1 1-9.473-9.472c.405-.022.617.463.402.807a6.5 6.5 0 0 0 8.268 8.268c.344-.215.829-.003.803.397Z"/></svg>
+</button>
+<script>
+  const key = "strix-theme";
+  function readTheme(): "light" | "dark" {
+    try {
+      const stored = localStorage.getItem(key);
+      if (stored === "light" || stored === "dark") return stored;
+    } catch { /* storage can be unavailable */ }
+    return window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+  }
+  function applyTheme(theme: "light" | "dark") {
+    const dark = theme === "dark";
+    document.documentElement.classList.toggle("dark", dark);
+    document.documentElement.style.colorScheme = theme;
+    document.querySelectorAll<HTMLButtonElement>("[data-theme-toggle]").forEach(button => {
+      button.setAttribute("aria-label", dark ? "Switch to light mode" : "Switch to dark mode");
+      button.setAttribute("title", dark ? "Switch to light mode" : "Switch to dark mode");
+      button.setAttribute("aria-pressed", String(dark));
+    });
+  }
+  applyTheme(readTheme());
+  document.querySelectorAll<HTMLButtonElement>("[data-theme-toggle]").forEach(button => {
+    if (button.dataset.themeInitialized === "true") return;
+    button.dataset.themeInitialized = "true";
+    button.addEventListener("click", () => {
+      const next = document.documentElement.classList.contains("dark") ? "light" : "dark";
+      try { localStorage.setItem(key, next); } catch { /* current-page preference still applies */ }
+      applyTheme(next);
+    });
+  });
+</script>
