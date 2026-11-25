@@ -14,14 +14,12 @@ export default defineConfig({
   },
   redirects: {
     "/work": "/case-studies/",
-    "/work/[...path]": "/case-studies/[...path]",
+    "/work/[slug]": "/case-studies/[slug]",
     "/studio": "/about/",
-    "/studio/[...path]": "/about/[...path]",
     "/project-inquiry": "/contact/",
     "/blog": "/insights/",
-    "/blog/[...path]": "/insights/[...path]",
+    "/blog/[slug]": "/insights/[slug]",
     "/uses": "/technology-decisions/",
-    "/uses/[...path]": "/technology-decisions/[...path]"
   },
   markdown: {
     shikiConfig: { theme: "github-dark" }
