@@ -1,4 +1,5 @@
 @import "tailwindcss";
+@import "@fontsource-variable/inter";
 
 :root {
   --strix-orange: #F7931E;
@@ -15,7 +16,7 @@
   --primary: #F7931E;
   --primary-foreground: #111111;
   --border: #E7E5E0;
-  --font-body: "Geist", Inter, Arial, sans-serif;
+  --font-body: "Inter Variable", Inter, Arial, sans-serif;
   --font-display: "Instrument Serif", Georgia, serif;
   --font-code: "Geist Mono", Consolas, monospace;
   --container-width: 90rem;
