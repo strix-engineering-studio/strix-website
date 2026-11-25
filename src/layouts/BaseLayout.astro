@@ -1,0 +1,53 @@
+---
+import SiteHeader from "../components/layout/SiteHeader.astro";
+import SiteFooter from "../components/layout/SiteFooter.astro";
+import "../styles/global.css";
+
+interface Props {
+  title?: string;
+  description?: string;
+  canonical?: string;
+  image?: string;
+  noindex?: boolean;
+}
+const {
+  title = "Strix Engineering Studio | Architecture-First Product Engineering",
+  description = "Strix Engineering Studio designs, builds, and improves production web, mobile, backend, and AI-enabled software for startups and growing businesses.",
+  canonical = Astro.url.pathname,
+  image = "/strix.svg",
+  noindex = false
+} = Astro.props;
+const canonicalUrl = new URL(canonical, Astro.site).toString();
+---
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <meta name="generator" content={Astro.generator} />
+    <meta name="description" content={description} />
+    <meta name="keywords" content="product engineering, software development, custom software, MVP development, AI engineering, backend engineering, software architecture, Pune" />
+    <meta name="theme-color" content="#FAF8F3" />
+    {noindex && <meta name="robots" content="noindex,nofollow" />}
+    <link rel="canonical" href={canonicalUrl} />
+    <link rel="icon" type="image/svg+xml" href="/strix.svg" />
+    <link rel="manifest" href="/manifest.webmanifest" />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Strix Engineering Studio" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonicalUrl} />
+    <meta property="og:image" content={new URL(image, Astro.site).toString()} />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <title>{title}</title>
+  </head>
+  <body class="relative min-h-screen overflow-x-hidden bg-background text-foreground antialiased">
+    <div class="relative flex min-h-screen flex-col">
+      <SiteHeader />
+      <main class="relative flex-1"><slot /></main>
+      <SiteFooter />
+    </div>
+  </body>
+</html>
