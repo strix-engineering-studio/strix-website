@@ -3,11 +3,11 @@ import BaseLayout from "../../layouts/BaseLayout.astro";
 import { getCollection, render } from "astro:content";
 export async function getStaticPaths() {
   const posts = await getCollection("insights", ({data}) => !data.draft);
-  return posts.map((post) => ({ params: { slug: post.slug }, props: { post } }));
+  return posts.map((post) => ({ params: { slug: post.id }, props: { post } }));
 }
 const { post } = Astro.props;
 const { Content } = await render(post);
 ---
-<BaseLayout title={`${post.data.title} | Strix Engineering Studio`} description={post.data.excerpt} canonical={`/insights/${post.slug}/`}>
+<BaseLayout title={`${post.data.title} | Strix Engineering Studio`} description={post.data.excerpt} canonical={`/insights/${post.id}/`}>
 <section class="section-space"><div class="strix-container space-y-10"><header class="max-w-4xl space-y-5 border-b border-border pb-8"><p class="editorial-meta text-primary">{post.data.tag}</p><h1 class="editorial-serif type-display-lg">{post.data.title}</h1><p class="text-base text-muted-foreground">{post.data.excerpt}</p><time class="font-mono text-xs text-muted-foreground" datetime={post.data.publishedAt.toISOString()}>{post.data.publishedAt.toLocaleDateString("en",{month:"long",day:"numeric",year:"numeric"})}</time></header><article class="prose"><Content /></article><div class="border-y border-border py-5 text-sm"><span class="font-mono text-xs text-muted-foreground">SHARE · </span><a class="text-primary" href={`https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(new URL(Astro.url.pathname, Astro.site).toString())}`} target="_blank" rel="noopener noreferrer">LinkedIn</a> · <a class="text-primary" href={`mailto:?subject=${encodeURIComponent(post.data.title)}`}>Email</a></div><a class="text-sm text-primary" href="/insights/">← Back to insights</a></div></section>
 </BaseLayout>
