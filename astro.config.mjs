@@ -6,6 +6,7 @@ import tailwindcss from "@tailwindcss/vite";
 
 export default defineConfig({
   site: "https://strix.website",
+  base: "/strix-website",
   output: "static",
   trailingSlash: "always",
   integrations: [react(), mdx(), sitemap()],
