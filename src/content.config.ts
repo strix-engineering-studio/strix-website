@@ -39,7 +39,7 @@ const products = defineCollection({
     summary: z.string(),
     category: z.string(),
     status: z.string(),
-    url: z.string().url().optional(),
+    url: z.url().optional(),
     logo: z.string().optional(),
     cover: z.string().optional(),
     featured: z.boolean().default(false)
