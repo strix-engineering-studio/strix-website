@@ -5,7 +5,7 @@ import sitemap from "@astrojs/sitemap";
 import tailwindcss from "@tailwindcss/vite";
 
 export default defineConfig({
-  site: "https://strix-engineering-studio.github.io",
+  site: "https://strix.website",
   base: "/strix-website",
   output: "static",
   trailingSlash: "always",
