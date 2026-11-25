@@ -3,12 +3,12 @@ import BaseLayout from "../../layouts/BaseLayout.astro";
 import { getCollection, render } from "astro:content";
 export async function getStaticPaths() {
   const studies = await getCollection("caseStudies", ({data}) => data.status === "published" && data.visibility !== "private");
-  return studies.map((study) => ({ params: { slug: study.slug }, props: { study } }));
+  return studies.map((study) => ({ params: { slug: study.id }, props: { study } }));
 }
 const { study } = Astro.props;
 const { Content } = await render(study);
 ---
-<BaseLayout title={`${study.data.title} | Strix Engineering Studio`} description={study.data.description || study.data.subtitle} canonical={`/case-studies/${study.slug}/`} image={study.data.cover || "/strix.svg"}>
+<BaseLayout title={`${study.data.title} | Strix Engineering Studio`} description={study.data.description || study.data.subtitle} canonical={`/case-studies/${study.id}/`} image={study.data.cover || "/strix.svg"}>
 <section class="section-space"><div class="strix-container space-y-10">
   <header class="max-w-4xl space-y-5 border-b border-border pb-8">
     <p class="editorial-meta text-primary">{study.data.category} · {study.data.visibility === "anonymized" ? "Anonymized client project" : study.data.client || "Selected work"}</p>
