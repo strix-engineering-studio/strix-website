@@ -1,0 +1,2 @@
+import type { APIRoute } from "astro";
+export const GET: APIRoute = () => new Response("# Strix Engineering Studio\n\nBuild the right system before building the software. Strix designs, engineers and improves production web, mobile, backend and AI-enabled software.\n\nWebsite: https://strix.website\nContact: team@strix.website\nWork: https://strix.website/case-studies/\nServices: https://strix.website/services/\nInsights: https://strix.website/insights/\n", {headers:{"Content-Type":"text/plain; charset=utf-8"}});

@@ -1,0 +1,29 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import { getCollection } from "astro:content";
+const studies = (await getCollection("caseStudies", ({data}) => data.status === "published" && data.visibility !== "private"))
+  .sort((a,b) => (a.data.title || "").localeCompare(b.data.title || ""));
+---
+<BaseLayout title="Portfolio & Case Studies | Strix Engineering Studio" description="Explore Strix client projects, studio products, and technical implementations across mobile, web, backend, and connected product systems." canonical="/case-studies/">
+<section class="section-space">
+  <div class="strix-container space-y-12">
+    <header class="max-w-4xl space-y-5 border-b border-border pb-8">
+      <p class="editorial-meta text-primary">Portfolio / Selected work</p>
+      <h1 class="editorial-serif type-display-lg">Products built for real workflows and real constraints.</h1>
+      <p class="body-large max-w-3xl text-muted-foreground">Explore documented client work, product engineering, and technical implementations. Client work is identified transparently, including anonymized engagements.</p>
+      <a href="/contact/" class="inline-flex min-h-12 items-center gap-3 border border-primary bg-primary px-5 py-3 text-sm font-semibold text-primary-foreground">Discuss a project ↗</a>
+    </header>
+    <div class="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+      {studies.map(study => <article class="flex flex-col border border-border bg-card">
+        {study.data.cover && <a href={`/case-studies/${study.id}/`} class="block aspect-[16/10] overflow-hidden bg-surface-warm"><img src={study.data.cover} alt={study.data.title} loading="lazy" class="h-full w-full object-cover"/></a>}
+        <div class="flex flex-1 flex-col p-5 sm:p-6">
+          <div class="flex items-center justify-between gap-3"><span class="editorial-meta text-primary">{study.data.category}</span><span class="font-mono text-[10px] text-muted-foreground">{study.data.visibility === "anonymized" ? "Anonymized client" : study.data.client || "Published work"}</span></div>
+          <h2 class="editorial-serif mt-4 text-2xl leading-tight"><a href={`/case-studies/${study.id}/`}>{study.data.title}</a></h2>
+          <p class="mt-3 flex-1 text-sm leading-relaxed text-muted-foreground">{study.data.subtitle}</p>
+          <a class="mt-5 border-t border-border pt-4 text-sm font-medium hover:text-primary" href={`/case-studies/${study.id}/`}>Read case study ↗</a>
+        </div>
+      </article>)}
+    </div>
+  </div>
+</section>
+</BaseLayout>

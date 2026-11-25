@@ -1,0 +1,86 @@
+@import "tailwindcss";
+@import "@fontsource-variable/inter";
+
+:root {
+  --strix-orange: #F7931E;
+  --strix-gold: #D4AF75;
+  --strix-brown: #2A1E17;
+  --strix-warm-white: #FAF8F3;
+  --background: #FFFFFF;
+  --foreground: #111111;
+  --card: #FFFFFF;
+  --surface: #FFFFFF;
+  --surface-warm: #FAF8F3;
+  --muted: #F5F4F1;
+  --muted-foreground: #66645F;
+  --primary: #F7931E;
+  --primary-foreground: #111111;
+  --border: #E7E5E0;
+  --font-body: "Inter Variable", Inter, Arial, sans-serif;
+  --font-display: "Instrument Serif", Georgia, serif;
+  --font-code: "Geist Mono", Consolas, monospace;
+  --container-width: 90rem;
+  --container-narrow: 48rem;
+  --space-section: clamp(4rem, 7vw, 7rem);
+}
+html.dark {
+  color-scheme: dark;
+  --background: #111111;
+  --foreground: #FAF8F3;
+  --card: #181817;
+  --surface: #181817;
+  --surface-warm: #201F1D;
+  --muted: #22211F;
+  --muted-foreground: #B5B1A9;
+  --border: #34322E;
+  --primary-foreground: #111111;
+}
+@theme inline {
+  --font-sans: var(--font-body);
+  --font-serif: var(--font-display);
+  --font-mono: var(--font-code);
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-surface: var(--surface);
+  --color-surface-warm: var(--surface-warm);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-border: var(--border);
+}
+* { box-sizing: border-box; border-color: var(--border); }
+html { min-height: 100%; scroll-behavior: smooth; scroll-padding-top: 6rem; background: var(--background); color: var(--foreground); }
+body { min-height: 100vh; font-family: var(--font-body); font-feature-settings: "kern","liga","calt"; text-rendering: optimizeLegibility; -webkit-font-smoothing: antialiased; }
+h1,h2,h3,h4,h5,h6 { font-family: var(--font-body); font-weight: 500; letter-spacing: -.025em; }
+p { text-wrap: pretty; }
+a { text-underline-offset: .2em; }
+button,input,textarea,select { font: inherit; }
+::selection { background: rgb(247 147 30 / 30%); }
+.strix-container { width: min(100% - 2rem, var(--container-width)); margin-inline: auto; }
+.strix-container-narrow { width: min(100% - 2rem, var(--container-narrow)); margin-inline: auto; }
+.section-space { padding-block: var(--space-section); }
+.type-display-xl { font-size: clamp(3.5rem,8vw,7.5rem); line-height: .98; letter-spacing: -.045em; }
+.type-display-lg { font-size: clamp(2.75rem,6vw,5.5rem); line-height: 1; letter-spacing: -.04em; }
+.type-heading-1 { font-size: clamp(2.25rem,4.5vw,4rem); line-height: 1.05; letter-spacing: -.035em; }
+.type-heading-2 { font-size: clamp(1.75rem,3vw,2.75rem); line-height: 1.1; letter-spacing: -.03em; }
+.body-large { font-size: clamp(1.0625rem,1.35vw,1.25rem); line-height: 1.65; }
+.font-display,.editorial-serif { font-family: var(--font-display), Georgia, serif; }
+.text-brand { color: var(--strix-orange); }
+.bg-brand { background-color: var(--strix-orange); }
+.bg-strix-brown { background-color: var(--strix-brown); }
+.bg-strix-sand { background-color: var(--strix-warm-white); }
+.border-subtle { border-color: var(--border); }
+.editorial-rule { height: 1px; width: 100%; background: var(--border); }
+.eyebrow,.editorial-meta { font-family: var(--font-code); font-size: .6875rem; font-weight: 600; letter-spacing: .18em; line-height: 1.5; text-transform: uppercase; }
+.surface,.editorial-card { border: 1px solid var(--border); background: var(--surface); box-shadow: 0 2px 12px rgb(17 17 17 / 5%); }
+.surface-strong { border: 1px solid var(--border); background: var(--muted); }
+.blueprint-grid { background-image: linear-gradient(rgb(17 17 17 / 3.5%) 1px,transparent 1px),linear-gradient(90deg,rgb(17 17 17 / 3.5%) 1px,transparent 1px); background-size: 64px 64px; }
+.dark .blueprint-grid { background-image: linear-gradient(rgb(250 248 243 / 4%) 1px,transparent 1px),linear-gradient(90deg,rgb(250 248 243 / 4%) 1px,transparent 1px); }
+.prose { max-width: 72ch; line-height: 1.8; }
+.prose h2,.prose h3 { font-family: var(--font-display); margin: 2rem 0 1rem; }
+.prose a { color: var(--primary); text-decoration: underline; }
+.prose pre { overflow-x: auto; border: 1px solid var(--border); padding: 1rem; background: var(--card); }
+@media (prefers-reduced-motion: no-preference) { .animate-tech-marquee { animation: tech-marquee 30s linear infinite; } }
+@keyframes tech-marquee { from { transform: translateX(0); } to { transform: translateX(-25%); } }

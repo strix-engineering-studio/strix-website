@@ -1,0 +1,2 @@
+import type { APIRoute } from "astro";
+export const GET: APIRoute = () => new Response(JSON.stringify({name:"Strix Engineering Studio",short_name:"Strix",start_url:"/",display:"standalone",background_color:"#FAF8F3",theme_color:"#2A1E17",icons:[{src:"/strix.svg",sizes:"any",type:"image/svg+xml"}]}), { headers: { "Content-Type": "application/manifest+json" } });

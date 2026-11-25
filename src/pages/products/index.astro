@@ -1,0 +1,16 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import { getCollection } from "astro:content";
+const products = (await getCollection("products")).sort((a,b) => Number(b.data.featured) - Number(a.data.featured));
+---
+<BaseLayout title="Products | Strix Engineering Studio" description="Explore Strix products and prototypes across operations, education, e-commerce, and AI." canonical="/products/">
+<section class="section-space"><div class="strix-container space-y-12">
+  <header class="max-w-4xl space-y-5 border-b border-border pb-8"><p class="editorial-meta text-primary">Studio products</p><h1 class="editorial-serif type-display-lg">Products shaped around real operational needs.</h1><p class="body-large max-w-3xl text-muted-foreground">A portfolio of products and prototypes developed by Strix, with each initiative clearly marked by its current stage.</p></header>
+  <div class="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+    {products.map(product => <article class="flex flex-col border border-border bg-card">
+      {product.data.cover && <a href={`/products/${product.id}/`} class="block aspect-[16/10] overflow-hidden bg-surface-warm"><img src={product.data.cover} alt={product.data.title} loading="lazy" class="h-full w-full object-cover"/></a>}
+      <div class="flex flex-1 flex-col p-5 sm:p-6"><div class="flex items-center justify-between gap-3"><span class="editorial-meta text-primary">{product.data.category}</span><span class="font-mono text-[10px] text-muted-foreground">{product.data.status}</span></div><h2 class="editorial-serif mt-4 text-2xl"><a href={`/products/${product.id}/`}>{product.data.title}</a></h2><p class="mt-3 flex-1 text-sm text-muted-foreground">{product.data.summary}</p><a class="mt-5 border-t border-border pt-4 text-sm font-medium hover:text-primary" href={`/products/${product.id}/`}>Explore product ↗</a></div>
+    </article>)}
+  </div>
+</div></section>
+</BaseLayout>
