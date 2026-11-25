@@ -33,8 +33,8 @@ const imageUrl = image.startsWith("http") ? image : new URL(image.replace(/^\/+/
     <meta name="color-scheme" content="light dark" />
     {noindex && <meta name="robots" content="noindex,nofollow" />}
     <link rel="canonical" href={canonicalUrl} />
-    <link rel="icon" type="image/svg+xml" href="/strix.svg" />
-    <link rel="manifest" href="/manifest.webmanifest" />
+    <link rel="icon" type="image/svg+xml" href={`${import.meta.env.BASE_URL}strix.svg`} />
+    <link rel="manifest" href={`${import.meta.env.BASE_URL}manifest.webmanifest`} />
     <meta property="og:type" content="website" />
     <meta property="og:site_name" content="Strix Engineering Studio" />
     <meta property="og:title" content={title} />
@@ -69,5 +69,39 @@ const imageUrl = image.startsWith("http") ? image : new URL(image.replace(/^\/+/
       <main id="main" class="relative flex-1"><slot /></main>
       <SiteFooter />
     </div>
+    <script>
+      // Astro's base setting prefixes built assets. This also prefixes root-relative
+      // navigation and public files for the GitHub Pages project URL.
+      const basePath = import.meta.env.BASE_URL.replace(/\/$/, "");
+      const withBase = (value: string | null) => {
+        if (!value || !value.startsWith("/") || value.startsWith("//")) return value;
+        if (value === basePath || value.startsWith(`${basePath}/`)) return value;
+        return `${basePath}${value}`;
+      };
+
+      document.querySelectorAll<HTMLAnchorElement>('a[href^="/"], area[href^="/"]').forEach((element) => {
+        const href = element.getAttribute("href");
+        const next = withBase(href);
+        if (next && next !== href) element.setAttribute("href", next);
+      });
+
+      document.querySelectorAll<HTMLImageElement>('img[src^="/"]').forEach((element) => {
+        const src = element.getAttribute("src");
+        const next = withBase(src);
+        if (next && next !== src) element.setAttribute("src", next);
+      });
+
+      document.querySelectorAll<HTMLSourceElement>('source[src^="/"]').forEach((element) => {
+        const src = element.getAttribute("src");
+        const next = withBase(src);
+        if (next && next !== src) element.setAttribute("src", next);
+      });
+
+      document.querySelectorAll<HTMLVideoElement>('video[poster^="/"]').forEach((element) => {
+        const poster = element.getAttribute("poster");
+        const next = withBase(poster);
+        if (next && next !== poster) element.setAttribute("poster", next);
+      });
+    </script>
   </body>
 </html>
