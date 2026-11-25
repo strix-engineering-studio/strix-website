@@ -6,9 +6,24 @@ import tailwindcss from "@tailwindcss/vite";
 
 export default defineConfig({
   site: "https://strix.website",
-  integrations: [react(), mdx(), sitemap()],
-  vite: { plugins: [tailwindcss()] },
   output: "static",
-  build: { format: "directory" },
-  markdown: { shikiConfig: { theme: "github-dark" } }
+  trailingSlash: "always",
+  integrations: [react(), mdx(), sitemap()],
+  vite: {
+    plugins: [tailwindcss()],
+  },
+  redirects: {
+    "/work": "/case-studies/",
+    "/work/[...path]": "/case-studies/[...path]",
+    "/studio": "/about/",
+    "/studio/[...path]": "/about/[...path]",
+    "/project-inquiry": "/contact/",
+    "/blog": "/insights/",
+    "/blog/[...path]": "/insights/[...path]",
+    "/uses": "/technology-decisions/",
+    "/uses/[...path]": "/technology-decisions/[...path]"
+  },
+  markdown: {
+    shikiConfig: { theme: "github-dark" }
+  }
 });
