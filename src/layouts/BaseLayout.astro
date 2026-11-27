@@ -57,6 +57,8 @@ const imageUrl = image.startsWith("http") ? image : new URL(image.replace(/^\/+/
             : window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
           document.documentElement.classList.toggle("dark", theme === "dark");
           document.documentElement.style.colorScheme = theme;
+          const themeColor = document.querySelector('meta[name="theme-color"]');
+          themeColor?.setAttribute("content", theme === "dark" ? "#151412" : "#FBFAF8");
         } catch {
           // Keep the CSS light theme when browser storage is unavailable.
         }
