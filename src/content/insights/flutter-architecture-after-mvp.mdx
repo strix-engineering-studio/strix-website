@@ -1,0 +1,39 @@
+---
+title: "Flutter Architecture That Can Grow Beyond the MVP"
+excerpt: "Keep feature boundaries, state management, testing and release configuration sustainable as a Flutter application grows."
+publishedAt: "2026-11-27"
+tag: "Flutter · Mobile"
+featured: true
+---
+
+An MVP should be small, but it should not make every future change expensive. Flutter makes it possible to ship across platforms from a shared codebase. The quality of the architecture depends on how application behaviour, data access and platform-specific concerns are separated.
+
+## Organise around features and responsibilities
+
+A feature-first structure helps teams locate the code that changes together. Within a feature, keep presentation, application logic and data access distinct enough that UI changes do not require rewriting remote API behaviour.
+
+Avoid introducing layers simply to satisfy a diagram. Add an abstraction when it protects a meaningful boundary, supports testing or isolates an external dependency.
+
+## Make state transitions explicit
+
+Choose a state management approach that makes loading, success, empty and error states clear. Keep state ownership local when the behaviour is local. Shared application state should have an identifiable owner and lifecycle.
+
+Do not let widgets become the place where business rules, network retries and persistence decisions accumulate.
+
+## Treat environments as first-class
+
+Development, staging and production should have explicit configuration for app identifiers, Firebase projects, API endpoints, signing and release behaviour. Avoid relying on developers to remember manual changes before a build.
+
+## Test the behaviour that carries risk
+
+Prioritise tests for authentication, payments, permissions, data transformations and key user journeys. Use unit tests for domain logic, widget tests for UI states, and end-to-end tests for a small number of high-value workflows. Make mocks representative and keep integration tests against real service contracts where feasible.
+
+## Plan for observability and failure
+
+Mobile networks are unreliable. Provide visible retry paths, safe offline behaviour where required, crash reporting and useful diagnostics. A failed request should produce an understandable application state, not an indefinitely spinning screen.
+
+## The Strix perspective
+
+The right Flutter architecture is the one that lets the team deliver the next feature without destabilising the last one. Keep boundaries understandable, automate release configuration and test the workflows whose failure would matter most.
+
+References: [Flutter documentation](https://docs.flutter.dev/) and [Flutter testing](https://docs.flutter.dev/testing/overview).
