@@ -37,7 +37,6 @@ const { class: className = "" } = Astro.props;
       applyTheme(next);
     });
   });
-</script>
 
   // Follow operating-system changes until the visitor makes an explicit choice.
   const systemPreference = window.matchMedia("(prefers-color-scheme: dark)");
@@ -49,3 +48,4 @@ const { class: className = "" } = Astro.props;
     } catch { /* fall back to the current system preference */ }
     if (!hasSavedChoice) applyTheme(event.matches ? "dark" : "light");
   });
+</script>
