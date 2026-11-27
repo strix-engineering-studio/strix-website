@@ -1,5 +1,5 @@
 import React from "react";
-import { ArrowUpRight, ArrowDownRight, Code2, Layers, Mail, MoveUpRight, ArrowRight } from "lucide-react";
+import { ArrowUpRight, ArrowDownRight } from "lucide-react";
 
 const work = [
   { n:"01", name:"Hugged", type:"CLIENT PRODUCT", status:"Live · Mobile + Web", text:"A connected parenting platform engineered across Flutter, Firebase, payments, notifications and web operations.", img:"/assets/projects/hugged/made%20for%20every%20caregiver.webp", href:"/case-studies/hugged-parenting-platform/", stack:["Flutter","Firebase","Next.js"] },
@@ -12,7 +12,9 @@ const work = [
 const extraWork = [
   { name:"The Vivaah Tales", type:"WEBSITE", url:"https://the-vivaah-tales.netlify.app/", label:"Open website" },
   { name:"MK Basketball", type:"SPORTS PLATFORM", url:"https://mkballer.strix.website/", label:"Open website" },
+  { name:"Imrabo Website", type:"AI PRODUCT WEBSITE", url:"https://imrabo.com/", label:"Open website" },
   { name:"Imrabo Workspace", type:"AI WORKSPACE", url:"https://app.imrabo.com/log-in", label:"Open workspace" },
+  { name:"Imrabo Mobile App", type:"FLUTTER APPLICATION", url:"/products/imrabo/", label:"View product details" },
 ];
 
 const steps = [
@@ -49,7 +51,7 @@ const tools = [
   ["API tooling","Postman","https://www.postman.com/","https://learning.postman.com/docs/"]
 ];
 
-function SectionHeading({eyebrow,title,description}:{eyebrow:string;title:string;description:string}) {
+function SectionHeading({eyebrow,title,description}:{eyebrow:string;title:React.ReactNode;description:string}) {
   return <header className="portfolio-section-heading"><p className="portfolio-kicker">{eyebrow}</p><h2>{title}</h2>{description && <p className="portfolio-section-description">{description}</p>}</header>;
 }
 
