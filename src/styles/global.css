@@ -350,3 +350,156 @@ body { background: var(--portfolio-paper); color: var(--portfolio-ink); }
 @media (prefers-reduced-motion: reduce) {
  .portfolio-project-image img,.portfolio-button-primary,.portfolio-button-outline { transition:none !important; }
 }
+
+/* Dark mode tokens for the portfolio surface and all custom sections. */
+html.dark {
+  color-scheme: dark;
+  --portfolio-paper: #151412;
+  --portfolio-white: #201e1a;
+  --portfolio-ink: #f1eee8;
+  --portfolio-muted: #aaa39a;
+  --portfolio-rule: #39352f;
+  --portfolio-soft: #24211d;
+  --portfolio-accent: #f39a5f;
+  --portfolio-dark: #0d0c0b;
+  --background: #151412;
+  --foreground: #f1eee8;
+  --card: #201e1a;
+  --surface: #201e1a;
+  --surface-warm: #24211d;
+  --muted: #2a2722;
+  --muted-foreground: #aaa39a;
+  --border: #39352f;
+  --primary: #f39a5f;
+  --primary-foreground: #17120e;
+}
+html.dark body,
+html.dark .portfolio-home {
+  background: var(--portfolio-paper);
+  color: var(--portfolio-ink);
+}
+html.dark .portfolio-nav {
+  background: rgb(21 20 18 / 94%);
+  border-color: var(--portfolio-rule);
+}
+html.dark .portfolio-nav-brand,
+html.dark .portfolio-nav-wordmark strong,
+html.dark .portfolio-nav-links a,
+html.dark .portfolio-nav-mobile a { color: var(--portfolio-ink); }
+html.dark .portfolio-nav-wordmark small,
+html.dark .portfolio-nav-links a { color: var(--portfolio-muted); }
+html.dark .portfolio-nav-contact { border-color: var(--portfolio-accent); color: var(--portfolio-accent); }
+html.dark .portfolio-nav-contact:hover { background: var(--portfolio-accent); color: #17120e; }
+html.dark .portfolio-nav-mark,
+html.dark .portfolio-nav-mobile-toggle,
+html.dark .portfolio-nav-mobile {
+  background: #201e1a;
+  border-color: var(--portfolio-rule);
+  color: var(--portfolio-ink);
+}
+html.dark .portfolio-hero-visual {
+  border-color: #494238;
+  background-color: #24211d;
+  background-image:
+    linear-gradient(rgb(241 238 232 / 4%) 1px,transparent 1px),
+    linear-gradient(90deg,rgb(241 238 232 / 4%) 1px,transparent 1px);
+}
+html.dark .portfolio-visual-label,
+html.dark .portfolio-visual-foot { color:#aaa197; border-color:#494238; }
+html.dark .portfolio-orbit { border-color:rgb(241 238 232 / 23%); }
+html.dark .portfolio-visual-core {
+  background:#171513;
+  border-color:var(--portfolio-accent);
+  box-shadow:0 9px 35px rgb(0 0 0 / 35%);
+}
+html.dark .portfolio-visual-core img { filter:brightness(0) invert(1); }
+html.dark .portfolio-visual-core span { color:#c5b9aa; }
+html.dark .portfolio-visual-node {
+  background:rgb(31 29 25 / 96%);
+  color:#e7dfd4;
+  border-color:#494238;
+  box-shadow:0 4px 18px rgb(0 0 0 / 25%);
+}
+html.dark .portfolio-intro-strip,
+html.dark .portfolio-intro-strip p,
+html.dark .portfolio-intro-strip span {
+  border-color:var(--portfolio-rule);
+  color:var(--portfolio-muted);
+}
+html.dark .portfolio-intro-strip div { color:var(--portfolio-ink); }
+html.dark .portfolio-project-image { background:#2a2722; }
+html.dark .portfolio-image-index {
+  background:rgb(21 20 18 / 90%);
+  color:var(--portfolio-ink);
+}
+html.dark .portfolio-image-arrow {
+  background:#201e1a;
+  color:var(--portfolio-ink);
+}
+html.dark .portfolio-project-meta,
+html.dark .portfolio-project-stack span,
+html.dark .portfolio-more-work-list > a,
+html.dark .portfolio-journal-grid > a,
+html.dark .portfolio-process-grid,
+html.dark .portfolio-process-grid article,
+html.dark .portfolio-capability-grid { border-color:var(--portfolio-rule); }
+html.dark .portfolio-project-stack span { color:#d1c7bb; }
+html.dark .portfolio-more-arrow { border-color:var(--portfolio-rule); }
+html.dark .portfolio-button-outline {
+  color:var(--portfolio-ink);
+  border-color:var(--portfolio-rule);
+}
+html.dark .portfolio-process-section { background:#211e1a; }
+html.dark .portfolio-process-grid p,
+html.dark .portfolio-capability-grid p { color:#b9b1a6; }
+html.dark .portfolio-process-grid article > svg { color:#aaa197; }
+html.dark .portfolio-capability-grid {
+  border-top-color:var(--portfolio-rule);
+  border-left-color:var(--portfolio-rule);
+}
+html.dark .portfolio-capability-grid article {
+  border-right-color:var(--portfolio-rule);
+  border-bottom-color:var(--portfolio-rule);
+}
+html.dark .portfolio-stack-section { background:#0d0c0b; color:#f1eee8; }
+html.dark .portfolio-stack-inner .portfolio-section-heading h2 { color:#f1eee8; }
+html.dark .portfolio-stack-inner .portfolio-section-description { color:#aaa39a; }
+html.dark .portfolio-stack-grid,
+html.dark .portfolio-stack-grid article { border-color:rgb(241 238 232 / 16%); }
+html.dark .portfolio-stack-grid small { color:#aaa39a; }
+html.dark .portfolio-stack-grid a { color:#d7cfc4; }
+html.dark .portfolio-stack-grid a:hover { color:var(--portfolio-accent); }
+html.dark .portfolio-contact-section { background:#29251f; }
+html.dark .portfolio-contact-inner > div:first-child > p:last-child { color:#bdb3a6; }
+html.dark .portfolio-contact-card {
+  border-color:#51483d;
+  background:rgb(21 20 18 / 55%);
+}
+html.dark .portfolio-contact-card > span,
+html.dark .portfolio-contact-card small { color:#aaa197; }
+html.dark .portfolio-contact-card > a:first-of-type {
+  border-color:#51483d;
+  color:var(--portfolio-ink);
+}
+html.dark .portfolio-footer { background:#151412; border-color:var(--portfolio-rule); }
+html.dark .portfolio-footer-top,
+html.dark .portfolio-footer-grid,
+html.dark .portfolio-footer-bottom { border-color:var(--portfolio-rule); }
+html.dark .portfolio-footer-grid h3,
+html.dark .portfolio-footer-grid p,
+html.dark .portfolio-footer-bottom { color:var(--portfolio-muted); }
+html.dark .portfolio-footer-grid a { color:var(--portfolio-ink); }
+html.dark .portfolio-footer-grid a:hover { color:var(--portfolio-accent); }
+html.dark .portfolio-button-primary,
+html.dark .portfolio-button-primary:hover { color:#17120e; }
+html.dark .portfolio-status-dot { box-shadow:0 0 0 3px rgb(110 155 116 / 18%); }
+html.dark ::selection { background:rgb(243 154 95 / 35%); color:#fff; }
+
+/* Preserve readable content colours on non-home routes in either theme. */
+html.dark .bg-background { background-color:var(--background); }
+html.dark .bg-card { background-color:var(--card); }
+html.dark .text-foreground { color:var(--foreground); }
+html.dark .text-muted-foreground { color:var(--muted-foreground); }
+html.dark .border-border { border-color:var(--border); }
+html.dark .surface,.dark .editorial-card { background:var(--surface); border-color:var(--border); }
+
