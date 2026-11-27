@@ -1,0 +1,35 @@
+---
+title: "Astro, React and MDX: A Practical Content Workflow"
+excerpt: "Combine static-first delivery with interactive React components and structured editorial content without turning every page into an app."
+publishedAt: "2026-11-27"
+tag: "Astro · React · MDX"
+featured: true
+---
+
+Content-heavy websites need a publishing workflow as well as a frontend framework. Astro, React and MDX can work together when each is used for a specific job: Astro owns routes and rendering, React handles the interactions that benefit from it, and MDX keeps technical content close to the repository.
+
+## Keep page rendering static-first
+
+A static-first page can ship useful HTML without waiting for a large client-side application to initialise. Use interactive components only where a user action requires state, such as a filter, calculator or product configurator.
+
+This is not a rule against React. It is a way to avoid hydrating content that does not need it.
+
+## Treat MDX as structured content
+
+Use frontmatter for title, excerpt, category, publication date, author and draft status. Validate that schema centrally so listing pages, metadata and content detail routes use a consistent contract.
+
+Keep article slugs stable. When a URL must change, add a redirect and update internal links. A blog index should sort by publication date, exclude drafts and expose a useful excerpt.
+
+## Build reusable editorial components
+
+A shared page layout should own canonical URLs, metadata, global navigation, footer and privacy controls. Article templates should own reading width, headings, code blocks and related links. Avoid duplicating these across every post.
+
+## Performance is part of the workflow
+
+Optimise images, lazy-load below-the-fold media and keep third-party embeds optional. Respect reduced-motion preferences and ensure the page remains usable if an external service blocks an iframe.
+
+## The Strix perspective
+
+The publishing architecture should make it easy to add a useful article without editing the homepage by hand. Separate content records from reusable presentation, and make routing, metadata and deployment rules predictable.
+
+References: [Astro content collections](https://docs.astro.build/en/guides/content-collections/), [Astro MDX](https://docs.astro.build/en/guides/integrations-guide/mdx/), and [React documentation](https://react.dev/learn).
