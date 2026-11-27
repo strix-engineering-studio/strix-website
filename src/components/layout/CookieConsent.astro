@@ -1,0 +1,34 @@
+<aside id="strix-cookie-consent" class="fixed inset-x-4 bottom-4 z-[100] mx-auto hidden max-w-3xl border border-border bg-background/95 p-5 shadow-2xl backdrop-blur-md sm:inset-x-6 sm:p-6" role="dialog" aria-modal="false" aria-labelledby="strix-cookie-title" aria-describedby="strix-cookie-description">
+  <div class="flex flex-col gap-5 sm:flex-row sm:items-end sm:justify-between">
+    <div class="max-w-xl space-y-2">
+      <p class="editorial-meta text-primary">Your privacy choices</p>
+      <h2 id="strix-cookie-title" class="editorial-serif text-2xl">A small note about cookies.</h2>
+      <p id="strix-cookie-description" class="text-sm leading-relaxed text-muted-foreground">We use essential browser storage to remember your preferences and, with your permission, optional analytics to understand how the site is used. You can accept optional cookies or continue with essential storage only. Read our <a href="/privacy/" class="underline underline-offset-4 hover:text-primary">privacy policy</a>.</p>
+    </div>
+    <div class="flex shrink-0 flex-wrap gap-2">
+      <button id="strix-cookie-essential" type="button" class="min-h-10 border border-border px-4 py-2 text-xs font-semibold uppercase tracking-wider hover:border-primary">Essential only</button>
+      <button id="strix-cookie-accept" type="button" class="min-h-10 border border-primary bg-primary px-4 py-2 text-xs font-semibold uppercase tracking-wider text-primary-foreground hover:bg-primary/90">Accept optional</button>
+    </div>
+  </div>
+</aside>
+<script is:inline>
+(() => {
+  const key = "strix-cookie-choice-v1";
+  const panel = document.getElementById("strix-cookie-consent");
+  if (!panel) return;
+  try {
+    const saved = localStorage.getItem(key);
+    if (saved !== "essential" && saved !== "all") panel.classList.remove("hidden");
+  } catch {
+    // If browser storage is unavailable, keep the notice visible and do not persist a choice.
+    panel.classList.remove("hidden");
+  }
+  const save = (choice) => {
+    try { localStorage.setItem(key, choice); } catch { /* Storage can be blocked by browser policy. */ }
+    panel.classList.add("hidden");
+    window.dispatchEvent(new CustomEvent("strix:cookie-choice", { detail: { choice } }));
+  };
+  document.getElementById("strix-cookie-essential")?.addEventListener("click", () => save("essential"));
+  document.getElementById("strix-cookie-accept")?.addEventListener("click", () => save("all"));
+})();
+</script>
