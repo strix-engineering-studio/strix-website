@@ -1,44 +1,169 @@
 import React from "react";
-import { ArrowUpRight, ArrowDownRight, Compass, Code2, Eye, Layers, Lightbulb, Rocket, Mail } from "lucide-react";
+import { ArrowUpRight, ArrowDownRight, Code2, Layers, Mail, MoveUpRight, ArrowRight } from "lucide-react";
 
 const work = [
-  { n:"01", name:"Hugged", type:"Client project", status:"Live on Google Play & Web", text:"Flutter mobile application, web console, Firebase Cloud Functions, Razorpay payments and messaging.", img:"/assets/projects/hugged/made%20for%20every%20caregiver.webp", href:"/case-studies/hugged-parenting-platform/" },
-  { n:"02", name:"H2Go", type:"Studio product", status:"Active development", text:"Water delivery logistics and customer operations for recurring subscriptions, routes and invoicing.", img:"/assets/production-systems/4.png", href:"/products/h2go/" },
-  { n:"03", name:"MagicalStones", type:"Production storefront", status:"Storefront live", text:"Astrology and spiritual-products commerce with catalog, cart and order workflows.", img:"/assets/production-systems/5.png", href:"/products/magicalstones-store/" },
-  { n:"04", name:"Classes360", type:"Studio product", status:"Active development", text:"Enquiry-to-admission CRM and administration workflows for coaching institutes.", img:"/assets/production-systems/6.png", href:"/products/classes360/" },
-  { n:"05", name:"Imrabo", type:"Studio prototype", status:"AI prototype", text:"Task-oriented AI assistant with context orchestration and structured tool invocation.", img:"/assets/production-systems/7.png", href:"/products/imrabo/" }
+  { n:"01", name:"Hugged", type:"CLIENT PRODUCT", status:"Live · Mobile + Web", text:"A connected parenting platform engineered across Flutter, Firebase, payments, notifications and web operations.", img:"/assets/projects/hugged/made%20for%20every%20caregiver.webp", href:"/case-studies/hugged-parenting-platform/", stack:["Flutter","Firebase","Next.js"] },
+  { n:"02", name:"MagicalStones", type:"COMMERCE", status:"Live storefront", text:"An e-commerce experience for astrology and spiritual products, from catalogue discovery to order operations.", img:"/assets/production-systems/5.png", href:"/products/magicalstones-store/", stack:["Next.js","Firebase","Payments"] },
+  { n:"03", name:"Classes360", type:"EDTECH / OPERATIONS", status:"In development", text:"A coaching institute operations platform connecting enquiries, admissions, student records and fee workflows.", img:"/assets/production-systems/6.png", href:"/products/classes360/", stack:["NestJS","Next.js","MongoDB"] },
+  { n:"04", name:"Imrabo", type:"AI PRODUCT", status:"Prototype", text:"An AI assistant direction explored across website, workspace and Flutter mobile experiences.", img:"/assets/production-systems/7.png", href:"/products/imrabo/", stack:["Flutter","AI workflows","Node.js"] },
+  { n:"05", name:"H2Go", type:"OPERATIONS", status:"Active development", text:"A delivery operations concept for recurring water-can orders, route planning and customer workflows.", img:"/assets/production-systems/4.png", href:"/products/h2go/", stack:["Next.js","TypeScript","Firebase"] }
 ];
-const principles = [
-  ["01","Product thinking first","Start with people, workflows and business outcomes. Use those to decide what to build and where engineering effort matters."],
-  ["02","Direct engineering ownership","Work directly with engineers shaping the product and its technical foundations, from early decisions through implementation."],
-  ["03","Transparent delivery","Keep scope, trade-offs and progress visible so decisions are made with a shared understanding."],
-  ["04","Built for evolution","Choose clear system boundaries and a suitable level of architecture so the product can change as needs become clearer."]
+
+const extraWork = [
+  { name:"The Vivaah Tales", type:"WEBSITE", url:"https://the-vivaah-tales.netlify.app/", label:"Open website" },
+  { name:"MK Basketball", type:"SPORTS PLATFORM", url:"https://mkballer.strix.website/", label:"Open website" },
+  { name:"Imrabo Workspace", type:"AI WORKSPACE", url:"https://app.imrabo.com/log-in", label:"Open workspace" },
 ];
-const services = [
-  ["01","Validate","DISCOVERY · FEASIBILITY · PoC","Clarify the product opportunity, test technical assumptions and find a practical path forward.","Product discovery · Technical feasibility · Proofs of concept","/services/poc-development/"],
-  ["02","Launch","MVP · NEW PRODUCT ENGINEERING","Turn the essential product experience into reliable software with architecture for real users.","MVP development · Web and mobile products · SaaS engineering","/services/mvp-development/"],
-  ["03","Grow","SCALING · MODERNIZATION · PARTNERSHIP","Improve an existing product, strengthen technical foundations and keep evolving the system.","Product scaling · Modernization · Ongoing engineering","/services/product-engineering/"]
+
+const steps = [
+  ["01","Research & understand","Clarify the user, business context, current workflow and the real problem worth solving."],
+  ["02","Define & architect","Map scope, system boundaries, data models and the smallest sensible delivery path."],
+  ["03","Engineer & validate","Build in clear increments, test important paths and review the product against real requirements."],
+  ["04","Release & evolve","Deploy, observe usage, improve reliability and keep the product maintainable after launch."]
 ];
-function Intro({eyebrow,title,description}:{eyebrow:string;title:string;description:string}) {
- return <header className="mb-10 flex flex-col justify-between gap-5 border-b border-border pb-7 md:flex-row md:items-end"><div className="max-w-3xl space-y-4"><p className="editorial-meta text-primary">{eyebrow}</p><h2 className="editorial-serif type-heading-1 text-foreground">{title}</h2></div><p className="max-w-md text-sm leading-relaxed text-muted-foreground sm:text-base">{description}</p></header>;
+
+const capabilities = [
+  ["Product discovery","Technical feasibility, workflow mapping, requirements and product direction."],
+  ["Web & platform engineering","Responsive web products, admin consoles, portals and backend APIs."],
+  ["Mobile applications","Flutter apps, integrations, notifications and release engineering."],
+  ["Cloud & data systems","Firebase, MongoDB, PostgreSQL, GCP and AWS foundations."],
+  ["AI-enabled workflows","Context-aware assistants, tool orchestration and practical automation."],
+  ["Ongoing engineering","Maintenance, modernization, testing and continuous product improvement."]
+];
+
+const tools = [
+  ["Backend","NestJS","https://nestjs.com/","https://docs.nestjs.com/"],
+  ["Frontend","Next.js","https://nextjs.org/","https://nextjs.org/docs"],
+  ["Web","Astro","https://astro.build/","https://docs.astro.build/"],
+  ["Mobile","Flutter","https://flutter.dev/","https://docs.flutter.dev/"],
+  ["Backend & data","Firebase","https://firebase.google.com/","https://firebase.google.com/docs"],
+  ["Database","MongoDB","https://www.mongodb.com/","https://www.mongodb.com/docs/"],
+  ["Database","PostgreSQL","https://www.postgresql.org/","https://www.postgresql.org/docs/"],
+  ["Cloud","Google Cloud","https://cloud.google.com/","https://cloud.google.com/docs"],
+  ["Cloud","AWS","https://aws.amazon.com/","https://docs.aws.amazon.com/"],
+  ["Engineering","GitHub","https://github.com/","https://docs.github.com/"],
+  ["Language","TypeScript","https://www.typescriptlang.org/","https://www.typescriptlang.org/docs/"],
+  ["Infrastructure","Docker","https://www.docker.com/","https://docs.docker.com/"],
+  ["Infrastructure","Cloudflare","https://www.cloudflare.com/","https://developers.cloudflare.com/"],
+  ["Product design","Figma","https://www.figma.com/","https://help.figma.com/"],
+  ["API tooling","Postman","https://www.postman.com/","https://learning.postman.com/docs/"]
+];
+
+function SectionHeading({eyebrow,title,description}:{eyebrow:string;title:string;description:string}) {
+  return <header className="portfolio-section-heading"><p className="portfolio-kicker">{eyebrow}</p><h2>{title}</h2>{description && <p className="portfolio-section-description">{description}</p>}</header>;
 }
+
+function ProjectCard({project,index}:{project:typeof work[number];index:number}) {
+ return <article className={`portfolio-project portfolio-project-${index+1}`}>
+  <a href={project.href} className="portfolio-project-image" aria-label={`View ${project.name}`}>
+    <img src={project.img} alt={project.name+" product interface preview"} loading="lazy"/>
+    <span className="portfolio-image-index">{project.n} / 05</span>
+    <span className="portfolio-image-arrow"><ArrowUpRight size={21}/></span>
+  </a>
+  <div className="portfolio-project-copy">
+    <div className="portfolio-project-meta"><span>{project.type}</span><span>{project.status}</span></div>
+    <h3><a href={project.href}>{project.name}</a></h3>
+    <p>{project.text}</p>
+    <div className="portfolio-project-stack">{project.stack.map(s=><span key={s}>{s}</span>)}</div>
+    <a href={project.href} className="portfolio-text-link">Explore project <ArrowUpRight size={16}/></a>
+  </div>
+ </article>;
+}
+
 export default function HomeSections() {
- return <main className="relative overflow-hidden">
-  <section className="relative overflow-hidden border-b border-border py-12 sm:py-16 lg:py-20"><div className="pointer-events-none absolute inset-0 blueprint-grid opacity-50"/><div className="strix-container relative">
-   <div className="mb-8 flex flex-wrap items-center justify-between gap-3 border-b border-border pb-3"><span className="editorial-meta text-primary">Strix Engineering Studio</span><span className="editorial-meta text-muted-foreground">Product strategy · Software engineering · Systems</span></div>
-   <div className="grid items-center gap-10 lg:grid-cols-12 lg:gap-12"><div className="space-y-6 lg:col-span-7"><p className="editorial-meta border-l-2 border-primary py-1 pl-3 text-primary">Build the right system before building the software</p><h1 className="editorial-serif type-display-xl max-w-4xl text-foreground">Your idea deserves more than a prototype.</h1><p className="body-large max-w-2xl text-muted-foreground">Strix helps businesses turn ideas into reliable digital products through product strategy, software engineering, and scalable technology systems.</p><div className="flex flex-wrap gap-3 pt-2"><a href="/contact/" className="inline-flex min-h-12 items-center gap-3 border border-primary bg-primary px-5 py-3 text-sm font-semibold text-primary-foreground">Start a Project <ArrowUpRight size={16}/></a><a href="#selected-work" className="inline-flex min-h-12 items-center gap-3 border border-border bg-background px-5 py-3 text-sm font-medium">Explore Our Work <ArrowDownRight size={16}/></a></div></div>
-   <div role="img" aria-label="Product system diagram connecting strategy, user experience, software architecture and operations." className="relative isolate mx-auto aspect-[1.08] w-full max-w-[34rem] overflow-hidden border border-border bg-surface-warm p-4 sm:p-6 lg:col-span-5"><div className="absolute inset-0 blueprint-grid opacity-70"/><div className="relative flex items-center justify-between border-b border-border pb-3"><span className="editorial-meta">System map</span><span className="font-mono text-[10px] text-muted-foreground">STRIX / PRODUCT ENGINEERING</span></div><svg viewBox="0 0 100 100" preserveAspectRatio="none" className="pointer-events-none absolute inset-x-0 top-12 h-[calc(100%-3rem)] w-full"><path d="M26 25 L43 43 M74 25 L57 43 M26 75 L43 57 M74 75 L57 57" fill="none" stroke="var(--strix-orange)" strokeOpacity=".55" strokeWidth=".35" strokeDasharray="1.5 1.5"/></svg>{[["01","Product strategy","left-[5%] top-[12%]"],["02","User experience","right-[5%] top-[12%]"],["03","Software architecture","left-[5%] bottom-[12%]"],["04","Operations & data","right-[5%] bottom-[12%]"]].map(([number,title,position])=><div key={number} className={`absolute z-10 flex min-h-16 w-[42%] flex-col justify-center border border-border bg-background/95 p-2.5 shadow-sm sm:min-h-[4.5rem] sm:p-3 ${position}`}><span className="font-mono text-[9px] tracking-widest text-primary">{number}</span><span className="mt-1 text-[11px] font-medium leading-tight sm:text-xs">{title}</span></div>)}<div className="absolute left-1/2 top-1/2 z-20 flex w-[40%] -translate-x-1/2 -translate-y-1/2 flex-col items-center border border-primary bg-background px-2 py-4 text-center shadow-lg sm:py-5"><span className="editorial-meta text-primary">Connected system</span><span className="editorial-serif mt-1 text-xl leading-none sm:text-2xl">Digital product</span></div><div className="absolute inset-x-4 bottom-3 flex items-center justify-between border-t border-border pt-2 sm:inset-x-6"><span className="font-mono text-[9px] uppercase tracking-wider text-muted-foreground">Designed for real use</span><span className="font-mono text-[9px] text-primary">01 — 04</span></div></div></div>
-  </div></section>
-  <section aria-label="Project experience, industries and technologies" className="border-b border-border bg-surface-warm"><div className="strix-container grid gap-6 py-7 md:grid-cols-2 lg:grid-cols-4 lg:gap-8">
-   <div><h2 className="editorial-meta mb-3 text-muted-foreground">Client projects</h2><p className="text-sm">Hugged · Instameasure · Atmabhan · QR IoT POC</p></div><div><h2 className="editorial-meta mb-3 text-muted-foreground">Studio products</h2><p className="text-sm">H2Go · MagicalStones · Classes360 · Imrabo</p></div><div><h2 className="editorial-meta mb-3 text-muted-foreground">Industry experience</h2><p className="text-sm">Parenting · Utilities · Education · IoT</p></div><div><h2 className="editorial-meta mb-3 text-muted-foreground">Technologies</h2><p className="text-sm">Next.js · Flutter · NestJS · Firebase · TypeScript · PostgreSQL</p></div>
-  </div></section>
-  <section id="what-we-build" className="border-b border-border py-16 sm:py-20 lg:py-24"><div className="strix-container"><Intro eyebrow="How we help" title="From first question to lasting product." description="Work with Strix at the stage your product needs: find the right direction, bring it to market, or make it stronger over time."/><div className="grid gap-4 lg:grid-cols-3">{services.map(([number,title,label,description,outcomes,href])=><article key={number} className="flex h-full flex-col border border-border bg-card p-5 sm:p-6"><div className="flex items-center justify-between border-b border-border pb-4"><span className="font-mono text-xs tracking-[.18em] text-primary">{number}</span><Layers size={20}/></div><div className="flex-1 py-5"><p className="editorial-meta text-muted-foreground">{label}</p><h3 className="editorial-serif mt-2 text-3xl">{title}</h3><p className="mt-3 text-sm leading-relaxed text-muted-foreground">{description}</p><p className="mt-5 border-t border-border pt-4 text-sm">{outcomes}</p></div><a href={href} className="inline-flex items-center gap-2 border-t border-border pt-4 text-sm font-medium">Explore {title} <ArrowUpRight size={16}/></a></article>)}</div></div></section>
-  <section id="selected-work" className="relative border-b border-border/80 py-20 lg:py-28"><div className="strix-container"><header className="mb-12 flex flex-col justify-between gap-6 border-b border-border/80 pb-10 md:flex-row md:items-end"><div className="max-w-2xl space-y-3"><span className="font-mono text-[11px] uppercase tracking-[.28em] text-primary">[PORTFOLIO // 05]</span><h2 className="editorial-serif text-4xl tracking-tight sm:text-5xl lg:text-6xl">Selected work & <span className="italic font-normal text-primary">engineering deliveries.</span></h2><p className="text-sm leading-relaxed text-muted-foreground sm:text-base">A curated look at client systems, studio products, and working prototypes. Client deliveries, internal products, and experiments are distinguished.</p></div><a href="/case-studies/" className="inline-flex items-center gap-2 font-mono text-xs uppercase tracking-[.2em] text-primary">View all case studies <ArrowUpRight size={16}/></a></header>
-   <div className="space-y-10 lg:space-y-14">{work.map((p)=><article key={p.n} className="grid gap-7 border border-border bg-card p-5 sm:p-7 lg:grid-cols-2 lg:gap-10 lg:p-9"><a href={p.href} className="group order-2 overflow-hidden border border-border bg-surface-warm lg:order-1"><img src={p.img} alt={p.name+" project preview"} loading="lazy" className="h-full min-h-64 w-full object-cover transition-transform duration-500 group-hover:scale-[1.02]"/></a><div className="order-1 flex flex-col justify-center lg:order-2"><div className="flex items-center justify-between border-b border-border pb-4"><span className="editorial-meta text-primary">{p.type}</span><span className="font-mono text-[10px] text-muted-foreground">{p.n} / 05</span></div><h3 className="editorial-serif mt-5 text-3xl sm:text-4xl">{p.name}</h3><p className="mt-3 text-xs font-medium uppercase tracking-wider text-primary">{p.status}</p><p className="mt-4 text-sm leading-relaxed text-muted-foreground">{p.text}</p><a href={p.href} className="mt-6 inline-flex items-center gap-2 border-t border-border pt-4 text-sm font-medium">Explore project <ArrowUpRight size={16}/></a></div></article>)}</div>
-  </div></section>
-  <section id="how-we-work" className="border-b border-border bg-surface-warm py-16 sm:py-20 lg:py-24"><div className="strix-container"><Intro eyebrow="How we work" title="Make decisions early. Deliver in clear increments." description="A practical engineering process keeps product intent, scope and implementation connected."/><div className="grid gap-px border border-border bg-border sm:grid-cols-2 lg:grid-cols-4">{[["01","Discover","Understand users, goals, constraints and existing systems."],["02","Define","Agree scope, technical direction, dependencies and priorities."],["03","Build","Develop and review the product in manageable increments."],["04","Evolve","Release, observe real use and improve the system."]].map(([n,t,d])=><article key={n} className="bg-background p-6"><span className="font-mono text-xs text-primary">{n}</span><h3 className="editorial-serif mt-4 text-2xl">{t}</h3><p className="mt-3 text-sm text-muted-foreground">{d}</p></article>)}</div></div></section>
-  <section id="why-strix" className="border-b border-border py-16 sm:py-20 lg:py-24"><div className="strix-container"><Intro eyebrow="Why Strix" title="Engineering shaped around the product." description="Product judgment, engineering craft and clear collaboration belong in the same conversation."/><div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">{principles.map(([n,t,d])=><article key={n} className="border border-border bg-card p-5 sm:p-6"><div className="flex items-center justify-between border-b border-border pb-4"><span className="font-mono text-xs text-primary">{n}</span><Code2 size={20}/></div><h3 className="editorial-serif mt-5 text-2xl">{t}</h3><p className="mt-3 text-sm leading-relaxed text-muted-foreground">{d}</p></article>)}</div><a href="/about/" className="mt-7 inline-flex items-center gap-2 text-sm font-medium">Learn more about the studio <ArrowUpRight size={16}/></a></div></section>
-  <section id="engineering-journal" className="border-b border-border py-16 sm:py-20 lg:py-24"><div className="strix-container"><Intro eyebrow="Insights" title="Ideas for building useful, durable software." description="Technical perspectives on architecture, AI systems and product engineering from the Strix journal."/><div className="grid gap-4 md:grid-cols-3">{[{slug:"ai-systems-that-feel-native",title:"AI systems that feel native",tag:"AI Engineering",excerpt:"How to design AI capabilities that fit naturally into a product workflow."},{slug:"nestjs-architecture-for-operational-products",title:"NestJS architecture for operational products",tag:"Backend Engineering",excerpt:"A modular approach to backend systems that support real business operations."},{slug:"scalable-api-ops",title:"Scalable API operations",tag:"API Engineering",excerpt:"Practical foundations for dependable APIs and background operations."}].map(a=><article key={a.slug} className="border border-border bg-card p-5 sm:p-6"><p className="editorial-meta text-primary">{a.tag}</p><h3 className="editorial-serif mt-4 text-2xl"><a href={"/insights/"+a.slug+"/"}>{a.title}</a></h3><p className="mt-3 text-sm text-muted-foreground">{a.excerpt}</p><a className="mt-5 inline-flex border-t border-border pt-4 text-sm" href={"/insights/"+a.slug+"/"}>Read insight ↗</a></article>)}</div><a href="/insights/" className="mt-6 inline-flex text-sm font-medium text-primary">View all insights ↗</a></div></section>
-  <section className="py-16 sm:py-20 lg:py-24"><div className="strix-container"><div className="grid gap-8 border border-border bg-surface-warm p-6 sm:p-10 lg:grid-cols-12 lg:items-end lg:gap-12 lg:p-14"><div className="space-y-5 lg:col-span-8"><p className="editorial-meta text-primary">Start a conversation</p><h2 className="editorial-serif type-heading-1 max-w-3xl">Let's talk about what your product needs next.</h2><p className="max-w-2xl text-sm leading-relaxed text-muted-foreground sm:text-base">Share the idea, system, or engineering challenge you're working through. We can explore the right next step together.</p></div><div className="flex flex-col items-start gap-4 lg:col-span-4 lg:items-end"><a href="/contact/" className="inline-flex min-h-12 items-center gap-3 border border-primary bg-primary px-5 py-3 text-sm font-semibold">Start a Project <ArrowUpRight size={16}/></a><a href="mailto:team@strix.website" className="inline-flex items-center gap-2 text-sm text-muted-foreground"><Mail size={16}/> team@strix.website</a></div></div></div></section>
+ return <main className="portfolio-home">
+  <section className="portfolio-hero">
+    <div className="portfolio-hero-top"><span>STRIX ENGINEERING STUDIO <i>·</i> PUNE, INDIA</span><span>PRODUCT ENGINEERING / 2026</span></div>
+    <div className="portfolio-hero-body">
+      <div className="portfolio-hero-copy">
+        <p className="portfolio-kicker"><span className="portfolio-status-dot"/> Independent software engineering studio</p>
+        <h1>We build <em>digital products</em> that move businesses forward.</h1>
+        <p className="portfolio-lead">From the first product question to production-ready software, Strix brings product thinking, thoughtful architecture and hands-on engineering together.</p>
+        <div className="portfolio-hero-actions">
+          <a className="portfolio-button-primary" href="/contact/">Start a project <ArrowUpRight size={17}/></a>
+          <a className="portfolio-button-text" href="#work">Explore our work <ArrowDownRight size={17}/></a>
+        </div>
+        <div className="portfolio-availability"><span className="portfolio-status-dot"/> Available for selected product engineering engagements</div>
+      </div>
+      <div className="portfolio-hero-visual" aria-label="Strix system architecture sketch">
+        <div className="portfolio-visual-label"><span>STRIX / SYSTEM MAP</span><span>FIG. 001</span></div>
+        <div className="portfolio-orbit portfolio-orbit-one"/><div className="portfolio-orbit portfolio-orbit-two"/>
+        <div className="portfolio-visual-core"><img src="/strix.svg" alt="Strix mark"/><span>ENGINEERED<br/>FOR REALITY</span></div>
+        <span className="portfolio-visual-node node-a">PRODUCT<br/>STRATEGY</span><span className="portfolio-visual-node node-b">SOFTWARE<br/>ARCHITECTURE</span><span className="portfolio-visual-node node-c">USER<br/>EXPERIENCE</span><span className="portfolio-visual-node node-d">CLOUD<br/>OPERATIONS</span>
+        <div className="portfolio-visual-foot"><span>DISCOVER → DESIGN → ENGINEER → EVOLVE</span><span>STRIX / 26</span></div>
+      </div>
+    </div>
+    <div className="portfolio-hero-bottom"><span>BUILD THE RIGHT SYSTEM BEFORE BUILDING THE SOFTWARE.</span><span>SCROLL TO EXPLORE ↓</span></div>
+  </section>
+
+  <section className="portfolio-intro-strip">
+    <p>What we do</p><div>PRODUCT STRATEGY <b>×</b> SOFTWARE ENGINEERING <b>×</b> SYSTEMS THINKING</div><span>01 — 06</span>
+  </section>
+
+  <section className="portfolio-section portfolio-work-section" id="work">
+    <SectionHeading eyebrow="Selected work / 01" title={<>A selection of things<br/><em>we've helped bring to life.</em></>} description="Client products, studio initiatives and engineering systems. Each project has a different context; the common thread is thoughtful execution."/>
+    <div className="portfolio-project-grid">{work.map((project,index)=><ProjectCard key={project.n} project={project} index={index}/>)}</div>
+    <div className="portfolio-more-work">
+      <div><p className="portfolio-kicker">More digital experiences</p><h3>Built for different teams,<br/>markets and ideas.</h3></div>
+      <div className="portfolio-more-work-list">{extraWork.map((p,i)=><a key={p.name} href={p.url} target="_blank" rel="noopener noreferrer"><span>0{i+6}</span><div><small>{p.type}</small><strong>{p.name}</strong></div><span className="portfolio-more-arrow"><ArrowUpRight size={18}/></span></a>)}</div>
+    </div>
+    <div className="portfolio-section-end"><a href="/case-studies/" className="portfolio-button-outline">View all case studies <ArrowUpRight size={16}/></a></div>
+  </section>
+
+  <section className="portfolio-process-section" id="process">
+    <div className="portfolio-section portfolio-process-inner">
+      <SectionHeading eyebrow="How we work / 02" title={<>Good software starts<br/><em>with better questions.</em></>} description="We take products from first thought to release with an iterative process that keeps the business goal, user need and engineering decisions connected."/>
+      <div className="portfolio-process-grid">{steps.map(([n,title,desc])=><article key={n}><span className="portfolio-process-number">{n}</span><div><h3>{title}</h3><p>{desc}</p></div><ArrowUpRight size={18}/></article>)}</div>
+      <div className="portfolio-process-note"><span>OUR PRINCIPLE</span><p>Build the right system before building the software.</p></div>
+    </div>
+  </section>
+
+  <section className="portfolio-section portfolio-capabilities" id="capabilities">
+    <SectionHeading eyebrow="What we do / 03" title={<>Small enough to think deeply.<br/><em>Experienced enough to build end-to-end.</em></>} description="A connected engineering capability across the product lifecycle — with architecture, implementation and delivery considered together."/>
+    <div className="portfolio-capability-grid">{capabilities.map(([title,desc],i)=><article key={title}><span>0{i+1}</span><h3>{title}</h3><p>{desc}</p></article>)}</div>
+  </section>
+
+  <section className="portfolio-stack-section" id="stack">
+    <div className="portfolio-section portfolio-stack-inner">
+      <SectionHeading eyebrow="Technology / 04" title={<>The right tool for<br/><em>the system we're building.</em></>} description="We work across established frameworks, data platforms and cloud infrastructure. Technology choices follow product needs, operational constraints and maintainability."/>
+      <div className="portfolio-stack-grid">{tools.map(([category,name,url,docs])=><article key={name}><small>{category}</small><strong>{name}</strong><div><a href={url} target="_blank" rel="noopener noreferrer">Website ↗</a><a href={docs} target="_blank" rel="noopener noreferrer">Docs ↗</a></div></article>)}</div>
+    </div>
+  </section>
+
+  <section className="portfolio-journal-section" id="journal">
+    <div className="portfolio-section portfolio-journal-inner">
+      <SectionHeading eyebrow="Engineering journal / 05" title={<>Notes on building<br/><em>useful, durable software.</em></>} description="Practical perspectives from the work: backend architecture, cloud systems, mobile engineering and product decisions."/>
+      <div className="portfolio-journal-grid">{[
+        ["01","NestJS architecture for operational products","Backend engineering","nestjs-architecture-for-operational-products"],
+        ["02","Choosing Next.js or Astro for a product website","Frontend architecture","nextjs-vs-astro-product-sites"],
+        ["03","Firebase architecture for mobile-first products","Cloud & mobile","firebase-architecture-mobile-products"],
+        ["04","MongoDB or PostgreSQL? Model the data first","Data engineering","mongodb-vs-postgresql-data-modeling"],
+        ["05","GCP and AWS deployment foundations","Cloud infrastructure","gcp-aws-deployment-foundations"],
+        ["06","Flutter architecture beyond the MVP","Mobile engineering","flutter-architecture-after-mvp"]
+      ].map(([n,title,tag,slug])=><a key={slug} href={`/insights/${slug}/`}><span>{n}</span><div><small>{tag}</small><strong>{title}</strong></div><ArrowUpRight size={18}/></a>)}</div>
+      <a href="/insights/" className="portfolio-text-link portfolio-journal-link">Visit the journal <ArrowUpRight size={16}/></a>
+    </div>
+  </section>
+
+  <section className="portfolio-contact-section" id="contact">
+    <div className="portfolio-section portfolio-contact-inner">
+      <div><p className="portfolio-kicker">Have a product in mind?</p><h2>Let's make<br/><em>something that matters.</em></h2><p>Tell us what you're working on, where you're stuck, or what you'd like to build next.</p></div>
+      <div className="portfolio-contact-card"><span>START A CONVERSATION</span><a href="mailto:team@strix.website">team@strix.website <ArrowUpRight size={18}/></a><a href="/contact/" className="portfolio-button-primary">Tell us about your project <ArrowUpRight size={17}/></a><small>Pune, India · Working with teams everywhere</small></div>
+    </div>
+  </section>
  </main>;
 }
+function content(value) {
+    const iterate =
+      typeof value === "string" ? undefined : value?.[iteratorKey];
+    if (typeof iterate !== "function") {
+      return emitBlock(value);
+    }
+
+    // Reuse the method from a potentially stateful getter, with its original
+    // receiver. The for-of loop closes the iterator if the host rejects a block.
+    const blocks = { [iteratorKey]: () => apply(iterate, value, []) };
+    for (const block of blocks) {
+      emitBlock(block);
+    }
+  }
