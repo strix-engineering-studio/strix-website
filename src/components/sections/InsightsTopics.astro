@@ -1,0 +1,20 @@
+---
+const topics = [
+  { title: "NestJS module boundaries for maintainable backends", category: "NestJS", summary: "Organise controllers, use cases and persistence around business capabilities rather than framework folders.", href: "/insights/nestjs-architecture-for-operational-products/" },
+  { title: "Choosing Next.js or Astro for a product website", category: "Next.js · Astro", summary: "Compare rendering, interactivity, content workflows and deployment constraints before choosing a framework.", href: "/insights/nextjs-vs-astro-product-sites/" },
+  { title: "Firebase architecture for mobile-first products", category: "Firebase", summary: "Think through authentication, Firestore boundaries, Cloud Functions, messaging and operational guardrails.", href: "/insights/firebase-architecture-mobile-products/" },
+  { title: "MongoDB and PostgreSQL: model the data, not the trend", category: "Databases", summary: "A practical way to select document or relational storage from query patterns and consistency requirements.", href: "/insights/mongodb-vs-postgresql-data-modeling/" },
+  { title: "Deploying product systems on GCP and AWS", category: "Cloud", summary: "Evaluate managed services, deployment pipelines, observability and cost ownership for production workloads.", href: "/insights/gcp-aws-deployment-foundations/" },
+  { title: "Flutter architecture beyond the first release", category: "Flutter", summary: "Keep feature boundaries, state management, testing and release configuration sustainable as mobile apps grow.", href: "/insights/flutter-architecture-after-mvp/" },
+  { title: "GitHub Actions as a product delivery system", category: "GitHub", summary: "Use automation for repeatable checks, release confidence and deployment visibility.", href: "/insights/github-actions-product-delivery/" }
+];
+---
+<section class="border-b border-border py-16 sm:py-20 lg:py-24">
+  <div class="strix-container space-y-9">
+    <header class="max-w-3xl space-y-4"><p class="editorial-meta text-primary">Topics we write about</p><h2 class="editorial-serif type-heading-1">Engineering notes grounded in implementation.</h2><p class="text-sm leading-relaxed text-muted-foreground sm:text-base">Explore practical perspectives across the frameworks, databases, cloud platforms and delivery tools used in modern product engineering.</p></header>
+    <div class="grid gap-3 md:grid-cols-2 lg:grid-cols-3">
+      {topics.map(topic => <article class="flex flex-col border border-border bg-card p-5"><p class="editorial-meta text-primary">{topic.category}</p><h3 class="editorial-serif mt-3 text-2xl leading-tight">{topic.title}</h3><p class="mt-3 flex-1 text-sm leading-relaxed text-muted-foreground">{topic.summary}</p><a href={topic.href} class="mt-5 border-t border-border pt-4 text-sm font-medium hover:text-primary">Read article ↗</a></article>)}
+    </div>
+    <a href="/insights/" class="inline-flex items-center gap-2 text-sm font-medium text-primary">Browse all insights ↗</a>
+  </div>
+</section>
