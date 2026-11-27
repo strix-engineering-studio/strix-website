@@ -6,7 +6,8 @@ import tailwindcss from "@tailwindcss/vite";
 
 export default defineConfig({
   site: "https://strix.website",
-  base: "/strix-website",
+  // A custom domain serves the site at the root path, not /strix-website.
+  base: "/",
   output: "static",
   trailingSlash: "always",
   integrations: [react(), mdx(), sitemap()],
