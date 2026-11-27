@@ -1,24 +1,55 @@
 ---
 title: "NestJS Architecture for Operational Products"
-excerpt: "How to structure scalable NestJS apps around boundaries, reliability, and maintainability."
-publishedAt: "2026-05-01"
-tag: "Backend"
+excerpt: "How to structure NestJS applications around business boundaries, validation, reliability and maintainability."
+publishedAt: "2026-11-27"
+tag: "NestJS · Backend"
 featured: true
 ---
 
-The first mistake teams make with NestJS is treating it like a folder structure problem. It is not. It is a decision-making problem.
+The first architectural mistake with NestJS is treating it as a folder-structure exercise. Modules and decorators provide useful boundaries, but the application still needs an explicit model of business capabilities, data ownership and state transitions.
 
-### The pattern
+## Organise by business capability
 
-```ts
-export class CreateProjectUseCase {
-  constructor(private readonly projectsRepository: ProjectsRepository) {}
+A feature module should own a coherent capability such as leads, orders, payments or notifications. Controllers should translate HTTP input into application commands. Business rules should remain testable without requiring an HTTP request.
 
-  async execute(input: CreateProjectInput) {
-    const project = await this.projectsRepository.create(input)
-    return { project }
-  }
-}
+A simple separation can look like this:
+
+```text
+orders/
+  presentation/
+    orders.controller.ts
+    orders.dto.ts
+  application/
+    create-order.use-case.ts
+    capture-payment.use-case.ts
+  domain/
+    order.entity.ts
+    order-status.ts
+  infrastructure/
+    orders.repository.ts
+    payments.gateway.ts
 ```
 
-The goal is to make the feature boundary obvious. Controllers stay thin, use cases own intent, and repositories isolate storage details.
+The exact directory structure is less important than keeping responsibilities clear.
+
+## Validate at the boundary
+
+Use DTOs and validation pipes to reject malformed input. Validation is not authorization: the application must also check whether the caller may access the requested resource and whether the requested state transition is allowed.
+
+## Make external workflows resilient
+
+Payment providers, messaging services and other APIs can time out or retry requests. Design idempotent handlers, explicit status transitions and useful failure records. For asynchronous work, define retry limits and a dead-letter or manual recovery path appropriate to the product.
+
+## Keep persistence replaceable, not invisible
+
+A repository abstraction can help isolate persistence details, but avoid wrapping every ORM call in generic layers that add no domain value. Make transaction boundaries explicit and test the invariants that the database is expected to enforce.
+
+## Operate the application
+
+Use structured logs, request correlation, health checks and controlled configuration. Keep secrets outside source code and use separate environments for development, staging and production. Measure slow queries and background jobs before optimising based on assumptions.
+
+## The Strix perspective
+
+Start with the domains and workflows the product actually has. Use NestJS modules to make ownership visible, keep controllers thin, and let complexity emerge from real requirements rather than architecture fashion.
+
+References: [NestJS documentation](https://docs.nestjs.com/) and [NestJS validation](https://docs.nestjs.com/techniques/validation).
