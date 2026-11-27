@@ -1,0 +1,41 @@
+---
+title: "Firebase Architecture for Mobile-First Products"
+excerpt: "A practical way to organise Firestore, Cloud Functions, messaging and operational controls in a mobile-first application."
+publishedAt: "2026-11-27"
+tag: "Firebase"
+featured: true
+---
+
+Firebase can shorten the path from an application idea to a working product. Firestore, Authentication, Cloud Functions, Storage, Remote Config and Cloud Messaging offer useful managed building blocks. The architecture still needs deliberate boundaries. Managed services do not remove the need for data ownership, validation, observability or access control.
+
+## Define the trust boundary
+
+Treat the mobile application as an untrusted client. It can display state and request actions, but it should not be the authority for payments, role changes, privileged writes or other sensitive business rules.
+
+A common division of responsibility is:
+
+- Flutter: presentation, local state, input validation and user feedback.
+- Firestore: application data with rules that enforce client access.
+- Cloud Functions: trusted workflows, external API calls and privileged operations.
+- Cloud Messaging: delivery of notifications, not the canonical record of an event.
+- Remote Config: controlled feature configuration, not a replacement for authorization.
+
+## Model workflows, not screens
+
+A payment, registration or purchase should have a lifecycle represented in persistent data. For example, store an explicit status and update it through a trusted server-side transition. Do not treat a client success screen as proof that a payment was captured.
+
+Use idempotency for webhook and callable-function handling. A provider can retry events, and the system must avoid creating duplicate entitlements or fulfilment records.
+
+## Protect data access
+
+Design Firestore rules around user and resource ownership. Validate data types, immutable fields and allowed state transitions. For high-impact workflows, route writes through a server-side function that can verify the caller and enforce the business invariant.
+
+## Operate the system
+
+Add structured logs and error reporting to functions. Keep secrets in a managed secret store, use separate Firebase projects or environments where practical, and test rules and functions before release. Remote Config can help roll out user-facing features gradually, but security decisions must remain in trusted code and rules.
+
+## The Strix perspective
+
+Start with the smallest set of Firebase services that supports the product's actual workflow. Add complexity when there is a concrete requirement, and document which service owns each state transition.
+
+References: [Firebase documentation](https://firebase.google.com/docs), [Cloud Firestore security rules](https://firebase.google.com/docs/firestore/security/get-started), and [Cloud Functions](https://firebase.google.com/docs/functions).
