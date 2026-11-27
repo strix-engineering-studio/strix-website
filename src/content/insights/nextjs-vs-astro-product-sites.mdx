@@ -1,0 +1,41 @@
+---
+title: "Next.js or Astro? Choosing the Right Foundation for a Product Website"
+excerpt: "Compare rendering, interactivity, content workflows and deployment constraints before selecting a frontend framework."
+publishedAt: "2026-11-27"
+tag: "Next.js · Astro"
+featured: true
+---
+
+A product website and a product application often have different technical needs. A marketing site may be mostly editorial pages, landing pages and case studies. A logged-in product may need frequent client-side state, protected routes, dashboards and data mutations. Choosing one framework for both without considering the workload can create unnecessary complexity.
+
+## Start with the rendering requirements
+
+Astro is a strong fit when most routes are content-first and can be rendered as static HTML. Its component model makes it possible to add focused interactive islands without shipping a large client application to every page.
+
+Next.js is useful when the website and application share substantial React behaviour, server-side data requirements, route-level application logic or a unified deployment model. Server Components and route handlers can keep parts of the application close to the server while retaining interactive client components where needed.
+
+## Compare the actual constraints
+
+| Decision | Astro often fits when | Next.js often fits when |
+| --- | --- | --- |
+| Content | Static and MDX-heavy | Content integrated with application data |
+| Interactivity | Limited, isolated widgets | Rich React interactions across routes |
+| Rendering | Static-first publishing | Mixed server and client rendering |
+| Application features | Mostly external or embedded | Core feature of the site |
+| Deployment | Static hosting is preferred | Server or platform runtime is available |
+
+These are tendencies, not hard rules. Both frameworks can support more than one rendering model.
+
+## A practical selection process
+
+1. List the routes and classify them as content, public interaction or authenticated application.
+2. Identify server-only requirements, data mutations and third-party integrations.
+3. Establish performance and deployment constraints before choosing a framework.
+4. Build a representative route and measure its behaviour.
+5. Keep the architecture reversible where the product direction is still uncertain.
+
+## The Strix perspective
+
+The framework is an implementation choice, not the product strategy. We prefer the smallest architecture that meets the real requirements and leaves a clear path for the next stage. A static-first website and a separately deployed application can be a cleaner system than forcing every concern into one runtime.
+
+For official references, see the [Astro documentation](https://docs.astro.build/) and the [Next.js documentation](https://nextjs.org/docs).
