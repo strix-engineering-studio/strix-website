@@ -1,0 +1,40 @@
+---
+title: "MongoDB or PostgreSQL? Choose the Data Model Before the Database"
+excerpt: "A decision framework for choosing document or relational storage from access patterns, consistency and domain relationships."
+publishedAt: "2026-11-27"
+tag: "Databases"
+featured: true
+---
+
+MongoDB and PostgreSQL solve different data-modelling problems, and both can support serious production workloads. A useful choice begins with the shape of the domain and the operations the product must perform. Selecting a database because it is familiar or fashionable is not a design method.
+
+## When a document model is useful
+
+MongoDB can be a good fit when an aggregate is naturally represented as a document, data shape varies by record, and the application commonly reads or updates that aggregate together. Embedding can reduce round trips for bounded child data. References are useful when related entities have independent lifecycles or are shared.
+
+The trade-off is that document boundaries need to be designed deliberately. Unbounded arrays, duplicated data without a consistency strategy, and cross-document workflows can become expensive to maintain.
+
+## When a relational model is useful
+
+PostgreSQL is a strong choice when the domain contains relationships, constraints, joins, transactions and reporting needs that benefit from relational structure. Foreign keys, unique constraints and transactions let the database enforce important invariants close to the data.
+
+Relational modelling still requires care. Poor indexing, unclear ownership and oversized transactions can make a well-designed schema slow or difficult to evolve.
+
+## Questions to ask before deciding
+
+1. Which entities have independent lifecycles?
+2. What must be read or written atomically?
+3. Which queries and reports are essential?
+4. What consistency guarantees does the workflow need?
+5. How will the schema evolve as product requirements change?
+6. What operational knowledge does the team already have?
+
+## Avoid false binaries
+
+PostgreSQL supports JSON data where flexible attributes make sense. MongoDB supports transactions and schema validation. Neither fact removes the need to understand query patterns and modelling trade-offs. A hybrid architecture may be appropriate when separate workloads genuinely need different storage models, but it also introduces operational cost and data consistency work.
+
+## The Strix perspective
+
+Draw the core entities, lifecycle transitions and top queries before selecting the database. Then validate the design with representative data and real query plans. The right database is the one that makes the product's important invariants straightforward to express and maintain.
+
+References: [MongoDB data modelling](https://www.mongodb.com/docs/manual/data-modeling/) and [PostgreSQL documentation](https://www.postgresql.org/docs/).
