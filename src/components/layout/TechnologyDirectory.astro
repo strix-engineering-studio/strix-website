@@ -1,0 +1,40 @@
+---
+const technologies = [
+  { name: "NestJS", group: "Backend", url: "https://nestjs.com/" , docs: "https://docs.nestjs.com/" },
+  { name: "Next.js", group: "Web", url: "https://nextjs.org/", docs: "https://nextjs.org/docs" },
+  { name: "Astro", group: "Web", url: "https://astro.build/", docs: "https://docs.astro.build/" },
+  { name: "React", group: "Web", url: "https://react.dev/", docs: "https://react.dev/learn" },
+  { name: "Flutter", group: "Mobile", url: "https://flutter.dev/", docs: "https://docs.flutter.dev/" },
+  { name: "Firebase", group: "Backend & data", url: "https://firebase.google.com/", docs: "https://firebase.google.com/docs" },
+  { name: "MongoDB", group: "Database", url: "https://www.mongodb.com/", docs: "https://www.mongodb.com/docs/" },
+  { name: "PostgreSQL", group: "Database", url: "https://www.postgresql.org/", docs: "https://www.postgresql.org/docs/" },
+  { name: "Google Cloud", group: "Cloud", url: "https://cloud.google.com/", docs: "https://cloud.google.com/docs" },
+  { name: "Amazon Web Services", group: "Cloud", url: "https://aws.amazon.com/", docs: "https://docs.aws.amazon.com/" },
+  { name: "GitHub", group: "Engineering workflow", url: "https://github.com/", docs: "https://docs.github.com/" },
+  { name: "TypeScript", group: "Language", url: "https://www.typescriptlang.org/", docs: "https://www.typescriptlang.org/docs/" },
+  { name: "Node.js", group: "Runtime", url: "https://nodejs.org/", docs: "https://nodejs.org/docs/latest/api/" },
+  { name: "Prisma", group: "Data access", url: "https://www.prisma.io/", docs: "https://www.prisma.io/docs" },
+  { name: "Docker", group: "Infrastructure", url: "https://www.docker.com/", docs: "https://docs.docker.com/" },
+  { name: "Postman", group: "API tooling", url: "https://www.postman.com/", docs: "https://learning.postman.com/docs/" },
+  { name: "Figma", group: "Product design", url: "https://www.figma.com/", docs: "https://help.figma.com/" },
+  { name: "Cloudflare", group: "Infrastructure", url: "https://www.cloudflare.com/", docs: "https://developers.cloudflare.com/" },
+];
+---
+<section id="technology" class="border-b border-border bg-surface-warm py-16 sm:py-20 lg:py-24">
+  <div class="strix-container space-y-9">
+    <header class="max-w-3xl space-y-4">
+      <p class="editorial-meta text-primary">Engineering toolkit</p>
+      <h2 class="editorial-serif type-heading-1">The tools behind the systems.</h2>
+      <p class="text-sm leading-relaxed text-muted-foreground sm:text-base">We select technologies around product requirements, team capability, operational constraints and long-term maintainability. Explore each platform and its official documentation.</p>
+    </header>
+    <div class="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+      {technologies.map((tech) => <article class="flex min-w-0 flex-col justify-between border border-border bg-background p-4 sm:p-5">
+        <div><p class="editorial-meta text-muted-foreground">{tech.group}</p><h3 class="editorial-serif mt-2 text-2xl">{tech.name}</h3></div>
+        <div class="mt-5 flex flex-wrap items-center gap-x-4 gap-y-2 border-t border-border pt-3 text-xs font-medium">
+          <a href={tech.url} target="_blank" rel="noopener noreferrer" class="hover:text-primary">Official site ↗</a>
+          <a href={tech.docs} target="_blank" rel="noopener noreferrer" class="text-muted-foreground hover:text-primary">Documentation ↗</a>
+        </div>
+      </article>)}
+    </div>
+  </div>
+</section>
