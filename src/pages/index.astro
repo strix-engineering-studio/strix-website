@@ -1,15 +1,13 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
 import HomeSections from "../components/react/HomeSections";
-import ProjectShowcases from "../components/sections/ProjectShowcases.astro";
 import HuggedPreviews from "../components/sections/HuggedPreviews.astro";
-import TechnologyDirectory from "../components/layout/TechnologyDirectory.astro";
-import InsightsTopics from "../components/sections/InsightsTopics.astro";
 ---
-<BaseLayout>
+<BaseLayout
+  title="Strix Engineering Studio | Product Engineering & Software Architecture"
+  description="A product engineering studio in Pune, India. We design, engineer and evolve web, mobile, backend and AI-enabled digital products."
+  canonical="/"
+>
   <HomeSections />
-  <ProjectShowcases />
   <HuggedPreviews />
-  <TechnologyDirectory />
-  <InsightsTopics />
 </BaseLayout>
