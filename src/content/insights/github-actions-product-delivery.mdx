@@ -1,0 +1,42 @@
+---
+title: "GitHub Actions as a Repeatable Product Delivery System"
+excerpt: "Use CI automation for consistent checks, release confidence and deployment visibility across a growing codebase."
+publishedAt: "2026-11-27"
+tag: "GitHub · DevOps"
+featured: true
+---
+
+A useful CI pipeline should make a release more predictable, not merely add badges to a repository. GitHub Actions can automate checks around pull requests, builds, tests and deployments. Its value comes from making the team's delivery rules repeatable.
+
+## Start with a pull-request contract
+
+A practical baseline might include formatting, linting, type checking, unit tests and a production build. Add integration or end-to-end tests for workflows whose failure has significant user or business impact.
+
+Keep required checks stable and understandable. A pipeline that fails intermittently or takes too long will eventually be ignored or bypassed.
+
+## Separate validation from deployment
+
+Pull requests should validate changes without automatically deploying them to production. Use branch protections and required status checks to establish the merge contract. Deploy from a trusted branch or release tag, and make environment approvals explicit where the risk warrants it.
+
+## Handle credentials carefully
+
+Use GitHub's supported secrets and environment protections for deployment credentials. Prefer short-lived identity federation where supported by the cloud provider. Give workflows only the permissions they need, and pin third-party actions to reviewed versions or immutable commit SHAs.
+
+## Make failures diagnosable
+
+Name jobs and steps clearly, upload test reports when useful, and keep logs accessible. Cache dependencies to improve speed, but do not let cache correctness become a hidden build dependency. Run a clean build periodically.
+
+## A maintainable workflow
+
+1. Trigger validation on pull requests and relevant pushes.
+2. Install a pinned runtime and dependency version.
+3. Run deterministic quality checks and tests.
+4. Build the deployable artefact.
+5. Publish or deploy only from approved refs.
+6. Record the deployed revision and retain a rollback path.
+
+## The Strix perspective
+
+CI maturity is not measured by workflow count. It is measured by how reliably the pipeline catches defects, shortens feedback loops and makes releases reproducible.
+
+References: [GitHub Actions documentation](https://docs.github.com/actions) and [workflow security guidance](https://docs.github.com/actions/security-for-github-actions/security-guides/security-hardening-for-github-actions).
