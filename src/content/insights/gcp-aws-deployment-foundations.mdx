@@ -1,0 +1,41 @@
+---
+title: "GCP and AWS Deployment Foundations for Growing Products"
+excerpt: "How to reason about environments, identity, networking, secrets, observability and deployment workflows on cloud platforms."
+publishedAt: "2026-11-27"
+tag: "Cloud Engineering"
+featured: true
+---
+
+Cloud selection is rarely solved by comparing service names. Google Cloud Platform and Amazon Web Services both provide compute, managed databases, object storage, identity, networking, monitoring and deployment services. The engineering challenge is to choose a coherent operating model and understand its ongoing cost.
+
+## Begin with the workload
+
+Describe what the product needs to run: a web frontend, API, background jobs, scheduled tasks, database, file storage and external integrations. Estimate traffic patterns, data residency constraints, availability requirements and recovery expectations.
+
+Only then compare managed services. A containerised API may run on a managed container platform; a low-volume event handler may fit a serverless function. A managed relational database may reduce operational work compared with running and patching a database VM.
+
+## Build the deployment baseline
+
+A production foundation should include:
+
+- Separate development, staging and production environments.
+- Least-privilege service identities and role assignments.
+- Secrets stored in a managed secret manager, not committed to source control.
+- Reproducible build and deployment workflows.
+- Centralised logs, metrics, traces and actionable alerts.
+- Backups with documented restore tests.
+- Budgets, billing alerts and ownership for cloud resources.
+
+## Make releases repeatable
+
+CI should run checks, tests and build steps before deployment. Promote a known artefact between environments when possible rather than rebuilding different code for each stage. Use staged rollouts for risky changes and retain a clear rollback path.
+
+## Cost is an engineering requirement
+
+Track idle resources, network egress, storage growth, managed database sizing and log retention. A system that is technically available but has no cost ownership is not operationally mature.
+
+## The Strix perspective
+
+Choose the cloud platform that fits the team's current skills, product requirements and deployment constraints. Avoid adopting multiple clouds without a real workload or resilience requirement that justifies the added complexity.
+
+References: [Google Cloud documentation](https://cloud.google.com/docs) and [AWS documentation](https://docs.aws.amazon.com/).
