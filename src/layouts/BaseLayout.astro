@@ -2,6 +2,7 @@
 import "../styles/global.css";
 import SiteHeader from "../components/layout/SiteHeader.astro";
 import SiteFooter from "../components/layout/SiteFooter.astro";
+import CookieConsent from "../components/layout/CookieConsent.astro";
 
 interface Props {
   title?: string;
@@ -28,7 +29,7 @@ const imageUrl = image.startsWith("http") ? image : new URL(image.replace(/^\/+/
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
     <meta name="generator" content={Astro.generator} />
     <meta name="description" content={description} />
-    <meta name="keywords" content="product engineering, software development, custom software, MVP development, AI engineering, backend engineering, software architecture, Pune" />
+    <meta name="keywords" content="product engineering, software development, custom software, MVP development, AI engineering, backend engineering, software architecture, NestJS, Next.js, Flutter, Firebase, MongoDB, PostgreSQL, GCP, AWS, Pune" />
     <meta name="theme-color" content="#FAF8F3" />
     <meta name="color-scheme" content="light dark" />
     {noindex && <meta name="robots" content="noindex,nofollow" />}
@@ -69,6 +70,7 @@ const imageUrl = image.startsWith("http") ? image : new URL(image.replace(/^\/+/
       <main id="main" class="relative flex-1"><slot /></main>
       <SiteFooter />
     </div>
+    <CookieConsent />
     <script>
       // Astro's base setting prefixes built assets. This also prefixes root-relative
       // navigation and public files for the GitHub Pages project URL.
