@@ -19,6 +19,8 @@ const { class: className = "" } = Astro.props;
     const dark = theme === "dark";
     document.documentElement.classList.toggle("dark", dark);
     document.documentElement.style.colorScheme = theme;
+    const themeColor = document.querySelector<HTMLMetaElement>('meta[name="theme-color"]');
+    themeColor?.setAttribute("content", dark ? "#151412" : "#FBFAF8");
     document.querySelectorAll<HTMLButtonElement>("[data-theme-toggle]").forEach(button => {
       button.setAttribute("aria-label", dark ? "Switch to light mode" : "Switch to dark mode");
       button.setAttribute("title", dark ? "Switch to light mode" : "Switch to dark mode");
@@ -34,5 +36,16 @@ const { class: className = "" } = Astro.props;
       try { localStorage.setItem(key, next); } catch { /* current-page preference still applies */ }
       applyTheme(next);
     });
+  });
+
+  // Follow operating-system changes until the visitor makes an explicit choice.
+  const systemPreference = window.matchMedia("(prefers-color-scheme: dark)");
+  systemPreference.addEventListener("change", event => {
+    let hasSavedChoice = false;
+    try {
+      const saved = localStorage.getItem(key);
+      hasSavedChoice = saved === "light" || saved === "dark";
+    } catch { /* fall back to the current system preference */ }
+    if (!hasSavedChoice) applyTheme(event.matches ? "dark" : "light");
   });
 </script>
